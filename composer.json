@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "agence104\\livekit-server-sdk-php\\": "src"
+            "Agence104\\LiveKit\\": "src"
         }
     },
     "require-dev": {
