@@ -1,0 +1,6 @@
+vendor
+composer.phar
+composer.lock
+phpunit.phar
+phpunit.phar.asc
+.idea
