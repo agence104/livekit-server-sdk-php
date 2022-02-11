@@ -1,0 +1,23 @@
+{
+    "name": "agence104/livekit-server-sdk",
+    "description": "Server-side SDK for LiveKit.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patrick Delorme",
+            "homepage": "https://www.agence104.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "agence104\\livekit-server-sdk-php\\": "src"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.8 <=9"
+    }
+}
