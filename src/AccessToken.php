@@ -42,7 +42,7 @@ class AccessToken {
    */
   public $ttl = 4 * 60 * 60;
 
-  public function __construct($apiKey, $apiSecret, AccessTokenOptions $options) {
+  public function __construct($apiKey, $apiSecret, AccessTokenOpts $options) {
     if (!$apiKey || !$apiSecret) {
       throw new \Exception('Api-key and api-secret are required.');
     }
@@ -91,9 +91,14 @@ class AccessToken {
   }
 
   /**
-   * @returns JWT encoded token
+   * Get the JWT token string.
+   *
+   * @return \Firebase\JWT\JWT
+   *   The Encoded Token.
+   *
+   * @throws \Exception
    */
-  function toJwt() {
+  function getToken() {
     if (!$this->identity) {
       throw new \Exception('Identity is required for join but not set');
     }

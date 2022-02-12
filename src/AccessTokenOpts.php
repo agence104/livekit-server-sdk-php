@@ -2,7 +2,7 @@
 
 namespace Agence104\LiveKit;
 
-class AccessTokenOptions {
+class AccessTokenOpts {
 
   /**
    * The amount of time before expiration
@@ -38,7 +38,7 @@ class AccessTokenOptions {
   public function setIdentity($identity) {
     $this->identity = $identity;
   }
-  
+
   public function getIdentity() {
     return $this->identity ?? NULL;
   }
@@ -46,7 +46,7 @@ class AccessTokenOptions {
   public function setName($name) {
     $this->name = $name;
   }
-  
+
   public function getName() {
     return $this->name ?? NULL;
   }
@@ -54,7 +54,7 @@ class AccessTokenOptions {
   public function setTtl($ttl) {
     $this->ttl = $ttl;
   }
-  
+
   public function getTtl() {
     return $this->ttl ?? NULL;
   }
@@ -62,7 +62,7 @@ class AccessTokenOptions {
   public function setMetadata() {
     return $this->metadata ?? NULL;
   }
-  
+
   public function getMetadata() {
     return $this->metadata ?? NULL;
   }
