@@ -87,12 +87,12 @@ class AccessToken {
   /**
    * Get the JWT token string.
    *
-   * @return \Firebase\JWT\JWT
-   *   The Encoded Token.
+   * @return string
+   *   A signed JWT
    *
    * @throws \Exception
    */
-  function getToken(): JWT {
+  function getToken(): string {
     if (!$this->identity) {
       throw new \Exception('Identity is required for join but not set');
     }
