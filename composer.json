@@ -13,11 +13,14 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "firebase/php-jwt": "^6.0",
-        "twirp/twirp": "^0.8.1"
+        "twirp/twirp": "^0.8.1",
+        "twirp/quickstart": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "Agence104\\LiveKit\\": "src"
+            "Agence104\\LiveKit\\": "src",
+            "GPBMetadata\\": "src/proto/GPBMetadata",
+            "Livekit\\": "src/proto/Livekit"
         }
     },
     "require-dev": {
