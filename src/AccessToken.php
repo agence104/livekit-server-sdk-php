@@ -3,7 +3,6 @@
 namespace Agence104\LiveKit;
 
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 class AccessToken {
 
@@ -12,35 +11,35 @@ class AccessToken {
    *
    * @var string
    */
-  public $apiKey;
+  protected $apiKey;
 
   /**
    * The API Secret.
    *
    * @var string
    */
-  public $apiSecret;
+  protected $apiSecret;
 
   /**
    * The Access Token Grants
    *
    * @var \Agence104\LiveKit\ClaimGrants
    */
-  public $grants;
+  protected $grants;
 
   /**
    * The Access Token Identity
    *
    * @var string
    */
-  public $identity;
+  protected $identity;
 
   /**
    * The Time to live of the token. Defaults to 6 hours.
    *
    * @var numeric|string
    */
-  public $ttl = 4 * 60 * 60;
+  protected $ttl;
 
   public function __construct($apiKey, $apiSecret, AccessTokenOpts $options) {
     if (!$apiKey || !$apiSecret) {
@@ -51,15 +50,14 @@ class AccessToken {
     $this->apiSecret = $apiSecret;
     $this->grants = new ClaimGrants();
     $this->identity = $options->getIdentity();
-    $this->ttl = $options->getTtl() ?? 4 * 60 * 60;
-
+    $this->ttl = $options->getTtl();
 
     if ($options->getMetadata()) {
-      $this->setMetadata($options->getMetadata());
+      $this->grants->setMetadata($options->getMetadata());
     }
 
     if ($options->getName()) {
-      $this->setName($options->getName());
+      $this->grants->setName($options->getName());
     }
   }
 
@@ -78,11 +76,7 @@ class AccessToken {
     $this->grants->setMetaData($metadata);
   }
 
-  function setName($name) {
-    $this->grants->setName($name);
-  }
-
-  function getSha256() {
+  function getSha256(): string {
     return $this->grants->getSha256();
   }
 
@@ -98,7 +92,7 @@ class AccessToken {
    *
    * @throws \Exception
    */
-  function getToken() {
+  function getToken(): JWT {
     if (!$this->identity) {
       throw new \Exception('Identity is required for join but not set');
     }
@@ -110,6 +104,8 @@ class AccessToken {
       "iss" => $this->apiKey,
       "sub" => $this->identity,
       "jti" => $this->identity,
+      "video" => $this->grants->getVideoGrant(),
+      "metadata" => $this->grants->getMetadata(),
     ];
 
     return JWT::encode($payload, $this->apiSecret, 'HS256');

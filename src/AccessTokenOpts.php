@@ -9,14 +9,14 @@ class AccessTokenOpts {
    * expressed in seconds or a string describing a time span zeit/ms.
    * eg: '2 days', '10h', or seconds as numeric value
    *
-   * @var numeric|string
+   * @var int|string
    */
-  protected $ttl;
+  protected $ttl = 4 * 60 * 60;
 
   /**
    * The display name for the participant, available as `Participant.name`
    *
-   * @var string
+   * @var string|null
    */
   protected $name;
 
@@ -31,40 +31,64 @@ class AccessTokenOpts {
   /**
    * Custom metadata to be passed to participants.
    *
-   * @var string
+   * @var string|null
    */
   protected $metadata;
 
-  public function setIdentity($identity) {
-    $this->identity = $identity;
+  /**
+   * @return int|string
+   */
+  public function getTtl(): int|string {
+    return $this->ttl;
   }
 
-  public function getIdentity() {
-    return $this->identity ?? NULL;
-  }
-
-  public function setName($name) {
-    $this->name = $name;
-  }
-
-  public function getName() {
-    return $this->name ?? NULL;
-  }
-
-  public function setTtl($ttl) {
+  /**
+   * @param int|string $ttl
+   */
+  public function setTtl(int|string $ttl): void {
     $this->ttl = $ttl;
   }
 
-  public function getTtl() {
-    return $this->ttl ?? NULL;
+  /**
+   * @return string|null
+   */
+  public function getName(): ?string {
+    return $this->name;
   }
 
-  public function setMetadata() {
-    return $this->metadata ?? NULL;
+  /**
+   * @param string|null $name
+   */
+  public function setName(?string $name): void {
+    $this->name = $name;
   }
 
-  public function getMetadata() {
-    return $this->metadata ?? NULL;
+  /**
+   * @return string
+   */
+  public function getIdentity(): string {
+    return $this->identity;
+  }
+
+  /**
+   * @param string $identity
+   */
+  public function setIdentity(string $identity): void {
+    $this->identity = $identity;
+  }
+
+  /**
+   * @return string|null
+   */
+  public function getMetadata(): ?string {
+    return $this->metadata;
+  }
+
+  /**
+   * @param string|null $metadata
+   */
+  public function setMetadata(?string $metadata): void {
+    $this->metadata = $metadata;
   }
 
 }

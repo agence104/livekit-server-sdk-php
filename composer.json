@@ -11,8 +11,9 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "firebase/php-jwt": "^6.0"
+        "php": "^7.3 || ^8.0",
+        "firebase/php-jwt": "^6.0",
+        "twirp/twirp": "^0.8.1"
     },
     "autoload": {
         "psr-4": {

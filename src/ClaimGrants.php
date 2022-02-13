@@ -14,13 +14,13 @@ class ClaimGrants {
   /**
    * The Access Token Grants
    *
-   * @var \Agence104\LiveKit\VideoGrant
+   * @var null|\Agence104\LiveKit\VideoGrant
    */
   protected $videoGrant;
   /**
    * The Access Token Grants
    *
-   * @var string
+   * @var null|string
    */
   protected $metadata;
   /**
@@ -31,42 +31,59 @@ class ClaimGrants {
   protected $sha256;
 
   /**
-   * Add Video Grant.
-   *
-   * @param \Agence104\LiveKit\VideoGrant $videoGrant
-   *
-   * @return void
+   * @return string
    */
-  public function setVideoGrant($videoGrant) {
-    $this->videoGrant = $videoGrant;
-  }
-
-  public function getVideoGrant($videoGrant) {
-    return $this->videoGrant;
-  }
-
-  public function setName($name) {
-    $this->name = $name;
-  }
-
-  public function getName($name) {
+  public function getName(): string {
     return $this->name;
   }
 
-  public function setMetaData($metadata) {
-    $this->metadata = $metadata;
+  /**
+   * @param string $name
+   */
+  public function setName(string $name): void {
+    $this->name = $name;
   }
 
-  public function getMetaData($metadata) {
+  /**
+   * @return \Agence104\LiveKit\VideoGrant
+   */
+  public function getVideoGrant() {
+    return $this->videoGrant->getData();
+  }
+
+  /**
+   * @param \Agence104\LiveKit\VideoGrant $videoGrant
+   */
+  public function setVideoGrant(VideoGrant $videoGrant): void {
+    $this->videoGrant = $videoGrant;
+  }
+
+  /**
+   * @return null|string
+   */
+  public function getMetadata(): ?string {
     return $this->metadata;
   }
 
-  public function setSha256($sha) {
-    $this->sha256 = $sha;
+  /**
+   * @param string $metadata
+   */
+  public function setMetadata(string $metadata): void {
+    $this->metadata = $metadata;
   }
 
-  public function getSha256() {
+  /**
+   * @return string
+   */
+  public function getSha256(): string {
     return $this->sha256;
+  }
+
+  /**
+   * @param string $sha256
+   */
+  public function setSha256(string $sha256): void {
+    $this->sha256 = $sha256;
   }
 
 }
