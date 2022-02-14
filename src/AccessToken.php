@@ -93,20 +93,30 @@ class AccessToken {
    * @throws \Exception
    */
   function getToken(): string {
-    if (!$this->identity) {
+    $payload = [];
+
+    if ($this->identity) {
+      $payload += [
+        "sub" => $this->identity,
+        "jti" => $this->identity,
+      ];
+    }
+    elseif ($this->grants->getVideoGrant()->isRoomJoin()) {
       throw new \Exception('Identity is required for join but not set');
     }
 
     $jwt_timestamp = time();
-    $payload = [
+    $payload += [
       "exp" => $jwt_timestamp + $this->ttl,
-      "nbf" => $jwt_timestamp - 5,
+      "nbf" => $jwt_timestamp,
+      "iat" => $jwt_timestamp,
       "iss" => $this->apiKey,
-      "sub" => $this->identity,
-      "jti" => $this->identity,
-      "video" => $this->grants->getVideoGrant(),
-      "metadata" => $this->grants->getMetadata(),
+      "video" => $this->grants->getVideoGrant()->getData(),
     ];
+
+    if ($metadata = $this->grants->getMetadata()) {
+      $payload['metadata'] = $metadata;
+    }
 
     return JWT::encode($payload, $this->apiSecret, 'HS256');
   }

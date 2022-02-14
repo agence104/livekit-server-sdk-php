@@ -48,7 +48,7 @@ class ClaimGrants {
    * @return \Agence104\LiveKit\VideoGrant
    */
   public function getVideoGrant() {
-    return $this->videoGrant->getData();
+    return $this->videoGrant;
   }
 
   /**
