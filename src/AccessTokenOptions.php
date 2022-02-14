@@ -2,7 +2,7 @@
 
 namespace Agence104\LiveKit;
 
-class AccessTokenOpts {
+class AccessTokenOptions {
 
   /**
    * The amount of time before expiration

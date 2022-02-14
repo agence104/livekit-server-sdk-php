@@ -41,7 +41,7 @@ class AccessToken {
    */
   protected $ttl;
 
-  public function __construct($apiKey, $apiSecret, AccessTokenOpts $options) {
+  public function __construct($apiKey, $apiSecret, AccessTokenOptions $options) {
     if (!$apiKey || !$apiSecret) {
       throw new \Exception('Api-key and api-secret are required.');
     }
