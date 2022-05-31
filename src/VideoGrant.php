@@ -48,7 +48,7 @@ class VideoGrant {
 
   /**
    * Allow participant to publish. If neither canPublish or canSubscribe is set,
-   * both publish and subscribe are enabled
+   * both publish and subscribe are enabled.
    *
    * @var bool
    */
@@ -62,7 +62,7 @@ class VideoGrant {
   protected $canSubscribe = FALSE;
 
   /**
-   * Allow participants to publish data, defaults to true if not set
+   * Allow participants to publish data, defaults to true if not set.
    *
    * @var bool
    */
@@ -76,7 +76,8 @@ class VideoGrant {
   protected $hidden = FALSE;
 
   /**
-   * Participant is recording the room, when set, allows room to indicate it's being recorded
+   * Participant is recording the room, when set, allows room to indicate it's
+   * being recorded.
    *
    * @var bool
    */

@@ -14,15 +14,14 @@ class AccessTokenOptions {
   protected $ttl = 4 * 60 * 60;
 
   /**
-   * The display name for the participant, available as `Participant.name`
+   * The display name for the participant, available as `Participant.name`.
    *
    * @var string|null
    */
   protected $name;
 
-
   /**
-   * The Identity of the user, required for room join tokens
+   * The Identity of the user, required for room join tokens.
    *
    * @var string
    */

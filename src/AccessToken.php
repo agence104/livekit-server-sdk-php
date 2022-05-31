@@ -21,14 +21,14 @@ class AccessToken {
   protected $apiSecret;
 
   /**
-   * The Access Token Grants
+   * The Access Token Grants.
    *
    * @var \Agence104\LiveKit\ClaimGrants
    */
   protected $grants;
 
   /**
-   * The Access Token Identity
+   * The Access Token Identity.
    *
    * @var string
    */
@@ -41,6 +41,18 @@ class AccessToken {
    */
   protected $ttl;
 
+  /**
+   * AccessToken Constructor.
+   *
+   * @param string $apiKey
+   *   The LiveKit API Key.
+   * @param string $apiSecret
+   *   The LiveKit API Secret Key.
+   * @param \Agence104\LiveKit\AccessTokenOptions $options
+   *   List of options.
+   *
+   * @throws \Exception
+   */
   public function __construct($apiKey, $apiSecret, AccessTokenOptions $options) {
     if (!$apiKey || !$apiSecret) {
       throw new \Exception('Api-key and api-secret are required.');

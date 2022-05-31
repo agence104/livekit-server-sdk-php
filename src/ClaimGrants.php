@@ -5,26 +5,28 @@ namespace Agence104\LiveKit;
 class ClaimGrants {
 
   /**
-   * The Access Token Grants
+   * The display name for the participant.
    *
    * @var string
    */
   protected $name;
 
   /**
-   * The Access Token Grants
+   * The Access Token Grants.
    *
    * @var null|\Agence104\LiveKit\VideoGrant
    */
   protected $videoGrant;
+
   /**
-   * The Access Token Grants
+   * The Access Token Grants.
    *
    * @var null|string
    */
   protected $metadata;
+
   /**
-   * The Access Token Grants
+   * The Access Token Grants.
    *
    * @var string
    */
