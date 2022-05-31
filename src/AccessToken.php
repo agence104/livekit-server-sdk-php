@@ -112,6 +112,7 @@ class AccessToken {
       "iat" => $jwt_timestamp,
       "iss" => $this->apiKey,
       "video" => $this->grants->getVideoGrant()->getData(),
+      "name" => $this->grants->getName(),
     ];
 
     if ($metadata = $this->grants->getMetadata()) {

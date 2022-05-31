@@ -31,9 +31,9 @@ class ClaimGrants {
   protected $sha256;
 
   /**
-   * @return string
+   * @return null|string
    */
-  public function getName(): string {
+  public function getName(): ?string {
     return $this->name;
   }
 
