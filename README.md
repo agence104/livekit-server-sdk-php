@@ -71,7 +71,6 @@ $svc = new RoomServiceClient($host, 'api-key', 'secret-key');
 $rooms = $svc->listRooms();
 
 // Create a new room.
-$svc = new RoomServiceClient($this->host);
 $opts = new RoomCreateOptions();
 $opts->setName('myroom');
 $opts->setEmptyTimeout(10);
