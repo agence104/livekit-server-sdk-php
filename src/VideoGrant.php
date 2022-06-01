@@ -84,6 +84,20 @@ class VideoGrant {
   protected $recorder = FALSE;
 
   /**
+   * VideoGrant class constructor.
+   *
+   * @param array $properties
+   *   A list of properties with values to assign upon initializing the class.
+   */
+  public function __construct(array $properties = []) {
+    foreach ($properties as $property => $value) {
+      if (property_exists($this, $property)) {
+        $this->{$property} = $value;
+      }
+    }
+  }
+
+  /**
    * @return bool
    */
   public function isRoomCreate(): bool {

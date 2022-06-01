@@ -12,6 +12,12 @@ composer require agence104/livekit-server-sdk
 
 ## Usage
 
+### Environment Variables
+You may store credentials in environment variables. If api-key or api-secret is not passed in when creating a RoomServiceClient or AccessToken, the values in the following env vars will be used:
+
+- LIVEKIT_API_KEY
+- LIVEKIT_API_SECRET
+
 ### Creating Access Tokens
 
 Creating a token for participant to join a room.
@@ -27,7 +33,7 @@ $participantName = 'user-name';
 $tokenOptions = new AccessTokenOptions();
 $tokenOptions->setIdentity($participantName);
 
-$accessToken = new AccessToken('api-key', 'secret-key', $tokenOptions);
+$accessToken = new AccessToken($tokenOptions, 'api-key', 'secret-key');
 $videoGrant = new VideoGrant();
 $videoGrant->setRoomJoin();
 $videoGrant->setRoomName($roomName);

@@ -44,18 +44,21 @@ class AccessToken {
   /**
    * AccessToken Constructor.
    *
-   * @param string $apiKey
-   *   The LiveKit API Key.
-   * @param string $apiSecret
-   *   The LiveKit API Secret Key.
    * @param \Agence104\LiveKit\AccessTokenOptions $options
    *   List of options.
+   * @param string|null $apiKey
+   *   The LiveKit API Key, can be set in env LIVEKIT_API_KEY.
+   * @param string|null $apiSecret
+   *   The LiveKit API Secret Key, can be set in env LIVEKIT_API_SECRET.
    *
    * @throws \Exception
    */
-  public function __construct($apiKey, $apiSecret, AccessTokenOptions $options) {
+  public function __construct(AccessTokenOptions $options, string $apiKey = NULL, string $apiSecret = NULL) {
+    $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
+    $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
+
     if (!$apiKey || !$apiSecret) {
-      throw new \Exception('Api-key and api-secret are required.');
+      throw new \Exception('ApiKey and apiSecret are required.');
     }
 
     $this->apiKey = $apiKey;
