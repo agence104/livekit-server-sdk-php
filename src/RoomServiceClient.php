@@ -5,6 +5,9 @@ namespace Agence104\LiveKit;
 use Livekit\CreateRoomRequest;
 use Livekit\DeleteRoomRequest;
 use Livekit\ListRoomsRequest;
+use Livekit\ListRoomsResponse;
+use Livekit\DeleteRoomResponse;
+use Livekit\Room;
 use Twirp\Context;
 
 class RoomServiceClient {
@@ -40,7 +43,7 @@ class RoomServiceClient {
    * @param string|null $apiSecret
    *   The API Secret, can be set in env var LIVEKIT_API_SECRET.
    */
-  public function __construct($host, $apiKey = NULL, $apiSecret = NULL) {
+  public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
     $this->rpc = new \Livekit\RoomServiceClient($host);
     $this->apiKey = $apiKey;
     $this->apiSecret = $apiSecret;
@@ -56,7 +59,7 @@ class RoomServiceClient {
    * @return \Livekit\Room
    *   The Room object.
    */
-  public function createRoom(RoomCreateOptions $createOptions) {
+  public function createRoom(RoomCreateOptions $createOptions): Room {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomCreate();
     return $this->rpc->createRoom(
@@ -75,7 +78,7 @@ class RoomServiceClient {
    * @return \Livekit\ListRoomsResponse
    *   The ListRoomsResponse object.
    */
-  public function listRooms(array $names = []) {
+  public function listRooms(array $names = []): ListRoomsResponse {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomList();
     return $this->rpc->ListRooms(
@@ -95,7 +98,7 @@ class RoomServiceClient {
    * @return \Livekit\DeleteRoomResponse
    *   The ListRoomsResponse object.
    */
-  public function deleteRoom(string $name) {
+  public function deleteRoom(string $name): DeleteRoomResponse {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomCreate();
     return $this->rpc->DeleteRoom(
@@ -116,13 +119,13 @@ class RoomServiceClient {
    *   If everything worked, then the header values are returned,
    *   else an empty array is returned.
    */
-  private function authHeader(VideoGrant $videoGrant) : array {
+  private function authHeader(VideoGrant $videoGrant): array {
     $tokenOptions = new AccessTokenOptions();
     $tokenOptions->setTtl(10 * 60); // 10 minutes.
 
     try {
       $accessToken = new AccessToken($tokenOptions, $this->apiKey, $this->apiSecret);
-      $accessToken->addGrant($videoGrant);
+      $accessToken->setGrant($videoGrant);
       return Context::withHttpRequestHeaders([], [
         "Authorization" => "Bearer " . $accessToken->getToken(),
       ]);

@@ -5,11 +5,9 @@ namespace Agence104\LiveKit;
 class AccessTokenOptions {
 
   /**
-   * The amount of time before expiration
-   * expressed in seconds or a string describing a time span zeit/ms.
-   * eg: '2 days', '10h', or seconds as numeric value
+   * The amount of time before expiration expressed in seconds as numeric value.
    *
-   * @var int|string
+   * @var int
    */
   protected $ttl = 4 * 60 * 60;
 
@@ -49,17 +47,20 @@ class AccessTokenOptions {
   }
 
   /**
-   * @return int|string
+   * @return int
    */
-  public function getTtl(): int|string {
+  public function getTtl(): int {
     return $this->ttl;
   }
 
   /**
-   * @param int|string $ttl
+   * @param int $ttl
+   *
+   * @return $this
    */
-  public function setTtl(int|string $ttl): void {
+  public function setTtl(int $ttl): self {
     $this->ttl = $ttl;
+    return $this;
   }
 
   /**
@@ -71,9 +72,12 @@ class AccessTokenOptions {
 
   /**
    * @param string|null $name
+   *
+   * @return $this
    */
-  public function setName(?string $name): void {
+  public function setName(?string $name): self {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -85,9 +89,12 @@ class AccessTokenOptions {
 
   /**
    * @param string $identity
+   *
+   * @return $this
    */
-  public function setIdentity(string $identity): void {
+  public function setIdentity(string $identity): self {
     $this->identity = $identity;
+    return $this;
   }
 
   /**
@@ -99,9 +106,12 @@ class AccessTokenOptions {
 
   /**
    * @param string|null $metadata
+   *
+   * @return $this
    */
-  public function setMetadata(?string $metadata): void {
+  public function setMetadata(?string $metadata): self {
     $this->metadata = $metadata;
+    return $this;
   }
 
 }

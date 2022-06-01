@@ -106,9 +106,12 @@ class VideoGrant {
 
   /**
    * @param bool $roomCreate
+   *
+   * @return $this
    */
-  public function setRoomCreate(bool $roomCreate = TRUE): void {
+  public function setRoomCreate(bool $roomCreate = TRUE): self {
     $this->roomCreate = $roomCreate;
+    return $this;
   }
 
   /**
@@ -120,9 +123,12 @@ class VideoGrant {
 
   /**
    * @param bool $roomJoin
+   *
+   * @return $this
    */
-  public function setRoomJoin(bool $roomJoin = TRUE): void {
+  public function setRoomJoin(bool $roomJoin = TRUE): self {
     $this->roomJoin = $roomJoin;
+    return $this;
   }
 
   /**
@@ -134,9 +140,12 @@ class VideoGrant {
 
   /**
    * @param bool $roomList
+   *
+   * @return $this
    */
-  public function setRoomList(bool $roomList = TRUE): void {
+  public function setRoomList(bool $roomList = TRUE): self {
     $this->roomList = $roomList;
+    return $this;
   }
 
   /**
@@ -148,9 +157,12 @@ class VideoGrant {
 
   /**
    * @param bool $roomRecord
+   *
+   * @return $this
    */
-  public function setRoomRecord(bool $roomRecord = TRUE): void {
+  public function setRoomRecord(bool $roomRecord = TRUE): self {
     $this->roomRecord = $roomRecord;
+    return $this;
   }
 
   /**
@@ -162,9 +174,12 @@ class VideoGrant {
 
   /**
    * @param bool $roomAdmin
+   *
+   * @return $this
    */
-  public function setRoomAdmin(bool $roomAdmin = TRUE): void {
+  public function setRoomAdmin(bool $roomAdmin = TRUE): self {
     $this->roomAdmin = $roomAdmin;
+    return $this;
   }
 
   /**
@@ -176,9 +191,12 @@ class VideoGrant {
 
   /**
    * @param string $roomName
+   *
+   * @return $this
    */
-  public function setRoomName(string $roomName): void {
+  public function setRoomName(string $roomName): self {
     $this->room = $roomName;
+    return $this;
   }
 
   /**
@@ -190,9 +208,12 @@ class VideoGrant {
 
   /**
    * @param bool $canPublish
+   *
+   * @return $this
    */
-  public function setCanPublish(bool $canPublish = TRUE): void {
+  public function setCanPublish(bool $canPublish = TRUE): self {
     $this->canPublish = $canPublish;
+    return $this;
   }
 
   /**
@@ -204,9 +225,12 @@ class VideoGrant {
 
   /**
    * @param bool $canSubscribe
+   *
+   * @return $this
    */
-  public function setCanSubscribe(bool $canSubscribe = TRUE): void {
+  public function setCanSubscribe(bool $canSubscribe = TRUE): self {
     $this->canSubscribe = $canSubscribe;
+    return $this;
   }
 
   /**
@@ -218,9 +242,12 @@ class VideoGrant {
 
   /**
    * @param bool $canPublishData
+   *
+   * @return $this
    */
-  public function setCanPublishData(bool $canPublishData = TRUE): void {
+  public function setCanPublishData(bool $canPublishData = TRUE): self {
     $this->canPublishData = $canPublishData;
+    return $this;
   }
 
   /**
@@ -232,9 +259,12 @@ class VideoGrant {
 
   /**
    * @param bool $hidden
+   *
+   * @return $this
    */
-  public function setHidden(bool $hidden = TRUE): void {
+  public function setHidden(bool $hidden = TRUE): self {
     $this->hidden = $hidden;
+    return $this;
   }
 
   /**
@@ -246,9 +276,12 @@ class VideoGrant {
 
   /**
    * @param bool $recorder
+   *
+   * @return $this
    */
-  public function setRecorder(bool $recorder = TRUE): void {
+  public function setRecorder(bool $recorder = TRUE): self {
     $this->recorder = $recorder;
+    return $this;
   }
 
   /**
@@ -256,7 +289,7 @@ class VideoGrant {
    *
    * @return array
    */
-  public function getData() {
+  public function getData(): array {
     return array_filter(get_object_vars($this));
   }
 

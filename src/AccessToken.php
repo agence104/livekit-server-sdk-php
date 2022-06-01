@@ -67,36 +67,55 @@ class AccessToken {
     $this->identity = $options->getIdentity();
     $this->ttl = $options->getTtl();
 
-    if ($options->getMetadata()) {
-      $this->grants->setMetadata($options->getMetadata());
+    if ($metadata = $options->getMetadata()) {
+      $this->grants->setMetadata($metadata);
     }
 
-    if ($options->getName()) {
-      $this->grants->setName($options->getName());
+    if ($name = $options->getName()) {
+      $this->grants->setName($name);
     }
   }
 
   /**
-   * Adds a video grant to this token.
+   * Set a video grant to the token.
+   *
    * @param \Agence104\LiveKit\VideoGrant
+   *
+   * @return $this
    */
-  function addGrant(VideoGrant $videoGrant) {
+  function setGrant(VideoGrant $videoGrant): self {
     $this->grants->setVideoGrant($videoGrant);
+    return $this;
   }
 
   /**
    * Set metadata to be passed to the Participant, used only when joining the room
+   *
+   * @param string $metadata
+   *   The metadata value.
+   *
+   * @return $this
    */
-  function setMetadata($metadata) {
+  function setMetadata(string $metadata): self {
     $this->grants->setMetaData($metadata);
+    return $this;
   }
 
+  /**
+   * @return string
+   */
   function getSha256(): string {
     return $this->grants->getSha256();
   }
 
-  function setSha256($sha) {
-    $this->grants->setSha256($sha);
+  /**
+   * @param string $sha256
+   *
+   * @return $this
+   */
+  function setSha256(string $sha256): self {
+    $this->grants->setSha256($sha256);
+    return $this;
   }
 
   /**
@@ -127,8 +146,11 @@ class AccessToken {
       "iat" => $jwt_timestamp,
       "iss" => $this->apiKey,
       "video" => $this->grants->getVideoGrant()->getData(),
-      "name" => $this->grants->getName(),
     ];
+
+    if ($name =  $this->grants->getName()) {
+      $payload['name'] = $name;
+    }
 
     if ($metadata = $this->grants->getMetadata()) {
       $payload['metadata'] = $metadata;

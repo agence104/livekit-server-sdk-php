@@ -62,9 +62,12 @@ class RoomCreateOptions {
 
   /**
    * @param string|null $name
+   *
+   * @return $this
    */
-  public function setName(?string $name): void {
+  public function setName(?string $name): self {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -76,9 +79,12 @@ class RoomCreateOptions {
 
   /**
    * @param int|null $emptyTimeout
+   *
+   * @return $this
    */
-  public function setEmptyTimeout(?int $emptyTimeout): void {
+  public function setEmptyTimeout(?int $emptyTimeout): self {
     $this->empty_timeout = $emptyTimeout;
+    return $this;
   }
 
   /**
@@ -90,9 +96,12 @@ class RoomCreateOptions {
 
   /**
    * @param int|null $maxParticipants
+   *
+   * @return $this
    */
-  public function setMaxParticipants(?int $maxParticipants): void {
+  public function setMaxParticipants(?int $maxParticipants): self {
     $this->max_participants = $maxParticipants;
+    return $this;
   }
 
   /**
@@ -104,9 +113,12 @@ class RoomCreateOptions {
 
   /**
    * @param string|null $nodeId
+   *
+   * @return $this
    */
-  public function setNodeId(?string $nodeId): void {
+  public function setNodeId(?string $nodeId): self {
     $this->node_id = $nodeId;
+    return $this;
   }
 
   /**
@@ -114,7 +126,7 @@ class RoomCreateOptions {
    *
    * @return array
    */
-  public function getData() {
+  public function getData(): array {
     return array_filter(get_object_vars($this));
   }
 

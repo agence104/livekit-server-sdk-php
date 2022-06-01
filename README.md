@@ -37,7 +37,7 @@ $accessToken = new AccessToken($tokenOptions, 'api-key', 'secret-key');
 $videoGrant = new VideoGrant();
 $videoGrant->setRoomJoin();
 $videoGrant->setRoomName($roomName);
-$accessToken->addGrant($videoGrant);
+$accessToken->setGrant($videoGrant);
 $token = $accessToken->getToken();
 ```
 
@@ -53,7 +53,7 @@ $videoGrant->setRoomJoin(); // TRUE by default.
 $videoGrant->setRoomName('name-of-room');
 $videoGrant->setCanPublish(FALSE);
 $videoGrant->setCanSubscribe(); // TRUE by default.
-$accessToken->addGrant($videoGrant);
+$accessToken->setGrant($videoGrant);
 ```
 
 This will allow the participant to subscribe to tracks, but not publish their own to the room.

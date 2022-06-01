@@ -55,9 +55,12 @@ class ClaimGrants {
 
   /**
    * @param string $name
+   *
+   * @return $this
    */
-  public function setName(string $name): void {
+  public function setName(string $name): self {
     $this->name = $name;
+    return $this;
   }
 
   /**
@@ -69,9 +72,12 @@ class ClaimGrants {
 
   /**
    * @param \Agence104\LiveKit\VideoGrant $videoGrant
+   *
+   * @return $this
    */
-  public function setVideoGrant(VideoGrant $videoGrant): void {
+  public function setVideoGrant(VideoGrant $videoGrant): self {
     $this->videoGrant = $videoGrant;
+    return $this;
   }
 
   /**
@@ -83,9 +89,12 @@ class ClaimGrants {
 
   /**
    * @param string $metadata
+   *
+   * @return $this
    */
-  public function setMetadata(string $metadata): void {
+  public function setMetadata(string $metadata): self {
     $this->metadata = $metadata;
+    return $this;
   }
 
   /**
@@ -97,9 +106,12 @@ class ClaimGrants {
 
   /**
    * @param string $sha256
+   *
+   * @return $this
    */
-  public function setSha256(string $sha256): void {
+  public function setSha256(string $sha256): self {
     $this->sha256 = $sha256;
+    return $this;
   }
 
 }
