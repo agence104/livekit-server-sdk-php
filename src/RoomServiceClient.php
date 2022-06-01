@@ -61,7 +61,7 @@ class RoomServiceClient {
     $videoGrant->setRoomCreate();
     return $this->rpc->createRoom(
       $this->authHeader($videoGrant),
-      new createRoomRequest($createOptions)
+      new createRoomRequest($createOptions->getData())
     );
   }
 

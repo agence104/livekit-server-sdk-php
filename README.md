@@ -57,3 +57,27 @@ $accessToken->addGrant($videoGrant);
 ```
 
 This will allow the participant to subscribe to tracks, but not publish their own to the room.
+
+### Managing Rooms
+
+`RoomServiceClient` gives you APIs to list, create, and delete rooms. It also requires a pair of api key/secret key to operate.
+
+```php
+
+$host = 'https://my.livekit.host';
+$svc = new RoomServiceClient($host, 'api-key', 'secret-key');
+
+// List rooms.
+$rooms = $svc->listRooms();
+
+// Create a new room.
+$svc = new RoomServiceClient($this->host);
+$opts = new RoomCreateOptions();
+$opts->setName('myroom');
+$opts->setEmptyTimeout(10);
+$opts->setMaxParticipants(20);
+$roomsList = $svc->createRoom($opts);
+
+// Delete a room.
+$svc->deleteRoom('myroom');
+```
