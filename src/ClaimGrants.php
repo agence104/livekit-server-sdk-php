@@ -5,7 +5,7 @@ namespace Agence104\LiveKit;
 class ClaimGrants {
 
   /**
-   * The display name for the participant.
+   * The display name of the participant.
    *
    * @var string
    */
@@ -41,7 +41,12 @@ class ClaimGrants {
   public function __construct(array $properties = []) {
     foreach ($properties as $property => $value) {
       if (property_exists($this, $property)) {
-        $this->{$property} = $value;
+        if ($property == 'videoGrant') {
+          $this->{$property} = new VideoGrant($value);
+        }
+        else {
+          $this->{$property} = $value;
+        }
       }
     }
   }
@@ -112,6 +117,22 @@ class ClaimGrants {
   public function setSha256(string $sha256): self {
     $this->sha256 = $sha256;
     return $this;
+  }
+
+  /**
+   * Return the object properties which have been defined as an array.
+   *
+   * @return array
+   */
+  public function getData(): array {
+    $data = [
+      'name' => $this->name,
+      'metadata' => $this->metadata,
+      'sha256' => $this->sha256,
+      'video' => $this->videoGrant->getData(),
+    ];
+
+    return array_filter($data);
   }
 
 }

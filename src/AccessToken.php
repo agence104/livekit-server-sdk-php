@@ -145,16 +145,8 @@ class AccessToken {
       "nbf" => $jwt_timestamp,
       "iat" => $jwt_timestamp,
       "iss" => $this->apiKey,
-      "video" => $this->grants->getVideoGrant()->getData(),
     ];
-
-    if ($name =  $this->grants->getName()) {
-      $payload['name'] = $name;
-    }
-
-    if ($metadata = $this->grants->getMetadata()) {
-      $payload['metadata'] = $metadata;
-    }
+    $payload += $this->grants->getData();
 
     return JWT::encode($payload, $this->apiSecret, 'HS256');
   }
