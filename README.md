@@ -4,6 +4,9 @@ PHP APIs to manage rooms and to create access tokens. This library is designed t
 
 ## Installation
 
+### Requirements
+- php: >= 8
+
 ### Composer
 
 ```
