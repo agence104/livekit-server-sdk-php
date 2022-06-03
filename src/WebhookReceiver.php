@@ -8,11 +8,11 @@ use mysql_xdevapi\Exception;
 class WebhookReceiver {
 
   /**
-   * The token verifier.
+   * The AccessToken object.
    *
-   * @var \Agence104\LiveKit\TokenVerifier
+   * @var \Agence104\LiveKit\AccessToken
    */
-  protected $verifier;
+  protected $accessToken;
 
   /**
    * WebhookReceiver Constructor.
@@ -32,7 +32,7 @@ class WebhookReceiver {
       throw new \Exception('ApiKey and apiSecret are required.');
     }
 
-    $this->verifier = new TokenVerifier($apiKey, $apiSecret);
+    $this->accessToken = new AccessToken($apiKey, $apiSecret);
   }
 
   /**
@@ -50,18 +50,17 @@ class WebhookReceiver {
    * @throws \Exception
    */
   function receive(string $body, string $authHeader = NULL, bool $skipAuth = FALSE): WebhookEvent {
-
     // Verify token.
     if (!$skipAuth) {
       if (!$authHeader) {
         throw new Exception('Authorization header is empty');
       }
 
-      $grants = $this->verifier->verify($authHeader);
+      $grants = $this->accessToken->fromJwt($authHeader);
 
-      // Confirm sha.
+      // Validate Sha256.
       $hash = hash('sha256', $body);
-      if ($grants->setSha256() !== base64_encode($hash)) {
+      if ($grants->getSha256() !== base64_encode($hash)) {
         throw new \Exception('Sha256 checksum of the body does not match.');
       }
     }

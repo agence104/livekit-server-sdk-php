@@ -3,6 +3,7 @@
 namespace Agence104\LiveKit;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class AccessToken {
 
@@ -53,7 +54,7 @@ class AccessToken {
    *
    * @throws \Exception
    */
-  public function __construct(AccessTokenOptions $options, string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(string $apiKey = NULL, string $apiSecret = NULL) {
     $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
     $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
 
@@ -63,7 +64,20 @@ class AccessToken {
 
     $this->apiKey = $apiKey;
     $this->apiSecret = $apiSecret;
-    $this->grants = new ClaimGrants();
+  }
+
+  /**
+   * Initialize the AccessToken.
+   *
+   * @param \Agence104\LiveKit\AccessTokenOptions $options
+   *   List of options.
+   *
+   * @return $this
+   */
+  public function init(AccessTokenOptions $options): self{
+    $this->grants = new ClaimGrants([
+      'identity' => $options->getIdentity(),
+    ]);
     $this->identity = $options->getIdentity();
     $this->ttl = $options->getTtl();
 
@@ -74,6 +88,8 @@ class AccessToken {
     if ($name = $options->getName()) {
       $this->grants->setName($name);
     }
+
+    return $this;
   }
 
   /**
@@ -126,7 +142,7 @@ class AccessToken {
    *
    * @throws \Exception
    */
-  function getToken(): string {
+  function toJwt(): string {
     $payload = [];
 
     if ($this->identity) {
@@ -136,7 +152,7 @@ class AccessToken {
       ];
     }
     elseif ($this->grants->getVideoGrant()->isRoomJoin()) {
-      throw new \Exception('Identity is required for join but not set');
+      throw new \Exception('Identity is required to join but has not set.');
     }
 
     $jwt_timestamp = time();
@@ -149,6 +165,39 @@ class AccessToken {
     $payload += $this->grants->getData();
 
     return JWT::encode($payload, $this->apiSecret, 'HS256');
+  }
+
+  /**
+   * Validate the JWT token and return the grants assign from the token.
+   *
+   * @param string $token
+   *   The JWT Token.
+   *
+   * @return ClaimGrants
+   *   The ClaimGrants Object.
+   *
+   * @throws \Exception
+   */
+  function fromJwt(string $token): ClaimGrants {
+    $decoded_token = JWT::decode($token, new Key($this->apiSecret, 'HS256'));
+
+    if (!$decoded_token) {
+      throw new \Exception('Invalid token.');
+    }
+
+    if ($decoded_token->iss != $this->apiKey) {
+      throw new \Exception('Invalid issuer.');
+    }
+
+    if (isset($decoded_token->video)) {
+      $decoded_token->videoGrant = (array) $decoded_token->video;
+      unset($decoded_token->video);
+    }
+
+    // Set the identity for the ClaimGrants.
+    $decoded_token->identity = $decoded_token->sub;
+
+    return new ClaimGrants((array) $decoded_token);
   }
 
 }

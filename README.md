@@ -29,34 +29,48 @@ Creating a token for participant to join a room.
 // If this room doesn't exist, it'll be automatically created when the first
 // client joins.
 $roomName = 'name-of-room';
-// Identifier to be used for participant.
+// The identifier to be used for participant.
 $participantName = 'user-name';
 
-// Define token options.
-$tokenOptions = new AccessTokenOptions();
-$tokenOptions->setIdentity($participantName);
+// Define the token options.
+$tokenOptions = (new AccessTokenOptions())
+  ->setIdentity($participantName);
 
-$accessToken = new AccessToken($tokenOptions, 'api-key', 'secret-key');
-$videoGrant = new VideoGrant();
-$videoGrant->setRoomJoin();
-$videoGrant->setRoomName($roomName);
-$accessToken->setGrant($videoGrant);
-$token = $accessToken->getToken();
+// Define the video grants.
+$videoGrant = (new VideoGrant())
+  ->setRoomJoin();
+  ->setRoomName($roomName);
+
+// Initialize and fetch the JWT Token. 
+$token = (new AccessToken('api-key', 'secret-key'))
+  ->init($tokenOptions)
+  ->setGrant($videoGrant)
+  ->toJwt();
+
 ```
+By default, the token expires after 6 hours. you may override this by passing in `ttl` in the access token options. `ttl` is expressed in seconds (as number) .
 
-By default, the token expires after 6 hours. you may override this by passing in `ttl` in the access token options. `ttl` is expressed in seconds (as number) or a string describing a time span [vercel/ms](https://github.com/vercel/ms). eg: '2 days', '10h'.
+### Parsing the Access Tokens
+
+Converting the JWT Token into a ClaimGrants.
+
+```php
+// Initialize and parse the JWT Token. 
+$claimGrants = (new AccessToken('api-key', 'secret-key'))  
+  ->fromJwt($token);
+```
 
 ### Permissions in Access Tokens
 
 It's possible to customize the permissions of each participant:
 
 ```php
-$videoGrant = new VideoGrant();
-$videoGrant->setRoomJoin(); // TRUE by default.
-$videoGrant->setRoomName('name-of-room');
-$videoGrant->setCanPublish(FALSE);
-$videoGrant->setCanSubscribe(); // TRUE by default.
-$accessToken->setGrant($videoGrant);
+$videoGrant = (new VideoGrant())
+  ->setRoomJoin() // TRUE by default.
+  ->setRoomName('name-of-room')
+  ->setCanPublish(FALSE)
+  ->setCanSubscribe() // TRUE by default.
+  ->setGrant($videoGrant);
 ```
 
 This will allow the participant to subscribe to tracks, but not publish their own to the room.
@@ -74,11 +88,11 @@ $svc = new RoomServiceClient($host, 'api-key', 'secret-key');
 $rooms = $svc->listRooms();
 
 // Create a new room.
-$opts = new RoomCreateOptions();
-$opts->setName('myroom');
-$opts->setEmptyTimeout(10);
-$opts->setMaxParticipants(20);
-$roomsList = $svc->createRoom($opts);
+$opts = (new RoomCreateOptions())
+  ->setName('myroom')
+  ->setEmptyTimeout(10)
+  ->setMaxParticipants(20);
+$room = $svc->createRoom($opts);
 
 // Delete a room.
 $svc->deleteRoom('myroom');

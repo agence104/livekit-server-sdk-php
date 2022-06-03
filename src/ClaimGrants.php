@@ -12,6 +12,13 @@ class ClaimGrants {
   protected $name;
 
   /**
+   * The identity of the participant.
+   *
+   * @var string
+   */
+  protected $identity;
+
+  /**
    * The Access Token Grants.
    *
    * @var null|\Agence104\LiveKit\VideoGrant
@@ -65,6 +72,23 @@ class ClaimGrants {
    */
   public function setName(string $name): self {
     $this->name = $name;
+    return $this;
+  }
+
+  /**
+   * @return null|string
+   */
+  public function getIdentity(): ?string {
+    return $this->identity;
+  }
+
+  /**
+   * @param string $identity
+   *
+   * @return $this
+   */
+  public function setIdentity(string $identity): self {
+    $this->identity = $identity;
     return $this;
   }
 
