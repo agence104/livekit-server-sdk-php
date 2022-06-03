@@ -56,8 +56,17 @@ class RoomServiceClient {
    *   The API Key, can be set in env var LIVEKIT_API_KEY.
    * @param string|null $apiSecret
    *   The API Secret, can be set in env var LIVEKIT_API_SECRET.
+   *
+   * @throws \Exception
    */
   public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
+    $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
+    $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
+
+    if (!$apiKey || !$apiSecret) {
+      throw new \Exception('ApiKey and apiSecret are required.');
+    }
+
     $this->rpc = new \Livekit\RoomServiceClient($host);
     $this->apiKey = $apiKey;
     $this->apiSecret = $apiSecret;
@@ -352,14 +361,15 @@ class RoomServiceClient {
    *   else an empty array is returned.
    */
   private function authHeader(VideoGrant $videoGrant): array {
-    $tokenOptions = new AccessTokenOptions();
-    $tokenOptions->setTtl(10 * 60); // 10 minutes.
+    $tokenOptions = (new AccessTokenOptions())
+      ->setTtl(10 * 60); // 10 minutes.
 
     try {
-      $accessToken = new AccessToken($tokenOptions, $this->apiKey, $this->apiSecret);
-      $accessToken->setGrant($videoGrant);
+      $accessToken = (new AccessToken($this->apiKey, $this->apiSecret))
+        ->init($tokenOptions)
+        ->setGrant($videoGrant);
       return Context::withHttpRequestHeaders([], [
-        "Authorization" => "Bearer " . $accessToken->getToken(),
+        "Authorization" => "Bearer " . $accessToken->toJwt(),
       ]);
     }
     catch (\Exception $e) {
