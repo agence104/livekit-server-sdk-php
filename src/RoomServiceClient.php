@@ -107,7 +107,7 @@ class RoomServiceClient {
     return $this->rpc->ListRooms(
       $this->authHeader($videoGrant),
       new ListRoomsRequest([
-        'name' => $roomNames,
+        'names' => $roomNames,
       ])
     );
   }
@@ -127,7 +127,7 @@ class RoomServiceClient {
     return $this->rpc->DeleteRoom(
       $this->authHeader($videoGrant),
       new DeleteRoomRequest([
-        'name' => $roomName,
+        'room' => $roomName,
       ])
     );
   }
