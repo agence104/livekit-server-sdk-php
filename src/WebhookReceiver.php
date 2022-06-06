@@ -66,9 +66,9 @@ class WebhookReceiver {
       }
     }
 
-    return new WebhookEvent(
-      json_decode($body, TRUE)
-    );
+    $event = new WebhookEvent();
+    $event->mergeFromJsonString($body);
+    return $event;
   }
 
 }
