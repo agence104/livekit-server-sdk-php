@@ -2,6 +2,7 @@
 
 namespace Agence104\LiveKit;
 
+use GPBMetadata\LivekitWebhook;
 use Livekit\WebhookEvent;
 use mysql_xdevapi\Exception;
 
@@ -53,13 +54,13 @@ class WebhookReceiver {
     // Verify token.
     if (!$skipAuth) {
       if (!$authHeader) {
-        throw new Exception('Authorization header is empty');
+        throw new \Exception('Authorization header is empty');
       }
 
       $grants = $this->accessToken->fromJwt($authHeader);
 
       // Validate Sha256.
-      $hash = hash('sha256', $body);
+      $hash = hash('sha256', $body, TRUE);
       if ($grants->getSha256() !== base64_encode($hash)) {
         throw new \Exception('Sha256 checksum of the body does not match.');
       }
