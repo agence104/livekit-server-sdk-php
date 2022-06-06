@@ -83,7 +83,7 @@ class EgressClient {
   ){
     $file = NULL;
     $stream = NULL;
-    $present = NULL;
+    $preset = NULL;
     $advanced = NULL;
 
     if ($output instanceof EncodedFileOutput && !empty($output->getFilepath())) {
@@ -95,7 +95,7 @@ class EgressClient {
 
     if ($options) {
       if ($options instanceof EncodingOptionsPreset) {
-        $present = $options;
+        $preset = $options;
       }
       else {
         $advanced = $options;
@@ -105,7 +105,7 @@ class EgressClient {
     return [
       $file,
       $stream,
-      $present,
+      $preset,
       $advanced
     ];
   }
@@ -152,7 +152,7 @@ class EgressClient {
         'custom_base_url' => $customBaseUrl,
         'file' => $file,
         'stream' => $stream,
-        'present' => $preset,
+        'preset' => $preset,
         'advanced' => $advanced,
       ])
     );
@@ -193,7 +193,7 @@ class EgressClient {
         'video_track_id' => $videoTrackId,
         'file' => $file,
         'stream' => $stream,
-        'present' => $preset,
+        'preset' => $preset,
         'advanced' => $advanced,
       ])
     );
