@@ -195,7 +195,9 @@ class AccessToken {
     }
 
     // Set the identity for the ClaimGrants.
-    $decoded_token->identity = $decoded_token->sub;
+    if (isset($decoded_token->sub)) {
+      $decoded_token->identity = $decoded_token->sub;
+    }
 
     return new ClaimGrants((array) $decoded_token);
   }
