@@ -140,21 +140,27 @@ class EgressClient {
     string $customBaseUrl = ''
   ): EgressInfo {
     [$file, $stream, $preset, $advanced] = $this->getOutputParams($output, $options);
+
+    // Set the request data.
+    $data = [
+      'room_name' => $roomName,
+      'layout' => $layout,
+      'audio_only' => $audioOnly,
+      'video_only' => $videoOnly,
+      'custom_base_url' => $customBaseUrl,
+    ];
+    ($file)
+      ? $data['file'] = $file
+      : $data['stream'] = $stream;
+    ($preset)
+      ? $data['preset'] = $preset
+      : $data['advanced'] = $advanced;
+
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
     return $this->rpc->StartRoomCompositeEgress(
       $this->authHeader($videoGrant),
-      new RoomCompositeEgressRequest([
-        'room_name' => $roomName,
-        'layout' => $layout,
-        'audio_only' => $audioOnly,
-        'video_only' => $videoOnly,
-        'custom_base_url' => $customBaseUrl,
-        'file' => $file,
-        'stream' => $stream,
-        'preset' => $preset,
-        'advanced' => $advanced,
-      ])
+      new RoomCompositeEgressRequest($data)
     );
   }
 
@@ -183,19 +189,25 @@ class EgressClient {
     EncodingOptionsPreset|EncodingOptions $options = NULL,
   ): EgressInfo {
     [$file, $stream, $preset, $advanced] = $this->getOutputParams($output, $options);
+
+    // Set the request data.
+    $data = [
+      'room_name' => $roomName,
+      'audio_track_id' => $audioTrackId,
+      'video_track_id' => $videoTrackId,
+    ];
+    ($file)
+      ? $data['file'] = $file
+      : $data['stream'] = $stream;
+    ($preset)
+      ? $data['preset'] = $preset
+      : $data['advanced'] = $advanced;
+
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
     return $this->rpc->StartTrackCompositeEgress(
       $this->authHeader($videoGrant),
-      new TrackCompositeEgressRequest([
-        'room_name' => $roomName,
-        'audio_track_id' => $audioTrackId,
-        'video_track_id' => $videoTrackId,
-        'file' => $file,
-        'stream' => $stream,
-        'preset' => $preset,
-        'advanced' => $advanced,
-      ])
+      new TrackCompositeEgressRequest($data)
     );
   }
 
@@ -217,24 +229,20 @@ class EgressClient {
     DirectFileOutput|string $output,
     string $trackId
   ): EgressInfo {
-    $file = $output instanceof DirectFileOutput
-      ? $output
-      : NULL;
-
-    $webSocketUrl = !($output instanceof DirectFileOutput)
-      ? (string)$output
-      : NULL;
+    // Set the request data.
+    $data = [
+      'room_name' => $roomName,
+      'track_id' => $trackId,
+    ];
+    ($output instanceof DirectFileOutput && !empty($output->getFilepath()))
+      ? $data['file'] = $output
+      : $data['websocket_url'] = $output;
 
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
     return $this->rpc->StartTrackEgress(
       $this->authHeader($videoGrant),
-      new TrackEgressRequest([
-        'room_name' => $roomName,
-        'track_id' => $trackId,
-        'file' => $file,
-        'websocket_url' => $webSocketUrl,
-      ])
+      new TrackEgressRequest($data)
     );
   }
 
