@@ -7,37 +7,37 @@ class VideoGrant {
   /**
    * Permission to create a room.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $roomCreate = FALSE;
+  protected $roomCreate = NULL;
 
   /**
    * Permission to join a room as a participant, room must be set.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $roomJoin = FALSE;
+  protected $roomJoin = NULL;
 
   /**
    * Permission to list rooms.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $roomList = FALSE;
+  protected $roomList = NULL;
 
   /**
    * Permission to start a recording.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $roomRecord = FALSE;
+  protected $roomRecord = NULL;
 
   /**
    * Permission to control a specific room, room must be set.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $roomAdmin = FALSE;
+  protected $roomAdmin = NULL;
 
   /**
    * Name of the room, must be set for admin or join permissions.
@@ -50,38 +50,38 @@ class VideoGrant {
    * Allow participant to publish. If neither canPublish or canSubscribe is set,
    * both publish and subscribe are enabled.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $canPublish = FALSE;
+  protected $canPublish = NULL;
 
   /**
    * Allow participant to subscribe to other tracks.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $canSubscribe = FALSE;
+  protected $canSubscribe = NULL;
 
   /**
    * Allow participants to publish data, defaults to true if not set.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $canPublishData = FALSE;
+  protected $canPublishData = NULL;
 
   /**
    * Participant isn't visible to others.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $hidden = FALSE;
+  protected $hidden = NULL;
 
   /**
    * Participant is recording the room, when set, allows room to indicate it's
    * being recorded.
    *
-   * @var bool
+   * @var bool|null
    */
-  protected $recorder = FALSE;
+  protected $recorder = NULL;
 
   /**
    * VideoGrant class constructor.
@@ -290,7 +290,10 @@ class VideoGrant {
    * @return array
    */
   public function getData(): array {
-    return array_filter(get_object_vars($this));
+    return array_filter(
+      get_object_vars($this),
+      function ($v) { return !is_null($v); }
+    );
   }
 
 }
