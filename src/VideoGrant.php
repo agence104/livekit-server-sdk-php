@@ -98,9 +98,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isRoomCreate(): bool {
+  public function isRoomCreate(): bool | null {
     return $this->roomCreate;
   }
 
@@ -115,9 +115,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isRoomJoin(): bool {
+  public function isRoomJoin(): bool | null {
     return $this->roomJoin;
   }
 
@@ -132,9 +132,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isRoomList(): bool {
+  public function isRoomList(): bool| null {
     return $this->roomList;
   }
 
@@ -149,9 +149,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isRoomRecord(): bool {
+  public function isRoomRecord(): bool| null {
     return $this->roomRecord;
   }
 
@@ -166,9 +166,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isRoomAdmin(): bool {
+  public function isRoomAdmin(): bool | null{
     return $this->roomAdmin;
   }
 
@@ -200,9 +200,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isCanPublish(): bool {
+  public function isCanPublish(): bool | null {
     return $this->canPublish;
   }
 
@@ -217,9 +217,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isCanSubscribe(): bool {
+  public function isCanSubscribe(): bool | null {
     return $this->canSubscribe;
   }
 
@@ -234,9 +234,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isCanPublishData(): bool {
+  public function isCanPublishData(): bool | null {
     return $this->canPublishData;
   }
 
@@ -251,9 +251,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isHidden(): bool {
+  public function isHidden(): bool | null {
     return $this->hidden;
   }
 
@@ -268,9 +268,9 @@ class VideoGrant {
   }
 
   /**
-   * @return bool
+   * @return bool | null
    */
-  public function isRecorder(): bool {
+  public function isRecorder(): bool | null {
     return $this->recorder;
   }
 
