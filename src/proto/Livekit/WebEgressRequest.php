@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * containerize up to one audio and one video track
+ * record any website
  *
- * Generated from protobuf message <code>livekit.TrackCompositeEgressRequest</code>
+ * Generated from protobuf message <code>livekit.WebEgressRequest</code>
  */
-class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
+class WebEgressRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * required
-     *
-     * Generated from protobuf field <code>string room_name = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      */
-    protected $room_name = '';
+    protected $url = '';
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>string audio_track_id = 2;</code>
+     * Generated from protobuf field <code>bool audio_only = 2;</code>
      */
-    protected $audio_track_id = '';
+    protected $audio_only = false;
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>string video_track_id = 3;</code>
+     * Generated from protobuf field <code>bool video_only = 3;</code>
      */
-    protected $video_track_id = '';
+    protected $video_only = false;
     protected $output;
     protected $options;
 
@@ -42,19 +36,14 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $room_name
-     *           required
-     *     @type string $audio_track_id
-     *           (optional)
-     *     @type string $video_track_id
-     *           (optional)
+     *     @type string $url
+     *     @type bool $audio_only
+     *     @type bool $video_only
      *     @type \Livekit\EncodedFileOutput $file
      *     @type \Livekit\StreamOutput $stream
      *     @type \Livekit\SegmentedFileOutput $segments
      *     @type int $preset
-     *           (default H264_720P_30)
      *     @type \Livekit\EncodingOptions $advanced
-     *           (optional)
      * }
      */
     public function __construct($data = NULL) {
@@ -63,79 +52,67 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * required
-     *
-     * Generated from protobuf field <code>string room_name = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      * @return string
      */
-    public function getRoomName()
+    public function getUrl()
     {
-        return $this->room_name;
+        return $this->url;
     }
 
     /**
-     * required
-     *
-     * Generated from protobuf field <code>string room_name = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setRoomName($var)
+    public function setUrl($var)
     {
         GPBUtil::checkString($var, True);
-        $this->room_name = $var;
+        $this->url = $var;
 
         return $this;
     }
 
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>string audio_track_id = 2;</code>
-     * @return string
+     * Generated from protobuf field <code>bool audio_only = 2;</code>
+     * @return bool
      */
-    public function getAudioTrackId()
+    public function getAudioOnly()
     {
-        return $this->audio_track_id;
+        return $this->audio_only;
     }
 
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>string audio_track_id = 2;</code>
-     * @param string $var
+     * Generated from protobuf field <code>bool audio_only = 2;</code>
+     * @param bool $var
      * @return $this
      */
-    public function setAudioTrackId($var)
+    public function setAudioOnly($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->audio_track_id = $var;
+        GPBUtil::checkBool($var);
+        $this->audio_only = $var;
 
         return $this;
     }
 
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>string video_track_id = 3;</code>
-     * @return string
+     * Generated from protobuf field <code>bool video_only = 3;</code>
+     * @return bool
      */
-    public function getVideoTrackId()
+    public function getVideoOnly()
     {
-        return $this->video_track_id;
+        return $this->video_only;
     }
 
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>string video_track_id = 3;</code>
-     * @param string $var
+     * Generated from protobuf field <code>bool video_only = 3;</code>
+     * @param bool $var
      * @return $this
      */
-    public function setVideoTrackId($var)
+    public function setVideoOnly($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->video_track_id = $var;
+        GPBUtil::checkBool($var);
+        $this->video_only = $var;
 
         return $this;
     }
@@ -195,90 +172,82 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 8;</code>
+     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 6;</code>
      * @return \Livekit\SegmentedFileOutput|null
      */
     public function getSegments()
     {
-        return $this->readOneof(8);
+        return $this->readOneof(6);
     }
 
     public function hasSegments()
     {
-        return $this->hasOneof(8);
+        return $this->hasOneof(6);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 8;</code>
+     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 6;</code>
      * @param \Livekit\SegmentedFileOutput $var
      * @return $this
      */
     public function setSegments($var)
     {
         GPBUtil::checkMessage($var, \Livekit\SegmentedFileOutput::class);
-        $this->writeOneof(8, $var);
-
-        return $this;
-    }
-
-    /**
-     * (default H264_720P_30)
-     *
-     * Generated from protobuf field <code>.livekit.EncodingOptionsPreset preset = 6;</code>
-     * @return int
-     */
-    public function getPreset()
-    {
-        return $this->readOneof(6);
-    }
-
-    public function hasPreset()
-    {
-        return $this->hasOneof(6);
-    }
-
-    /**
-     * (default H264_720P_30)
-     *
-     * Generated from protobuf field <code>.livekit.EncodingOptionsPreset preset = 6;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setPreset($var)
-    {
-        GPBUtil::checkEnum($var, \Livekit\EncodingOptionsPreset::class);
         $this->writeOneof(6, $var);
 
         return $this;
     }
 
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>.livekit.EncodingOptions advanced = 7;</code>
-     * @return \Livekit\EncodingOptions|null
+     * Generated from protobuf field <code>.livekit.EncodingOptionsPreset preset = 7;</code>
+     * @return int
      */
-    public function getAdvanced()
+    public function getPreset()
     {
         return $this->readOneof(7);
     }
 
-    public function hasAdvanced()
+    public function hasPreset()
     {
         return $this->hasOneof(7);
     }
 
     /**
-     * (optional)
-     *
-     * Generated from protobuf field <code>.livekit.EncodingOptions advanced = 7;</code>
+     * Generated from protobuf field <code>.livekit.EncodingOptionsPreset preset = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPreset($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\EncodingOptionsPreset::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EncodingOptions advanced = 8;</code>
+     * @return \Livekit\EncodingOptions|null
+     */
+    public function getAdvanced()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasAdvanced()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EncodingOptions advanced = 8;</code>
      * @param \Livekit\EncodingOptions $var
      * @return $this
      */
     public function setAdvanced($var)
     {
         GPBUtil::checkMessage($var, \Livekit\EncodingOptions::class);
-        $this->writeOneof(7, $var);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

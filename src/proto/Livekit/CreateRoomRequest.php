@@ -43,6 +43,12 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string metadata = 5;</code>
      */
     protected $metadata = '';
+    /**
+     * egress
+     *
+     * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
+     */
+    protected $egress = null;
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *           override the node room is allocated to, for debugging
      *     @type string $metadata
      *           metadata of room
+     *     @type \Livekit\RoomEgress $egress
+     *           egress
      * }
      */
     public function __construct($data = NULL) {
@@ -193,6 +201,42 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * egress
+     *
+     * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
+     * @return \Livekit\RoomEgress|null
+     */
+    public function getEgress()
+    {
+        return $this->egress;
+    }
+
+    public function hasEgress()
+    {
+        return isset($this->egress);
+    }
+
+    public function clearEgress()
+    {
+        unset($this->egress);
+    }
+
+    /**
+     * egress
+     *
+     * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
+     * @param \Livekit\RoomEgress $var
+     * @return $this
+     */
+    public function setEgress($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RoomEgress::class);
+        $this->egress = $var;
 
         return $this;
     }

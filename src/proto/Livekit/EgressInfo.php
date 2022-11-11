@@ -22,6 +22,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $room_id = '';
     /**
+     * Generated from protobuf field <code>string room_name = 13;</code>
+     */
+    protected $room_name = '';
+    /**
      * Generated from protobuf field <code>.livekit.EgressStatus status = 3;</code>
      */
     protected $status = 0;
@@ -48,6 +52,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type string $egress_id
      *     @type string $room_id
+     *     @type string $room_name
      *     @type int $status
      *     @type int|string $started_at
      *     @type int|string $ended_at
@@ -55,8 +60,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\RoomCompositeEgressRequest $room_composite
      *     @type \Livekit\TrackCompositeEgressRequest $track_composite
      *     @type \Livekit\TrackEgressRequest $track
+     *     @type \Livekit\WebEgressRequest $web
      *     @type \Livekit\StreamInfoList $stream
      *     @type \Livekit\FileInfo $file
+     *     @type \Livekit\SegmentsInfo $segments
      * }
      */
     public function __construct($data = NULL) {
@@ -104,6 +111,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->room_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string room_name = 13;</code>
+     * @return string
+     */
+    public function getRoomName()
+    {
+        return $this->room_name;
+    }
+
+    /**
+     * Generated from protobuf field <code>string room_name = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRoomName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->room_name = $var;
 
         return $this;
     }
@@ -278,6 +307,33 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.livekit.WebEgressRequest web = 14;</code>
+     * @return \Livekit\WebEgressRequest|null
+     */
+    public function getWeb()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasWeb()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.WebEgressRequest web = 14;</code>
+     * @param \Livekit\WebEgressRequest $var
+     * @return $this
+     */
+    public function setWeb($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\WebEgressRequest::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>.livekit.StreamInfoList stream = 7;</code>
      * @return \Livekit\StreamInfoList|null
      */
@@ -327,6 +383,33 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\FileInfo::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SegmentsInfo segments = 12;</code>
+     * @return \Livekit\SegmentsInfo|null
+     */
+    public function getSegments()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasSegments()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SegmentsInfo segments = 12;</code>
+     * @param \Livekit\SegmentsInfo $var
+     * @return $this
+     */
+    public function setSegments($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SegmentsInfo::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

@@ -27,6 +27,14 @@ class ClientConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.ClientConfigSetting resume_connection = 3;</code>
      */
     protected $resume_connection = 0;
+    /**
+     * Generated from protobuf field <code>.livekit.DisabledCodecs disabled_codecs = 4;</code>
+     */
+    protected $disabled_codecs = null;
+    /**
+     * Generated from protobuf field <code>.livekit.ClientConfigSetting force_relay = 5;</code>
+     */
+    protected $force_relay = 0;
 
     /**
      * Constructor.
@@ -37,6 +45,8 @@ class ClientConfiguration extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\VideoConfiguration $video
      *     @type \Livekit\VideoConfiguration $screen
      *     @type int $resume_connection
+     *     @type \Livekit\DisabledCodecs $disabled_codecs
+     *     @type int $force_relay
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +136,60 @@ class ClientConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\ClientConfigSetting::class);
         $this->resume_connection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DisabledCodecs disabled_codecs = 4;</code>
+     * @return \Livekit\DisabledCodecs|null
+     */
+    public function getDisabledCodecs()
+    {
+        return $this->disabled_codecs;
+    }
+
+    public function hasDisabledCodecs()
+    {
+        return isset($this->disabled_codecs);
+    }
+
+    public function clearDisabledCodecs()
+    {
+        unset($this->disabled_codecs);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DisabledCodecs disabled_codecs = 4;</code>
+     * @param \Livekit\DisabledCodecs $var
+     * @return $this
+     */
+    public function setDisabledCodecs($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\DisabledCodecs::class);
+        $this->disabled_codecs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ClientConfigSetting force_relay = 5;</code>
+     * @return int
+     */
+    public function getForceRelay()
+    {
+        return $this->force_relay;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ClientConfigSetting force_relay = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setForceRelay($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\ClientConfigSetting::class);
+        $this->force_relay = $var;
 
         return $this;
     }

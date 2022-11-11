@@ -78,6 +78,16 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .livekit.SimulcastCodecInfo codecs = 13;</code>
      */
     private $codecs;
+    /**
+     * Generated from protobuf field <code>bool stereo = 14;</code>
+     */
+    protected $stereo = false;
+    /**
+     * true if RED (Redundant Encoding) is disabled for audio
+     *
+     * Generated from protobuf field <code>bool disable_red = 15;</code>
+     */
+    protected $disable_red = false;
 
     /**
      * Constructor.
@@ -105,6 +115,9 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *           mime type of codec
      *     @type string $mid
      *     @type \Livekit\SimulcastCodecInfo[]|\Google\Protobuf\Internal\RepeatedField $codecs
+     *     @type bool $stereo
+     *     @type bool $disable_red
+     *           true if RED (Redundant Encoding) is disabled for audio
      * }
      */
     public function __construct($data = NULL) {
@@ -420,6 +433,54 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\SimulcastCodecInfo::class);
         $this->codecs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool stereo = 14;</code>
+     * @return bool
+     */
+    public function getStereo()
+    {
+        return $this->stereo;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool stereo = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStereo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->stereo = $var;
+
+        return $this;
+    }
+
+    /**
+     * true if RED (Redundant Encoding) is disabled for audio
+     *
+     * Generated from protobuf field <code>bool disable_red = 15;</code>
+     * @return bool
+     */
+    public function getDisableRed()
+    {
+        return $this->disable_red;
+    }
+
+    /**
+     * true if RED (Redundant Encoding) is disabled for audio
+     *
+     * Generated from protobuf field <code>bool disable_red = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableRed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_red = $var;
 
         return $this;
     }

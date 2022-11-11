@@ -18,6 +18,14 @@ class FileInfo extends \Google\Protobuf\Internal\Message
      */
     protected $filename = '';
     /**
+     * Generated from protobuf field <code>int64 started_at = 2;</code>
+     */
+    protected $started_at = 0;
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 3;</code>
+     */
+    protected $ended_at = 0;
+    /**
      * Generated from protobuf field <code>int64 duration = 6;</code>
      */
     protected $duration = 0;
@@ -37,6 +45,8 @@ class FileInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filename
+     *     @type int|string $started_at
+     *     @type int|string $ended_at
      *     @type int|string $duration
      *     @type int|string $size
      *     @type string $location
@@ -65,6 +75,50 @@ class FileInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filename = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 started_at = 2;</code>
+     * @return int|string
+     */
+    public function getStartedAt()
+    {
+        return $this->started_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 started_at = 2;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setStartedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->started_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 3;</code>
+     * @return int|string
+     */
+    public function getEndedAt()
+    {
+        return $this->ended_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 3;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEndedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->ended_at = $var;
 
         return $this;
     }

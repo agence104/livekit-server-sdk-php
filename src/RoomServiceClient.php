@@ -24,7 +24,7 @@ use Livekit\RemoveParticipantResponse;
 use Livekit\UpdateSubscriptionsRequest;
 use Livekit\UpdateSubscriptionsResponse;
 
-class RoomServiceClient {
+class RoomServiceClient extends BaseServiceClient {
 
   /**
    * The Twirp RPC adapter for client implementation.
@@ -34,42 +34,12 @@ class RoomServiceClient {
   protected $rpc;
 
   /**
-   * The API Key, can be set in env var LIVEKIT_API_KEY.
-   *
-   * @var string
-   */
-  protected $apiKey;
-
-  /**
-   * The API Secret, can be set in env var LIVEKIT_API_SECRET.
-   *
-   * @var string
-   */
-  protected $apiSecret;
-
-  /**
-   * RoomServiceClient Class Constructor.
-   *
-   * @param string $host
-   *   The hostname including protocol. i.e. 'https://cluster.livekit.io'.
-   * @param string|null $apiKey
-   *   The API Key, can be set in env var LIVEKIT_API_KEY.
-   * @param string|null $apiSecret
-   *   The API Secret, can be set in env var LIVEKIT_API_SECRET.
-   *
-   * @throws \Exception
+   * {@inheritdoc}
    */
   public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
-    $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
-    $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
-
-    if (!$apiKey || !$apiSecret) {
-      throw new \Exception('ApiKey and apiSecret are required.');
-    }
+    parent::__construct($host,$apiKey, $apiSecret);
 
     $this->rpc = new \Livekit\RoomServiceClient($host);
-    $this->apiKey = $apiKey;
-    $this->apiSecret = $apiSecret;
   }
 
   /**
@@ -348,33 +318,6 @@ class RoomServiceClient {
         'destination_sids' => $destinationSids,
       ])
     );
-  }
-
-  /**
-   * Fetches the authorization header to be passed in the request.
-   *
-   * @param \Agence104\LiveKit\VideoGrant $videoGrant
-   *   The grants to apply on the AccessToken.
-   *
-   * @return array
-   *   If everything worked, then the header values are returned,
-   *   else an empty array is returned.
-   */
-  private function authHeader(VideoGrant $videoGrant): array {
-    $tokenOptions = (new AccessTokenOptions())
-      ->setTtl(10 * 60); // 10 minutes.
-
-    try {
-      $accessToken = (new AccessToken($this->apiKey, $this->apiSecret))
-        ->init($tokenOptions)
-        ->setGrant($videoGrant);
-      return Context::withHttpRequestHeaders([], [
-        "Authorization" => "Bearer " . $accessToken->toJwt(),
-      ]);
-    }
-    catch (\Exception $e) {
-      return [];
-    }
   }
 
 }

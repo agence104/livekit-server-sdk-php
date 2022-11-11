@@ -47,6 +47,13 @@ class VideoGrant {
   protected $room;
 
   /**
+   * Permissions to control ingress, not specific to any room or ingress.
+   *
+   * @var bool|null
+   */
+  protected $ingressAdmin = NULL;
+
+  /**
    * Allow participant to publish. If neither canPublish or canSubscribe is set,
    * both publish and subscribe are enabled.
    *
@@ -196,6 +203,23 @@ class VideoGrant {
    */
   public function setRoomName(string $roomName): self {
     $this->room = $roomName;
+    return $this;
+  }
+
+  /**
+   * @return bool | null
+   */
+  public function isIngressAdmin(): bool | null {
+    return $this->ingressAdmin;
+  }
+
+  /**
+   * @param bool $ingressAdmin
+   *
+   * @return $this
+   */
+  public function setIngressAdmin(bool $ingressAdmin = TRUE): self {
+    $this->ingressAdmin = $ingressAdmin;
     return $this;
   }
 

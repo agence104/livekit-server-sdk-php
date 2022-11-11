@@ -33,6 +33,12 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.ParticipantPermission permission = 4;</code>
      */
     protected $permission = null;
+    /**
+     * display name to update
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     */
+    protected $name = '';
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      *           metadata to update. skipping updates if left empty
      *     @type \Livekit\ParticipantPermission $permission
      *           set to update the participant's permissions
+     *     @type string $name
+     *           display name to update
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +163,32 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\ParticipantPermission::class);
         $this->permission = $var;
+
+        return $this;
+    }
+
+    /**
+     * display name to update
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * display name to update
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

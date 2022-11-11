@@ -18,9 +18,21 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
      */
     protected $url = '';
     /**
+     * Generated from protobuf field <code>int64 started_at = 2;</code>
+     */
+    protected $started_at = 0;
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 3;</code>
+     */
+    protected $ended_at = 0;
+    /**
      * Generated from protobuf field <code>int64 duration = 4;</code>
      */
     protected $duration = 0;
+    /**
+     * Generated from protobuf field <code>.livekit.StreamInfo.Status status = 5;</code>
+     */
+    protected $status = 0;
 
     /**
      * Constructor.
@@ -29,7 +41,10 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $url
+     *     @type int|string $started_at
+     *     @type int|string $ended_at
      *     @type int|string $duration
+     *     @type int $status
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +75,50 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>int64 started_at = 2;</code>
+     * @return int|string
+     */
+    public function getStartedAt()
+    {
+        return $this->started_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 started_at = 2;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setStartedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->started_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 3;</code>
+     * @return int|string
+     */
+    public function getEndedAt()
+    {
+        return $this->ended_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 3;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEndedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->ended_at = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>int64 duration = 4;</code>
      * @return int|string
      */
@@ -77,6 +136,28 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.StreamInfo.Status status = 5;</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.StreamInfo.Status status = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\StreamInfo\Status::class);
+        $this->status = $var;
 
         return $this;
     }

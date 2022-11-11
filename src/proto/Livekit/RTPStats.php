@@ -38,6 +38,10 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      */
     protected $bytes = 0;
     /**
+     * Generated from protobuf field <code>uint64 header_bytes = 39;</code>
+     */
+    protected $header_bytes = 0;
+    /**
      * Generated from protobuf field <code>double bitrate = 7;</code>
      */
     protected $bitrate = 0.0;
@@ -66,6 +70,10 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      */
     protected $bytes_duplicate = 0;
     /**
+     * Generated from protobuf field <code>uint64 header_bytes_duplicate = 40;</code>
+     */
+    protected $header_bytes_duplicate = 0;
+    /**
      * Generated from protobuf field <code>double bitrate_duplicate = 14;</code>
      */
     protected $bitrate_duplicate = 0.0;
@@ -81,6 +89,10 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>uint64 bytes_padding = 17;</code>
      */
     protected $bytes_padding = 0;
+    /**
+     * Generated from protobuf field <code>uint64 header_bytes_padding = 41;</code>
+     */
+    protected $header_bytes_padding = 0;
     /**
      * Generated from protobuf field <code>double bitrate_padding = 18;</code>
      */
@@ -178,6 +190,7 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      *     @type int $packets
      *     @type float $packet_rate
      *     @type int|string $bytes
+     *     @type int|string $header_bytes
      *     @type float $bitrate
      *     @type int $packets_lost
      *     @type float $packet_loss_rate
@@ -185,10 +198,12 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      *     @type int $packets_duplicate
      *     @type float $packet_duplicate_rate
      *     @type int|string $bytes_duplicate
+     *     @type int|string $header_bytes_duplicate
      *     @type float $bitrate_duplicate
      *     @type int $packets_padding
      *     @type float $packet_padding_rate
      *     @type int|string $bytes_padding
+     *     @type int|string $header_bytes_padding
      *     @type float $bitrate_padding
      *     @type int $packets_out_of_order
      *     @type int $frames
@@ -370,6 +385,28 @@ class RTPStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>uint64 header_bytes = 39;</code>
+     * @return int|string
+     */
+    public function getHeaderBytes()
+    {
+        return $this->header_bytes;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint64 header_bytes = 39;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setHeaderBytes($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->header_bytes = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>double bitrate = 7;</code>
      * @return float
      */
@@ -524,6 +561,28 @@ class RTPStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>uint64 header_bytes_duplicate = 40;</code>
+     * @return int|string
+     */
+    public function getHeaderBytesDuplicate()
+    {
+        return $this->header_bytes_duplicate;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint64 header_bytes_duplicate = 40;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setHeaderBytesDuplicate($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->header_bytes_duplicate = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>double bitrate_duplicate = 14;</code>
      * @return float
      */
@@ -607,6 +666,28 @@ class RTPStats extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->bytes_padding = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint64 header_bytes_padding = 41;</code>
+     * @return int|string
+     */
+    public function getHeaderBytesPadding()
+    {
+        return $this->header_bytes_padding;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint64 header_bytes_padding = 41;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setHeaderBytesPadding($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->header_bytes_padding = $var;
 
         return $this;
     }

@@ -51,6 +51,12 @@ class ClientInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string address = 9;</code>
      */
     protected $address = '';
+    /**
+     * wifi, wired, cellular, vpn, empty if not known
+     *
+     * Generated from protobuf field <code>string network = 10;</code>
+     */
+    protected $network = '';
 
     /**
      * Constructor.
@@ -67,6 +73,8 @@ class ClientInfo extends \Google\Protobuf\Internal\Message
      *     @type string $browser
      *     @type string $browser_version
      *     @type string $address
+     *     @type string $network
+     *           wifi, wired, cellular, vpn, empty if not known
      * }
      */
     public function __construct($data = NULL) {
@@ -268,6 +276,32 @@ class ClientInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->address = $var;
+
+        return $this;
+    }
+
+    /**
+     * wifi, wired, cellular, vpn, empty if not known
+     *
+     * Generated from protobuf field <code>string network = 10;</code>
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return $this->network;
+    }
+
+    /**
+     * wifi, wired, cellular, vpn, empty if not known
+     *
+     * Generated from protobuf field <code>string network = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network = $var;
 
         return $this;
     }

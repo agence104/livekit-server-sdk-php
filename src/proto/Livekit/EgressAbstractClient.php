@@ -149,6 +149,29 @@ abstract class EgressAbstractClient
     /**
      * {@inheritdoc}
      */
+    public function StartWebEgress(array $ctx, \Livekit\WebEgressRequest $in): \Livekit\EgressInfo
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'Egress');
+        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
+
+        $out = new \Livekit\EgressInfo();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.Egress/StartWebEgress';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.Egress/StartWebEgress';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function UpdateLayout(array $ctx, \Livekit\UpdateLayoutRequest $in): \Livekit\EgressInfo
     {
         $ctx = Context::withPackageName($ctx, 'livekit');

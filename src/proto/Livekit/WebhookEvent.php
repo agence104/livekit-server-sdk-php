@@ -14,8 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class WebhookEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * one of room_started, room_finished, participant_joined, participant_left, recording_started, recording_finished,
-     * track_published, track_unpublished, egress_started, egress_ended
+     * one of room_started, room_finished, participant_joined, participant_left,
+     * track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
      *
      * Generated from protobuf field <code>string event = 1;</code>
      */
@@ -31,17 +31,17 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      */
     protected $participant = null;
     /**
-     * set when event is recording_*
-     *
-     * Generated from protobuf field <code>.livekit.RecordingInfo recording_info = 5;</code>
-     */
-    protected $recording_info = null;
-    /**
      * set when event is egress_*
      *
      * Generated from protobuf field <code>.livekit.EgressInfo egress_info = 9;</code>
      */
     protected $egress_info = null;
+    /**
+     * set when event is ingress_*
+     *
+     * Generated from protobuf field <code>.livekit.IngressInfo ingress_info = 10;</code>
+     */
+    protected $ingress_info = null;
     /**
      * set when event is track_*
      *
@@ -68,15 +68,15 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $event
-     *           one of room_started, room_finished, participant_joined, participant_left, recording_started, recording_finished,
-     *           track_published, track_unpublished, egress_started, egress_ended
+     *           one of room_started, room_finished, participant_joined, participant_left,
+     *           track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
      *     @type \Livekit\Room $room
      *     @type \Livekit\ParticipantInfo $participant
      *           set when event is participant_* or track_*
-     *     @type \Livekit\RecordingInfo $recording_info
-     *           set when event is recording_*
      *     @type \Livekit\EgressInfo $egress_info
      *           set when event is egress_*
+     *     @type \Livekit\IngressInfo $ingress_info
+     *           set when event is ingress_*
      *     @type \Livekit\TrackInfo $track
      *           set when event is track_*
      *     @type string $id
@@ -91,8 +91,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * one of room_started, room_finished, participant_joined, participant_left, recording_started, recording_finished,
-     * track_published, track_unpublished, egress_started, egress_ended
+     * one of room_started, room_finished, participant_joined, participant_left,
+     * track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
      *
      * Generated from protobuf field <code>string event = 1;</code>
      * @return string
@@ -103,8 +103,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * one of room_started, room_finished, participant_joined, participant_left, recording_started, recording_finished,
-     * track_published, track_unpublished, egress_started, egress_ended
+     * one of room_started, room_finished, participant_joined, participant_left,
+     * track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
      *
      * Generated from protobuf field <code>string event = 1;</code>
      * @param string $var
@@ -187,42 +187,6 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * set when event is recording_*
-     *
-     * Generated from protobuf field <code>.livekit.RecordingInfo recording_info = 5;</code>
-     * @return \Livekit\RecordingInfo|null
-     */
-    public function getRecordingInfo()
-    {
-        return $this->recording_info;
-    }
-
-    public function hasRecordingInfo()
-    {
-        return isset($this->recording_info);
-    }
-
-    public function clearRecordingInfo()
-    {
-        unset($this->recording_info);
-    }
-
-    /**
-     * set when event is recording_*
-     *
-     * Generated from protobuf field <code>.livekit.RecordingInfo recording_info = 5;</code>
-     * @param \Livekit\RecordingInfo $var
-     * @return $this
-     */
-    public function setRecordingInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Livekit\RecordingInfo::class);
-        $this->recording_info = $var;
-
-        return $this;
-    }
-
-    /**
      * set when event is egress_*
      *
      * Generated from protobuf field <code>.livekit.EgressInfo egress_info = 9;</code>
@@ -254,6 +218,42 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\EgressInfo::class);
         $this->egress_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * set when event is ingress_*
+     *
+     * Generated from protobuf field <code>.livekit.IngressInfo ingress_info = 10;</code>
+     * @return \Livekit\IngressInfo|null
+     */
+    public function getIngressInfo()
+    {
+        return $this->ingress_info;
+    }
+
+    public function hasIngressInfo()
+    {
+        return isset($this->ingress_info);
+    }
+
+    public function clearIngressInfo()
+    {
+        unset($this->ingress_info);
+    }
+
+    /**
+     * set when event is ingress_*
+     *
+     * Generated from protobuf field <code>.livekit.IngressInfo ingress_info = 10;</code>
+     * @param \Livekit\IngressInfo $var
+     * @return $this
+     */
+    public function setIngressInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\IngressInfo::class);
+        $this->ingress_info = $var;
 
         return $this;
     }

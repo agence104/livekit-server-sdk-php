@@ -16,17 +16,18 @@ class LivekitWebhook
         }
         \GPBMetadata\LivekitModels::initOnce();
         \GPBMetadata\LivekitEgress::initOnce();
-        \GPBMetadata\LivekitRecording::initOnce();
+        \GPBMetadata\LivekitIngress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¨
-livekit_webhook.protolivekitlivekit_egress.protolivekit_recording.proto"†
+¢
+livekit_webhook.protolivekitlivekit_egress.protolivekit_ingress.proto"‚
 WebhookEvent
 event (	
 room (2.livekit.Room-
-participant (2.livekit.ParticipantInfo.
-recording_info (2.livekit.RecordingInfo(
-egress_info	 (2.livekit.EgressInfo!
+participant (2.livekit.ParticipantInfo(
+egress_info	 (2.livekit.EgressInfo*
+ingress_info
+ (2.livekit.IngressInfo!
 track (2.livekit.TrackInfo
 
 id (	

@@ -20,11 +20,17 @@ class EncodedFileOutput extends \Google\Protobuf\Internal\Message
      */
     protected $file_type = 0;
     /**
-     * (optional)
+     * see egress docs for templating (default {room_name}-{time})
      *
      * Generated from protobuf field <code>string filepath = 2;</code>
      */
     protected $filepath = '';
+    /**
+     * disable upload of manifest file (default false)
+     *
+     * Generated from protobuf field <code>bool disable_manifest = 6;</code>
+     */
+    protected $disable_manifest = false;
     protected $output;
 
     /**
@@ -36,10 +42,13 @@ class EncodedFileOutput extends \Google\Protobuf\Internal\Message
      *     @type int $file_type
      *           (optional)
      *     @type string $filepath
-     *           (optional)
+     *           see egress docs for templating (default {room_name}-{time})
+     *     @type bool $disable_manifest
+     *           disable upload of manifest file (default false)
      *     @type \Livekit\S3Upload $s3
      *     @type \Livekit\GCPUpload $gcp
      *     @type \Livekit\AzureBlobUpload $azure
+     *     @type \Livekit\AliOSSUpload $aliOSS
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +83,7 @@ class EncodedFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (optional)
+     * see egress docs for templating (default {room_name}-{time})
      *
      * Generated from protobuf field <code>string filepath = 2;</code>
      * @return string
@@ -85,7 +94,7 @@ class EncodedFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (optional)
+     * see egress docs for templating (default {room_name}-{time})
      *
      * Generated from protobuf field <code>string filepath = 2;</code>
      * @param string $var
@@ -95,6 +104,32 @@ class EncodedFileOutput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filepath = $var;
+
+        return $this;
+    }
+
+    /**
+     * disable upload of manifest file (default false)
+     *
+     * Generated from protobuf field <code>bool disable_manifest = 6;</code>
+     * @return bool
+     */
+    public function getDisableManifest()
+    {
+        return $this->disable_manifest;
+    }
+
+    /**
+     * disable upload of manifest file (default false)
+     *
+     * Generated from protobuf field <code>bool disable_manifest = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableManifest($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_manifest = $var;
 
         return $this;
     }
@@ -176,6 +211,33 @@ class EncodedFileOutput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\AzureBlobUpload::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.AliOSSUpload aliOSS = 7;</code>
+     * @return \Livekit\AliOSSUpload|null
+     */
+    public function getAliOSS()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasAliOSS()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.AliOSSUpload aliOSS = 7;</code>
+     * @param \Livekit\AliOSSUpload $var
+     * @return $this
+     */
+    public function setAliOSS($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\AliOSSUpload::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

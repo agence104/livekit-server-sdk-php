@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>livekit.DirectFileOutput</code>
+ * Generated from protobuf message <code>livekit.AutoTrackEgress</code>
  */
-class DirectFileOutput extends \Google\Protobuf\Internal\Message
+class AutoTrackEgress extends \Google\Protobuf\Internal\Message
 {
     /**
-     * see egress docs for templating (default {track_id}-{time})
+     * see docs for templating (default {track_id}-{time})
      *
      * Generated from protobuf field <code>string filepath = 1;</code>
      */
     protected $filepath = '';
     /**
-     * disable upload of manifest file (default false)
+     * disables upload of json manifest file (default false)
      *
      * Generated from protobuf field <code>bool disable_manifest = 5;</code>
      */
@@ -34,13 +34,12 @@ class DirectFileOutput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filepath
-     *           see egress docs for templating (default {track_id}-{time})
+     *           see docs for templating (default {track_id}-{time})
      *     @type bool $disable_manifest
-     *           disable upload of manifest file (default false)
+     *           disables upload of json manifest file (default false)
      *     @type \Livekit\S3Upload $s3
      *     @type \Livekit\GCPUpload $gcp
      *     @type \Livekit\AzureBlobUpload $azure
-     *     @type \Livekit\AliOSSUpload $aliOSS
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +48,7 @@ class DirectFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * see egress docs for templating (default {track_id}-{time})
+     * see docs for templating (default {track_id}-{time})
      *
      * Generated from protobuf field <code>string filepath = 1;</code>
      * @return string
@@ -60,7 +59,7 @@ class DirectFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * see egress docs for templating (default {track_id}-{time})
+     * see docs for templating (default {track_id}-{time})
      *
      * Generated from protobuf field <code>string filepath = 1;</code>
      * @param string $var
@@ -75,7 +74,7 @@ class DirectFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * disable upload of manifest file (default false)
+     * disables upload of json manifest file (default false)
      *
      * Generated from protobuf field <code>bool disable_manifest = 5;</code>
      * @return bool
@@ -86,7 +85,7 @@ class DirectFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * disable upload of manifest file (default false)
+     * disables upload of json manifest file (default false)
      *
      * Generated from protobuf field <code>bool disable_manifest = 5;</code>
      * @param bool $var
@@ -177,33 +176,6 @@ class DirectFileOutput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\AzureBlobUpload::class);
         $this->writeOneof(4, $var);
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.livekit.AliOSSUpload aliOSS = 6;</code>
-     * @return \Livekit\AliOSSUpload|null
-     */
-    public function getAliOSS()
-    {
-        return $this->readOneof(6);
-    }
-
-    public function hasAliOSS()
-    {
-        return $this->hasOneof(6);
-    }
-
-    /**
-     * Generated from protobuf field <code>.livekit.AliOSSUpload aliOSS = 6;</code>
-     * @param \Livekit\AliOSSUpload $var
-     * @return $this
-     */
-    public function setAliOSS($var)
-    {
-        GPBUtil::checkMessage($var, \Livekit\AliOSSUpload::class);
-        $this->writeOneof(6, $var);
 
         return $this;
     }

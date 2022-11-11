@@ -2,8 +2,8 @@
 
 namespace Agence104\LiveKit;
 
-use Twirp\Context;
 use Livekit\EgressInfo;
+use Livekit\EgressClient;
 use Livekit\StreamOutput;
 use Livekit\EncodingOptions;
 use Livekit\DirectFileOutput;
@@ -18,52 +18,22 @@ use Livekit\EncodingOptionsPreset;
 use Livekit\RoomCompositeEgressRequest;
 use Livekit\TrackCompositeEgressRequest;
 
-class EgressClient {
+class EgressServiceClient extends BaseServiceClient {
 
   /**
    * The Twirp RPC adapter for client implementation.
    *
-   * @var \Livekit\RoomServiceClient
+   * @var \Livekit\EgressClient
    */
   protected $rpc;
 
   /**
-   * The API Key, can be set in env var LIVEKIT_API_KEY.
-   *
-   * @var string
-   */
-  protected $apiKey;
-
-  /**
-   * The API Secret, can be set in env var LIVEKIT_API_SECRET.
-   *
-   * @var string
-   */
-  protected $apiSecret;
-
-  /**
-   * RoomServiceClient Class Constructor.
-   *
-   * @param string $host
-   *   The hostname including protocol. i.e. 'https://cluster.livekit.io'.
-   * @param string|null $apiKey
-   *   The API Key, can be set in env var LIVEKIT_API_KEY.
-   * @param string|null $apiSecret
-   *   The API Secret, can be set in env var LIVEKIT_API_SECRET.
-   *
-   * @throws \Exception
+   * {@inheritdoc}
    */
   public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
-    $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
-    $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
+    parent::__construct($host,$apiKey, $apiSecret);
 
-    if (!$apiKey || !$apiSecret) {
-      throw new \Exception('ApiKey and apiSecret are required.');
-    }
-
-    $this->rpc = new \Livekit\EgressClient($host);
-    $this->apiKey = $apiKey;
-    $this->apiSecret = $apiSecret;
+    $this->rpc = new EgressClient($host);
   }
 
   /**
@@ -80,7 +50,7 @@ class EgressClient {
   public function getOutputParams(
     EncodedFileOutput|StreamOutput $output,
     EncodingOptionsPreset|EncodingOptions $options = NULL
-  ){
+  ): array {
     $file = NULL;
     $stream = NULL;
     $preset = NULL;
@@ -114,7 +84,7 @@ class EgressClient {
    * Starts a room composite egress which uses a web template.
    *
    * @param string $roomName
-   *   The room name.
+   *   The name of the room.
    * @param string $layout
    *   The egress layout.
    * @param \Livekit\EncodedFileOutput|\Livekit\StreamOutput $output
@@ -169,7 +139,7 @@ class EgressClient {
    * track. Track IDs can be found using webhooks or one of the server SDKs.
    *
    * @param string $roomName
-   *   The room name.
+   *   The name of the room.
    * @param \Livekit\EncodedFileOutput|\Livekit\StreamOutput $output
    *   The file or stream output.
    * @param string $audioTrackId
@@ -216,7 +186,7 @@ class EgressClient {
    * server SDKs.
    *
    * @param string $roomName
-   *   The room name.
+   *   The name of the room.
    * @param \Livekit\DirectFileOutput|string $output
    *   The file or websocket output.
    * @param string $trackId
@@ -304,7 +274,7 @@ class EgressClient {
    * Gets the list of active egress. Does not include completed egress.
    *
    * @param string $roomName
-   *   The room name.
+   *   The name of the room.
    *
    * @return \Livekit\ListEgressResponse
    */
@@ -336,33 +306,6 @@ class EgressClient {
         'egress_id' => $egressId,
       ])
     );
-  }
-
-  /**
-   * Fetches the authorization header to be passed in the request.
-   *
-   * @param \Agence104\LiveKit\VideoGrant $videoGrant
-   *   The grants to apply on the AccessToken.
-   *
-   * @return array
-   *   If everything worked, then the header values are returned,
-   *   else an empty array is returned.
-   */
-  private function authHeader(VideoGrant $videoGrant): array {
-    $tokenOptions = (new AccessTokenOptions())
-      ->setTtl(10 * 60); // 10 minutes.
-
-    try {
-      $accessToken = (new AccessToken($this->apiKey, $this->apiSecret))
-        ->init($tokenOptions)
-        ->setGrant($videoGrant);
-      return Context::withHttpRequestHeaders([], [
-        "Authorization" => "Bearer " . $accessToken->toJwt(),
-      ]);
-    }
-    catch (\Exception $e) {
-      return [];
-    }
   }
 
 }

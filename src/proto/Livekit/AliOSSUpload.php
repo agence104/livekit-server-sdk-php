@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>livekit.S3Upload</code>
+ * Generated from protobuf message <code>livekit.AliOSSUpload</code>
  */
-class S3Upload extends \Google\Protobuf\Internal\Message
+class AliOSSUpload extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>string access_key = 1;</code>
@@ -33,18 +33,6 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string bucket = 5;</code>
      */
     protected $bucket = '';
-    /**
-     * Generated from protobuf field <code>bool force_path_style = 6;</code>
-     */
-    protected $force_path_style = false;
-    /**
-     * Generated from protobuf field <code>map<string, string> metadata = 7;</code>
-     */
-    private $metadata;
-    /**
-     * Generated from protobuf field <code>string tagging = 8;</code>
-     */
-    protected $tagging = '';
 
     /**
      * Constructor.
@@ -57,9 +45,6 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *     @type string $endpoint
      *     @type string $bucket
-     *     @type bool $force_path_style
-     *     @type array|\Google\Protobuf\Internal\MapField $metadata
-     *     @type string $tagging
      * }
      */
     public function __construct($data = NULL) {
@@ -173,72 +158,6 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->bucket = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>bool force_path_style = 6;</code>
-     * @return bool
-     */
-    public function getForcePathStyle()
-    {
-        return $this->force_path_style;
-    }
-
-    /**
-     * Generated from protobuf field <code>bool force_path_style = 6;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setForcePathStyle($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->force_path_style = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>map<string, string> metadata = 7;</code>
-     * @return \Google\Protobuf\Internal\MapField
-     */
-    public function getMetadata()
-    {
-        return $this->metadata;
-    }
-
-    /**
-     * Generated from protobuf field <code>map<string, string> metadata = 7;</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
-     * @return $this
-     */
-    public function setMetadata($var)
-    {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->metadata = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string tagging = 8;</code>
-     * @return string
-     */
-    public function getTagging()
-    {
-        return $this->tagging;
-    }
-
-    /**
-     * Generated from protobuf field <code>string tagging = 8;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setTagging($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->tagging = $var;
 
         return $this;
     }

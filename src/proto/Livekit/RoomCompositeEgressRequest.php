@@ -40,7 +40,7 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $video_only = false;
     /**
-     * (default https://recorder.livekit.io)
+     * template base url (default https://recorder.livekit.io)
      *
      * Generated from protobuf field <code>string custom_base_url = 5;</code>
      */
@@ -63,9 +63,10 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $video_only
      *           (default false)
      *     @type string $custom_base_url
-     *           (default https://recorder.livekit.io)
+     *           template base url (default https://recorder.livekit.io)
      *     @type \Livekit\EncodedFileOutput $file
      *     @type \Livekit\StreamOutput $stream
+     *     @type \Livekit\SegmentedFileOutput $segments
      *     @type int $preset
      *           (default H264_720P_30)
      *     @type \Livekit\EncodingOptions $advanced
@@ -182,7 +183,7 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (default https://recorder.livekit.io)
+     * template base url (default https://recorder.livekit.io)
      *
      * Generated from protobuf field <code>string custom_base_url = 5;</code>
      * @return string
@@ -193,7 +194,7 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (default https://recorder.livekit.io)
+     * template base url (default https://recorder.livekit.io)
      *
      * Generated from protobuf field <code>string custom_base_url = 5;</code>
      * @param string $var
@@ -257,6 +258,33 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\StreamOutput::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 10;</code>
+     * @return \Livekit\SegmentedFileOutput|null
+     */
+    public function getSegments()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasSegments()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 10;</code>
+     * @param \Livekit\SegmentedFileOutput $var
+     * @return $this
+     */
+    public function setSegments($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SegmentedFileOutput::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

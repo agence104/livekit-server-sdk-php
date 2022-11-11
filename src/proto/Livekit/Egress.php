@@ -41,6 +41,15 @@ interface Egress
     public function StartTrackEgress(array $ctx, \Livekit\TrackEgressRequest $req): \Livekit\EgressInfo;
 
     /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.Egress/StartWebEgress</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function StartWebEgress(array $ctx, \Livekit\WebEgressRequest $req): \Livekit\EgressInfo;
+
+    /**
      * update web composite layout
      *
      * Generated from protobuf method <code>livekit.Egress/UpdateLayout</code>

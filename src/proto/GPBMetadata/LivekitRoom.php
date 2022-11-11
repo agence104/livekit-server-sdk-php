@@ -15,16 +15,22 @@ class LivekitRoom
           return;
         }
         \GPBMetadata\LivekitModels::initOnce();
+        \GPBMetadata\LivekitEgress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á
-livekit_room.protolivekit"u
+ö
+livekit_room.protolivekitlivekit_egress.proto"š
 CreateRoomRequest
 name (	
 empty_timeout (
 max_participants (
 node_id (	
-metadata (	"!
+metadata (	#
+egress (2.livekit.RoomEgress"i
+
+RoomEgress1
+room (2#.livekit.RoomCompositeEgressRequest(
+tracks (2.livekit.AutoTrackEgress"!
 ListRoomsRequest
 names (	"1
 ListRoomsResponse
@@ -46,13 +52,14 @@ class LivekitRoom
 	track_sid (	
 muted (":
 MuteRoomTrackResponse!
-track (2.livekit.TrackInfo"€
+track (2.livekit.TrackInfo"Ž
 UpdateParticipantRequest
 room (	
 identity (	
 metadata (	2
 
-permission (2.livekit.ParticipantPermission"›
+permission (2.livekit.ParticipantPermission
+name (	"›
 UpdateSubscriptionsRequest
 room (	
 identity (	

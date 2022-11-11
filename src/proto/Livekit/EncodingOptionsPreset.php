@@ -12,35 +12,63 @@ use UnexpectedValueException;
 class EncodingOptionsPreset
 {
     /**
-     *  720p, 30fps, 3000kpbs, H.264_MAIN / OPUS
+     *  1280x720, 30fps, 3000kpbs, H.264_MAIN / OPUS
      *
      * Generated from protobuf enum <code>H264_720P_30 = 0;</code>
      */
     const H264_720P_30 = 0;
     /**
-     *  720p, 60fps, 4500kbps, H.264_MAIN / OPUS
+     *  1280x720, 60fps, 4500kbps, H.264_MAIN / OPUS
      *
      * Generated from protobuf enum <code>H264_720P_60 = 1;</code>
      */
     const H264_720P_60 = 1;
     /**
-     * 1080p, 30fps, 4500kbps, H.264_MAIN / OPUS
+     * 1920x1080, 30fps, 4500kbps, H.264_MAIN / OPUS
      *
      * Generated from protobuf enum <code>H264_1080P_30 = 2;</code>
      */
     const H264_1080P_30 = 2;
     /**
-     * 1080p, 60fps, 6000kbps, H.264_MAIN / OPUS
+     * 1920x1080, 60fps, 6000kbps, H.264_MAIN / OPUS
      *
      * Generated from protobuf enum <code>H264_1080P_60 = 3;</code>
      */
     const H264_1080P_60 = 3;
+    /**
+     *  720x1280, 30fps, 3000kpbs, H.264_MAIN / OPUS
+     *
+     * Generated from protobuf enum <code>PORTRAIT_H264_720P_30 = 4;</code>
+     */
+    const PORTRAIT_H264_720P_30 = 4;
+    /**
+     *  720x1280, 60fps, 4500kbps, H.264_MAIN / OPUS
+     *
+     * Generated from protobuf enum <code>PORTRAIT_H264_720P_60 = 5;</code>
+     */
+    const PORTRAIT_H264_720P_60 = 5;
+    /**
+     * 1080x1920, 30fps, 4500kbps, H.264_MAIN / OPUS
+     *
+     * Generated from protobuf enum <code>PORTRAIT_H264_1080P_30 = 6;</code>
+     */
+    const PORTRAIT_H264_1080P_30 = 6;
+    /**
+     * 1080x1920, 60fps, 6000kbps, H.264_MAIN / OPUS
+     *
+     * Generated from protobuf enum <code>PORTRAIT_H264_1080P_60 = 7;</code>
+     */
+    const PORTRAIT_H264_1080P_60 = 7;
 
     private static $valueToName = [
         self::H264_720P_30 => 'H264_720P_30',
         self::H264_720P_60 => 'H264_720P_60',
         self::H264_1080P_30 => 'H264_1080P_30',
         self::H264_1080P_60 => 'H264_1080P_60',
+        self::PORTRAIT_H264_720P_30 => 'PORTRAIT_H264_720P_30',
+        self::PORTRAIT_H264_720P_60 => 'PORTRAIT_H264_720P_60',
+        self::PORTRAIT_H264_1080P_30 => 'PORTRAIT_H264_1080P_30',
+        self::PORTRAIT_H264_1080P_60 => 'PORTRAIT_H264_1080P_60',
     ];
 
     public static function name($value)
