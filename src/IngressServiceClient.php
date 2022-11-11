@@ -34,8 +34,9 @@ class IngressServiceClient extends BaseServiceClient {
   /**
    * Create an ingress instance.
    *
-   * @param \Livekit\IngressInput $inputType
-   *   The ingress input type. Currently :RTMP_INPUT is the only supported type.
+   * @param int $inputType
+   *   The ingress input type. Currently, \Livekit\IngressInput::RTMP_INPUT is
+   *   the only supported type.
    * @param string $name
    *   Optional, name to identify the ingress.
    * @param string $roomName
@@ -52,7 +53,7 @@ class IngressServiceClient extends BaseServiceClient {
    * @return \Livekit\IngressInfo
    */
   public function createIngress(
-    IngressInput $inputType,
+    int $inputType,
     string $name = '',
     string $roomName = '',
     string $participantIdentity = '',
