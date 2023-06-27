@@ -33,6 +33,10 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.StreamInfo.Status status = 5;</code>
      */
     protected $status = 0;
+    /**
+     * Generated from protobuf field <code>string error = 6;</code>
+     */
+    protected $error = '';
 
     /**
      * Constructor.
@@ -45,6 +49,7 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
      *     @type int|string $ended_at
      *     @type int|string $duration
      *     @type int $status
+     *     @type string $error
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +163,28 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\StreamInfo\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string error = 6;</code>
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * Generated from protobuf field <code>string error = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setError($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->error = $var;
 
         return $this;
     }

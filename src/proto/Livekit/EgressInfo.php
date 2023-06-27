@@ -38,9 +38,29 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $ended_at = 0;
     /**
+     * Generated from protobuf field <code>int64 updated_at = 18;</code>
+     */
+    protected $updated_at = 0;
+    /**
      * Generated from protobuf field <code>string error = 9;</code>
      */
     protected $error = '';
+    /**
+     * Generated from protobuf field <code>repeated .livekit.StreamInfo stream_results = 15;</code>
+     */
+    private $stream_results;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.FileInfo file_results = 16;</code>
+     */
+    private $file_results;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SegmentsInfo segment_results = 17;</code>
+     */
+    private $segment_results;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ImagesInfo image_results = 20;</code>
+     */
+    private $image_results;
     protected $request;
     protected $result;
 
@@ -56,14 +76,20 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *     @type int|string $started_at
      *     @type int|string $ended_at
+     *     @type int|string $updated_at
      *     @type string $error
      *     @type \Livekit\RoomCompositeEgressRequest $room_composite
+     *     @type \Livekit\WebEgressRequest $web
+     *     @type \Livekit\ParticipantEgressRequest $participant
      *     @type \Livekit\TrackCompositeEgressRequest $track_composite
      *     @type \Livekit\TrackEgressRequest $track
-     *     @type \Livekit\WebEgressRequest $web
      *     @type \Livekit\StreamInfoList $stream
      *     @type \Livekit\FileInfo $file
      *     @type \Livekit\SegmentsInfo $segments
+     *     @type \Livekit\StreamInfo[]|\Google\Protobuf\Internal\RepeatedField $stream_results
+     *     @type \Livekit\FileInfo[]|\Google\Protobuf\Internal\RepeatedField $file_results
+     *     @type \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $segment_results
+     *     @type \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $image_results
      * }
      */
     public function __construct($data = NULL) {
@@ -204,6 +230,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>int64 updated_at = 18;</code>
+     * @return int|string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 updated_at = 18;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setUpdatedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->updated_at = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>string error = 9;</code>
      * @return string
      */
@@ -248,6 +296,60 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\RoomCompositeEgressRequest::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.WebEgressRequest web = 14;</code>
+     * @return \Livekit\WebEgressRequest|null
+     */
+    public function getWeb()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasWeb()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.WebEgressRequest web = 14;</code>
+     * @param \Livekit\WebEgressRequest $var
+     * @return $this
+     */
+    public function setWeb($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\WebEgressRequest::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ParticipantEgressRequest participant = 19;</code>
+     * @return \Livekit\ParticipantEgressRequest|null
+     */
+    public function getParticipant()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasParticipant()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ParticipantEgressRequest participant = 19;</code>
+     * @param \Livekit\ParticipantEgressRequest $var
+     * @return $this
+     */
+    public function setParticipant($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\ParticipantEgressRequest::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }
@@ -307,53 +409,31 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.WebEgressRequest web = 14;</code>
-     * @return \Livekit\WebEgressRequest|null
-     */
-    public function getWeb()
-    {
-        return $this->readOneof(14);
-    }
-
-    public function hasWeb()
-    {
-        return $this->hasOneof(14);
-    }
-
-    /**
-     * Generated from protobuf field <code>.livekit.WebEgressRequest web = 14;</code>
-     * @param \Livekit\WebEgressRequest $var
-     * @return $this
-     */
-    public function setWeb($var)
-    {
-        GPBUtil::checkMessage($var, \Livekit\WebEgressRequest::class);
-        $this->writeOneof(14, $var);
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.livekit.StreamInfoList stream = 7;</code>
+     * Generated from protobuf field <code>.livekit.StreamInfoList stream = 7 [deprecated = true];</code>
      * @return \Livekit\StreamInfoList|null
+     * @deprecated
      */
     public function getStream()
     {
+        @trigger_error('stream is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(7);
     }
 
     public function hasStream()
     {
+        @trigger_error('stream is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(7);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.StreamInfoList stream = 7;</code>
+     * Generated from protobuf field <code>.livekit.StreamInfoList stream = 7 [deprecated = true];</code>
      * @param \Livekit\StreamInfoList $var
      * @return $this
+     * @deprecated
      */
     public function setStream($var)
     {
+        @trigger_error('stream is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\StreamInfoList::class);
         $this->writeOneof(7, $var);
 
@@ -361,26 +441,31 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.FileInfo file = 8;</code>
+     * Generated from protobuf field <code>.livekit.FileInfo file = 8 [deprecated = true];</code>
      * @return \Livekit\FileInfo|null
+     * @deprecated
      */
     public function getFile()
     {
+        @trigger_error('file is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(8);
     }
 
     public function hasFile()
     {
+        @trigger_error('file is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(8);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.FileInfo file = 8;</code>
+     * Generated from protobuf field <code>.livekit.FileInfo file = 8 [deprecated = true];</code>
      * @param \Livekit\FileInfo $var
      * @return $this
+     * @deprecated
      */
     public function setFile($var)
     {
+        @trigger_error('file is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\FileInfo::class);
         $this->writeOneof(8, $var);
 
@@ -388,28 +473,121 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SegmentsInfo segments = 12;</code>
+     * Generated from protobuf field <code>.livekit.SegmentsInfo segments = 12 [deprecated = true];</code>
      * @return \Livekit\SegmentsInfo|null
+     * @deprecated
      */
     public function getSegments()
     {
+        @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(12);
     }
 
     public function hasSegments()
     {
+        @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(12);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SegmentsInfo segments = 12;</code>
+     * Generated from protobuf field <code>.livekit.SegmentsInfo segments = 12 [deprecated = true];</code>
      * @param \Livekit\SegmentsInfo $var
      * @return $this
+     * @deprecated
      */
     public function setSegments($var)
     {
+        @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\SegmentsInfo::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.StreamInfo stream_results = 15;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStreamResults()
+    {
+        return $this->stream_results;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.StreamInfo stream_results = 15;</code>
+     * @param \Livekit\StreamInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStreamResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\StreamInfo::class);
+        $this->stream_results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.FileInfo file_results = 16;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFileResults()
+    {
+        return $this->file_results;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.FileInfo file_results = 16;</code>
+     * @param \Livekit\FileInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFileResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\FileInfo::class);
+        $this->file_results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SegmentsInfo segment_results = 17;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSegmentResults()
+    {
+        return $this->segment_results;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SegmentsInfo segment_results = 17;</code>
+     * @param \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSegmentResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\SegmentsInfo::class);
+        $this->segment_results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ImagesInfo image_results = 20;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getImageResults()
+    {
+        return $this->image_results;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ImagesInfo image_results = 20;</code>
+     * @param \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setImageResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\ImagesInfo::class);
+        $this->image_results = $arr;
 
         return $this;
     }

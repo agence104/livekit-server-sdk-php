@@ -34,6 +34,10 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
+     * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
+     */
+    protected $bypass_transcoding = null;
+    /**
      * Generated from protobuf field <code>.livekit.IngressAudioOptions audio = 6;</code>
      */
     protected $audio = null;
@@ -53,6 +57,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      *     @type string $room_name
      *     @type string $participant_identity
      *     @type string $participant_name
+     *     @type bool $bypass_transcoding
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
      * }
@@ -168,6 +173,38 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
+     * @return bool
+     */
+    public function getBypassTranscoding()
+    {
+        return isset($this->bypass_transcoding) ? $this->bypass_transcoding : false;
+    }
+
+    public function hasBypassTranscoding()
+    {
+        return isset($this->bypass_transcoding);
+    }
+
+    public function clearBypassTranscoding()
+    {
+        unset($this->bypass_transcoding);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBypassTranscoding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->bypass_transcoding = $var;
 
         return $this;
     }

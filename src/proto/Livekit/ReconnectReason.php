@@ -7,37 +7,37 @@ namespace Livekit;
 use UnexpectedValueException;
 
 /**
- * Protobuf type <code>livekit.VideoCodec</code>
+ * Protobuf type <code>livekit.ReconnectReason</code>
  */
-class VideoCodec
+class ReconnectReason
 {
     /**
-     * Generated from protobuf enum <code>DEFAULT_VC = 0;</code>
+     * Generated from protobuf enum <code>RR_UNKNOWN = 0;</code>
      */
-    const DEFAULT_VC = 0;
+    const RR_UNKNOWN = 0;
     /**
-     * Generated from protobuf enum <code>H264_BASELINE = 1;</code>
+     * Generated from protobuf enum <code>RR_SIGNAL_DISCONNECTED = 1;</code>
      */
-    const H264_BASELINE = 1;
+    const RR_SIGNAL_DISCONNECTED = 1;
     /**
-     * Generated from protobuf enum <code>H264_MAIN = 2;</code>
+     * Generated from protobuf enum <code>RR_PUBLISHER_FAILED = 2;</code>
      */
-    const H264_MAIN = 2;
+    const RR_PUBLISHER_FAILED = 2;
     /**
-     * Generated from protobuf enum <code>H264_HIGH = 3;</code>
+     * Generated from protobuf enum <code>RR_SUBSCRIBER_FAILED = 3;</code>
      */
-    const H264_HIGH = 3;
+    const RR_SUBSCRIBER_FAILED = 3;
     /**
-     * Generated from protobuf enum <code>VP8 = 4;</code>
+     * Generated from protobuf enum <code>RR_SWITCH_CANDIDATE = 4;</code>
      */
-    const VP8 = 4;
+    const RR_SWITCH_CANDIDATE = 4;
 
     private static $valueToName = [
-        self::DEFAULT_VC => 'DEFAULT_VC',
-        self::H264_BASELINE => 'H264_BASELINE',
-        self::H264_MAIN => 'H264_MAIN',
-        self::H264_HIGH => 'H264_HIGH',
-        self::VP8 => 'VP8',
+        self::RR_UNKNOWN => 'RR_UNKNOWN',
+        self::RR_SIGNAL_DISCONNECTED => 'RR_SIGNAL_DISCONNECTED',
+        self::RR_PUBLISHER_FAILED => 'RR_PUBLISHER_FAILED',
+        self::RR_SUBSCRIBER_FAILED => 'RR_SUBSCRIBER_FAILED',
+        self::RR_SWITCH_CANDIDATE => 'RR_SWITCH_CANDIDATE',
     ];
 
     public static function name($value)

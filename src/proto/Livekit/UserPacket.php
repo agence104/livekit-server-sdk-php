@@ -20,17 +20,33 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      */
     protected $participant_sid = '';
     /**
+     * Generated from protobuf field <code>string participant_identity = 5;</code>
+     */
+    protected $participant_identity = '';
+    /**
      * user defined payload
      *
      * Generated from protobuf field <code>bytes payload = 2;</code>
      */
     protected $payload = '';
     /**
-     * the ID of the participants who will receive the message (the message will be sent to all the people in the room if this variable is empty)
+     * the ID of the participants who will receive the message (sent to all by default)
      *
      * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
      */
     private $destination_sids;
+    /**
+     * identities of participants who will receive the message (sent to all by default)
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     */
+    private $destination_identities;
+    /**
+     * topic under which the message was published
+     *
+     * Generated from protobuf field <code>optional string topic = 4;</code>
+     */
+    protected $topic = null;
 
     /**
      * Constructor.
@@ -40,10 +56,15 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      *
      *     @type string $participant_sid
      *           participant ID of user that sent the message
+     *     @type string $participant_identity
      *     @type string $payload
      *           user defined payload
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_sids
-     *           the ID of the participants who will receive the message (the message will be sent to all the people in the room if this variable is empty)
+     *           the ID of the participants who will receive the message (sent to all by default)
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_identities
+     *           identities of participants who will receive the message (sent to all by default)
+     *     @type string $topic
+     *           topic under which the message was published
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +99,28 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>string participant_identity = 5;</code>
+     * @return string
+     */
+    public function getParticipantIdentity()
+    {
+        return $this->participant_identity;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_identity = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantIdentity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_identity = $var;
+
+        return $this;
+    }
+
+    /**
      * user defined payload
      *
      * Generated from protobuf field <code>bytes payload = 2;</code>
@@ -104,7 +147,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the ID of the participants who will receive the message (the message will be sent to all the people in the room if this variable is empty)
+     * the ID of the participants who will receive the message (sent to all by default)
      *
      * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -115,7 +158,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the ID of the participants who will receive the message (the message will be sent to all the people in the room if this variable is empty)
+     * the ID of the participants who will receive the message (sent to all by default)
      *
      * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -125,6 +168,68 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->destination_sids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * identities of participants who will receive the message (sent to all by default)
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDestinationIdentities()
+    {
+        return $this->destination_identities;
+    }
+
+    /**
+     * identities of participants who will receive the message (sent to all by default)
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDestinationIdentities($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->destination_identities = $arr;
+
+        return $this;
+    }
+
+    /**
+     * topic under which the message was published
+     *
+     * Generated from protobuf field <code>optional string topic = 4;</code>
+     * @return string
+     */
+    public function getTopic()
+    {
+        return isset($this->topic) ? $this->topic : '';
+    }
+
+    public function hasTopic()
+    {
+        return isset($this->topic);
+    }
+
+    public function clearTopic()
+    {
+        unset($this->topic);
+    }
+
+    /**
+     * topic under which the message was published
+     *
+     * Generated from protobuf field <code>optional string topic = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTopic($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->topic = $var;
 
         return $this;
     }

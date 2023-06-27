@@ -26,9 +26,22 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      */
     protected $kind = 0;
     /**
-     * Generated from protobuf field <code>repeated string destination_sids = 4;</code>
+     * mark deprecated
+     *
+     * Generated from protobuf field <code>repeated string destination_sids = 4 [deprecated = true];</code>
+     * @deprecated
      */
     private $destination_sids;
+    /**
+     * when set, only forward to these identities
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     */
+    private $destination_identities;
+    /**
+     * Generated from protobuf field <code>optional string topic = 5;</code>
+     */
+    protected $topic = null;
 
     /**
      * Constructor.
@@ -40,6 +53,10 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      *     @type string $data
      *     @type int $kind
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_sids
+     *           mark deprecated
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_identities
+     *           when set, only forward to these identities
+     *     @type string $topic
      * }
      */
     public function __construct($data = NULL) {
@@ -114,23 +131,89 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated string destination_sids = 4;</code>
+     * mark deprecated
+     *
+     * Generated from protobuf field <code>repeated string destination_sids = 4 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getDestinationSids()
     {
+        @trigger_error('destination_sids is deprecated.', E_USER_DEPRECATED);
         return $this->destination_sids;
     }
 
     /**
-     * Generated from protobuf field <code>repeated string destination_sids = 4;</code>
+     * mark deprecated
+     *
+     * Generated from protobuf field <code>repeated string destination_sids = 4 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setDestinationSids($var)
     {
+        @trigger_error('destination_sids is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->destination_sids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * when set, only forward to these identities
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDestinationIdentities()
+    {
+        return $this->destination_identities;
+    }
+
+    /**
+     * when set, only forward to these identities
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDestinationIdentities($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->destination_identities = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional string topic = 5;</code>
+     * @return string
+     */
+    public function getTopic()
+    {
+        return isset($this->topic) ? $this->topic : '';
+    }
+
+    public function hasTopic()
+    {
+        return isset($this->topic);
+    }
+
+    public function clearTopic()
+    {
+        unset($this->topic);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional string topic = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTopic($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->topic = $var;
 
         return $this;
     }

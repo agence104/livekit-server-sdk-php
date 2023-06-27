@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GCPUpload extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>bytes credentials = 1;</code>
+     * Generated from protobuf field <code>string credentials = 1;</code>
      */
     protected $credentials = '';
     /**
@@ -38,7 +38,7 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bytes credentials = 1;</code>
+     * Generated from protobuf field <code>string credentials = 1;</code>
      * @return string
      */
     public function getCredentials()
@@ -47,13 +47,13 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bytes credentials = 1;</code>
+     * Generated from protobuf field <code>string credentials = 1;</code>
      * @param string $var
      * @return $this
      */
     public function setCredentials($var)
     {
-        GPBUtil::checkString($var, False);
+        GPBUtil::checkString($var, True);
         $this->credentials = $var;
 
         return $this;

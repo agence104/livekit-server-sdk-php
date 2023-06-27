@@ -7,29 +7,26 @@ namespace Livekit;
 use UnexpectedValueException;
 
 /**
- * Protobuf type <code>livekit.IngressInput</code>
+ * Protobuf type <code>livekit.IngressAudioEncodingPreset</code>
  */
-class IngressInput
+class IngressAudioEncodingPreset
 {
     /**
-     * Generated from protobuf enum <code>RTMP_INPUT = 0;</code>
-     */
-    const RTMP_INPUT = 0;
-    /**
-     * Generated from protobuf enum <code>WHIP_INPUT = 1;</code>
-     */
-    const WHIP_INPUT = 1;
-    /**
-     * Pull from the provided URL. Only HTTP url are supported, serving either a single media file or a HLS stream
+     * OPUS, 2 channels, 96kbps
      *
-     * Generated from protobuf enum <code>URL_INPUT = 2;</code>
+     * Generated from protobuf enum <code>OPUS_STEREO_96KBPS = 0;</code>
      */
-    const URL_INPUT = 2;
+    const OPUS_STEREO_96KBPS = 0;
+    /**
+     * OPUS, 1 channel, 64kbps
+     *
+     * Generated from protobuf enum <code>OPUS_MONO_64KBS = 1;</code>
+     */
+    const OPUS_MONO_64KBS = 1;
 
     private static $valueToName = [
-        self::RTMP_INPUT => 'RTMP_INPUT',
-        self::WHIP_INPUT => 'WHIP_INPUT',
-        self::URL_INPUT => 'URL_INPUT',
+        self::OPUS_STEREO_96KBPS => 'OPUS_STEREO_96KBPS',
+        self::OPUS_MONO_64KBS => 'OPUS_MONO_64KBS',
     ];
 
     public static function name($value)

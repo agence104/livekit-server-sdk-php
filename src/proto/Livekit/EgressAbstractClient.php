@@ -103,6 +103,52 @@ abstract class EgressAbstractClient
     /**
      * {@inheritdoc}
      */
+    public function StartWebEgress(array $ctx, \Livekit\WebEgressRequest $in): \Livekit\EgressInfo
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'Egress');
+        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
+
+        $out = new \Livekit\EgressInfo();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.Egress/StartWebEgress';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.Egress/StartWebEgress';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function StartParticipantEgress(array $ctx, \Livekit\ParticipantEgressRequest $in): \Livekit\EgressInfo
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'Egress');
+        $ctx = Context::withMethodName($ctx, 'StartParticipantEgress');
+
+        $out = new \Livekit\EgressInfo();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.Egress/StartParticipantEgress';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.Egress/StartParticipantEgress';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function StartTrackCompositeEgress(array $ctx, \Livekit\TrackCompositeEgressRequest $in): \Livekit\EgressInfo
     {
         $ctx = Context::withPackageName($ctx, 'livekit');
@@ -139,29 +185,6 @@ abstract class EgressAbstractClient
             $url = $url.'/livekit.Egress/StartTrackEgress';
         } else {
             $url = $url.'/'.$this->prefix.'/livekit.Egress/StartTrackEgress';
-        }
-
-        $this->doRequest($ctx, $url, $in, $out);
-
-        return $out;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function StartWebEgress(array $ctx, \Livekit\WebEgressRequest $in): \Livekit\EgressInfo
-    {
-        $ctx = Context::withPackageName($ctx, 'livekit');
-        $ctx = Context::withServiceName($ctx, 'Egress');
-        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
-
-        $out = new \Livekit\EgressInfo();
-
-        $url = $this->addr;
-        if (empty($this->prefix)) {
-            $url = $url.'/livekit.Egress/StartWebEgress';
-        } else {
-            $url = $url.'/'.$this->prefix.'/livekit.Egress/StartWebEgress';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

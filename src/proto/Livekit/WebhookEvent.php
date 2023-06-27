@@ -15,7 +15,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
 {
     /**
      * one of room_started, room_finished, participant_joined, participant_left,
-     * track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
+     * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
+     * ingress_started, ingress_ended
      *
      * Generated from protobuf field <code>string event = 1;</code>
      */
@@ -60,6 +61,10 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 created_at = 7;</code>
      */
     protected $created_at = 0;
+    /**
+     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     */
+    protected $num_dropped = 0;
 
     /**
      * Constructor.
@@ -69,7 +74,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      *
      *     @type string $event
      *           one of room_started, room_finished, participant_joined, participant_left,
-     *           track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
+     *           track_published, track_unpublished, egress_started, egress_updated, egress_ended,
+     *           ingress_started, ingress_ended
      *     @type \Livekit\Room $room
      *     @type \Livekit\ParticipantInfo $participant
      *           set when event is participant_* or track_*
@@ -83,6 +89,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      *           unique event uuid
      *     @type int|string $created_at
      *           timestamp in seconds
+     *     @type int $num_dropped
      * }
      */
     public function __construct($data = NULL) {
@@ -92,7 +99,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * one of room_started, room_finished, participant_joined, participant_left,
-     * track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
+     * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
+     * ingress_started, ingress_ended
      *
      * Generated from protobuf field <code>string event = 1;</code>
      * @return string
@@ -104,7 +112,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * one of room_started, room_finished, participant_joined, participant_left,
-     * track_published, track_unpublished, egress_started, egress_updated, egress_ended, ingress_started, ingress_ended
+     * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
+     * ingress_started, ingress_ended
      *
      * Generated from protobuf field <code>string event = 1;</code>
      * @param string $var
@@ -342,6 +351,28 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->created_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * @return int
+     */
+    public function getNumDropped()
+    {
+        return $this->num_dropped;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumDropped($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->num_dropped = $var;
 
         return $this;
     }

@@ -14,12 +14,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class InputAudioState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>uint32 mime_type = 1;</code>
+     * Generated from protobuf field <code>string mime_type = 1;</code>
      */
-    protected $mime_type = 0;
+    protected $mime_type = '';
     /**
-     *  uint32 bitrate = 2;
-     *
+     * Generated from protobuf field <code>uint32 average_bitrate = 2;</code>
+     */
+    protected $average_bitrate = 0;
+    /**
      * Generated from protobuf field <code>uint32 channels = 3;</code>
      */
     protected $channels = 0;
@@ -34,9 +36,9 @@ class InputAudioState extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $mime_type
+     *     @type string $mime_type
+     *     @type int $average_bitrate
      *     @type int $channels
-     *            uint32 bitrate = 2;
      *     @type int $sample_rate
      * }
      */
@@ -46,8 +48,8 @@ class InputAudioState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>uint32 mime_type = 1;</code>
-     * @return int
+     * Generated from protobuf field <code>string mime_type = 1;</code>
+     * @return string
      */
     public function getMimeType()
     {
@@ -55,21 +57,41 @@ class InputAudioState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>uint32 mime_type = 1;</code>
-     * @param int $var
+     * Generated from protobuf field <code>string mime_type = 1;</code>
+     * @param string $var
      * @return $this
      */
     public function setMimeType($var)
     {
-        GPBUtil::checkUint32($var);
+        GPBUtil::checkString($var, True);
         $this->mime_type = $var;
 
         return $this;
     }
 
     /**
-     *  uint32 bitrate = 2;
-     *
+     * Generated from protobuf field <code>uint32 average_bitrate = 2;</code>
+     * @return int
+     */
+    public function getAverageBitrate()
+    {
+        return $this->average_bitrate;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 average_bitrate = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAverageBitrate($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->average_bitrate = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>uint32 channels = 3;</code>
      * @return int
      */
@@ -79,8 +101,6 @@ class InputAudioState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     *  uint32 bitrate = 2;
-     *
      * Generated from protobuf field <code>uint32 channels = 3;</code>
      * @param int $var
      * @return $this

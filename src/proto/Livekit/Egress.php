@@ -25,6 +25,24 @@ interface Egress
     /**
      *
      *
+     * Generated from protobuf method <code>livekit.Egress/StartWebEgress</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function StartWebEgress(array $ctx, \Livekit\WebEgressRequest $req): \Livekit\EgressInfo;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.Egress/StartParticipantEgress</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function StartParticipantEgress(array $ctx, \Livekit\ParticipantEgressRequest $req): \Livekit\EgressInfo;
+
+    /**
+     *
+     *
      * Generated from protobuf method <code>livekit.Egress/StartTrackCompositeEgress</code>
      *
      * @throws \Twirp\Error
@@ -39,15 +57,6 @@ interface Egress
      * @throws \Twirp\Error
      */
     public function StartTrackEgress(array $ctx, \Livekit\TrackEgressRequest $req): \Livekit\EgressInfo;
-
-    /**
-     *
-     *
-     * Generated from protobuf method <code>livekit.Egress/StartWebEgress</code>
-     *
-     * @throws \Twirp\Error
-     */
-    public function StartWebEgress(array $ctx, \Livekit\WebEgressRequest $req): \Livekit\EgressInfo;
 
     /**
      * update web composite layout

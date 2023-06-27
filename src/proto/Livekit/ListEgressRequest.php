@@ -14,11 +14,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListEgressRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (optional, used to filter results)
+     * (optional, filter by room name)
      *
      * Generated from protobuf field <code>string room_name = 1;</code>
      */
     protected $room_name = '';
+    /**
+     * (optional, filter by egress ID)
+     *
+     * Generated from protobuf field <code>string egress_id = 2;</code>
+     */
+    protected $egress_id = '';
+    /**
+     * (optional, list active egress only)
+     *
+     * Generated from protobuf field <code>bool active = 3;</code>
+     */
+    protected $active = false;
 
     /**
      * Constructor.
@@ -27,7 +39,11 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $room_name
-     *           (optional, used to filter results)
+     *           (optional, filter by room name)
+     *     @type string $egress_id
+     *           (optional, filter by egress ID)
+     *     @type bool $active
+     *           (optional, list active egress only)
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +52,7 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (optional, used to filter results)
+     * (optional, filter by room name)
      *
      * Generated from protobuf field <code>string room_name = 1;</code>
      * @return string
@@ -47,7 +63,7 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (optional, used to filter results)
+     * (optional, filter by room name)
      *
      * Generated from protobuf field <code>string room_name = 1;</code>
      * @param string $var
@@ -57,6 +73,58 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->room_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * (optional, filter by egress ID)
+     *
+     * Generated from protobuf field <code>string egress_id = 2;</code>
+     * @return string
+     */
+    public function getEgressId()
+    {
+        return $this->egress_id;
+    }
+
+    /**
+     * (optional, filter by egress ID)
+     *
+     * Generated from protobuf field <code>string egress_id = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEgressId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->egress_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * (optional, list active egress only)
+     *
+     * Generated from protobuf field <code>bool active = 3;</code>
+     * @return bool
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * (optional, list active egress only)
+     *
+     * Generated from protobuf field <code>bool active = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setActive($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->active = $var;
 
         return $this;
     }

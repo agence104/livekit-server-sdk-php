@@ -21,19 +21,7 @@ class IngressVideoOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.TrackSource source = 2;</code>
      */
     protected $source = 0;
-    /**
-     * desired mime_type to publish to room
-     *
-     * Generated from protobuf field <code>string mime_type = 3;</code>
-     */
-    protected $mime_type = '';
-    /**
-     * simulcast layers to publish, when empty, it'll pick default simulcast
-     * layers at 1/2 and 1/4 of the dimensions
-     *
-     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 4;</code>
-     */
-    private $layers;
+    protected $encoding_options;
 
     /**
      * Constructor.
@@ -43,11 +31,8 @@ class IngressVideoOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *     @type int $source
-     *     @type string $mime_type
-     *           desired mime_type to publish to room
-     *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
-     *           simulcast layers to publish, when empty, it'll pick default simulcast
-     *           layers at 1/2 and 1/4 of the dimensions
+     *     @type int $preset
+     *     @type \Livekit\IngressVideoEncodingOptions $options
      * }
      */
     public function __construct($data = NULL) {
@@ -100,57 +85,65 @@ class IngressVideoOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * desired mime_type to publish to room
-     *
-     * Generated from protobuf field <code>string mime_type = 3;</code>
+     * Generated from protobuf field <code>.livekit.IngressVideoEncodingPreset preset = 3;</code>
+     * @return int
+     */
+    public function getPreset()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasPreset()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.IngressVideoEncodingPreset preset = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPreset($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\IngressVideoEncodingPreset::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.IngressVideoEncodingOptions options = 4;</code>
+     * @return \Livekit\IngressVideoEncodingOptions|null
+     */
+    public function getOptions()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasOptions()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.IngressVideoEncodingOptions options = 4;</code>
+     * @param \Livekit\IngressVideoEncodingOptions $var
+     * @return $this
+     */
+    public function setOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\IngressVideoEncodingOptions::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
-    public function getMimeType()
+    public function getEncodingOptions()
     {
-        return $this->mime_type;
-    }
-
-    /**
-     * desired mime_type to publish to room
-     *
-     * Generated from protobuf field <code>string mime_type = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setMimeType($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->mime_type = $var;
-
-        return $this;
-    }
-
-    /**
-     * simulcast layers to publish, when empty, it'll pick default simulcast
-     * layers at 1/2 and 1/4 of the dimensions
-     *
-     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getLayers()
-    {
-        return $this->layers;
-    }
-
-    /**
-     * simulcast layers to publish, when empty, it'll pick default simulcast
-     * layers at 1/2 and 1/4 of the dimensions
-     *
-     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 4;</code>
-     * @param \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setLayers($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\VideoLayer::class);
-        $this->layers = $arr;
-
-        return $this;
+        return $this->whichOneof("encoding_options");
     }
 
 }
