@@ -24,7 +24,7 @@ class ActiveSpeakerUpdate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\SpeakerInfo[]|\Google\Protobuf\Internal\RepeatedField $speakers
+     *     @type array<\Livekit\SpeakerInfo>|\Google\Protobuf\Internal\RepeatedField $speakers
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +43,7 @@ class ActiveSpeakerUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.SpeakerInfo speakers = 1;</code>
-     * @param \Livekit\SpeakerInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\SpeakerInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpeakers($var)

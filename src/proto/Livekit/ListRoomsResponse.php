@@ -24,7 +24,7 @@ class ListRoomsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\Room[]|\Google\Protobuf\Internal\RepeatedField $rooms
+     *     @type array<\Livekit\Room>|\Google\Protobuf\Internal\RepeatedField $rooms
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +43,7 @@ class ListRoomsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.Room rooms = 1;</code>
-     * @param \Livekit\Room[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\Room>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRooms($var)

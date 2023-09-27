@@ -18,6 +18,10 @@ class RoomEgress extends \Google\Protobuf\Internal\Message
      */
     protected $room = null;
     /**
+     * Generated from protobuf field <code>.livekit.AutoParticipantEgress participant = 3;</code>
+     */
+    protected $participant = null;
+    /**
      * Generated from protobuf field <code>.livekit.AutoTrackEgress tracks = 2;</code>
      */
     protected $tracks = null;
@@ -29,6 +33,7 @@ class RoomEgress extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Livekit\RoomCompositeEgressRequest $room
+     *     @type \Livekit\AutoParticipantEgress $participant
      *     @type \Livekit\AutoTrackEgress $tracks
      * }
      */
@@ -65,6 +70,38 @@ class RoomEgress extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\RoomCompositeEgressRequest::class);
         $this->room = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.AutoParticipantEgress participant = 3;</code>
+     * @return \Livekit\AutoParticipantEgress|null
+     */
+    public function getParticipant()
+    {
+        return $this->participant;
+    }
+
+    public function hasParticipant()
+    {
+        return isset($this->participant);
+    }
+
+    public function clearParticipant()
+    {
+        unset($this->participant);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.AutoParticipantEgress participant = 3;</code>
+     * @param \Livekit\AutoParticipantEgress $var
+     * @return $this
+     */
+    public function setParticipant($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\AutoParticipantEgress::class);
+        $this->participant = $var;
 
         return $this;
     }

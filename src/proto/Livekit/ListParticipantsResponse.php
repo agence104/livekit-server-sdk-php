@@ -24,7 +24,7 @@ class ListParticipantsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\ParticipantInfo[]|\Google\Protobuf\Internal\RepeatedField $participants
+     *     @type array<\Livekit\ParticipantInfo>|\Google\Protobuf\Internal\RepeatedField $participants
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +43,7 @@ class ListParticipantsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.ParticipantInfo participants = 1;</code>
-     * @param \Livekit\ParticipantInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\ParticipantInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParticipants($var)

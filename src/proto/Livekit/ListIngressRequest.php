@@ -19,6 +19,12 @@ class ListIngressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string room_name = 1;</code>
      */
     protected $room_name = '';
+    /**
+     * (optional, filter by ingress ID)
+     *
+     * Generated from protobuf field <code>string ingress_id = 2;</code>
+     */
+    protected $ingress_id = '';
 
     /**
      * Constructor.
@@ -28,6 +34,8 @@ class ListIngressRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $room_name
      *           when blank, lists all ingress endpoints
+     *     @type string $ingress_id
+     *           (optional, filter by ingress ID)
      * }
      */
     public function __construct($data = NULL) {
@@ -57,6 +65,32 @@ class ListIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->room_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * (optional, filter by ingress ID)
+     *
+     * Generated from protobuf field <code>string ingress_id = 2;</code>
+     * @return string
+     */
+    public function getIngressId()
+    {
+        return $this->ingress_id;
+    }
+
+    /**
+     * (optional, filter by ingress ID)
+     *
+     * Generated from protobuf field <code>string ingress_id = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIngressId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ingress_id = $var;
 
         return $this;
     }

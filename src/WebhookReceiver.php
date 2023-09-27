@@ -67,12 +67,7 @@ class WebhookReceiver {
     }
 
     $event = new WebhookEvent();
-
-    $json = json_decode($body);
-    if(isset($json->id)) {
-        $event->setId($json->id);
-    }
-
+    $event->mergeFromJsonString($body);
     return $event;
   }
 

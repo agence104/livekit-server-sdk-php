@@ -177,6 +177,16 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_layer_lock_pli = 36;</code>
      */
     protected $last_layer_lock_pli = null;
+    /**
+     * Generated from protobuf field <code>.livekit.RTPDrift packet_drift = 44;</code>
+     */
+    protected $packet_drift = null;
+    /**
+     * NEXT_ID: 46
+     *
+     * Generated from protobuf field <code>.livekit.RTPDrift report_drift = 45;</code>
+     */
+    protected $report_drift = null;
 
     /**
      * Constructor.
@@ -225,6 +235,9 @@ class RTPStats extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_key_frame
      *     @type int $layer_lock_plis
      *     @type \Google\Protobuf\Timestamp $last_layer_lock_pli
+     *     @type \Livekit\RTPDrift $packet_drift
+     *     @type \Livekit\RTPDrift $report_drift
+     *           NEXT_ID: 46
      * }
      */
     public function __construct($data = NULL) {
@@ -1190,6 +1203,74 @@ class RTPStats extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_layer_lock_pli = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RTPDrift packet_drift = 44;</code>
+     * @return \Livekit\RTPDrift|null
+     */
+    public function getPacketDrift()
+    {
+        return $this->packet_drift;
+    }
+
+    public function hasPacketDrift()
+    {
+        return isset($this->packet_drift);
+    }
+
+    public function clearPacketDrift()
+    {
+        unset($this->packet_drift);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RTPDrift packet_drift = 44;</code>
+     * @param \Livekit\RTPDrift $var
+     * @return $this
+     */
+    public function setPacketDrift($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RTPDrift::class);
+        $this->packet_drift = $var;
+
+        return $this;
+    }
+
+    /**
+     * NEXT_ID: 46
+     *
+     * Generated from protobuf field <code>.livekit.RTPDrift report_drift = 45;</code>
+     * @return \Livekit\RTPDrift|null
+     */
+    public function getReportDrift()
+    {
+        return $this->report_drift;
+    }
+
+    public function hasReportDrift()
+    {
+        return isset($this->report_drift);
+    }
+
+    public function clearReportDrift()
+    {
+        unset($this->report_drift);
+    }
+
+    /**
+     * NEXT_ID: 46
+     *
+     * Generated from protobuf field <code>.livekit.RTPDrift report_drift = 45;</code>
+     * @param \Livekit\RTPDrift $var
+     * @return $this
+     */
+    public function setReportDrift($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RTPDrift::class);
+        $this->report_drift = $var;
 
         return $this;
     }

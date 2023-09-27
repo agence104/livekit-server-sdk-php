@@ -30,7 +30,7 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
      */
     protected $height = 0;
     /**
-     * target bitrate, server will measure actual
+     * target bitrate in bit per second (bps), server will measure actual
      *
      * Generated from protobuf field <code>uint32 bitrate = 4;</code>
      */
@@ -51,7 +51,7 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
      *     @type int $width
      *     @type int $height
      *     @type int $bitrate
-     *           target bitrate, server will measure actual
+     *           target bitrate in bit per second (bps), server will measure actual
      *     @type int $ssrc
      * }
      */
@@ -131,7 +131,7 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * target bitrate, server will measure actual
+     * target bitrate in bit per second (bps), server will measure actual
      *
      * Generated from protobuf field <code>uint32 bitrate = 4;</code>
      * @return int
@@ -142,7 +142,7 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * target bitrate, server will measure actual
+     * target bitrate in bit per second (bps), server will measure actual
      *
      * Generated from protobuf field <code>uint32 bitrate = 4;</code>
      * @param int $var

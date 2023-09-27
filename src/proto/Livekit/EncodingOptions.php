@@ -67,6 +67,12 @@ class EncodingOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 video_bitrate = 9;</code>
      */
     protected $video_bitrate = 0;
+    /**
+     * in seconds (default 4s for streaming, segment duration for segmented output, encoder default for files)
+     *
+     * Generated from protobuf field <code>double key_frame_interval = 10;</code>
+     */
+    protected $key_frame_interval = 0.0;
 
     /**
      * Constructor.
@@ -92,6 +98,8 @@ class EncodingOptions extends \Google\Protobuf\Internal\Message
      *           (default H264_MAIN)
      *     @type int $video_bitrate
      *           (default 4500)
+     *     @type float $key_frame_interval
+     *           in seconds (default 4s for streaming, segment duration for segmented output, encoder default for files)
      * }
      */
     public function __construct($data = NULL) {
@@ -329,6 +337,32 @@ class EncodingOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->video_bitrate = $var;
+
+        return $this;
+    }
+
+    /**
+     * in seconds (default 4s for streaming, segment duration for segmented output, encoder default for files)
+     *
+     * Generated from protobuf field <code>double key_frame_interval = 10;</code>
+     * @return float
+     */
+    public function getKeyFrameInterval()
+    {
+        return $this->key_frame_interval;
+    }
+
+    /**
+     * in seconds (default 4s for streaming, segment duration for segmented output, encoder default for files)
+     *
+     * Generated from protobuf field <code>double key_frame_interval = 10;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setKeyFrameInterval($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->key_frame_interval = $var;
 
         return $this;
     }

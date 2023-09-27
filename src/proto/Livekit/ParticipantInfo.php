@@ -72,7 +72,7 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      *     @type string $sid
      *     @type string $identity
      *     @type int $state
-     *     @type \Livekit\TrackInfo[]|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type array<\Livekit\TrackInfo>|\Google\Protobuf\Internal\RepeatedField $tracks
      *     @type string $metadata
      *     @type int|string $joined_at
      *           timestamp when participant joined room, in seconds
@@ -167,7 +167,7 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.TrackInfo tracks = 4;</code>
-     * @param \Livekit\TrackInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\TrackInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTracks($var)

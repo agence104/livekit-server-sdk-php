@@ -34,11 +34,23 @@ class SegmentedFileOutput extends \Google\Protobuf\Internal\Message
      */
     protected $playlist_name = '';
     /**
-     * (optional)
+     * (optional, disabled if not provided). Path of a live playlist
+     *
+     * Generated from protobuf field <code>string live_playlist_name = 11;</code>
+     */
+    protected $live_playlist_name = '';
+    /**
+     * in seconds (optional)
      *
      * Generated from protobuf field <code>uint32 segment_duration = 4;</code>
      */
     protected $segment_duration = 0;
+    /**
+     * (optional, default INDEX)
+     *
+     * Generated from protobuf field <code>.livekit.SegmentedFileSuffix filename_suffix = 10;</code>
+     */
+    protected $filename_suffix = 0;
     /**
      * disable upload of manifest file (default false)
      *
@@ -59,8 +71,12 @@ class SegmentedFileOutput extends \Google\Protobuf\Internal\Message
      *           (optional)
      *     @type string $playlist_name
      *           (optional)
+     *     @type string $live_playlist_name
+     *           (optional, disabled if not provided). Path of a live playlist
      *     @type int $segment_duration
-     *           (optional)
+     *           in seconds (optional)
+     *     @type int $filename_suffix
+     *           (optional, default INDEX)
      *     @type bool $disable_manifest
      *           disable upload of manifest file (default false)
      *     @type \Livekit\S3Upload $s3
@@ -153,7 +169,33 @@ class SegmentedFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (optional)
+     * (optional, disabled if not provided). Path of a live playlist
+     *
+     * Generated from protobuf field <code>string live_playlist_name = 11;</code>
+     * @return string
+     */
+    public function getLivePlaylistName()
+    {
+        return $this->live_playlist_name;
+    }
+
+    /**
+     * (optional, disabled if not provided). Path of a live playlist
+     *
+     * Generated from protobuf field <code>string live_playlist_name = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLivePlaylistName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->live_playlist_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * in seconds (optional)
      *
      * Generated from protobuf field <code>uint32 segment_duration = 4;</code>
      * @return int
@@ -164,7 +206,7 @@ class SegmentedFileOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (optional)
+     * in seconds (optional)
      *
      * Generated from protobuf field <code>uint32 segment_duration = 4;</code>
      * @param int $var
@@ -174,6 +216,32 @@ class SegmentedFileOutput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->segment_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * (optional, default INDEX)
+     *
+     * Generated from protobuf field <code>.livekit.SegmentedFileSuffix filename_suffix = 10;</code>
+     * @return int
+     */
+    public function getFilenameSuffix()
+    {
+        return $this->filename_suffix;
+    }
+
+    /**
+     * (optional, default INDEX)
+     *
+     * Generated from protobuf field <code>.livekit.SegmentedFileSuffix filename_suffix = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFilenameSuffix($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SegmentedFileSuffix::class);
+        $this->filename_suffix = $var;
 
         return $this;
     }

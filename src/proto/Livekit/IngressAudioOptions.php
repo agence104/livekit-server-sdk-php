@@ -21,24 +21,7 @@ class IngressAudioOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.TrackSource source = 2;</code>
      */
     protected $source = 0;
-    /**
-     * desired mime_type to publish to room
-     *
-     * Generated from protobuf field <code>string mime_type = 3;</code>
-     */
-    protected $mime_type = '';
-    /**
-     * Generated from protobuf field <code>uint32 bitrate = 4;</code>
-     */
-    protected $bitrate = 0;
-    /**
-     * Generated from protobuf field <code>bool disable_dtx = 5;</code>
-     */
-    protected $disable_dtx = false;
-    /**
-     * Generated from protobuf field <code>uint32 channels = 6;</code>
-     */
-    protected $channels = 0;
+    protected $encoding_options;
 
     /**
      * Constructor.
@@ -48,11 +31,8 @@ class IngressAudioOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *     @type int $source
-     *     @type string $mime_type
-     *           desired mime_type to publish to room
-     *     @type int $bitrate
-     *     @type bool $disable_dtx
-     *     @type int $channels
+     *     @type int $preset
+     *     @type \Livekit\IngressAudioEncodingOptions $options
      * }
      */
     public function __construct($data = NULL) {
@@ -105,95 +85,65 @@ class IngressAudioOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * desired mime_type to publish to room
-     *
-     * Generated from protobuf field <code>string mime_type = 3;</code>
+     * Generated from protobuf field <code>.livekit.IngressAudioEncodingPreset preset = 3;</code>
+     * @return int
+     */
+    public function getPreset()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasPreset()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.IngressAudioEncodingPreset preset = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPreset($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\IngressAudioEncodingPreset::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.IngressAudioEncodingOptions options = 4;</code>
+     * @return \Livekit\IngressAudioEncodingOptions|null
+     */
+    public function getOptions()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasOptions()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.IngressAudioEncodingOptions options = 4;</code>
+     * @param \Livekit\IngressAudioEncodingOptions $var
+     * @return $this
+     */
+    public function setOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\IngressAudioEncodingOptions::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
-    public function getMimeType()
+    public function getEncodingOptions()
     {
-        return $this->mime_type;
-    }
-
-    /**
-     * desired mime_type to publish to room
-     *
-     * Generated from protobuf field <code>string mime_type = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setMimeType($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->mime_type = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>uint32 bitrate = 4;</code>
-     * @return int
-     */
-    public function getBitrate()
-    {
-        return $this->bitrate;
-    }
-
-    /**
-     * Generated from protobuf field <code>uint32 bitrate = 4;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setBitrate($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->bitrate = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>bool disable_dtx = 5;</code>
-     * @return bool
-     */
-    public function getDisableDtx()
-    {
-        return $this->disable_dtx;
-    }
-
-    /**
-     * Generated from protobuf field <code>bool disable_dtx = 5;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setDisableDtx($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->disable_dtx = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>uint32 channels = 6;</code>
-     * @return int
-     */
-    public function getChannels()
-    {
-        return $this->channels;
-    }
-
-    /**
-     * Generated from protobuf field <code>uint32 channels = 6;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setChannels($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->channels = $var;
-
-        return $this;
+        return $this->whichOneof("encoding_options");
     }
 
 }

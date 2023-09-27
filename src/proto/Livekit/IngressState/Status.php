@@ -27,12 +27,17 @@ class Status
      * Generated from protobuf enum <code>ENDPOINT_ERROR = 3;</code>
      */
     const ENDPOINT_ERROR = 3;
+    /**
+     * Generated from protobuf enum <code>ENDPOINT_COMPLETE = 4;</code>
+     */
+    const ENDPOINT_COMPLETE = 4;
 
     private static $valueToName = [
         self::ENDPOINT_INACTIVE => 'ENDPOINT_INACTIVE',
         self::ENDPOINT_BUFFERING => 'ENDPOINT_BUFFERING',
         self::ENDPOINT_PUBLISHING => 'ENDPOINT_PUBLISHING',
         self::ENDPOINT_ERROR => 'ENDPOINT_ERROR',
+        self::ENDPOINT_COMPLETE => 'ENDPOINT_COMPLETE',
     ];
 
     public static function name($value)

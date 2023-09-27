@@ -39,7 +39,7 @@ class SimulcastCodecInfo extends \Google\Protobuf\Internal\Message
      *     @type string $mime_type
      *     @type string $mid
      *     @type string $cid
-     *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
+     *     @type array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $layers
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +124,7 @@ class SimulcastCodecInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 4;</code>
-     * @param \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLayers($var)

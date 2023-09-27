@@ -18,6 +18,10 @@ class SegmentsInfo extends \Google\Protobuf\Internal\Message
      */
     protected $playlist_name = '';
     /**
+     * Generated from protobuf field <code>string live_playlist_name = 8;</code>
+     */
+    protected $live_playlist_name = '';
+    /**
      * Generated from protobuf field <code>int64 duration = 2;</code>
      */
     protected $duration = 0;
@@ -29,6 +33,10 @@ class SegmentsInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string playlist_location = 4;</code>
      */
     protected $playlist_location = '';
+    /**
+     * Generated from protobuf field <code>string live_playlist_location = 9;</code>
+     */
+    protected $live_playlist_location = '';
     /**
      * Generated from protobuf field <code>int64 segment_count = 5;</code>
      */
@@ -49,9 +57,11 @@ class SegmentsInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $playlist_name
+     *     @type string $live_playlist_name
      *     @type int|string $duration
      *     @type int|string $size
      *     @type string $playlist_location
+     *     @type string $live_playlist_location
      *     @type int|string $segment_count
      *     @type int|string $started_at
      *     @type int|string $ended_at
@@ -80,6 +90,28 @@ class SegmentsInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->playlist_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string live_playlist_name = 8;</code>
+     * @return string
+     */
+    public function getLivePlaylistName()
+    {
+        return $this->live_playlist_name;
+    }
+
+    /**
+     * Generated from protobuf field <code>string live_playlist_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLivePlaylistName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->live_playlist_name = $var;
 
         return $this;
     }
@@ -146,6 +178,28 @@ class SegmentsInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->playlist_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string live_playlist_location = 9;</code>
+     * @return string
+     */
+    public function getLivePlaylistLocation()
+    {
+        return $this->live_playlist_location;
+    }
+
+    /**
+     * Generated from protobuf field <code>string live_playlist_location = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLivePlaylistLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->live_playlist_location = $var;
 
         return $this;
     }

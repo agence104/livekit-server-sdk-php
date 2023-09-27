@@ -26,6 +26,8 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $stream_key = '';
     /**
+     * URL to point the encoder to for push (RTMP, WHIP), or location to pull media from for pull (URL)
+     *
      * Generated from protobuf field <code>string url = 4;</code>
      */
     protected $url = '';
@@ -37,6 +39,10 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.IngressInput input_type = 5;</code>
      */
     protected $input_type = 0;
+    /**
+     * Generated from protobuf field <code>bool bypass_transcoding = 13;</code>
+     */
+    protected $bypass_transcoding = false;
     /**
      * Generated from protobuf field <code>.livekit.IngressAudioOptions audio = 6;</code>
      */
@@ -78,10 +84,12 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *     @type string $stream_key
      *     @type string $url
+     *           URL to point the encoder to for push (RTMP, WHIP), or location to pull media from for pull (URL)
      *     @type int $input_type
      *           for RTMP input, it'll be a rtmp:// URL
      *           for FILE input, it'll be a http:// URL
      *           for SRT input, it'll be a srt:// URL
+     *     @type bool $bypass_transcoding
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
      *     @type string $room_name
@@ -164,6 +172,8 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * URL to point the encoder to for push (RTMP, WHIP), or location to pull media from for pull (URL)
+     *
      * Generated from protobuf field <code>string url = 4;</code>
      * @return string
      */
@@ -173,6 +183,8 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * URL to point the encoder to for push (RTMP, WHIP), or location to pull media from for pull (URL)
+     *
      * Generated from protobuf field <code>string url = 4;</code>
      * @param string $var
      * @return $this
@@ -211,6 +223,28 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\IngressInput::class);
         $this->input_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool bypass_transcoding = 13;</code>
+     * @return bool
+     */
+    public function getBypassTranscoding()
+    {
+        return $this->bypass_transcoding;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool bypass_transcoding = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBypassTranscoding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->bypass_transcoding = $var;
 
         return $this;
     }

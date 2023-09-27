@@ -18,6 +18,12 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $input_type = 0;
     /**
+     * Where to pull media from, only for URL input type
+     *
+     * Generated from protobuf field <code>string url = 9;</code>
+     */
+    protected $url = '';
+    /**
      * User provided identifier for the ingress
      *
      * Generated from protobuf field <code>string name = 2;</code>
@@ -42,6 +48,12 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
+     * whether to pass through the incoming media without transcoding, only compatible with some input types
+     *
+     * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
+     */
+    protected $bypass_transcoding = false;
+    /**
      * Generated from protobuf field <code>.livekit.IngressAudioOptions audio = 6;</code>
      */
     protected $audio = null;
@@ -57,6 +69,8 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $input_type
+     *     @type string $url
+     *           Where to pull media from, only for URL input type
      *     @type string $name
      *           User provided identifier for the ingress
      *     @type string $room_name
@@ -65,6 +79,8 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      *           publish as participant
      *     @type string $participant_name
      *           name of publishing participant (used for display only)
+     *     @type bool $bypass_transcoding
+     *           whether to pass through the incoming media without transcoding, only compatible with some input types
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
      * }
@@ -92,6 +108,32 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\IngressInput::class);
         $this->input_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Where to pull media from, only for URL input type
+     *
+     * Generated from protobuf field <code>string url = 9;</code>
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Where to pull media from, only for URL input type
+     *
+     * Generated from protobuf field <code>string url = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->url = $var;
 
         return $this;
     }
@@ -196,6 +238,32 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * whether to pass through the incoming media without transcoding, only compatible with some input types
+     *
+     * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
+     * @return bool
+     */
+    public function getBypassTranscoding()
+    {
+        return $this->bypass_transcoding;
+    }
+
+    /**
+     * whether to pass through the incoming media without transcoding, only compatible with some input types
+     *
+     * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBypassTranscoding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->bypass_transcoding = $var;
 
         return $this;
     }

@@ -88,6 +88,14 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_red = 15;</code>
      */
     protected $disable_red = false;
+    /**
+     * Generated from protobuf field <code>.livekit.Encryption.Type encryption = 16;</code>
+     */
+    protected $encryption = 0;
+    /**
+     * Generated from protobuf field <code>string stream = 17;</code>
+     */
+    protected $stream = '';
 
     /**
      * Constructor.
@@ -110,14 +118,16 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *           true if DTX (Discontinuous Transmission) is disabled for audio
      *     @type int $source
      *           source of media
-     *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
+     *     @type array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $layers
      *     @type string $mime_type
      *           mime type of codec
      *     @type string $mid
-     *     @type \Livekit\SimulcastCodecInfo[]|\Google\Protobuf\Internal\RepeatedField $codecs
+     *     @type array<\Livekit\SimulcastCodecInfo>|\Google\Protobuf\Internal\RepeatedField $codecs
      *     @type bool $stereo
      *     @type bool $disable_red
      *           true if RED (Redundant Encoding) is disabled for audio
+     *     @type int $encryption
+     *     @type string $stream
      * }
      */
     public function __construct($data = NULL) {
@@ -356,7 +366,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10;</code>
-     * @param \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLayers($var)
@@ -426,7 +436,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.SimulcastCodecInfo codecs = 13;</code>
-     * @param \Livekit\SimulcastCodecInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\SimulcastCodecInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCodecs($var)
@@ -481,6 +491,50 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_red = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Encryption.Type encryption = 16;</code>
+     * @return int
+     */
+    public function getEncryption()
+    {
+        return $this->encryption;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Encryption.Type encryption = 16;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncryption($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\Encryption\Type::class);
+        $this->encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string stream = 17;</code>
+     * @return string
+     */
+    public function getStream()
+    {
+        return $this->stream;
+    }
+
+    /**
+     * Generated from protobuf field <code>string stream = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStream($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stream = $var;
 
         return $this;
     }

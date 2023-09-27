@@ -14,12 +14,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class InputVideoState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>uint32 mime_type = 1;</code>
+     * Generated from protobuf field <code>string mime_type = 1;</code>
      */
-    protected $mime_type = 0;
+    protected $mime_type = '';
     /**
-     *  uint32 bitrate = 2;
-     *
+     * Generated from protobuf field <code>uint32 average_bitrate = 2;</code>
+     */
+    protected $average_bitrate = 0;
+    /**
      * Generated from protobuf field <code>uint32 width = 3;</code>
      */
     protected $width = 0;
@@ -28,9 +30,9 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
      */
     protected $height = 0;
     /**
-     * Generated from protobuf field <code>uint32 framerate = 5;</code>
+     * Generated from protobuf field <code>double framerate = 5;</code>
      */
-    protected $framerate = 0;
+    protected $framerate = 0.0;
 
     /**
      * Constructor.
@@ -38,11 +40,11 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $mime_type
+     *     @type string $mime_type
+     *     @type int $average_bitrate
      *     @type int $width
-     *            uint32 bitrate = 2;
      *     @type int $height
-     *     @type int $framerate
+     *     @type float $framerate
      * }
      */
     public function __construct($data = NULL) {
@@ -51,8 +53,8 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>uint32 mime_type = 1;</code>
-     * @return int
+     * Generated from protobuf field <code>string mime_type = 1;</code>
+     * @return string
      */
     public function getMimeType()
     {
@@ -60,21 +62,41 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>uint32 mime_type = 1;</code>
-     * @param int $var
+     * Generated from protobuf field <code>string mime_type = 1;</code>
+     * @param string $var
      * @return $this
      */
     public function setMimeType($var)
     {
-        GPBUtil::checkUint32($var);
+        GPBUtil::checkString($var, True);
         $this->mime_type = $var;
 
         return $this;
     }
 
     /**
-     *  uint32 bitrate = 2;
-     *
+     * Generated from protobuf field <code>uint32 average_bitrate = 2;</code>
+     * @return int
+     */
+    public function getAverageBitrate()
+    {
+        return $this->average_bitrate;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 average_bitrate = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAverageBitrate($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->average_bitrate = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>uint32 width = 3;</code>
      * @return int
      */
@@ -84,8 +106,6 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     *  uint32 bitrate = 2;
-     *
      * Generated from protobuf field <code>uint32 width = 3;</code>
      * @param int $var
      * @return $this
@@ -121,8 +141,8 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>uint32 framerate = 5;</code>
-     * @return int
+     * Generated from protobuf field <code>double framerate = 5;</code>
+     * @return float
      */
     public function getFramerate()
     {
@@ -130,13 +150,13 @@ class InputVideoState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>uint32 framerate = 5;</code>
-     * @param int $var
+     * Generated from protobuf field <code>double framerate = 5;</code>
+     * @param float $var
      * @return $this
      */
     public function setFramerate($var)
     {
-        GPBUtil::checkUint32($var);
+        GPBUtil::checkDouble($var);
         $this->framerate = $var;
 
         return $this;

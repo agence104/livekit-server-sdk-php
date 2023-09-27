@@ -12,16 +12,24 @@ use UnexpectedValueException;
 class IngressInput
 {
     /**
-     *    FILE_INPUT = 1;
-     *    SRT_INPUT = 2;
-     *    URL_INPUT = 3;
-     *
      * Generated from protobuf enum <code>RTMP_INPUT = 0;</code>
      */
     const RTMP_INPUT = 0;
+    /**
+     * Generated from protobuf enum <code>WHIP_INPUT = 1;</code>
+     */
+    const WHIP_INPUT = 1;
+    /**
+     * Pull from the provided URL. Only HTTP url are supported, serving either a single media file or a HLS stream
+     *
+     * Generated from protobuf enum <code>URL_INPUT = 2;</code>
+     */
+    const URL_INPUT = 2;
 
     private static $valueToName = [
         self::RTMP_INPUT => 'RTMP_INPUT',
+        self::WHIP_INPUT => 'WHIP_INPUT',
+        self::URL_INPUT => 'URL_INPUT',
     ];
 
     public static function name($value)

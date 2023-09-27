@@ -14,9 +14,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class DisabledCodecs extends \Google\Protobuf\Internal\Message
 {
     /**
+     * disabled for both publish and subscribe
+     *
      * Generated from protobuf field <code>repeated .livekit.Codec codecs = 1;</code>
      */
     private $codecs;
+    /**
+     * only disable for publish
+     *
+     * Generated from protobuf field <code>repeated .livekit.Codec publish = 2;</code>
+     */
+    private $publish;
 
     /**
      * Constructor.
@@ -24,7 +32,10 @@ class DisabledCodecs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $codecs
+     *     @type array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $codecs
+     *           disabled for both publish and subscribe
+     *     @type array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $publish
+     *           only disable for publish
      * }
      */
     public function __construct($data = NULL) {
@@ -33,6 +44,8 @@ class DisabledCodecs extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * disabled for both publish and subscribe
+     *
      * Generated from protobuf field <code>repeated .livekit.Codec codecs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -42,14 +55,42 @@ class DisabledCodecs extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * disabled for both publish and subscribe
+     *
      * Generated from protobuf field <code>repeated .livekit.Codec codecs = 1;</code>
-     * @param \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCodecs($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\Codec::class);
         $this->codecs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * only disable for publish
+     *
+     * Generated from protobuf field <code>repeated .livekit.Codec publish = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPublish()
+    {
+        return $this->publish;
+    }
+
+    /**
+     * only disable for publish
+     *
+     * Generated from protobuf field <code>repeated .livekit.Codec publish = 2;</code>
+     * @param array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPublish($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\Codec::class);
+        $this->publish = $arr;
 
         return $this;
     }

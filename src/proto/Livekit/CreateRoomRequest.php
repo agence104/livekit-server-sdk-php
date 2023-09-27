@@ -49,6 +49,16 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.RoomEgress egress = 6;</code>
      */
     protected $egress = null;
+    /**
+     * playout delay of subscriber
+     *
+     * Generated from protobuf field <code>uint32 min_playout_delay = 7;</code>
+     */
+    protected $min_playout_delay = 0;
+    /**
+     * Generated from protobuf field <code>uint32 max_playout_delay = 8;</code>
+     */
+    protected $max_playout_delay = 0;
 
     /**
      * Constructor.
@@ -68,6 +78,9 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *           metadata of room
      *     @type \Livekit\RoomEgress $egress
      *           egress
+     *     @type int $min_playout_delay
+     *           playout delay of subscriber
+     *     @type int $max_playout_delay
      * }
      */
     public function __construct($data = NULL) {
@@ -237,6 +250,54 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\RoomEgress::class);
         $this->egress = $var;
+
+        return $this;
+    }
+
+    /**
+     * playout delay of subscriber
+     *
+     * Generated from protobuf field <code>uint32 min_playout_delay = 7;</code>
+     * @return int
+     */
+    public function getMinPlayoutDelay()
+    {
+        return $this->min_playout_delay;
+    }
+
+    /**
+     * playout delay of subscriber
+     *
+     * Generated from protobuf field <code>uint32 min_playout_delay = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMinPlayoutDelay($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->min_playout_delay = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 max_playout_delay = 8;</code>
+     * @return int
+     */
+    public function getMaxPlayoutDelay()
+    {
+        return $this->max_playout_delay;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 max_playout_delay = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxPlayoutDelay($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->max_playout_delay = $var;
 
         return $this;
     }

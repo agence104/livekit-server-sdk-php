@@ -32,6 +32,12 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      */
     protected $can_publish_data = false;
     /**
+     * sources that are allowed to be published
+     *
+     * Generated from protobuf field <code>repeated .livekit.TrackSource can_publish_sources = 9;</code>
+     */
+    private $can_publish_sources;
+    /**
      * indicates that it's hidden to others
      *
      * Generated from protobuf field <code>bool hidden = 7;</code>
@@ -43,6 +49,12 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool recorder = 8;</code>
      */
     protected $recorder = false;
+    /**
+     * indicates that participant can update own metadata
+     *
+     * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
+     */
+    protected $can_update_metadata = false;
 
     /**
      * Constructor.
@@ -56,10 +68,14 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      *           allow participant to publish new tracks to room
      *     @type bool $can_publish_data
      *           allow participant to publish data
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $can_publish_sources
+     *           sources that are allowed to be published
      *     @type bool $hidden
      *           indicates that it's hidden to others
      *     @type bool $recorder
      *           indicates it's a recorder instance
+     *     @type bool $can_update_metadata
+     *           indicates that participant can update own metadata
      * }
      */
     public function __construct($data = NULL) {
@@ -146,6 +162,32 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * sources that are allowed to be published
+     *
+     * Generated from protobuf field <code>repeated .livekit.TrackSource can_publish_sources = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCanPublishSources()
+    {
+        return $this->can_publish_sources;
+    }
+
+    /**
+     * sources that are allowed to be published
+     *
+     * Generated from protobuf field <code>repeated .livekit.TrackSource can_publish_sources = 9;</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCanPublishSources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Livekit\TrackSource::class);
+        $this->can_publish_sources = $arr;
+
+        return $this;
+    }
+
+    /**
      * indicates that it's hidden to others
      *
      * Generated from protobuf field <code>bool hidden = 7;</code>
@@ -193,6 +235,32 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->recorder = $var;
+
+        return $this;
+    }
+
+    /**
+     * indicates that participant can update own metadata
+     *
+     * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
+     * @return bool
+     */
+    public function getCanUpdateMetadata()
+    {
+        return $this->can_update_metadata;
+    }
+
+    /**
+     * indicates that participant can update own metadata
+     *
+     * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCanUpdateMetadata($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->can_update_metadata = $var;
 
         return $this;
     }

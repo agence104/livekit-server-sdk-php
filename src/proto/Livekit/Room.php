@@ -50,9 +50,17 @@ class Room extends \Google\Protobuf\Internal\Message
      */
     protected $num_participants = 0;
     /**
+     * Generated from protobuf field <code>uint32 num_publishers = 11;</code>
+     */
+    protected $num_publishers = 0;
+    /**
      * Generated from protobuf field <code>bool active_recording = 10;</code>
      */
     protected $active_recording = false;
+    /**
+     * Generated from protobuf field <code>.livekit.PlayoutDelay playout_delay = 12;</code>
+     */
+    protected $playout_delay = null;
 
     /**
      * Constructor.
@@ -66,10 +74,12 @@ class Room extends \Google\Protobuf\Internal\Message
      *     @type int $max_participants
      *     @type int|string $creation_time
      *     @type string $turn_password
-     *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
+     *     @type array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
      *     @type string $metadata
      *     @type int $num_participants
+     *     @type int $num_publishers
      *     @type bool $active_recording
+     *     @type \Livekit\PlayoutDelay $playout_delay
      * }
      */
     public function __construct($data = NULL) {
@@ -220,7 +230,7 @@ class Room extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.Codec enabled_codecs = 7;</code>
-     * @param \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnabledCodecs($var)
@@ -276,6 +286,28 @@ class Room extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>uint32 num_publishers = 11;</code>
+     * @return int
+     */
+    public function getNumPublishers()
+    {
+        return $this->num_publishers;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 num_publishers = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumPublishers($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->num_publishers = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>bool active_recording = 10;</code>
      * @return bool
      */
@@ -293,6 +325,38 @@ class Room extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->active_recording = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.PlayoutDelay playout_delay = 12;</code>
+     * @return \Livekit\PlayoutDelay|null
+     */
+    public function getPlayoutDelay()
+    {
+        return $this->playout_delay;
+    }
+
+    public function hasPlayoutDelay()
+    {
+        return isset($this->playout_delay);
+    }
+
+    public function clearPlayoutDelay()
+    {
+        unset($this->playout_delay);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.PlayoutDelay playout_delay = 12;</code>
+     * @param \Livekit\PlayoutDelay $var
+     * @return $this
+     */
+    public function setPlayoutDelay($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\PlayoutDelay::class);
+        $this->playout_delay = $var;
 
         return $this;
     }

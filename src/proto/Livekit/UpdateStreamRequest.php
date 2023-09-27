@@ -33,8 +33,8 @@ class UpdateStreamRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $egress_id
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $add_output_urls
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $remove_output_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $add_output_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $remove_output_urls
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class UpdateStreamRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string add_output_urls = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAddOutputUrls($var)
@@ -97,7 +97,7 @@ class UpdateStreamRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string remove_output_urls = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRemoveOutputUrls($var)
