@@ -76,6 +76,21 @@ class VideoGrant {
   protected $canPublishData = NULL;
 
   /**
+   * When set, only listed source can be published.
+   * (camera, microphone, screen_share, screen_share_audio)
+   *
+   * @var string[]|null
+   */
+  protected $canPublishSources = NULL;
+
+  /**
+   * Allow participant to update its own metadata
+   *
+   * @var bool|null
+   */
+  protected $canUpdateOwnMetadata = NULL;
+
+  /**
    * Participant isn't visible to others.
    *
    * @var bool|null
@@ -141,7 +156,7 @@ class VideoGrant {
   /**
    * @return bool | null
    */
-  public function isRoomList(): bool| null {
+  public function isRoomList(): bool | null {
     return $this->roomList;
   }
 
@@ -158,7 +173,7 @@ class VideoGrant {
   /**
    * @return bool | null
    */
-  public function isRoomRecord(): bool| null {
+  public function isRoomRecord(): bool | null {
     return $this->roomRecord;
   }
 
@@ -175,7 +190,7 @@ class VideoGrant {
   /**
    * @return bool | null
    */
-  public function isRoomAdmin(): bool | null{
+  public function isRoomAdmin(): bool | null {
     return $this->roomAdmin;
   }
 
@@ -271,6 +286,40 @@ class VideoGrant {
    */
   public function setCanPublishData(bool $canPublishData = TRUE): self {
     $this->canPublishData = $canPublishData;
+    return $this;
+  }
+
+  /**
+   * @param string[] $canPublishSources
+   *
+   * @return $this
+   */
+  public function setCanPublishSources(array $canPublishSources = []): self {
+    $this->canPublishSources = $canPublishSources;
+    return $this;
+  }
+
+  /**
+   * @return string[]|null
+   */
+  public function getCanPublishSources(): array | null {
+    return $this->canPublishSources;
+  }
+
+  /**
+   * @return bool | null
+   */
+  public function isCanUpdateOwnMetadata(): bool | null {
+    return $this->canUpdateOwnMetadata;
+  }
+
+  /**
+   * @param bool $canUpdateOwnMetadata
+   *
+   * @return $this
+   */
+  public function setCanUpdateOwnMetadata(bool $canUpdateOwnMetadata = TRUE): self {
+    $this->canUpdateOwnMetadata = $canUpdateOwnMetadata;
     return $this;
   }
 
