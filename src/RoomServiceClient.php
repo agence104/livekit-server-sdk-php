@@ -36,10 +36,10 @@ class RoomServiceClient extends BaseServiceClient {
   /**
    * {@inheritdoc}
    */
-  public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(string $host = NULL, string $apiKey = NULL, string $apiSecret = NULL) {
     parent::__construct($host,$apiKey, $apiSecret);
 
-    $this->rpc = new \Livekit\RoomServiceClient($host);
+    $this->rpc = new \Livekit\RoomServiceClient($this->host);
   }
 
   /**
@@ -266,7 +266,7 @@ class RoomServiceClient extends BaseServiceClient {
    *   The name of the room.
    * @param string $identity
    *   The identity of the participant.
-   * @param string $trackSids
+   * @param string[] $trackSids
    *   The sids of the tracks to subscribe.
    * @param bool $subscribe
    *   The flag which defines if the tracks needs to be subscribed or not.
@@ -275,7 +275,7 @@ class RoomServiceClient extends BaseServiceClient {
    * @return \Livekit\UpdateSubscriptionsResponse
    *   The UpdateSubscriptionsResponse object.
    */
-  public function updateSubscriptions(string $roomName, string $identity, string $trackSids, bool $subscribe): UpdateSubscriptionsResponse {
+  public function updateSubscriptions(string $roomName, string $identity, array $trackSids, bool $subscribe): UpdateSubscriptionsResponse {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomName($roomName);
     $videoGrant->setRoomAdmin();

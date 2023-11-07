@@ -4,6 +4,7 @@ namespace Agence104\LiveKit;
 
 use Livekit\EgressInfo;
 use Livekit\EgressClient;
+use Livekit\ImageOutput;
 use Livekit\StreamOutput;
 use Livekit\EncodingOptions;
 use Livekit\DirectFileOutput;
@@ -14,9 +15,11 @@ use Livekit\ListEgressResponse;
 use Livekit\TrackEgressRequest;
 use Livekit\UpdateLayoutRequest;
 use Livekit\UpdateStreamRequest;
+use Livekit\SegmentedFileOutput;
 use Livekit\EncodingOptionsPreset;
 use Livekit\RoomCompositeEgressRequest;
 use Livekit\TrackCompositeEgressRequest;
+use Livekit\WebEgressRequest;
 
 class EgressServiceClient extends BaseServiceClient {
 
@@ -30,16 +33,16 @@ class EgressServiceClient extends BaseServiceClient {
   /**
    * {@inheritdoc}
    */
-  public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(string $host = NULL, string $apiKey = NULL, string $apiSecret = NULL) {
     parent::__construct($host,$apiKey, $apiSecret);
 
-    $this->rpc = new EgressClient($host);
+    $this->rpc = new EgressClient($this->host);
   }
 
   /**
    * Get the stream output parameters.
    *
-   * @param \Livekit\EncodedFileOutput|\Livekit\StreamOutput $output
+   * @param \Agence104\LiveKit\EncodedOutputs|\Livekit\EncodedFileOutput|\Livekit\StreamOutput|\Livekit\SegmentedFileOutput|\Livekit\ImageOutput $output
    *   The output stream.
    * @param \Livekit\EncodingOptionsPreset|\Livekit\EncodingOptions|NULL $options
    *   The output options.
@@ -48,16 +51,38 @@ class EgressServiceClient extends BaseServiceClient {
    *   The output parameters as an array.
    */
   public function getOutputParams(
-    EncodedFileOutput|StreamOutput $output,
+    EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
     EncodingOptionsPreset|EncodingOptions $options = NULL
   ): array {
     $file = NULL;
+    $fileOutputs = NULL;
     $stream = NULL;
+    $streamOutputs = NULL;
     $preset = NULL;
     $advanced = NULL;
+    $segments = NULL;
+    $segmentOutputs = NULL;
+    $imageOutputs = NULL;
 
-    if ($output instanceof EncodedFileOutput && !empty($output->getFilepath())) {
+    if ($output instanceof EncodedOutputs) {
+      $fileOutputs = $output->getFile() ? [$output->getFile()] : NULL;
+      $streamOutputs = $output->getStream() ? [$output->getStream()] : NULL;
+      $segmentOutputs = $output->getSegments() ? [$output->getSegments()] : NULL;
+      $imageOutputs = $output->getSegments()  ? [$output->getImage()] : NULL;
+    }
+    elseif ($output instanceof EncodedFileOutput && !empty($output->getFilepath())) {
       $file = $output;
+      $fileOutputs = [$file];
+    }
+    elseif ($output instanceof SegmentedFileOutput && !empty($output->getFilenamePrefix())) {
+      $segments = $output;
+      $segmentOutputs = [$segments];
+    }
+    elseif ($output instanceof StreamOutput && !empty($output->getUrls())) {
+      $streamOutputs = [$output];
+    }
+    elseif ($output instanceof ImageOutput) {
+      $imageOutputs = [$output];
     }
     else {
       $stream = $output;
@@ -75,8 +100,13 @@ class EgressServiceClient extends BaseServiceClient {
     return [
       $file,
       $stream,
+      $segments,
       $preset,
-      $advanced
+      $advanced,
+      $fileOutputs,
+      $streamOutputs,
+      $segmentOutputs,
+      $imageOutputs,
     ];
   }
 
@@ -87,8 +117,8 @@ class EgressServiceClient extends BaseServiceClient {
    *   The name of the room.
    * @param string $layout
    *   The egress layout.
-   * @param \Livekit\EncodedFileOutput|\Livekit\StreamOutput $output
-   *   The file or stream output.
+   * @param \Agence104\LiveKit\EncodedOutputs|\Livekit\EncodedFileOutput|\Livekit\StreamOutput|\Livekit\SegmentedFileOutput|\Livekit\ImageOutput $output
+   *   The egress output.
    * @param \Livekit\EncodingOptionsPreset|\Livekit\EncodingOptions|NULL $options
    *   The encoding options or preset.
    * @param bool $audioOnly
@@ -96,20 +126,30 @@ class EgressServiceClient extends BaseServiceClient {
    * @param bool $videoOnly
    *   The flag which defines if we record only the video or not.
    * @param string $customBaseUrl
-   *   The custom template url.
+   *   The custom template url. (default https://recorder.livekit.io)
    *
    * @return \Livekit\EgressInfo
    */
   public function startRoomCompositeEgress(
     string $roomName,
     string $layout,
-    EncodedFileOutput|StreamOutput $output,
+    EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
     EncodingOptionsPreset|EncodingOptions $options = NULL,
     bool $audioOnly = FALSE,
     bool $videoOnly = FALSE,
     string $customBaseUrl = ''
   ): EgressInfo {
-    [$file, $stream, $preset, $advanced] = $this->getOutputParams($output, $options);
+    [
+      $file,
+      $stream,
+      $segments,
+      $preset,
+      $advanced,
+      $fileOutputs,
+      $streamOutputs,
+      $segmentOutputs,
+      $imageOutputs,
+    ] = $this->getOutputParams($output, $options);
 
     // Set the request data.
     $data = [
@@ -119,12 +159,28 @@ class EgressServiceClient extends BaseServiceClient {
       'video_only' => $videoOnly,
       'custom_base_url' => $customBaseUrl,
     ];
-    ($file)
-      ? $data['file'] = $file
-      : $data['stream'] = $stream;
-    ($preset)
-      ? $data['preset'] = $preset
-      : $data['advanced'] = $advanced;
+
+    $data += array_filter([
+      'file_outputs' => $fileOutputs,
+      'stream_outputs' => $streamOutputs,
+      'segment_outputs' => $segmentOutputs,
+      'image_outputs' => $imageOutputs,
+    ]);
+
+    if ($file) {
+      $data['file'] = $file;
+    } elseif ($segments) {
+      $data['segments'] = $segments;
+    } elseif ($stream) {
+      $data['stream'] = $stream;
+    }
+
+    if ($preset) {
+      $data['preset'] = $preset;
+    }
+    else {
+      $data['advanced'] = $advanced;
+    }
 
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
@@ -135,12 +191,88 @@ class EgressServiceClient extends BaseServiceClient {
   }
 
   /**
+   * Starts a Web egress.
+   *
+   * @param string $url
+   *   The URL of the web page to record
+   * @param \Agence104\LiveKit\EncodedOutputs|\Livekit\EncodedFileOutput|\Livekit\StreamOutput|\Livekit\SegmentedFileOutput|\Livekit\ImageOutput $output
+   *   The egress output.
+   * @param \Livekit\EncodingOptionsPreset|\Livekit\EncodingOptions|NULL $options
+   *   The encoding options or preset.
+   * @param bool $audioOnly
+   *   The flag which defines if we record only the audio or not.
+   * @param bool $videoOnly
+   *   The flag which defines if we record only the video or not.
+   * @param bool $awaitStartSignal
+   *   The flag which defines if we wait for the start signal or not.
+   *
+   * @return \Livekit\EgressInfo
+   */
+  public function startWebEgress(
+    string $url,
+    EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
+    EncodingOptionsPreset|EncodingOptions $options = NULL,
+    bool $audioOnly = FALSE,
+    bool $videoOnly = FALSE,
+    bool $awaitStartSignal = FALSE
+  ): EgressInfo {
+    [
+      $file,
+      $stream,
+      $segments,
+      $preset,
+      $advanced,
+      $fileOutputs,
+      $streamOutputs,
+      $segmentOutputs,
+      $imageOutputs,
+    ] = $this->getOutputParams($output, $options);
+
+    // Set the request data.
+    $data = [
+      'url' => $url,
+      'audio_only' => $audioOnly,
+      'video_only' => $videoOnly,
+      'await_start_signal' => $awaitStartSignal,
+    ];
+
+    $data += array_filter([
+      'file_outputs' => $fileOutputs,
+      'stream_outputs' => $streamOutputs,
+      'segment_outputs' => $segmentOutputs,
+      'image_outputs' => $imageOutputs,
+    ]);
+
+    if ($file) {
+      $data['file'] = $file;
+    } elseif ($segments) {
+      $data['segments'] = $segments;
+    } elseif ($stream) {
+      $data['stream'] = $stream;
+    }
+
+    if ($preset) {
+      $data['preset'] = $preset;
+    }
+    else {
+      $data['advanced'] = $advanced;
+    }
+
+    $videoGrant = new VideoGrant();
+    $videoGrant->setRoomRecord();
+    return $this->rpc->StartWebEgress(
+      $this->authHeader($videoGrant),
+      new WebEgressRequest($data)
+    );
+  }
+
+  /**
    * Starts a track composite egress with up to one audio track and one video
    * track. Track IDs can be found using webhooks or one of the server SDKs.
    *
    * @param string $roomName
    *   The name of the room.
-   * @param \Livekit\EncodedFileOutput|\Livekit\StreamOutput $output
+   * @param \Agence104\LiveKit\EncodedOutputs|\Livekit\EncodedFileOutput|\Livekit\StreamOutput|\Livekit\SegmentedFileOutput|\Livekit\ImageOutput $output
    *   The file or stream output.
    * @param string $audioTrackId
    *   The audio track id.
@@ -153,12 +285,22 @@ class EgressServiceClient extends BaseServiceClient {
    */
   public function startTrackCompositeEgress(
     string $roomName,
-    EncodedFileOutput|StreamOutput $output,
+    EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
     string $audioTrackId = '',
     string $videoTrackId = '',
     EncodingOptionsPreset|EncodingOptions $options = NULL,
   ): EgressInfo {
-    [$file, $stream, $preset, $advanced] = $this->getOutputParams($output, $options);
+    [
+      $file,
+      $stream,
+      $segments,
+      $preset,
+      $advanced,
+      $fileOutputs,
+      $streamOutputs,
+      $segmentOutputs,
+      $imageOutputs,
+    ] = $this->getOutputParams($output, $options);
 
     // Set the request data.
     $data = [
@@ -166,12 +308,28 @@ class EgressServiceClient extends BaseServiceClient {
       'audio_track_id' => $audioTrackId,
       'video_track_id' => $videoTrackId,
     ];
-    ($file)
-      ? $data['file'] = $file
-      : $data['stream'] = $stream;
-    ($preset)
-      ? $data['preset'] = $preset
-      : $data['advanced'] = $advanced;
+
+    $data += array_filter([
+      'file_outputs' => $fileOutputs,
+      'stream_outputs' => $streamOutputs,
+      'segment_outputs' => $segmentOutputs,
+      'image_outputs' => $imageOutputs,
+    ]);
+
+    if ($file) {
+      $data['file'] = $file;
+    } elseif ($segments) {
+      $data['segments'] = $segments;
+    } elseif ($stream) {
+      $data['stream'] = $stream;
+    }
+
+    if ($preset) {
+      $data['preset'] = $preset;
+    }
+    else {
+      $data['advanced'] = $advanced;
+    }
 
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
@@ -190,7 +348,7 @@ class EgressServiceClient extends BaseServiceClient {
    * @param \Livekit\DirectFileOutput|string $output
    *   The file or websocket output.
    * @param string $trackId
-   *   The track id
+   *   The track id.
    *
    * @return \Livekit\EgressInfo
    */
@@ -236,7 +394,7 @@ class EgressServiceClient extends BaseServiceClient {
       $this->authHeader($videoGrant),
       new UpdateLayoutRequest([
         'egress_id' => $egressId,
-        'laytout' => $layout,
+        'layout' => $layout,
       ])
     );
   }
@@ -275,16 +433,26 @@ class EgressServiceClient extends BaseServiceClient {
    *
    * @param string $roomName
    *   The name of the room.
+   * @param string $egressId
+   *   Optional, filter by an egress ID.
+   * @param bool $active
+   *   Optional, list active egress only.
    *
    * @return \Livekit\ListEgressResponse
    */
-  public function listEgress(string $roomName = ''): ListEgressResponse {
+  public function listEgress(
+    string $roomName = '',
+    string $egressId = '',
+    bool $active = FALSE
+  ): ListEgressResponse {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
     return $this->rpc->ListEgress(
       $this->authHeader($videoGrant),
       new ListEgressRequest([
         'room_name' => $roomName,
+        'egress_id' => $egressId,
+        'active' => $active,
       ])
     );
   }

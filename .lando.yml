@@ -1,0 +1,56 @@
+name: livekit-server-sdk-php
+recipe: lamp
+config:
+  php: '8.1'
+  #xdebug: true
+env_file:
+  - .env
+services:
+  database: disabled
+  appserver:
+    build_as_root:
+      - curl -sSL https://get.livekit.io/cli | bash
+    overrides:
+      environment:
+        # Support debugging CLI with Xdebug.
+        PHP_IDE_CONFIG: "serverName=appserver"
+        XDEBUG_SESSION_START: lando
+tooling:
+  test:
+    service: appserver
+    cmd:
+      - vendor/bin/phpunit --testdox
+  xdebug-on:
+    service: appserver
+    description: Enable Xdebug.
+    user: root
+    cmd:
+      - docker-php-ext-enable xdebug && kill -USR2 $(pgrep -o php-fpm) > /dev/null || /etc/init.d/apache2 reload
+      - tput setaf 2 && echo "Xdebug On" && tput sgr 0 && echo
+  xdebug-off:
+    service: appserver
+    description: Disable Xdebug.
+    user: root
+    cmd:
+      - rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && kill -USR2 $(pgrep -o php-fpm) > /dev/null || /etc/init.d/apache2 reload
+      - tput setaf 1 && echo "Xdebug Off" && tput sgr 0 && echo
+  livekit-cli:
+    service: appserver
+    cmd:
+      - livekit-cli
+  create-project:
+    service: appserver
+    cmd:
+      - livekit-cli project add --name php-sdk-https
+  create-test-room:
+    service: appserver
+    cmd:
+      - livekit-cli create-room --name testRoomParticipants --project php-sdk-https
+  delete-test-room:
+    service: appserver
+    cmd:
+      - livekit-cli delete-room --room testRoomParticipants --project php-sdk-https
+  start-test-users:
+    service: appserver
+    cmd:
+      - livekit-cli load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5 --project php-sdk-https
