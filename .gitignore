@@ -4,3 +4,7 @@ composer.lock
 phpunit.phar
 phpunit.phar.asc
 .idea
+.env
+.phpunit.cache
+.phpunit.result.cache
+bin

@@ -7,6 +7,13 @@ use Twirp\Context;
 abstract class BaseServiceClient {
 
   /**
+   * The hostname including protocol, can be set in env var LIVEKIT_HOST.
+   *
+   * @var string
+   */
+  protected $host;
+
+  /**
    * The API Key, can be set in env var LIVEKIT_API_KEY.
    *
    * @var string
@@ -23,7 +30,7 @@ abstract class BaseServiceClient {
   /**
    * BaseServiceClient Class Constructor.
    *
-   * @param string $host
+   * @param string|null $host
    *   The hostname including protocol. i.e. 'https://cluster.livekit.io'.
    * @param string|null $apiKey
    *   The API Key, can be set in env var LIVEKIT_API_KEY.
@@ -32,7 +39,8 @@ abstract class BaseServiceClient {
    *
    * @throws \Exception
    */
-  public function __construct(string $host, string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(string $host = NULL, string $apiKey = NULL, string $apiSecret = NULL) {
+    $host = $host ?? getenv('LIVEKIT_HOST');
     $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
     $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
 
@@ -40,6 +48,7 @@ abstract class BaseServiceClient {
       throw new \Exception('ApiKey and apiSecret are required.');
     }
 
+    $this->host = $host;
     $this->apiKey = $apiKey;
     $this->apiSecret = $apiSecret;
   }

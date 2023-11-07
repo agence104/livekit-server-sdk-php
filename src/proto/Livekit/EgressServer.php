@@ -132,12 +132,14 @@ final class EgressServer implements RequestHandlerInterface
         switch ($method) {
             case 'StartRoomCompositeEgress':
                 return $this->handleStartRoomCompositeEgress($ctx, $req);
+            case 'StartWebEgress':
+                return $this->handleStartWebEgress($ctx, $req);
+            case 'StartParticipantEgress':
+                return $this->handleStartParticipantEgress($ctx, $req);
             case 'StartTrackCompositeEgress':
                 return $this->handleStartTrackCompositeEgress($ctx, $req);
             case 'StartTrackEgress':
                 return $this->handleStartTrackEgress($ctx, $req);
-            case 'StartWebEgress':
-                return $this->handleStartWebEgress($ctx, $req);
             case 'UpdateLayout':
                 return $this->handleUpdateLayout($ctx, $req);
             case 'UpdateStream':
@@ -237,6 +239,220 @@ final class EgressServer implements RequestHandlerInterface
 
             if ($out === null) {
                 return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartRoomCompositeEgress. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleStartWebEgress(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleStartWebEgressJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleStartWebEgressProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleStartWebEgressJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\WebEgressRequest();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->StartWebEgress($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartWebEgress. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleStartWebEgressProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\WebEgressRequest();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->StartWebEgress($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartWebEgress. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleStartParticipantEgress(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleStartParticipantEgressJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleStartParticipantEgressProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleStartParticipantEgressJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'StartParticipantEgress');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\ParticipantEgressRequest();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->StartParticipantEgress($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartParticipantEgress. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleStartParticipantEgressProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'StartParticipantEgress');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\ParticipantEgressRequest();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->StartParticipantEgress($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartParticipantEgress. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);
@@ -451,113 +667,6 @@ final class EgressServer implements RequestHandlerInterface
 
             if ($out === null) {
                 return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartTrackEgress. null responses are not supported'));
-            }
-
-            $ctx = $this->hook->responsePrepared($ctx);
-        } catch (GPBDecodeException $e) {
-            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
-        } catch (\Throwable $e) {
-            return $this->writeError($ctx, $e);
-        }
-
-        $data = $out->serializeToString();
-
-        $body = $this->streamFactory->createStream($data);
-
-        $resp = $this->responseFactory
-            ->createResponse(200)
-            ->withHeader('Content-Type', 'application/protobuf')
-            ->withBody($body);
-
-        $this->callResponseSent($ctx);
-
-        return $resp;
-    }
-    private function handleStartWebEgress(array $ctx, ServerRequestInterface $req): ResponseInterface
-    {
-        $header = $req->getHeaderLine('Content-Type');
-        $i = strpos($header, ';');
-
-        if ($i === false) {
-            $i = strlen($header);
-        }
-
-        $respHeaders = [];
-        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
-
-        switch (trim(strtolower(substr($header, 0, $i)))) {
-            case 'application/json':
-                $resp = $this->handleStartWebEgressJson($ctx, $req);
-                break;
-
-            case 'application/protobuf':
-                $resp = $this->handleStartWebEgressProtobuf($ctx, $req);
-                break;
-
-            default:
-                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
-
-                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
-        }
-
-        foreach ($respHeaders as $key => $value) {
-            $resp = $resp->withHeader($key, $value);
-        }
-
-        return $resp;
-    }
-
-    private function handleStartWebEgressJson(array $ctx, ServerRequestInterface $req): ResponseInterface
-    {
-        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
-
-        try {
-            $ctx = $this->hook->requestRouted($ctx);
-
-            $in = new \Livekit\WebEgressRequest();
-            $in->mergeFromJsonString((string)$req->getBody(), true);
-
-            $out = $this->svc->StartWebEgress($ctx, $in);
-
-            if ($out === null) {
-                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartWebEgress. null responses are not supported'));
-            }
-
-            $ctx = $this->hook->responsePrepared($ctx);
-        } catch (GPBDecodeException $e) {
-            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
-        } catch (\Throwable $e) {
-            return $this->writeError($ctx, $e);
-        }
-
-        $data = $out->serializeToJsonString();
-
-        $body = $this->streamFactory->createStream($data);
-
-        $resp = $this->responseFactory
-            ->createResponse(200)
-            ->withHeader('Content-Type', 'application/json')
-            ->withBody($body);
-
-        $this->callResponseSent($ctx);
-
-        return $resp;
-    }
-
-    private function handleStartWebEgressProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
-    {
-        $ctx = Context::withMethodName($ctx, 'StartWebEgress');
-
-        try {
-            $ctx = $this->hook->requestRouted($ctx);
-
-            $in = new \Livekit\WebEgressRequest();
-            $in->mergeFromString((string)$req->getBody());
-
-            $out = $this->svc->StartWebEgress($ctx, $in);
-
-            if ($out === null) {
-                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling StartWebEgress. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);

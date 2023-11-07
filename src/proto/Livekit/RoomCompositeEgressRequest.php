@@ -45,6 +45,22 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string custom_base_url = 5;</code>
      */
     protected $custom_base_url = '';
+    /**
+     * Generated from protobuf field <code>repeated .livekit.EncodedFileOutput file_outputs = 11;</code>
+     */
+    private $file_outputs;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.StreamOutput stream_outputs = 12;</code>
+     */
+    private $stream_outputs;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SegmentedFileOutput segment_outputs = 13;</code>
+     */
+    private $segment_outputs;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ImageOutput image_outputs = 14;</code>
+     */
+    private $image_outputs;
     protected $output;
     protected $options;
 
@@ -71,6 +87,10 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      *           (default H264_720P_30)
      *     @type \Livekit\EncodingOptions $advanced
      *           (optional)
+     *     @type \Livekit\EncodedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $file_outputs
+     *     @type \Livekit\StreamOutput[]|\Google\Protobuf\Internal\RepeatedField $stream_outputs
+     *     @type \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $segment_outputs
+     *     @type \Livekit\ImageOutput[]|\Google\Protobuf\Internal\RepeatedField $image_outputs
      * }
      */
     public function __construct($data = NULL) {
@@ -209,26 +229,31 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.EncodedFileOutput file = 6;</code>
+     * Generated from protobuf field <code>.livekit.EncodedFileOutput file = 6 [deprecated = true];</code>
      * @return \Livekit\EncodedFileOutput|null
+     * @deprecated
      */
     public function getFile()
     {
+        @trigger_error('file is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(6);
     }
 
     public function hasFile()
     {
+        @trigger_error('file is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(6);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.EncodedFileOutput file = 6;</code>
+     * Generated from protobuf field <code>.livekit.EncodedFileOutput file = 6 [deprecated = true];</code>
      * @param \Livekit\EncodedFileOutput $var
      * @return $this
+     * @deprecated
      */
     public function setFile($var)
     {
+        @trigger_error('file is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\EncodedFileOutput::class);
         $this->writeOneof(6, $var);
 
@@ -236,26 +261,31 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.StreamOutput stream = 7;</code>
+     * Generated from protobuf field <code>.livekit.StreamOutput stream = 7 [deprecated = true];</code>
      * @return \Livekit\StreamOutput|null
+     * @deprecated
      */
     public function getStream()
     {
+        @trigger_error('stream is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(7);
     }
 
     public function hasStream()
     {
+        @trigger_error('stream is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(7);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.StreamOutput stream = 7;</code>
+     * Generated from protobuf field <code>.livekit.StreamOutput stream = 7 [deprecated = true];</code>
      * @param \Livekit\StreamOutput $var
      * @return $this
+     * @deprecated
      */
     public function setStream($var)
     {
+        @trigger_error('stream is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\StreamOutput::class);
         $this->writeOneof(7, $var);
 
@@ -263,26 +293,31 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 10;</code>
+     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 10 [deprecated = true];</code>
      * @return \Livekit\SegmentedFileOutput|null
+     * @deprecated
      */
     public function getSegments()
     {
+        @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(10);
     }
 
     public function hasSegments()
     {
+        @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(10);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 10;</code>
+     * Generated from protobuf field <code>.livekit.SegmentedFileOutput segments = 10 [deprecated = true];</code>
      * @param \Livekit\SegmentedFileOutput $var
      * @return $this
+     * @deprecated
      */
     public function setSegments($var)
     {
+        @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\SegmentedFileOutput::class);
         $this->writeOneof(10, $var);
 
@@ -347,6 +382,94 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\EncodingOptions::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.EncodedFileOutput file_outputs = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFileOutputs()
+    {
+        return $this->file_outputs;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.EncodedFileOutput file_outputs = 11;</code>
+     * @param \Livekit\EncodedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFileOutputs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\EncodedFileOutput::class);
+        $this->file_outputs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.StreamOutput stream_outputs = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStreamOutputs()
+    {
+        return $this->stream_outputs;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.StreamOutput stream_outputs = 12;</code>
+     * @param \Livekit\StreamOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStreamOutputs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\StreamOutput::class);
+        $this->stream_outputs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SegmentedFileOutput segment_outputs = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSegmentOutputs()
+    {
+        return $this->segment_outputs;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SegmentedFileOutput segment_outputs = 13;</code>
+     * @param \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSegmentOutputs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\SegmentedFileOutput::class);
+        $this->segment_outputs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ImageOutput image_outputs = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getImageOutputs()
+    {
+        return $this->image_outputs;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ImageOutput image_outputs = 14;</code>
+     * @param \Livekit\ImageOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setImageOutputs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\ImageOutput::class);
+        $this->image_outputs = $arr;
 
         return $this;
     }

@@ -39,6 +39,22 @@ class SDK
      * Generated from protobuf enum <code>UNITY = 6;</code>
      */
     const UNITY = 6;
+    /**
+     * Generated from protobuf enum <code>REACT_NATIVE = 7;</code>
+     */
+    const REACT_NATIVE = 7;
+    /**
+     * Generated from protobuf enum <code>RUST = 8;</code>
+     */
+    const RUST = 8;
+    /**
+     * Generated from protobuf enum <code>PYTHON = 9;</code>
+     */
+    const PYTHON = 9;
+    /**
+     * Generated from protobuf enum <code>CPP = 10;</code>
+     */
+    const CPP = 10;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -48,6 +64,10 @@ class SDK
         self::FLUTTER => 'FLUTTER',
         self::GO => 'GO',
         self::UNITY => 'UNITY',
+        self::REACT_NATIVE => 'REACT_NATIVE',
+        self::RUST => 'RUST',
+        self::PYTHON => 'PYTHON',
+        self::CPP => 'CPP',
     ];
 
     public static function name($value)

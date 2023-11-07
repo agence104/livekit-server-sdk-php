@@ -16,8 +16,9 @@ composer require agence104/livekit-server-sdk
 ## Usage
 
 ### Environment Variables
-You may store credentials in environment variables. If api-key or api-secret is not passed in when creating a RoomServiceClient or AccessToken, the values in the following env vars will be used:
+You may store credentials in environment variables. If host, api-key or api-secret is not passed in when creating a RoomServiceClient or AccessToken, the values in the following env vars will be used:
 
+- LIVEKIT_HOST
 - LIVEKIT_API_KEY
 - LIVEKIT_API_SECRET
 
@@ -97,3 +98,47 @@ $room = $svc->createRoom($opts);
 // Delete a room.
 $svc->deleteRoom('myroom');
 ```
+
+### Running Tests
+We'll utilize Lando to streamline the test execution process. However, should you choose to run the tests on your local 
+environment directly, you can certainly proceed with that approach.
+
+#### Step 1: 
+Generate your environment file by duplicating `example.dev` and renaming the copy to `.env`, then enter your credentials 
+accordingly.
+
+### Step 2:
+Start the lando project.
+```
+lando start
+```
+
+#### Step 3:
+Set up a LiveKit project with the livekit-cli by executing the command below, which will prompt you to provide some
+API credentials.
+```
+lando create-project
+```
+
+#### Step 4:
+Generate the LiveKit room that will serve as the testing environment for the majority of the test cases.
+```
+lando create-test-room
+```
+
+#### Step 5:
+Initialize 5 test users within the room. Run this command in a separate terminal window.
+```
+lando start-test-users
+```
+
+#### Step 6:
+Time to get busy testing.
+```
+lando test
+```
+
+#### Step 7:
+Once tests are completed, it is time to clean up.
+- End the `lando start-test-users` command.
+- Run `lando delete-test-room` to delete the test room.

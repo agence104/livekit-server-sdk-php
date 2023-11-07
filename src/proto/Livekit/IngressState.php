@@ -42,6 +42,14 @@ class IngressState extends \Google\Protobuf\Internal\Message
      */
     protected $started_at = 0;
     /**
+     * Generated from protobuf field <code>int64 ended_at = 8;</code>
+     */
+    protected $ended_at = 0;
+    /**
+     * Generated from protobuf field <code>string resource_id = 9;</code>
+     */
+    protected $resource_id = '';
+    /**
      * Generated from protobuf field <code>repeated .livekit.TrackInfo tracks = 6;</code>
      */
     private $tracks;
@@ -60,6 +68,8 @@ class IngressState extends \Google\Protobuf\Internal\Message
      *     @type string $room_id
      *           ID of the current/previous room published to
      *     @type int|string $started_at
+     *     @type int|string $ended_at
+     *     @type string $resource_id
      *     @type \Livekit\TrackInfo[]|\Google\Protobuf\Internal\RepeatedField $tracks
      * }
      */
@@ -224,6 +234,50 @@ class IngressState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->started_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 8;</code>
+     * @return int|string
+     */
+    public function getEndedAt()
+    {
+        return $this->ended_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 8;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEndedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->ended_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string resource_id = 9;</code>
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return $this->resource_id;
+    }
+
+    /**
+     * Generated from protobuf field <code>string resource_id = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_id = $var;
 
         return $this;
     }

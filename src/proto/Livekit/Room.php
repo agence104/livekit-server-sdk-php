@@ -50,6 +50,10 @@ class Room extends \Google\Protobuf\Internal\Message
      */
     protected $num_participants = 0;
     /**
+     * Generated from protobuf field <code>uint32 num_publishers = 11;</code>
+     */
+    protected $num_publishers = 0;
+    /**
      * Generated from protobuf field <code>bool active_recording = 10;</code>
      */
     protected $active_recording = false;
@@ -69,6 +73,7 @@ class Room extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
      *     @type string $metadata
      *     @type int $num_participants
+     *     @type int $num_publishers
      *     @type bool $active_recording
      * }
      */
@@ -271,6 +276,28 @@ class Room extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->num_participants = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 num_publishers = 11;</code>
+     * @return int
+     */
+    public function getNumPublishers()
+    {
+        return $this->num_publishers;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 num_publishers = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumPublishers($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->num_publishers = $var;
 
         return $this;
     }
