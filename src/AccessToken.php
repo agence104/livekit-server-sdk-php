@@ -12,14 +12,14 @@ class AccessToken {
    *
    * @var string
    */
-  protected $apiKey;
+  protected ?string $apiKey;
 
   /**
    * The API Secret.
    *
    * @var string
    */
-  protected $apiSecret;
+  protected ?string $apiSecret;
 
   /**
    * The Access Token Grants.
@@ -54,7 +54,7 @@ class AccessToken {
    *
    * @throws \Exception
    */
-  public function __construct(string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(?string $apiKey = NULL, ?string $apiSecret = NULL) {
     $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
     $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
 
