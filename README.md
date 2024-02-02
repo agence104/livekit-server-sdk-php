@@ -27,6 +27,11 @@ You may store credentials in environment variables. If host, api-key or api-secr
 Creating a token for participant to join a room.
 
 ```php
+
+use Agence104\LiveKit\AccessToken;
+use Agence104\LiveKit\AccessTokenOptions;
+use Agence104\LiveKit\VideoGrant;
+
 // If this room doesn't exist, it'll be automatically created when the first
 // client joins.
 $roomName = 'name-of-room';
@@ -56,6 +61,8 @@ By default, the token expires after 6 hours. you may override this by passing in
 Converting the JWT Token into a ClaimGrants.
 
 ```php
+use Agence104\LiveKit\AccessToken;
+
 // Initialize and parse the JWT Token. 
 $claimGrants = (new AccessToken('api-key', 'secret-key'))  
   ->fromJwt($token);
@@ -66,6 +73,8 @@ $claimGrants = (new AccessToken('api-key', 'secret-key'))
 It's possible to customize the permissions of each participant:
 
 ```php
+use Agence104\LiveKit\VideoGrant;
+
 $videoGrant = (new VideoGrant())
   ->setRoomJoin() // TRUE by default.
   ->setRoomName('name-of-room')
@@ -81,6 +90,8 @@ This will allow the participant to subscribe to tracks, but not publish their ow
 `RoomServiceClient` gives you APIs to list, create, and delete rooms. It also requires a pair of api key/secret key to operate.
 
 ```php
+use Agence104\LiveKit\RoomServiceClient;
+use Agence104\LiveKit\RoomCreateOptions;
 
 $host = 'https://my.livekit.host';
 $svc = new RoomServiceClient($host, 'api-key', 'secret-key');
