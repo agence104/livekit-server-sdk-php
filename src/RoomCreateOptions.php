@@ -182,8 +182,8 @@ class RoomCreateOptions {
    *
    * @return $this
    */
-  public function setEgress(?RoomEgress $minPlayoutDelay): self {
-    $this->min_playout_delay = $minPlayoutDelay;
+  public function setEgress(?RoomEgress $egress): self {
+    $this->egress = $egress;
     return $this;
   }
 
