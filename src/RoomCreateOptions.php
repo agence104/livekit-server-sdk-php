@@ -178,12 +178,12 @@ class RoomCreateOptions {
   }
 
   /**
-   * @param \Livekit\RoomEgress|null $minPlayoutDelay
+   * @param \Livekit\RoomEgress|null $egress
    *
    * @return $this
    */
-  public function setEgress(?RoomEgress $minPlayoutDelay): self {
-    $this->min_playout_delay = $minPlayoutDelay;
+  public function setEgress(?RoomEgress $egress): self {
+    $this->egress = $egress;
     return $this;
   }
 
