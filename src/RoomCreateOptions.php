@@ -178,7 +178,7 @@ class RoomCreateOptions {
   }
 
   /**
-   * @param \Livekit\RoomEgress|null $minPlayoutDelay
+   * @param \Livekit\RoomEgress|null $egress
    *
    * @return $this
    */
