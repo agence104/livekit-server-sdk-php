@@ -14,6 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GCPUpload extends \Google\Protobuf\Internal\Message
 {
     /**
+     * service account credentials serialized in JSON "credentials.json"
+     *
      * Generated from protobuf field <code>string credentials = 1;</code>
      */
     protected $credentials = '';
@@ -29,6 +31,7 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $credentials
+     *           service account credentials serialized in JSON "credentials.json"
      *     @type string $bucket
      * }
      */
@@ -38,6 +41,8 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * service account credentials serialized in JSON "credentials.json"
+     *
      * Generated from protobuf field <code>string credentials = 1;</code>
      * @return string
      */
@@ -47,6 +52,8 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * service account credentials serialized in JSON "credentials.json"
+     *
      * Generated from protobuf field <code>string credentials = 1;</code>
      * @param string $var
      * @return $this

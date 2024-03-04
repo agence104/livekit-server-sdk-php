@@ -70,7 +70,7 @@ class IngressState extends \Google\Protobuf\Internal\Message
      *     @type int|string $started_at
      *     @type int|string $ended_at
      *     @type string $resource_id
-     *     @type \Livekit\TrackInfo[]|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type array<\Livekit\TrackInfo>|\Google\Protobuf\Internal\RepeatedField $tracks
      * }
      */
     public function __construct($data = NULL) {
@@ -293,7 +293,7 @@ class IngressState extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.TrackInfo tracks = 6;</code>
-     * @param \Livekit\TrackInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\TrackInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTracks($var)

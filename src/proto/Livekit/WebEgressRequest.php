@@ -65,10 +65,10 @@ class WebEgressRequest extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\SegmentedFileOutput $segments
      *     @type int $preset
      *     @type \Livekit\EncodingOptions $advanced
-     *     @type \Livekit\EncodedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $file_outputs
-     *     @type \Livekit\StreamOutput[]|\Google\Protobuf\Internal\RepeatedField $stream_outputs
-     *     @type \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $segment_outputs
-     *     @type \Livekit\ImageOutput[]|\Google\Protobuf\Internal\RepeatedField $image_outputs
+     *     @type array<\Livekit\EncodedFileOutput>|\Google\Protobuf\Internal\RepeatedField $file_outputs
+     *     @type array<\Livekit\StreamOutput>|\Google\Protobuf\Internal\RepeatedField $stream_outputs
+     *     @type array<\Livekit\SegmentedFileOutput>|\Google\Protobuf\Internal\RepeatedField $segment_outputs
+     *     @type array<\Livekit\ImageOutput>|\Google\Protobuf\Internal\RepeatedField $image_outputs
      * }
      */
     public function __construct($data = NULL) {
@@ -325,7 +325,7 @@ class WebEgressRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.EncodedFileOutput file_outputs = 9;</code>
-     * @param \Livekit\EncodedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\EncodedFileOutput>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileOutputs($var)
@@ -347,7 +347,7 @@ class WebEgressRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.StreamOutput stream_outputs = 10;</code>
-     * @param \Livekit\StreamOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\StreamOutput>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStreamOutputs($var)
@@ -369,7 +369,7 @@ class WebEgressRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.SegmentedFileOutput segment_outputs = 11;</code>
-     * @param \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\SegmentedFileOutput>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegmentOutputs($var)
@@ -391,7 +391,7 @@ class WebEgressRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.ImageOutput image_outputs = 13;</code>
-     * @param \Livekit\ImageOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\ImageOutput>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImageOutputs($var)

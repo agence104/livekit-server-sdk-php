@@ -9,6 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * @deprecated
  * Generated from protobuf message <code>livekit.StreamInfoList</code>
  */
 class StreamInfoList extends \Google\Protobuf\Internal\Message
@@ -24,7 +25,7 @@ class StreamInfoList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\StreamInfo[]|\Google\Protobuf\Internal\RepeatedField $info
+     *     @type array<\Livekit\StreamInfo>|\Google\Protobuf\Internal\RepeatedField $info
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +44,7 @@ class StreamInfoList extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.StreamInfo info = 1;</code>
-     * @param \Livekit\StreamInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\StreamInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInfo($var)

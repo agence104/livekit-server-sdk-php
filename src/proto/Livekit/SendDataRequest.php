@@ -52,9 +52,9 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      *     @type string $room
      *     @type string $data
      *     @type int $kind
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_sids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_sids
      *           mark deprecated
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_identities
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_identities
      *           when set, only forward to these identities
      *     @type string $topic
      * }
@@ -147,7 +147,7 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      * mark deprecated
      *
      * Generated from protobuf field <code>repeated string destination_sids = 4 [deprecated = true];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -175,7 +175,7 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      * when set, only forward to these identities
      *
      * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDestinationIdentities($var)

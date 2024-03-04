@@ -26,7 +26,7 @@ class ListRoomsRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           when set, will only return rooms with name match
      * }
      */
@@ -50,7 +50,7 @@ class ListRoomsRequest extends \Google\Protobuf\Internal\Message
      * when set, will only return rooms with name match
      *
      * Generated from protobuf field <code>repeated string names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNames($var)

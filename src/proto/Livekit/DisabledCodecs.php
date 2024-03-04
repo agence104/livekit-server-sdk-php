@@ -32,9 +32,9 @@ class DisabledCodecs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $codecs
+     *     @type array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $codecs
      *           disabled for both publish and subscribe
-     *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $publish
+     *     @type array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $publish
      *           only disable for publish
      * }
      */
@@ -58,7 +58,7 @@ class DisabledCodecs extends \Google\Protobuf\Internal\Message
      * disabled for both publish and subscribe
      *
      * Generated from protobuf field <code>repeated .livekit.Codec codecs = 1;</code>
-     * @param \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCodecs($var)
@@ -84,7 +84,7 @@ class DisabledCodecs extends \Google\Protobuf\Internal\Message
      * only disable for publish
      *
      * Generated from protobuf field <code>repeated .livekit.Codec publish = 2;</code>
-     * @param \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPublish($var)

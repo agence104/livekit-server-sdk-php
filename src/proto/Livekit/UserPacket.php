@@ -59,9 +59,9 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      *     @type string $participant_identity
      *     @type string $payload
      *           user defined payload
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_sids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_sids
      *           the ID of the participants who will receive the message (sent to all by default)
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_identities
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_identities
      *           identities of participants who will receive the message (sent to all by default)
      *     @type string $topic
      *           topic under which the message was published
@@ -161,7 +161,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      * the ID of the participants who will receive the message (sent to all by default)
      *
      * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDestinationSids($var)
@@ -187,7 +187,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      * identities of participants who will receive the message (sent to all by default)
      *
      * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDestinationIdentities($var)

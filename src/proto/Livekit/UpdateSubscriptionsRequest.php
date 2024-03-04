@@ -48,11 +48,11 @@ class UpdateSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $room
      *     @type string $identity
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $track_sids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $track_sids
      *           list of sids of tracks
      *     @type bool $subscribe
      *           set to true to subscribe, false to unsubscribe from tracks
-     *     @type \Livekit\ParticipantTracks[]|\Google\Protobuf\Internal\RepeatedField $participant_tracks
+     *     @type array<\Livekit\ParticipantTracks>|\Google\Protobuf\Internal\RepeatedField $participant_tracks
      *           list of participants and their tracks
      * }
      */
@@ -120,7 +120,7 @@ class UpdateSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * list of sids of tracks
      *
      * Generated from protobuf field <code>repeated string track_sids = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrackSids($var)
@@ -172,7 +172,7 @@ class UpdateSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * list of participants and their tracks
      *
      * Generated from protobuf field <code>repeated .livekit.ParticipantTracks participant_tracks = 5;</code>
-     * @param \Livekit\ParticipantTracks[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\ParticipantTracks>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParticipantTracks($var)

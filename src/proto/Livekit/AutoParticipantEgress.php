@@ -33,8 +33,8 @@ class AutoParticipantEgress extends \Google\Protobuf\Internal\Message
      *           (default H264_720P_30)
      *     @type \Livekit\EncodingOptions $advanced
      *           (optional)
-     *     @type \Livekit\EncodedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $file_outputs
-     *     @type \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $segment_outputs
+     *     @type array<\Livekit\EncodedFileOutput>|\Google\Protobuf\Internal\RepeatedField $file_outputs
+     *     @type array<\Livekit\SegmentedFileOutput>|\Google\Protobuf\Internal\RepeatedField $segment_outputs
      * }
      */
     public function __construct($data = NULL) {
@@ -115,7 +115,7 @@ class AutoParticipantEgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.EncodedFileOutput file_outputs = 3;</code>
-     * @param \Livekit\EncodedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\EncodedFileOutput>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileOutputs($var)
@@ -137,7 +137,7 @@ class AutoParticipantEgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.SegmentedFileOutput segment_outputs = 4;</code>
-     * @param \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\SegmentedFileOutput>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegmentOutputs($var)

@@ -43,6 +43,14 @@ class DisconnectReason
      * Generated from protobuf enum <code>JOIN_FAILURE = 7;</code>
      */
     const JOIN_FAILURE = 7;
+    /**
+     * Generated from protobuf enum <code>MIGRATION = 8;</code>
+     */
+    const MIGRATION = 8;
+    /**
+     * Generated from protobuf enum <code>SIGNAL_CLOSE = 9;</code>
+     */
+    const SIGNAL_CLOSE = 9;
 
     private static $valueToName = [
         self::UNKNOWN_REASON => 'UNKNOWN_REASON',
@@ -53,6 +61,8 @@ class DisconnectReason
         self::ROOM_DELETED => 'ROOM_DELETED',
         self::STATE_MISMATCH => 'STATE_MISMATCH',
         self::JOIN_FAILURE => 'JOIN_FAILURE',
+        self::MIGRATION => 'MIGRATION',
+        self::SIGNAL_CLOSE => 'SIGNAL_CLOSE',
     ];
 
     public static function name($value)

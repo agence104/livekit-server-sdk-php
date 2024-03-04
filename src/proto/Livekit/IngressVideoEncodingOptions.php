@@ -39,7 +39,7 @@ class IngressVideoEncodingOptions extends \Google\Protobuf\Internal\Message
      *     @type int $video_codec
      *           desired codec to publish to room
      *     @type float $frame_rate
-     *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
+     *     @type array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $layers
      *           simulcast layers to publish, when empty, should usually be set to layers at 1/2 and 1/4 of the dimensions
      * }
      */
@@ -111,7 +111,7 @@ class IngressVideoEncodingOptions extends \Google\Protobuf\Internal\Message
      * simulcast layers to publish, when empty, should usually be set to layers at 1/2 and 1/4 of the dimensions
      *
      * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 3;</code>
-     * @param \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLayers($var)

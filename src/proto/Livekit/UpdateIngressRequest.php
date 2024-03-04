@@ -34,6 +34,10 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
+     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     */
+    protected $participant_metadata = '';
+    /**
      * Generated from protobuf field <code>optional bool bypass_transcoding = 8;</code>
      */
     protected $bypass_transcoding = null;
@@ -57,6 +61,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      *     @type string $room_name
      *     @type string $participant_identity
      *     @type string $participant_name
+     *     @type string $participant_metadata
      *     @type bool $bypass_transcoding
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
@@ -173,6 +178,28 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * @return string
+     */
+    public function getParticipantMetadata()
+    {
+        return $this->participant_metadata;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_metadata = $var;
 
         return $this;
     }

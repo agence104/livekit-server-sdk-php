@@ -34,7 +34,7 @@ class StreamOutput extends \Google\Protobuf\Internal\Message
      *
      *     @type int $protocol
      *           required
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
      *           required
      * }
      */
@@ -84,7 +84,7 @@ class StreamOutput extends \Google\Protobuf\Internal\Message
      * required
      *
      * Generated from protobuf field <code>repeated string urls = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUrls($var)

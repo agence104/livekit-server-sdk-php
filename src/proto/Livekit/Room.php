@@ -57,6 +57,10 @@ class Room extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool active_recording = 10;</code>
      */
     protected $active_recording = false;
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 13;</code>
+     */
+    protected $version = null;
 
     /**
      * Constructor.
@@ -70,11 +74,12 @@ class Room extends \Google\Protobuf\Internal\Message
      *     @type int $max_participants
      *     @type int|string $creation_time
      *     @type string $turn_password
-     *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
+     *     @type array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
      *     @type string $metadata
      *     @type int $num_participants
      *     @type int $num_publishers
      *     @type bool $active_recording
+     *     @type \Livekit\TimedVersion $version
      * }
      */
     public function __construct($data = NULL) {
@@ -225,7 +230,7 @@ class Room extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.Codec enabled_codecs = 7;</code>
-     * @param \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\Codec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnabledCodecs($var)
@@ -320,6 +325,38 @@ class Room extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->active_recording = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 13;</code>
+     * @return \Livekit\TimedVersion|null
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 13;</code>
+     * @param \Livekit\TimedVersion $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\TimedVersion::class);
+        $this->version = $var;
 
         return $this;
     }

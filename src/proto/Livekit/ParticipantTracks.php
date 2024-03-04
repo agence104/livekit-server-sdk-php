@@ -32,7 +32,7 @@ class ParticipantTracks extends \Google\Protobuf\Internal\Message
      *
      *     @type string $participant_sid
      *           participant ID of participant to whom the tracks belong
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $track_sids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $track_sids
      * }
      */
     public function __construct($data = NULL) {
@@ -77,7 +77,7 @@ class ParticipantTracks extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string track_sids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrackSids($var)

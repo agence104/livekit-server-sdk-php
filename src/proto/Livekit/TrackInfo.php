@@ -96,6 +96,10 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string stream = 17;</code>
      */
     protected $stream = '';
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 18;</code>
+     */
+    protected $version = null;
 
     /**
      * Constructor.
@@ -118,16 +122,17 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *           true if DTX (Discontinuous Transmission) is disabled for audio
      *     @type int $source
      *           source of media
-     *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
+     *     @type array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $layers
      *     @type string $mime_type
      *           mime type of codec
      *     @type string $mid
-     *     @type \Livekit\SimulcastCodecInfo[]|\Google\Protobuf\Internal\RepeatedField $codecs
+     *     @type array<\Livekit\SimulcastCodecInfo>|\Google\Protobuf\Internal\RepeatedField $codecs
      *     @type bool $stereo
      *     @type bool $disable_red
      *           true if RED (Redundant Encoding) is disabled for audio
      *     @type int $encryption
      *     @type string $stream
+     *     @type \Livekit\TimedVersion $version
      * }
      */
     public function __construct($data = NULL) {
@@ -366,7 +371,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10;</code>
-     * @param \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\VideoLayer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLayers($var)
@@ -436,7 +441,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.SimulcastCodecInfo codecs = 13;</code>
-     * @param \Livekit\SimulcastCodecInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\SimulcastCodecInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCodecs($var)
@@ -535,6 +540,38 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->stream = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 18;</code>
+     * @return \Livekit\TimedVersion|null
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TimedVersion version = 18;</code>
+     * @param \Livekit\TimedVersion $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\TimedVersion::class);
+        $this->version = $var;
 
         return $this;
     }

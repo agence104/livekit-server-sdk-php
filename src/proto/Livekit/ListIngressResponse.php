@@ -24,7 +24,7 @@ class ListIngressResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Livekit\IngressInfo[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Livekit\IngressInfo>|\Google\Protobuf\Internal\RepeatedField $items
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +43,7 @@ class ListIngressResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.IngressInfo items = 1;</code>
-     * @param \Livekit\IngressInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\IngressInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

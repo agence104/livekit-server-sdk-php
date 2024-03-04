@@ -45,6 +45,12 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string tagging = 8;</code>
      */
     protected $tagging = '';
+    /**
+     * Content-Disposition header
+     *
+     * Generated from protobuf field <code>string content_disposition = 9;</code>
+     */
+    protected $content_disposition = '';
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      *     @type bool $force_path_style
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *     @type string $tagging
+     *     @type string $content_disposition
+     *           Content-Disposition header
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +247,32 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tagging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Content-Disposition header
+     *
+     * Generated from protobuf field <code>string content_disposition = 9;</code>
+     * @return string
+     */
+    public function getContentDisposition()
+    {
+        return $this->content_disposition;
+    }
+
+    /**
+     * Content-Disposition header
+     *
+     * Generated from protobuf field <code>string content_disposition = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContentDisposition($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->content_disposition = $var;
 
         return $this;
     }

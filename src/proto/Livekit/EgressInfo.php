@@ -86,10 +86,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\StreamInfoList $stream
      *     @type \Livekit\FileInfo $file
      *     @type \Livekit\SegmentsInfo $segments
-     *     @type \Livekit\StreamInfo[]|\Google\Protobuf\Internal\RepeatedField $stream_results
-     *     @type \Livekit\FileInfo[]|\Google\Protobuf\Internal\RepeatedField $file_results
-     *     @type \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $segment_results
-     *     @type \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $image_results
+     *     @type array<\Livekit\StreamInfo>|\Google\Protobuf\Internal\RepeatedField $stream_results
+     *     @type array<\Livekit\FileInfo>|\Google\Protobuf\Internal\RepeatedField $file_results
+     *     @type array<\Livekit\SegmentsInfo>|\Google\Protobuf\Internal\RepeatedField $segment_results
+     *     @type array<\Livekit\ImagesInfo>|\Google\Protobuf\Internal\RepeatedField $image_results
      * }
      */
     public function __construct($data = NULL) {
@@ -515,7 +515,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.StreamInfo stream_results = 15;</code>
-     * @param \Livekit\StreamInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\StreamInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStreamResults($var)
@@ -537,7 +537,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.FileInfo file_results = 16;</code>
-     * @param \Livekit\FileInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\FileInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileResults($var)
@@ -559,7 +559,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.SegmentsInfo segment_results = 17;</code>
-     * @param \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\SegmentsInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegmentResults($var)
@@ -581,7 +581,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .livekit.ImagesInfo image_results = 20;</code>
-     * @param \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Livekit\ImagesInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImageResults($var)
