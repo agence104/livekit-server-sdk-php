@@ -33,13 +33,18 @@ class CreateSIPTrunkRequest extends \Google\Protobuf\Internal\Message
      */
     protected $outbound_number = '';
     /**
+     * Generated from protobuf field <code>repeated string inbound_numbers_regex = 4 [deprecated = true];</code>
+     * @deprecated
+     */
+    private $inbound_numbers_regex;
+    /**
      * Accepted `To` values. This Trunk will only accept a call made to
      * these numbers. This allows you to have distinct Trunks for different phone
      * numbers at the same provider.
      *
-     * Generated from protobuf field <code>repeated string inbound_numbers_regex = 4;</code>
+     * Generated from protobuf field <code>repeated string inbound_numbers = 9;</code>
      */
-    private $inbound_numbers_regex;
+    private $inbound_numbers;
     /**
      * Username and password used to authenticate inbound and outbound SIP invites
      * May be empty to have no Authentication
@@ -74,6 +79,7 @@ class CreateSIPTrunkRequest extends \Google\Protobuf\Internal\Message
      *     @type string $outbound_number
      *           Number used to make outbound calls
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inbound_numbers_regex
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inbound_numbers
      *           Accepted `To` values. This Trunk will only accept a call made to
      *           these numbers. This allows you to have distinct Trunks for different phone
      *           numbers at the same provider.
@@ -171,16 +177,29 @@ class CreateSIPTrunkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Accepted `To` values. This Trunk will only accept a call made to
-     * these numbers. This allows you to have distinct Trunks for different phone
-     * numbers at the same provider.
-     *
-     * Generated from protobuf field <code>repeated string inbound_numbers_regex = 4;</code>
+     * Generated from protobuf field <code>repeated string inbound_numbers_regex = 4 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getInboundNumbersRegex()
     {
+        @trigger_error('inbound_numbers_regex is deprecated.', E_USER_DEPRECATED);
         return $this->inbound_numbers_regex;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated string inbound_numbers_regex = 4 [deprecated = true];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     * @deprecated
+     */
+    public function setInboundNumbersRegex($var)
+    {
+        @trigger_error('inbound_numbers_regex is deprecated.', E_USER_DEPRECATED);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->inbound_numbers_regex = $arr;
+
+        return $this;
     }
 
     /**
@@ -188,14 +207,27 @@ class CreateSIPTrunkRequest extends \Google\Protobuf\Internal\Message
      * these numbers. This allows you to have distinct Trunks for different phone
      * numbers at the same provider.
      *
-     * Generated from protobuf field <code>repeated string inbound_numbers_regex = 4;</code>
+     * Generated from protobuf field <code>repeated string inbound_numbers = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInboundNumbers()
+    {
+        return $this->inbound_numbers;
+    }
+
+    /**
+     * Accepted `To` values. This Trunk will only accept a call made to
+     * these numbers. This allows you to have distinct Trunks for different phone
+     * numbers at the same provider.
+     *
+     * Generated from protobuf field <code>repeated string inbound_numbers = 9;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setInboundNumbersRegex($var)
+    public function setInboundNumbers($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->inbound_numbers_regex = $arr;
+        $this->inbound_numbers = $arr;
 
         return $this;
     }
