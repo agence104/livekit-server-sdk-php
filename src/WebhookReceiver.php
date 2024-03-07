@@ -46,11 +46,14 @@ class WebhookReceiver {
    * @param bool $skipAuth
    *   The flag which defines if we should skip auth validation.
    *   True to skip auth validation, false otherwise.
+   * @param bool $ignoreUnknownFields
+   *   The flag which defines if unknown fields should be ignored when parsing the webhook data.
+   *   True to ignore unknown fields, false otherwise.
    *
    * @return \Livekit\WebhookEvent
    * @throws \Exception
    */
-  function receive(string $body, string $authHeader = NULL, bool $skipAuth = FALSE): WebhookEvent {
+  function receive(string $body, string $authHeader = NULL, bool $skipAuth = FALSE, bool $ignoreUnknownFields = FALSE): WebhookEvent {
     // Verify token.
     if (!$skipAuth) {
       if (!$authHeader) {
@@ -67,7 +70,7 @@ class WebhookReceiver {
     }
 
     $event = new WebhookEvent();
-    $event->mergeFromJsonString($body);
+    $event->mergeFromJsonString($body, $ignoreUnknownFields);
     return $event;
   }
 
