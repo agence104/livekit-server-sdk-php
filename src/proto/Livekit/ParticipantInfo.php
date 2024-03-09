@@ -62,6 +62,10 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool is_publisher = 13;</code>
      */
     protected $is_publisher = false;
+    /**
+     * Generated from protobuf field <code>.livekit.ParticipantInfo.Kind kind = 14;</code>
+     */
+    protected $kind = 0;
 
     /**
      * Constructor.
@@ -83,6 +87,7 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      *     @type bool $is_publisher
      *           indicates the participant has an active publisher connection
      *           and can publish to the server
+     *     @type int $kind
      * }
      */
     public function __construct($data = NULL) {
@@ -348,6 +353,28 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_publisher = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ParticipantInfo.Kind kind = 14;</code>
+     * @return int
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ParticipantInfo.Kind kind = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setKind($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\ParticipantInfo\Kind::class);
+        $this->kind = $var;
 
         return $this;
     }

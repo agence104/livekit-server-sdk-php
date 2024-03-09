@@ -16,9 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataPacket extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.livekit.DataPacket.Kind kind = 1;</code>
+     * Generated from protobuf field <code>.livekit.DataPacket.Kind kind = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $kind = 0;
+    /**
+     * participant identity of user that sent the message
+     *
+     * Generated from protobuf field <code>string participant_identity = 4;</code>
+     */
+    protected $participant_identity = '';
+    /**
+     * identities of participants who will receive the message (sent to all by default)
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 5;</code>
+     */
+    private $destination_identities;
     protected $value;
 
     /**
@@ -28,8 +41,13 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $kind
+     *     @type string $participant_identity
+     *           participant identity of user that sent the message
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_identities
+     *           identities of participants who will receive the message (sent to all by default)
      *     @type \Livekit\UserPacket $user
      *     @type \Livekit\ActiveSpeakerUpdate $speaker
+     *     @type \Livekit\SipDTMF $sip_dtmf
      * }
      */
     public function __construct($data = NULL) {
@@ -38,23 +56,79 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.DataPacket.Kind kind = 1;</code>
+     * Generated from protobuf field <code>.livekit.DataPacket.Kind kind = 1 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getKind()
     {
+        @trigger_error('kind is deprecated.', E_USER_DEPRECATED);
         return $this->kind;
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.DataPacket.Kind kind = 1;</code>
+     * Generated from protobuf field <code>.livekit.DataPacket.Kind kind = 1 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setKind($var)
     {
+        @trigger_error('kind is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Livekit\DataPacket\Kind::class);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * participant identity of user that sent the message
+     *
+     * Generated from protobuf field <code>string participant_identity = 4;</code>
+     * @return string
+     */
+    public function getParticipantIdentity()
+    {
+        return $this->participant_identity;
+    }
+
+    /**
+     * participant identity of user that sent the message
+     *
+     * Generated from protobuf field <code>string participant_identity = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantIdentity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_identity = $var;
+
+        return $this;
+    }
+
+    /**
+     * identities of participants who will receive the message (sent to all by default)
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDestinationIdentities()
+    {
+        return $this->destination_identities;
+    }
+
+    /**
+     * identities of participants who will receive the message (sent to all by default)
+     *
+     * Generated from protobuf field <code>repeated string destination_identities = 5;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDestinationIdentities($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->destination_identities = $arr;
 
         return $this;
     }
@@ -87,28 +161,60 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.ActiveSpeakerUpdate speaker = 3;</code>
+     * Generated from protobuf field <code>.livekit.ActiveSpeakerUpdate speaker = 3 [deprecated = true];</code>
      * @return \Livekit\ActiveSpeakerUpdate|null
+     * @deprecated
      */
     public function getSpeaker()
     {
+        @trigger_error('speaker is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(3);
     }
 
     public function hasSpeaker()
     {
+        @trigger_error('speaker is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(3);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.ActiveSpeakerUpdate speaker = 3;</code>
+     * Generated from protobuf field <code>.livekit.ActiveSpeakerUpdate speaker = 3 [deprecated = true];</code>
      * @param \Livekit\ActiveSpeakerUpdate $var
      * @return $this
+     * @deprecated
      */
     public function setSpeaker($var)
     {
+        @trigger_error('speaker is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\ActiveSpeakerUpdate::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SipDTMF sip_dtmf = 6;</code>
+     * @return \Livekit\SipDTMF|null
+     */
+    public function getSipDtmf()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasSipDtmf()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SipDTMF sip_dtmf = 6;</code>
+     * @param \Livekit\SipDTMF $var
+     * @return $this
+     */
+    public function setSipDtmf($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SipDTMF::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

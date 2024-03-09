@@ -16,11 +16,13 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     /**
      * participant ID of user that sent the message
      *
-     * Generated from protobuf field <code>string participant_sid = 1;</code>
+     * Generated from protobuf field <code>string participant_sid = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $participant_sid = '';
     /**
-     * Generated from protobuf field <code>string participant_identity = 5;</code>
+     * Generated from protobuf field <code>string participant_identity = 5 [deprecated = true];</code>
+     * @deprecated
      */
     protected $participant_identity = '';
     /**
@@ -32,13 +34,15 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     /**
      * the ID of the participants who will receive the message (sent to all by default)
      *
-     * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
+     * Generated from protobuf field <code>repeated string destination_sids = 3 [deprecated = true];</code>
+     * @deprecated
      */
     private $destination_sids;
     /**
      * identities of participants who will receive the message (sent to all by default)
      *
-     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * Generated from protobuf field <code>repeated string destination_identities = 6 [deprecated = true];</code>
+     * @deprecated
      */
     private $destination_identities;
     /**
@@ -75,23 +79,27 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     /**
      * participant ID of user that sent the message
      *
-     * Generated from protobuf field <code>string participant_sid = 1;</code>
+     * Generated from protobuf field <code>string participant_sid = 1 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getParticipantSid()
     {
+        @trigger_error('participant_sid is deprecated.', E_USER_DEPRECATED);
         return $this->participant_sid;
     }
 
     /**
      * participant ID of user that sent the message
      *
-     * Generated from protobuf field <code>string participant_sid = 1;</code>
+     * Generated from protobuf field <code>string participant_sid = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setParticipantSid($var)
     {
+        @trigger_error('participant_sid is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->participant_sid = $var;
 
@@ -99,21 +107,25 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_identity = 5;</code>
+     * Generated from protobuf field <code>string participant_identity = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getParticipantIdentity()
     {
+        @trigger_error('participant_identity is deprecated.', E_USER_DEPRECATED);
         return $this->participant_identity;
     }
 
     /**
-     * Generated from protobuf field <code>string participant_identity = 5;</code>
+     * Generated from protobuf field <code>string participant_identity = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setParticipantIdentity($var)
     {
+        @trigger_error('participant_identity is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->participant_identity = $var;
 
@@ -149,23 +161,27 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     /**
      * the ID of the participants who will receive the message (sent to all by default)
      *
-     * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
+     * Generated from protobuf field <code>repeated string destination_sids = 3 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getDestinationSids()
     {
+        @trigger_error('destination_sids is deprecated.', E_USER_DEPRECATED);
         return $this->destination_sids;
     }
 
     /**
      * the ID of the participants who will receive the message (sent to all by default)
      *
-     * Generated from protobuf field <code>repeated string destination_sids = 3;</code>
+     * Generated from protobuf field <code>repeated string destination_sids = 3 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setDestinationSids($var)
     {
+        @trigger_error('destination_sids is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->destination_sids = $arr;
 
@@ -175,23 +191,27 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     /**
      * identities of participants who will receive the message (sent to all by default)
      *
-     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * Generated from protobuf field <code>repeated string destination_identities = 6 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getDestinationIdentities()
     {
+        @trigger_error('destination_identities is deprecated.', E_USER_DEPRECATED);
         return $this->destination_identities;
     }
 
     /**
      * identities of participants who will receive the message (sent to all by default)
      *
-     * Generated from protobuf field <code>repeated string destination_identities = 6;</code>
+     * Generated from protobuf field <code>repeated string destination_identities = 6 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setDestinationIdentities($var)
     {
+        @trigger_error('destination_identities is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->destination_identities = $arr;
 

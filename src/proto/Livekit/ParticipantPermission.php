@@ -55,6 +55,12 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
      */
     protected $can_update_metadata = false;
+    /**
+     * indicates that participant is an agent
+     *
+     * Generated from protobuf field <code>bool agent = 11;</code>
+     */
+    protected $agent = false;
 
     /**
      * Constructor.
@@ -76,6 +82,8 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      *           indicates it's a recorder instance
      *     @type bool $can_update_metadata
      *           indicates that participant can update own metadata
+     *     @type bool $agent
+     *           indicates that participant is an agent
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +269,32 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->can_update_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * indicates that participant is an agent
+     *
+     * Generated from protobuf field <code>bool agent = 11;</code>
+     * @return bool
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    /**
+     * indicates that participant is an agent
+     *
+     * Generated from protobuf field <code>bool agent = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAgent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->agent = $var;
 
         return $this;
     }

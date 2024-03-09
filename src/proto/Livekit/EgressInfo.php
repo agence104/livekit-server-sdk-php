@@ -42,6 +42,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $updated_at = 0;
     /**
+     * Generated from protobuf field <code>string details = 21;</code>
+     */
+    protected $details = '';
+    /**
      * Generated from protobuf field <code>string error = 9;</code>
      */
     protected $error = '';
@@ -77,6 +81,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type int|string $started_at
      *     @type int|string $ended_at
      *     @type int|string $updated_at
+     *     @type string $details
      *     @type string $error
      *     @type \Livekit\RoomCompositeEgressRequest $room_composite
      *     @type \Livekit\WebEgressRequest $web
@@ -247,6 +252,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->updated_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string details = 21;</code>
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * Generated from protobuf field <code>string details = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDetails($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->details = $var;
 
         return $this;
     }

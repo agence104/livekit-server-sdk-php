@@ -14,6 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GCPUpload extends \Google\Protobuf\Internal\Message
 {
     /**
+     * service account credentials serialized in JSON "credentials.json"
+     *
      * Generated from protobuf field <code>string credentials = 1;</code>
      */
     protected $credentials = '';
@@ -21,6 +23,10 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string bucket = 2;</code>
      */
     protected $bucket = '';
+    /**
+     * Generated from protobuf field <code>string endpoint = 3;</code>
+     */
+    protected $endpoint = '';
 
     /**
      * Constructor.
@@ -29,7 +35,9 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $credentials
+     *           service account credentials serialized in JSON "credentials.json"
      *     @type string $bucket
+     *     @type string $endpoint
      * }
      */
     public function __construct($data = NULL) {
@@ -38,6 +46,8 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * service account credentials serialized in JSON "credentials.json"
+     *
      * Generated from protobuf field <code>string credentials = 1;</code>
      * @return string
      */
@@ -47,6 +57,8 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * service account credentials serialized in JSON "credentials.json"
+     *
      * Generated from protobuf field <code>string credentials = 1;</code>
      * @param string $var
      * @return $this
@@ -77,6 +89,28 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->bucket = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string endpoint = 3;</code>
+     * @return string
+     */
+    public function getEndpoint()
+    {
+        return $this->endpoint;
+    }
+
+    /**
+     * Generated from protobuf field <code>string endpoint = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEndpoint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->endpoint = $var;
 
         return $this;
     }

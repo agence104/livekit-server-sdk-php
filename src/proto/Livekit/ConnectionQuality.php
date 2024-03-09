@@ -23,11 +23,16 @@ class ConnectionQuality
      * Generated from protobuf enum <code>EXCELLENT = 2;</code>
      */
     const EXCELLENT = 2;
+    /**
+     * Generated from protobuf enum <code>LOST = 3;</code>
+     */
+    const LOST = 3;
 
     private static $valueToName = [
         self::POOR => 'POOR',
         self::GOOD => 'GOOD',
         self::EXCELLENT => 'EXCELLENT',
+        self::LOST => 'LOST',
     ];
 
     public static function name($value)

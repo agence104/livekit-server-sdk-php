@@ -33,7 +33,7 @@ class EgressServiceClient extends BaseServiceClient {
   /**
    * {@inheritdoc}
    */
-  public function __construct(string $host = NULL, string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(?string $host = NULL, ?string $apiKey = NULL, ?string $apiSecret = NULL) {
     parent::__construct($host,$apiKey, $apiSecret);
 
     $this->rpc = new EgressClient($this->host);

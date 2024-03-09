@@ -39,7 +39,7 @@ abstract class BaseServiceClient {
    *
    * @throws \Exception
    */
-  public function __construct(string $host = NULL, string $apiKey = NULL, string $apiSecret = NULL) {
+  public function __construct(?string $host = NULL, ?string $apiKey = NULL, ?string $apiSecret = NULL) {
     $host = $host ?? getenv('LIVEKIT_HOST');
     $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
     $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');

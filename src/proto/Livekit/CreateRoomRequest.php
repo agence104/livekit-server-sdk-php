@@ -26,6 +26,12 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $empty_timeout = 0;
     /**
+     * number of seconds to keep the room open after everyone leaves
+     *
+     * Generated from protobuf field <code>uint32 departure_timeout = 10;</code>
+     */
+    protected $departure_timeout = 0;
+    /**
      * limit number of participants that can be in a room
      *
      * Generated from protobuf field <code>uint32 max_participants = 3;</code>
@@ -60,7 +66,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $max_playout_delay = 0;
     /**
-     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      * so not recommended for rooms with frequent subscription changes
      *
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
@@ -77,6 +83,8 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *           name of the room
      *     @type int $empty_timeout
      *           number of seconds to keep the room open if no one joins
+     *     @type int $departure_timeout
+     *           number of seconds to keep the room open after everyone leaves
      *     @type int $max_participants
      *           limit number of participants that can be in a room
      *     @type string $node_id
@@ -89,7 +97,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *           playout delay of subscriber
      *     @type int $max_playout_delay
      *     @type bool $sync_streams
-     *           improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     *           improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      *           so not recommended for rooms with frequent subscription changes
      * }
      */
@@ -146,6 +154,32 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->empty_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * number of seconds to keep the room open after everyone leaves
+     *
+     * Generated from protobuf field <code>uint32 departure_timeout = 10;</code>
+     * @return int
+     */
+    public function getDepartureTimeout()
+    {
+        return $this->departure_timeout;
+    }
+
+    /**
+     * number of seconds to keep the room open after everyone leaves
+     *
+     * Generated from protobuf field <code>uint32 departure_timeout = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDepartureTimeout($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->departure_timeout = $var;
 
         return $this;
     }
@@ -313,7 +347,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      * so not recommended for rooms with frequent subscription changes
      *
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
@@ -325,7 +359,7 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use 
+     * improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      * so not recommended for rooms with frequent subscription changes
      *
      * Generated from protobuf field <code>bool sync_streams = 9;</code>

@@ -64,6 +64,10 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
+     * Generated from protobuf field <code>string participant_metadata = 14;</code>
+     */
+    protected $participant_metadata = '';
+    /**
      * Generated from protobuf field <code>bool reusable = 11;</code>
      */
     protected $reusable = false;
@@ -95,6 +99,7 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      *     @type string $room_name
      *     @type string $participant_identity
      *     @type string $participant_name
+     *     @type string $participant_metadata
      *     @type bool $reusable
      *     @type \Livekit\IngressState $state
      *           Description of error/stream non compliance and debug info for publisher otherwise (received bitrate, resolution, bandwidth)
@@ -375,6 +380,28 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_metadata = 14;</code>
+     * @return string
+     */
+    public function getParticipantMetadata()
+    {
+        return $this->participant_metadata;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_metadata = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_metadata = $var;
 
         return $this;
     }

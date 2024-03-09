@@ -48,6 +48,12 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_name = '';
     /**
+     * metadata associated with the publishing participant
+     *
+     * Generated from protobuf field <code>string participant_metadata = 10;</code>
+     */
+    protected $participant_metadata = '';
+    /**
      * whether to pass through the incoming media without transcoding, only compatible with some input types
      *
      * Generated from protobuf field <code>bool bypass_transcoding = 8;</code>
@@ -79,6 +85,8 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      *           publish as participant
      *     @type string $participant_name
      *           name of publishing participant (used for display only)
+     *     @type string $participant_metadata
+     *           metadata associated with the publishing participant
      *     @type bool $bypass_transcoding
      *           whether to pass through the incoming media without transcoding, only compatible with some input types
      *     @type \Livekit\IngressAudioOptions $audio
@@ -238,6 +246,32 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * metadata associated with the publishing participant
+     *
+     * Generated from protobuf field <code>string participant_metadata = 10;</code>
+     * @return string
+     */
+    public function getParticipantMetadata()
+    {
+        return $this->participant_metadata;
+    }
+
+    /**
+     * metadata associated with the publishing participant
+     *
+     * Generated from protobuf field <code>string participant_metadata = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_metadata = $var;
 
         return $this;
     }
