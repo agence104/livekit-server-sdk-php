@@ -125,31 +125,24 @@ lando start
 ```
 
 #### Step 3:
-Set up a LiveKit project with the livekit-cli by executing the command below, which will prompt you to provide some
-API credentials.
-```
-lando create-project
-```
-
-#### Step 4:
 Generate the LiveKit room that will serve as the testing environment for the majority of the test cases.
 ```
 lando create-test-room
 ```
 
-#### Step 5:
+#### Step 4:
 Initialize 5 test users within the room. Run this command in a separate terminal window.
 ```
 lando start-test-users
 ```
 
-#### Step 6:
+#### Step 5:
 Time to get busy testing.
 ```
 lando test
 ```
 
-#### Step 7:
+#### Step 6:
 Once tests are completed, it is time to clean up.
 - End the `lando start-test-users` command.
 - Run `lando delete-test-room` to delete the test room.

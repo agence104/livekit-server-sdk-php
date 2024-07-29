@@ -38,20 +38,15 @@ tooling:
     service: appserver
     cmd:
       - lk
-  create-project:
-    service: appserver
-    cmd:
-      - lk project add php-sdk-https
-      - chmod 600 /var/www/.livekit/cli-config.yaml
   create-test-room:
     service: appserver
     cmd:
-      - lk room create testRoomParticipants --project php-sdk-https
+      - lk room create testRoomParticipants
   delete-test-room:
     service: appserver
     cmd:
-      - lk room delete --room testRoomParticipants --project php-sdk-https
+      - lk room delete testRoomParticipants
   start-test-users:
     service: appserver
     cmd:
-      - lk load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5 --project php-sdk-https
+      - lk load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5
