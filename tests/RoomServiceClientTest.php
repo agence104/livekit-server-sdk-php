@@ -81,6 +81,9 @@ class RoomServiceClientTest extends TestCase {
     $roomName = 'testListRoom';
     $this->createRoom($roomName);
 
+    // Let's wait for 5 seconds here.
+    sleep(5);
+
     $response = $this->client->listRooms();
     $this->assertGreaterThanOrEqual(2, $response->getRooms()->count());
 
