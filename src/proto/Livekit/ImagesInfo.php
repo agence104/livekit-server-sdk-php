@@ -14,6 +14,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImagesInfo extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Generated from protobuf field <code>string filename_prefix = 4;</code>
+     */
+    protected $filename_prefix = '';
+    /**
      * Generated from protobuf field <code>int64 image_count = 1;</code>
      */
     protected $image_count = 0;
@@ -32,6 +36,7 @@ class ImagesInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $filename_prefix
      *     @type int|string $image_count
      *     @type int|string $started_at
      *     @type int|string $ended_at
@@ -40,6 +45,28 @@ class ImagesInfo extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\LivekitEgress::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Generated from protobuf field <code>string filename_prefix = 4;</code>
+     * @return string
+     */
+    public function getFilenamePrefix()
+    {
+        return $this->filename_prefix;
+    }
+
+    /**
+     * Generated from protobuf field <code>string filename_prefix = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilenamePrefix($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filename_prefix = $var;
+
+        return $this;
     }
 
     /**

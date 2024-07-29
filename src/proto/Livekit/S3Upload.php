@@ -22,6 +22,10 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      */
     protected $secret = '';
     /**
+     * Generated from protobuf field <code>string session_token = 11;</code>
+     */
+    protected $session_token = '';
+    /**
      * Generated from protobuf field <code>string region = 3;</code>
      */
     protected $region = '';
@@ -51,6 +55,10 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string content_disposition = 9;</code>
      */
     protected $content_disposition = '';
+    /**
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 10;</code>
+     */
+    protected $proxy = null;
 
     /**
      * Constructor.
@@ -60,6 +68,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      *
      *     @type string $access_key
      *     @type string $secret
+     *     @type string $session_token
      *     @type string $region
      *     @type string $endpoint
      *     @type string $bucket
@@ -68,6 +77,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      *     @type string $tagging
      *     @type string $content_disposition
      *           Content-Disposition header
+     *     @type \Livekit\ProxyConfig $proxy
      * }
      */
     public function __construct($data = NULL) {
@@ -115,6 +125,28 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->secret = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string session_token = 11;</code>
+     * @return string
+     */
+    public function getSessionToken()
+    {
+        return $this->session_token;
+    }
+
+    /**
+     * Generated from protobuf field <code>string session_token = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSessionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session_token = $var;
 
         return $this;
     }
@@ -273,6 +305,38 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->content_disposition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 10;</code>
+     * @return \Livekit\ProxyConfig|null
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
+    }
+
+    public function hasProxy()
+    {
+        return isset($this->proxy);
+    }
+
+    public function clearProxy()
+    {
+        unset($this->proxy);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 10;</code>
+     * @param \Livekit\ProxyConfig $var
+     * @return $this
+     */
+    public function setProxy($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\ProxyConfig::class);
+        $this->proxy = $var;
 
         return $this;
     }

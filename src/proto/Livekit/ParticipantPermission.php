@@ -45,20 +45,24 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     protected $hidden = false;
     /**
      * indicates it's a recorder instance
+     * deprecated: use ParticipantInfo.kind instead
      *
-     * Generated from protobuf field <code>bool recorder = 8;</code>
+     * Generated from protobuf field <code>bool recorder = 8 [deprecated = true];</code>
+     * @deprecated
      */
     protected $recorder = false;
     /**
-     * indicates that participant can update own metadata
+     * indicates that participant can update own metadata and attributes
      *
      * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
      */
     protected $can_update_metadata = false;
     /**
      * indicates that participant is an agent
+     * deprecated: use ParticipantInfo.kind instead
      *
-     * Generated from protobuf field <code>bool agent = 11;</code>
+     * Generated from protobuf field <code>bool agent = 11 [deprecated = true];</code>
+     * @deprecated
      */
     protected $agent = false;
 
@@ -80,10 +84,12 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      *           indicates that it's hidden to others
      *     @type bool $recorder
      *           indicates it's a recorder instance
+     *           deprecated: use ParticipantInfo.kind instead
      *     @type bool $can_update_metadata
-     *           indicates that participant can update own metadata
+     *           indicates that participant can update own metadata and attributes
      *     @type bool $agent
      *           indicates that participant is an agent
+     *           deprecated: use ParticipantInfo.kind instead
      * }
      */
     public function __construct($data = NULL) {
@@ -223,24 +229,30 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
 
     /**
      * indicates it's a recorder instance
+     * deprecated: use ParticipantInfo.kind instead
      *
-     * Generated from protobuf field <code>bool recorder = 8;</code>
+     * Generated from protobuf field <code>bool recorder = 8 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getRecorder()
     {
+        @trigger_error('recorder is deprecated.', E_USER_DEPRECATED);
         return $this->recorder;
     }
 
     /**
      * indicates it's a recorder instance
+     * deprecated: use ParticipantInfo.kind instead
      *
-     * Generated from protobuf field <code>bool recorder = 8;</code>
+     * Generated from protobuf field <code>bool recorder = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setRecorder($var)
     {
+        @trigger_error('recorder is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->recorder = $var;
 
@@ -248,7 +260,7 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * indicates that participant can update own metadata
+     * indicates that participant can update own metadata and attributes
      *
      * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
      * @return bool
@@ -259,7 +271,7 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * indicates that participant can update own metadata
+     * indicates that participant can update own metadata and attributes
      *
      * Generated from protobuf field <code>bool can_update_metadata = 10;</code>
      * @param bool $var
@@ -275,24 +287,30 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
 
     /**
      * indicates that participant is an agent
+     * deprecated: use ParticipantInfo.kind instead
      *
-     * Generated from protobuf field <code>bool agent = 11;</code>
+     * Generated from protobuf field <code>bool agent = 11 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getAgent()
     {
+        @trigger_error('agent is deprecated.', E_USER_DEPRECATED);
         return $this->agent;
     }
 
     /**
      * indicates that participant is an agent
+     * deprecated: use ParticipantInfo.kind instead
      *
-     * Generated from protobuf field <code>bool agent = 11;</code>
+     * Generated from protobuf field <code>bool agent = 11 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setAgent($var)
     {
+        @trigger_error('agent is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->agent = $var;
 

@@ -40,6 +40,7 @@ class AutoTrackEgress extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\S3Upload $s3
      *     @type \Livekit\GCPUpload $gcp
      *     @type \Livekit\AzureBlobUpload $azure
+     *     @type \Livekit\AliOSSUpload $aliOSS
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +177,33 @@ class AutoTrackEgress extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\AzureBlobUpload::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.AliOSSUpload aliOSS = 6;</code>
+     * @return \Livekit\AliOSSUpload|null
+     */
+    public function getAliOSS()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasAliOSS()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.AliOSSUpload aliOSS = 6;</code>
+     * @param \Livekit\AliOSSUpload $var
+     * @return $this
+     */
+    public function setAliOSS($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\AliOSSUpload::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

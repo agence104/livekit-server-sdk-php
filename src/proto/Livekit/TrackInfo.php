@@ -100,6 +100,10 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.TimedVersion version = 18;</code>
      */
     protected $version = null;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.AudioTrackFeature audio_features = 19;</code>
+     */
+    private $audio_features;
 
     /**
      * Constructor.
@@ -133,6 +137,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *     @type int $encryption
      *     @type string $stream
      *     @type \Livekit\TimedVersion $version
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $audio_features
      * }
      */
     public function __construct($data = NULL) {
@@ -572,6 +577,28 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\TimedVersion::class);
         $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.AudioTrackFeature audio_features = 19;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAudioFeatures()
+    {
+        return $this->audio_features;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.AudioTrackFeature audio_features = 19;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAudioFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Livekit\AudioTrackFeature::class);
+        $this->audio_features = $arr;
 
         return $this;
     }

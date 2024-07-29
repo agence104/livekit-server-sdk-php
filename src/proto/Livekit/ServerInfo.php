@@ -41,6 +41,10 @@ class ServerInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string debug_info = 6;</code>
      */
     protected $debug_info = '';
+    /**
+     * Generated from protobuf field <code>int32 agent_protocol = 7;</code>
+     */
+    protected $agent_protocol = 0;
 
     /**
      * Constructor.
@@ -55,6 +59,7 @@ class ServerInfo extends \Google\Protobuf\Internal\Message
      *     @type string $node_id
      *     @type string $debug_info
      *           additional debugging information. sent only if server is in development mode
+     *     @type int $agent_protocol
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +199,28 @@ class ServerInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->debug_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 agent_protocol = 7;</code>
+     * @return int
+     */
+    public function getAgentProtocol()
+    {
+        return $this->agent_protocol;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 agent_protocol = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAgentProtocol($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->agent_protocol = $var;
 
         return $this;
     }

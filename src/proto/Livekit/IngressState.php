@@ -46,6 +46,10 @@ class IngressState extends \Google\Protobuf\Internal\Message
      */
     protected $ended_at = 0;
     /**
+     * Generated from protobuf field <code>int64 updated_at = 10;</code>
+     */
+    protected $updated_at = 0;
+    /**
      * Generated from protobuf field <code>string resource_id = 9;</code>
      */
     protected $resource_id = '';
@@ -69,6 +73,7 @@ class IngressState extends \Google\Protobuf\Internal\Message
      *           ID of the current/previous room published to
      *     @type int|string $started_at
      *     @type int|string $ended_at
+     *     @type int|string $updated_at
      *     @type string $resource_id
      *     @type \Livekit\TrackInfo[]|\Google\Protobuf\Internal\RepeatedField $tracks
      * }
@@ -256,6 +261,28 @@ class IngressState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->ended_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 updated_at = 10;</code>
+     * @return int|string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 updated_at = 10;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setUpdatedAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->updated_at = $var;
 
         return $this;
     }

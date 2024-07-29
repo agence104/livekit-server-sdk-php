@@ -39,6 +39,13 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 5;</code>
      */
     protected $name = '';
+    /**
+     * attributes to update. it only updates attributes that have been set
+     * to delete attributes, set the value to an empty string
+     *
+     * Generated from protobuf field <code>map<string, string> attributes = 6;</code>
+     */
+    private $attributes;
 
     /**
      * Constructor.
@@ -54,6 +61,9 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      *           set to update the participant's permissions
      *     @type string $name
      *           display name to update
+     *     @type array|\Google\Protobuf\Internal\MapField $attributes
+     *           attributes to update. it only updates attributes that have been set
+     *           to delete attributes, set the value to an empty string
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +199,34 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * attributes to update. it only updates attributes that have been set
+     * to delete attributes, set the value to an empty string
+     *
+     * Generated from protobuf field <code>map<string, string> attributes = 6;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * attributes to update. it only updates attributes that have been set
+     * to delete attributes, set the value to an empty string
+     *
+     * Generated from protobuf field <code>map<string, string> attributes = 6;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->attributes = $arr;
 
         return $this;
     }

@@ -66,6 +66,10 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.ParticipantInfo.Kind kind = 14;</code>
      */
     protected $kind = 0;
+    /**
+     * Generated from protobuf field <code>map<string, string> attributes = 15;</code>
+     */
+    private $attributes;
 
     /**
      * Constructor.
@@ -88,6 +92,7 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      *           indicates the participant has an active publisher connection
      *           and can publish to the server
      *     @type int $kind
+     *     @type array|\Google\Protobuf\Internal\MapField $attributes
      * }
      */
     public function __construct($data = NULL) {
@@ -375,6 +380,28 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\ParticipantInfo\Kind::class);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> attributes = 15;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> attributes = 15;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->attributes = $arr;
 
         return $this;
     }

@@ -21,10 +21,15 @@ class StreamProtocol
      * Generated from protobuf enum <code>RTMP = 1;</code>
      */
     const RTMP = 1;
+    /**
+     * Generated from protobuf enum <code>SRT = 2;</code>
+     */
+    const SRT = 2;
 
     private static $valueToName = [
         self::DEFAULT_PROTOCOL => 'DEFAULT_PROTOCOL',
         self::RTMP => 'RTMP',
+        self::SRT => 'SRT',
     ];
 
     public static function name($value)

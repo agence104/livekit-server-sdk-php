@@ -51,6 +51,22 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string topic = 4;</code>
      */
     protected $topic = null;
+    /**
+     * Unique ID to indentify the message
+     *
+     * Generated from protobuf field <code>optional string id = 8;</code>
+     */
+    protected $id = null;
+    /**
+     * start and end time allow relating the message to specific media time
+     *
+     * Generated from protobuf field <code>optional uint64 start_time = 9;</code>
+     */
+    protected $start_time = null;
+    /**
+     * Generated from protobuf field <code>optional uint64 end_time = 10;</code>
+     */
+    protected $end_time = null;
 
     /**
      * Constructor.
@@ -69,6 +85,11 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      *           identities of participants who will receive the message (sent to all by default)
      *     @type string $topic
      *           topic under which the message was published
+     *     @type string $id
+     *           Unique ID to indentify the message
+     *     @type int|string $start_time
+     *           start and end time allow relating the message to specific media time
+     *     @type int|string $end_time
      * }
      */
     public function __construct($data = NULL) {
@@ -250,6 +271,110 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->topic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique ID to indentify the message
+     *
+     * Generated from protobuf field <code>optional string id = 8;</code>
+     * @return string
+     */
+    public function getId()
+    {
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
+    }
+
+    /**
+     * Unique ID to indentify the message
+     *
+     * Generated from protobuf field <code>optional string id = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * start and end time allow relating the message to specific media time
+     *
+     * Generated from protobuf field <code>optional uint64 start_time = 9;</code>
+     * @return int|string
+     */
+    public function getStartTime()
+    {
+        return isset($this->start_time) ? $this->start_time : 0;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
+    }
+
+    /**
+     * start and end time allow relating the message to specific media time
+     *
+     * Generated from protobuf field <code>optional uint64 start_time = 9;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setStartTime($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->start_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional uint64 end_time = 10;</code>
+     * @return int|string
+     */
+    public function getEndTime()
+    {
+        return isset($this->end_time) ? $this->end_time : 0;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional uint64 end_time = 10;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setEndTime($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->end_time = $var;
 
         return $this;
     }

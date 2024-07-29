@@ -40,9 +40,14 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $input_type = 0;
     /**
-     * Generated from protobuf field <code>bool bypass_transcoding = 13;</code>
+     * Generated from protobuf field <code>bool bypass_transcoding = 13 [deprecated = true];</code>
+     * @deprecated
      */
     protected $bypass_transcoding = false;
+    /**
+     * Generated from protobuf field <code>optional bool enable_transcoding = 15;</code>
+     */
+    protected $enable_transcoding = null;
     /**
      * Generated from protobuf field <code>.livekit.IngressAudioOptions audio = 6;</code>
      */
@@ -94,6 +99,7 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      *           for FILE input, it'll be a http:// URL
      *           for SRT input, it'll be a srt:// URL
      *     @type bool $bypass_transcoding
+     *     @type bool $enable_transcoding
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
      *     @type string $room_name
@@ -233,23 +239,59 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bool bypass_transcoding = 13;</code>
+     * Generated from protobuf field <code>bool bypass_transcoding = 13 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getBypassTranscoding()
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         return $this->bypass_transcoding;
     }
 
     /**
-     * Generated from protobuf field <code>bool bypass_transcoding = 13;</code>
+     * Generated from protobuf field <code>bool bypass_transcoding = 13 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setBypassTranscoding($var)
     {
+        @trigger_error('bypass_transcoding is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->bypass_transcoding = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool enable_transcoding = 15;</code>
+     * @return bool
+     */
+    public function getEnableTranscoding()
+    {
+        return isset($this->enable_transcoding) ? $this->enable_transcoding : false;
+    }
+
+    public function hasEnableTranscoding()
+    {
+        return isset($this->enable_transcoding);
+    }
+
+    public function clearEnableTranscoding()
+    {
+        unset($this->enable_transcoding);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional bool enable_transcoding = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableTranscoding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_transcoding = $var;
 
         return $this;
     }

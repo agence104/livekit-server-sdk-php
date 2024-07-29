@@ -48,6 +48,7 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\UserPacket $user
      *     @type \Livekit\ActiveSpeakerUpdate $speaker
      *     @type \Livekit\SipDTMF $sip_dtmf
+     *     @type \Livekit\Transcription $transcription
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +216,33 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\SipDTMF::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Transcription transcription = 7;</code>
+     * @return \Livekit\Transcription|null
+     */
+    public function getTranscription()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasTranscription()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Transcription transcription = 7;</code>
+     * @param \Livekit\Transcription $var
+     * @return $this
+     */
+    public function setTranscription($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\Transcription::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

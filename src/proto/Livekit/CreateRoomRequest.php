@@ -20,6 +20,12 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * configuration to use for this room parameters. Setting parameters below override the config defaults.
+     *
+     * Generated from protobuf field <code>string config_name = 12;</code>
+     */
+    protected $config_name = '';
+    /**
      * number of seconds to keep the room open if no one joins
      *
      * Generated from protobuf field <code>uint32 empty_timeout = 2;</code>
@@ -56,6 +62,12 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      */
     protected $egress = null;
     /**
+     * agent
+     *
+     * Generated from protobuf field <code>.livekit.RoomAgent agent = 11;</code>
+     */
+    protected $agent = null;
+    /**
      * playout delay of subscriber
      *
      * Generated from protobuf field <code>uint32 min_playout_delay = 7;</code>
@@ -72,6 +84,12 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
      */
     protected $sync_streams = false;
+    /**
+     * replay
+     *
+     * Generated from protobuf field <code>bool replay_enabled = 13;</code>
+     */
+    protected $replay_enabled = false;
 
     /**
      * Constructor.
@@ -81,6 +99,8 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           name of the room
+     *     @type string $config_name
+     *           configuration to use for this room parameters. Setting parameters below override the config defaults.
      *     @type int $empty_timeout
      *           number of seconds to keep the room open if no one joins
      *     @type int $departure_timeout
@@ -93,12 +113,16 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
      *           metadata of room
      *     @type \Livekit\RoomEgress $egress
      *           egress
+     *     @type \Livekit\RoomAgent $agent
+     *           agent
      *     @type int $min_playout_delay
      *           playout delay of subscriber
      *     @type int $max_playout_delay
      *     @type bool $sync_streams
      *           improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      *           so not recommended for rooms with frequent subscription changes
+     *     @type bool $replay_enabled
+     *           replay
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +152,32 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * configuration to use for this room parameters. Setting parameters below override the config defaults.
+     *
+     * Generated from protobuf field <code>string config_name = 12;</code>
+     * @return string
+     */
+    public function getConfigName()
+    {
+        return $this->config_name;
+    }
+
+    /**
+     * configuration to use for this room parameters. Setting parameters below override the config defaults.
+     *
+     * Generated from protobuf field <code>string config_name = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConfigName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->config_name = $var;
 
         return $this;
     }
@@ -299,6 +349,42 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * agent
+     *
+     * Generated from protobuf field <code>.livekit.RoomAgent agent = 11;</code>
+     * @return \Livekit\RoomAgent|null
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    public function hasAgent()
+    {
+        return isset($this->agent);
+    }
+
+    public function clearAgent()
+    {
+        unset($this->agent);
+    }
+
+    /**
+     * agent
+     *
+     * Generated from protobuf field <code>.livekit.RoomAgent agent = 11;</code>
+     * @param \Livekit\RoomAgent $var
+     * @return $this
+     */
+    public function setAgent($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RoomAgent::class);
+        $this->agent = $var;
+
+        return $this;
+    }
+
+    /**
      * playout delay of subscriber
      *
      * Generated from protobuf field <code>uint32 min_playout_delay = 7;</code>
@@ -370,6 +456,32 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->sync_streams = $var;
+
+        return $this;
+    }
+
+    /**
+     * replay
+     *
+     * Generated from protobuf field <code>bool replay_enabled = 13;</code>
+     * @return bool
+     */
+    public function getReplayEnabled()
+    {
+        return $this->replay_enabled;
+    }
+
+    /**
+     * replay
+     *
+     * Generated from protobuf field <code>bool replay_enabled = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReplayEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->replay_enabled = $var;
 
         return $this;
     }

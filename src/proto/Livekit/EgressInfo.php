@@ -50,6 +50,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $error = '';
     /**
+     * Generated from protobuf field <code>int32 error_code = 22;</code>
+     */
+    protected $error_code = 0;
+    /**
      * Generated from protobuf field <code>repeated .livekit.StreamInfo stream_results = 15;</code>
      */
     private $stream_results;
@@ -83,6 +87,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type int|string $updated_at
      *     @type string $details
      *     @type string $error
+     *     @type int $error_code
      *     @type \Livekit\RoomCompositeEgressRequest $room_composite
      *     @type \Livekit\WebEgressRequest $web
      *     @type \Livekit\ParticipantEgressRequest $participant
@@ -296,6 +301,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 error_code = 22;</code>
+     * @return int
+     */
+    public function getErrorCode()
+    {
+        return $this->error_code;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 error_code = 22;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setErrorCode($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->error_code = $var;
 
         return $this;
     }

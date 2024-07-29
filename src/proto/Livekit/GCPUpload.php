@@ -24,9 +24,9 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
      */
     protected $bucket = '';
     /**
-     * Generated from protobuf field <code>string endpoint = 3;</code>
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 3;</code>
      */
-    protected $endpoint = '';
+    protected $proxy = null;
 
     /**
      * Constructor.
@@ -37,7 +37,7 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
      *     @type string $credentials
      *           service account credentials serialized in JSON "credentials.json"
      *     @type string $bucket
-     *     @type string $endpoint
+     *     @type \Livekit\ProxyConfig $proxy
      * }
      */
     public function __construct($data = NULL) {
@@ -94,23 +94,33 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string endpoint = 3;</code>
-     * @return string
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 3;</code>
+     * @return \Livekit\ProxyConfig|null
      */
-    public function getEndpoint()
+    public function getProxy()
     {
-        return $this->endpoint;
+        return $this->proxy;
+    }
+
+    public function hasProxy()
+    {
+        return isset($this->proxy);
+    }
+
+    public function clearProxy()
+    {
+        unset($this->proxy);
     }
 
     /**
-     * Generated from protobuf field <code>string endpoint = 3;</code>
-     * @param string $var
+     * Generated from protobuf field <code>.livekit.ProxyConfig proxy = 3;</code>
+     * @param \Livekit\ProxyConfig $var
      * @return $this
      */
-    public function setEndpoint($var)
+    public function setProxy($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->endpoint = $var;
+        GPBUtil::checkMessage($var, \Livekit\ProxyConfig::class);
+        $this->proxy = $var;
 
         return $this;
     }
