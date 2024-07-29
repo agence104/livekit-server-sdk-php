@@ -35,7 +35,7 @@ class IngressServiceClientTest extends TestCase {
   }
 
   public static function tearDownAfterClass(): void {
-    $host = getenv('LIVEKIT_HOST') ?: "http://localhost:7880";
+    $host = getenv('LIVEKIT_URL') ?: "http://localhost:7880";
     $apiKey = getenv('LIVEKIT_API_KEY');
     $apiSecret = getenv('LIVEKIT_API_SECRET');
 

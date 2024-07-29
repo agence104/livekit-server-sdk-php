@@ -7,7 +7,7 @@ use Twirp\Context;
 abstract class BaseServiceClient {
 
   /**
-   * The hostname including protocol, can be set in env var LIVEKIT_HOST.
+   * The hostname including protocol, can be set in env var LIVEKIT_URL.
    *
    * @var string
    */
@@ -40,7 +40,9 @@ abstract class BaseServiceClient {
    * @throws \Exception
    */
   public function __construct(?string $host = NULL, ?string $apiKey = NULL, ?string $apiSecret = NULL) {
-    $host = $host ?? getenv('LIVEKIT_HOST');
+    // Using LIVEKIT_HOST is deprecated and support will be removed in the next
+    // version. Use LIVEKIT_URL instead.
+    $host = $host ?? getenv('LIVEKIT_URL') ?? getenv('LIVEKIT_HOST');
     $apiKey = $apiKey ?? getenv('LIVEKIT_API_KEY');
     $apiSecret = $apiSecret ?? getenv('LIVEKIT_API_SECRET');
 
