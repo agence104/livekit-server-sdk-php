@@ -49,6 +49,8 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\ActiveSpeakerUpdate $speaker
      *     @type \Livekit\SipDTMF $sip_dtmf
      *     @type \Livekit\Transcription $transcription
+     *     @type \Livekit\MetricsBatch $metrics
+     *     @type \Livekit\ChatMessage $chat_message
      * }
      */
     public function __construct($data = NULL) {
@@ -243,6 +245,60 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\Transcription::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.MetricsBatch metrics = 8;</code>
+     * @return \Livekit\MetricsBatch|null
+     */
+    public function getMetrics()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasMetrics()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.MetricsBatch metrics = 8;</code>
+     * @param \Livekit\MetricsBatch $var
+     * @return $this
+     */
+    public function setMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\MetricsBatch::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ChatMessage chat_message = 9;</code>
+     * @return \Livekit\ChatMessage|null
+     */
+    public function getChatMessage()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasChatMessage()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ChatMessage chat_message = 9;</code>
+     * @param \Livekit\ChatMessage $var
+     * @return $this
+     */
+    public function setChatMessage($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\ChatMessage::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

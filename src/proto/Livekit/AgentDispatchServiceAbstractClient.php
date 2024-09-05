@@ -126,7 +126,7 @@ abstract class AgentDispatchServiceAbstractClient
     /**
      * {@inheritdoc}
      */
-    public function ListDispatch(array $ctx, \Livekit\ListAgentDispatchRequesst $in): \Livekit\ListAgentDispatchResponse
+    public function ListDispatch(array $ctx, \Livekit\ListAgentDispatchRequest $in): \Livekit\ListAgentDispatchResponse
     {
         $ctx = Context::withPackageName($ctx, 'livekit');
         $ctx = Context::withServiceName($ctx, 'AgentDispatchService');

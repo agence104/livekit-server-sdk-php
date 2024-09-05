@@ -33,6 +33,10 @@ class JobState extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 updated_at = 5;</code>
      */
     protected $updated_at = 0;
+    /**
+     * Generated from protobuf field <code>string participant_identity = 6;</code>
+     */
+    protected $participant_identity = '';
 
     /**
      * Constructor.
@@ -45,6 +49,7 @@ class JobState extends \Google\Protobuf\Internal\Message
      *     @type int|string $started_at
      *     @type int|string $ended_at
      *     @type int|string $updated_at
+     *     @type string $participant_identity
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +163,28 @@ class JobState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->updated_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_identity = 6;</code>
+     * @return string
+     */
+    public function getParticipantIdentity()
+    {
+        return $this->participant_identity;
+    }
+
+    /**
+     * Generated from protobuf field <code>string participant_identity = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantIdentity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_identity = $var;
 
         return $this;
     }

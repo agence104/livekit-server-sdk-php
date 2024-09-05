@@ -17,7 +17,7 @@ class LivekitAgentDispatch
         \GPBMetadata\LivekitAgent::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬
+¸
 livekit_agent_dispatch.protolivekit"P
 CreateAgentDispatchRequest
 
@@ -27,10 +27,11 @@ agent_name (	
 RoomAgentDispatch
 
 agent_name (	
-metadata (	"1
+metadata (	"?
 DeleteAgentDispatchRequest
-dispatch_id (	">
-ListAgentDispatchRequesst
+dispatch_id (	
+room (	"=
+ListAgentDispatchRequest
 dispatch_id (	
 room (	"M
 ListAgentDispatchResponse0
@@ -48,11 +49,11 @@ agent_name (	
 
 created_at (
 
-deleted_at (2Œ
+deleted_at (2‹
 AgentDispatchServiceM
 CreateDispatch#.livekit.CreateAgentDispatchRequest.livekit.AgentDispatchM
-DeleteDispatch#.livekit.DeleteAgentDispatchRequest.livekit.AgentDispatchV
-ListDispatch".livekit.ListAgentDispatchRequesst".livekit.ListAgentDispatchResponseBFZ#github.com/livekit/protocol/livekitªLiveKit.ProtoêLiveKit::Protobproto3'
+DeleteDispatch#.livekit.DeleteAgentDispatchRequest.livekit.AgentDispatchU
+ListDispatch!.livekit.ListAgentDispatchRequest".livekit.ListAgentDispatchResponseBFZ#github.com/livekit/protocol/livekitªLiveKit.ProtoêLiveKit::Protobproto3'
         , true);
 
         static::$is_initialized = true;

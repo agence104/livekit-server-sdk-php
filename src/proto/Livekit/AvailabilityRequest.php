@@ -18,7 +18,7 @@ class AvailabilityRequest extends \Google\Protobuf\Internal\Message
      */
     protected $job = null;
     /**
-     * True when the job was previously assigned to another worker but has been 
+     * True when the job was previously assigned to another worker but has been
      * migrated due to different reasons (e.g. worker failure, job migration)
      *
      * Generated from protobuf field <code>bool resuming = 2;</code>
@@ -33,7 +33,7 @@ class AvailabilityRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Livekit\Job $job
      *     @type bool $resuming
-     *           True when the job was previously assigned to another worker but has been 
+     *           True when the job was previously assigned to another worker but has been
      *           migrated due to different reasons (e.g. worker failure, job migration)
      * }
      */
@@ -75,7 +75,7 @@ class AvailabilityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when the job was previously assigned to another worker but has been 
+     * True when the job was previously assigned to another worker but has been
      * migrated due to different reasons (e.g. worker failure, job migration)
      *
      * Generated from protobuf field <code>bool resuming = 2;</code>
@@ -87,7 +87,7 @@ class AvailabilityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True when the job was previously assigned to another worker but has been 
+     * True when the job was previously assigned to another worker but has been
      * migrated due to different reasons (e.g. worker failure, job migration)
      *
      * Generated from protobuf field <code>bool resuming = 2;</code>

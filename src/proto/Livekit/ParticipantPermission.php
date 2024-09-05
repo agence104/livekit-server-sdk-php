@@ -65,6 +65,12 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $agent = false;
+    /**
+     * if a participant can subscribe to metrics
+     *
+     * Generated from protobuf field <code>bool can_subscribe_metrics = 12;</code>
+     */
+    protected $can_subscribe_metrics = false;
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      *     @type bool $agent
      *           indicates that participant is an agent
      *           deprecated: use ParticipantInfo.kind instead
+     *     @type bool $can_subscribe_metrics
+     *           if a participant can subscribe to metrics
      * }
      */
     public function __construct($data = NULL) {
@@ -313,6 +321,32 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
         @trigger_error('agent is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->agent = $var;
+
+        return $this;
+    }
+
+    /**
+     * if a participant can subscribe to metrics
+     *
+     * Generated from protobuf field <code>bool can_subscribe_metrics = 12;</code>
+     * @return bool
+     */
+    public function getCanSubscribeMetrics()
+    {
+        return $this->can_subscribe_metrics;
+    }
+
+    /**
+     * if a participant can subscribe to metrics
+     *
+     * Generated from protobuf field <code>bool can_subscribe_metrics = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCanSubscribeMetrics($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->can_subscribe_metrics = $var;
 
         return $this;
     }

@@ -70,6 +70,10 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> attributes = 15;</code>
      */
     private $attributes;
+    /**
+     * Generated from protobuf field <code>.livekit.DisconnectReason disconnect_reason = 16;</code>
+     */
+    protected $disconnect_reason = 0;
 
     /**
      * Constructor.
@@ -93,6 +97,7 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      *           and can publish to the server
      *     @type int $kind
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
+     *     @type int $disconnect_reason
      * }
      */
     public function __construct($data = NULL) {
@@ -402,6 +407,28 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DisconnectReason disconnect_reason = 16;</code>
+     * @return int
+     */
+    public function getDisconnectReason()
+    {
+        return $this->disconnect_reason;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DisconnectReason disconnect_reason = 16;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDisconnectReason($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\DisconnectReason::class);
+        $this->disconnect_reason = $var;
 
         return $this;
     }

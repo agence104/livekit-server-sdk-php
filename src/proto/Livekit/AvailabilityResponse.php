@@ -37,6 +37,10 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string participant_metadata = 6;</code>
      */
     protected $participant_metadata = '';
+    /**
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 7;</code>
+     */
+    private $participant_attributes;
 
     /**
      * Constructor.
@@ -50,6 +54,7 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
      *     @type string $participant_name
      *     @type string $participant_identity
      *     @type string $participant_metadata
+     *     @type array|\Google\Protobuf\Internal\MapField $participant_attributes
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +190,28 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 7;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getParticipantAttributes()
+    {
+        return $this->participant_attributes;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 7;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setParticipantAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->participant_attributes = $arr;
 
         return $this;
     }

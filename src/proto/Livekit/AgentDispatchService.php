@@ -38,5 +38,5 @@ interface AgentDispatchService
      *
      * @throws \Twirp\Error
      */
-    public function ListDispatch(array $ctx, \Livekit\ListAgentDispatchRequesst $req): \Livekit\ListAgentDispatchResponse;
+    public function ListDispatch(array $ctx, \Livekit\ListAgentDispatchRequest $req): \Livekit\ListAgentDispatchResponse;
 }

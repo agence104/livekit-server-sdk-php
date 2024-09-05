@@ -27,6 +27,8 @@ class SIPDispatchRule extends \Google\Protobuf\Internal\Message
      *           enter the room
      *     @type \Livekit\SIPDispatchRuleIndividual $dispatch_rule_individual
      *           SIPDispatchRuleIndividual is a `SIP Dispatch Rule` that creates a new room for each caller.
+     *     @type \Livekit\SIPDispatchRuleCallee $dispatch_rule_callee
+     *           SIPDispatchRuleCallee is a `SIP Dispatch Rule` that creates a new room for each callee.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,6 +98,37 @@ class SIPDispatchRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\SIPDispatchRuleIndividual::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * SIPDispatchRuleCallee is a `SIP Dispatch Rule` that creates a new room for each callee.
+     *
+     * Generated from protobuf field <code>.livekit.SIPDispatchRuleCallee dispatch_rule_callee = 3;</code>
+     * @return \Livekit\SIPDispatchRuleCallee|null
+     */
+    public function getDispatchRuleCallee()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasDispatchRuleCallee()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * SIPDispatchRuleCallee is a `SIP Dispatch Rule` that creates a new room for each callee.
+     *
+     * Generated from protobuf field <code>.livekit.SIPDispatchRuleCallee dispatch_rule_callee = 3;</code>
+     * @param \Livekit\SIPDispatchRuleCallee $var
+     * @return $this
+     */
+    public function setDispatchRuleCallee($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SIPDispatchRuleCallee::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

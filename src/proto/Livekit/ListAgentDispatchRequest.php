@@ -9,15 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>livekit.DeleteAgentDispatchRequest</code>
+ * Generated from protobuf message <code>livekit.ListAgentDispatchRequest</code>
  */
-class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
+class ListAgentDispatchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * if set, only the dispatch whose id is given will be returned
+     *
      * Generated from protobuf field <code>string dispatch_id = 1;</code>
      */
     protected $dispatch_id = '';
     /**
+     * name of the room to list agents for. Must be set.
+     *
      * Generated from protobuf field <code>string room = 2;</code>
      */
     protected $room = '';
@@ -29,7 +33,9 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dispatch_id
+     *           if set, only the dispatch whose id is given will be returned
      *     @type string $room
+     *           name of the room to list agents for. Must be set.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,6 +44,8 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * if set, only the dispatch whose id is given will be returned
+     *
      * Generated from protobuf field <code>string dispatch_id = 1;</code>
      * @return string
      */
@@ -47,6 +55,8 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * if set, only the dispatch whose id is given will be returned
+     *
      * Generated from protobuf field <code>string dispatch_id = 1;</code>
      * @param string $var
      * @return $this
@@ -60,6 +70,8 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * name of the room to list agents for. Must be set.
+     *
      * Generated from protobuf field <code>string room = 2;</code>
      * @return string
      */
@@ -69,6 +81,8 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * name of the room to list agents for. Must be set.
+     *
      * Generated from protobuf field <code>string room = 2;</code>
      * @param string $var
      * @return $this

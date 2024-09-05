@@ -397,7 +397,7 @@ final class AgentDispatchServiceServer implements RequestHandlerInterface
         try {
             $ctx = $this->hook->requestRouted($ctx);
 
-            $in = new \Livekit\ListAgentDispatchRequesst();
+            $in = new \Livekit\ListAgentDispatchRequest();
             $in->mergeFromJsonString((string)$req->getBody(), true);
 
             $out = $this->svc->ListDispatch($ctx, $in);
@@ -434,7 +434,7 @@ final class AgentDispatchServiceServer implements RequestHandlerInterface
         try {
             $ctx = $this->hook->requestRouted($ctx);
 
-            $in = new \Livekit\ListAgentDispatchRequesst();
+            $in = new \Livekit\ListAgentDispatchRequest();
             $in->mergeFromString((string)$req->getBody());
 
             $out = $this->svc->ListDispatch($ctx, $in);
