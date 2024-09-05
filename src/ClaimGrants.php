@@ -93,9 +93,9 @@ class ClaimGrants {
   }
 
   /**
-   * @return \Agence104\LiveKit\VideoGrant
+   * @return null|\Agence104\LiveKit\VideoGrant
    */
-  public function getVideoGrant() {
+  public function getVideoGrant(): ?VideoGrant {
     return $this->videoGrant;
   }
 
