@@ -59,6 +59,20 @@ class SIPOutboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string auth_password = 8;</code>
      */
     protected $auth_password = '';
+    /**
+     * Include these SIP X-* headers in INVITE request.
+     * These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 9;</code>
+     */
+    private $headers;
+    /**
+     * Map SIP X-* headers from 200 OK to SIP participant attributes.
+     * Keys are the names of X-* headers and values are the names of attributes they will be mapped to.
+     *
+     * Generated from protobuf field <code>map<string, string> headers_to_attributes = 10;</code>
+     */
+    private $headers_to_attributes;
 
     /**
      * Constructor.
@@ -82,6 +96,12 @@ class SIPOutboundTrunkInfo extends \Google\Protobuf\Internal\Message
      *           Username and password used to authenticate with SIP server.
      *           May be empty to have no authentication.
      *     @type string $auth_password
+     *     @type array|\Google\Protobuf\Internal\MapField $headers
+     *           Include these SIP X-* headers in INVITE request.
+     *           These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *     @type array|\Google\Protobuf\Internal\MapField $headers_to_attributes
+     *           Map SIP X-* headers from 200 OK to SIP participant attributes.
+     *           Keys are the names of X-* headers and values are the names of attributes they will be mapped to.
      * }
      */
     public function __construct($data = NULL) {
@@ -289,6 +309,62 @@ class SIPOutboundTrunkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->auth_password = $var;
+
+        return $this;
+    }
+
+    /**
+     * Include these SIP X-* headers in INVITE request.
+     * These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 9;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Include these SIP X-* headers in INVITE request.
+     * These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 9;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Map SIP X-* headers from 200 OK to SIP participant attributes.
+     * Keys are the names of X-* headers and values are the names of attributes they will be mapped to.
+     *
+     * Generated from protobuf field <code>map<string, string> headers_to_attributes = 10;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getHeadersToAttributes()
+    {
+        return $this->headers_to_attributes;
+    }
+
+    /**
+     * Map SIP X-* headers from 200 OK to SIP participant attributes.
+     * Keys are the names of X-* headers and values are the names of attributes they will be mapped to.
+     *
+     * Generated from protobuf field <code>map<string, string> headers_to_attributes = 10;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setHeadersToAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers_to_attributes = $arr;
 
         return $this;
     }

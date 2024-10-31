@@ -14,16 +14,7 @@ namespace Livekit;
 interface SIP
 {
     /**
-     *
-     *
-     * Generated from protobuf method <code>livekit.SIP/CreateSIPTrunk</code>
-     *
-     * @throws \Twirp\Error
-     */
-    public function CreateSIPTrunk(array $ctx, \Livekit\CreateSIPTrunkRequest $req): \Livekit\SIPTrunkInfo;
-
-    /**
-     *
+     * rpc CreateSIPTrunk(CreateSIPTrunkRequest) returns (SIPTrunkInfo) { option deprecated = true; }; DELETED
      *
      * Generated from protobuf method <code>livekit.SIP/ListSIPTrunk</code>
      *
@@ -48,6 +39,24 @@ interface SIP
      * @throws \Twirp\Error
      */
     public function CreateSIPOutboundTrunk(array $ctx, \Livekit\CreateSIPOutboundTrunkRequest $req): \Livekit\SIPOutboundTrunkInfo;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.SIP/GetSIPInboundTrunk</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetSIPInboundTrunk(array $ctx, \Livekit\GetSIPInboundTrunkRequest $req): \Livekit\GetSIPInboundTrunkResponse;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.SIP/GetSIPOutboundTrunk</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetSIPOutboundTrunk(array $ctx, \Livekit\GetSIPOutboundTrunkRequest $req): \Livekit\GetSIPOutboundTrunkResponse;
 
     /**
      *
@@ -111,4 +120,13 @@ interface SIP
      * @throws \Twirp\Error
      */
     public function CreateSIPParticipant(array $ctx, \Livekit\CreateSIPParticipantRequest $req): \Livekit\SIPParticipantInfo;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.SIP/TransferSIPParticipant</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function TransferSIPParticipant(array $ctx, \Livekit\TransferSIPParticipantRequest $req): \Google\Protobuf\GPBEmpty;
 }

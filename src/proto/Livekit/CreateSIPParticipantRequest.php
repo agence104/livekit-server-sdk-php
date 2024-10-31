@@ -66,11 +66,16 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      */
     protected $dtmf = '';
     /**
-     * Optionally play ringtone in the room as an audible indicator for existing participants
+     * Optionally play dialtone in the room as an audible indicator for existing participants. The `play_ringtone` option is deprectated but has the same effect.
      *
-     * Generated from protobuf field <code>bool play_ringtone = 6;</code>
+     * Generated from protobuf field <code>bool play_ringtone = 6 [deprecated = true];</code>
+     * @deprecated
      */
     protected $play_ringtone = false;
+    /**
+     * Generated from protobuf field <code>bool play_dialtone = 13;</code>
+     */
+    protected $play_dialtone = false;
     /**
      * By default the From value (Phone number) is used for participant name/identity (if not set) and added to attributes.
      * If true, a random value for identity will be used and numbers will be omitted from attributes.
@@ -78,6 +83,24 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool hide_phone_number = 10;</code>
      */
     protected $hide_phone_number = false;
+    /**
+     * Max time for the callee to answer the call.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
+     */
+    protected $ringing_timeout = null;
+    /**
+     * Max call duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_call_duration = 12;</code>
+     */
+    protected $max_call_duration = null;
+    /**
+     * Enable voice isolation for the callee.
+     *
+     * Generated from protobuf field <code>bool enable_krisp = 14;</code>
+     */
+    protected $enable_krisp = false;
 
     /**
      * Constructor.
@@ -103,10 +126,17 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      *           Optionally send following DTMF digits (extension codes) when making a call.
      *           Character 'w' can be used to add a 0.5 sec delay.
      *     @type bool $play_ringtone
-     *           Optionally play ringtone in the room as an audible indicator for existing participants
+     *           Optionally play dialtone in the room as an audible indicator for existing participants. The `play_ringtone` option is deprectated but has the same effect.
+     *     @type bool $play_dialtone
      *     @type bool $hide_phone_number
      *           By default the From value (Phone number) is used for participant name/identity (if not set) and added to attributes.
      *           If true, a random value for identity will be used and numbers will be omitted from attributes.
+     *     @type \Google\Protobuf\Duration $ringing_timeout
+     *           Max time for the callee to answer the call.
+     *     @type \Google\Protobuf\Duration $max_call_duration
+     *           Max call duration.
+     *     @type bool $enable_krisp
+     *           Enable voice isolation for the callee.
      * }
      */
     public function __construct($data = NULL) {
@@ -325,27 +355,53 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optionally play ringtone in the room as an audible indicator for existing participants
+     * Optionally play dialtone in the room as an audible indicator for existing participants. The `play_ringtone` option is deprectated but has the same effect.
      *
-     * Generated from protobuf field <code>bool play_ringtone = 6;</code>
+     * Generated from protobuf field <code>bool play_ringtone = 6 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getPlayRingtone()
     {
+        @trigger_error('play_ringtone is deprecated.', E_USER_DEPRECATED);
         return $this->play_ringtone;
     }
 
     /**
-     * Optionally play ringtone in the room as an audible indicator for existing participants
+     * Optionally play dialtone in the room as an audible indicator for existing participants. The `play_ringtone` option is deprectated but has the same effect.
      *
-     * Generated from protobuf field <code>bool play_ringtone = 6;</code>
+     * Generated from protobuf field <code>bool play_ringtone = 6 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setPlayRingtone($var)
     {
+        @trigger_error('play_ringtone is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->play_ringtone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool play_dialtone = 13;</code>
+     * @return bool
+     */
+    public function getPlayDialtone()
+    {
+        return $this->play_dialtone;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool play_dialtone = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPlayDialtone($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->play_dialtone = $var;
 
         return $this;
     }
@@ -374,6 +430,104 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->hide_phone_number = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max time for the callee to answer the call.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getRingingTimeout()
+    {
+        return $this->ringing_timeout;
+    }
+
+    public function hasRingingTimeout()
+    {
+        return isset($this->ringing_timeout);
+    }
+
+    public function clearRingingTimeout()
+    {
+        unset($this->ringing_timeout);
+    }
+
+    /**
+     * Max time for the callee to answer the call.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setRingingTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->ringing_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max call duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_call_duration = 12;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxCallDuration()
+    {
+        return $this->max_call_duration;
+    }
+
+    public function hasMaxCallDuration()
+    {
+        return isset($this->max_call_duration);
+    }
+
+    public function clearMaxCallDuration()
+    {
+        unset($this->max_call_duration);
+    }
+
+    /**
+     * Max call duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_call_duration = 12;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxCallDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_call_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable voice isolation for the callee.
+     *
+     * Generated from protobuf field <code>bool enable_krisp = 14;</code>
+     * @return bool
+     */
+    public function getEnableKrisp()
+    {
+        return $this->enable_krisp;
+    }
+
+    /**
+     * Enable voice isolation for the callee.
+     *
+     * Generated from protobuf field <code>bool enable_krisp = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableKrisp($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_krisp = $var;
 
         return $this;
     }

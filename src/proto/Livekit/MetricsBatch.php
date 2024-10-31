@@ -14,20 +14,32 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricsBatch extends \Google\Protobuf\Internal\Message
 {
     /**
+     * time at which this batch is sent based on a monotonic clock (millisecond resolution)
+     *
+     * Generated from protobuf field <code>int64 timestamp_ms = 1;</code>
+     */
+    protected $timestamp_ms = 0;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_timestamp = 2;</code>
+     */
+    protected $normalized_timestamp = null;
+    /**
      * To avoid repeating string values, we store them in a separate list and reference them by index
      * This is useful for storing participant identities, track names, etc.
      * There is also a predefined list of labels that can be used to reference common metrics.
-     * They have reserved indices from 0 to 512
+     * They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
+     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     * such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *
-     * Generated from protobuf field <code>repeated string str_data = 1;</code>
+     * Generated from protobuf field <code>repeated string str_data = 3;</code>
      */
     private $str_data;
     /**
-     * Generated from protobuf field <code>repeated .livekit.TimeSeriesMetric time_series = 2;</code>
+     * Generated from protobuf field <code>repeated .livekit.TimeSeriesMetric time_series = 4;</code>
      */
     private $time_series;
     /**
-     * Generated from protobuf field <code>repeated .livekit.EventMetric events = 3;</code>
+     * Generated from protobuf field <code>repeated .livekit.EventMetric events = 5;</code>
      */
     private $events;
 
@@ -37,11 +49,16 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int|string $timestamp_ms
+     *           time at which this batch is sent based on a monotonic clock (millisecond resolution)
+     *     @type \Google\Protobuf\Timestamp $normalized_timestamp
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $str_data
      *           To avoid repeating string values, we store them in a separate list and reference them by index
      *           This is useful for storing participant identities, track names, etc.
      *           There is also a predefined list of labels that can be used to reference common metrics.
-     *           They have reserved indices from 0 to 512
+     *           They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
+     *           Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     *           such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *     @type \Livekit\TimeSeriesMetric[]|\Google\Protobuf\Internal\RepeatedField $time_series
      *     @type \Livekit\EventMetric[]|\Google\Protobuf\Internal\RepeatedField $events
      * }
@@ -52,12 +69,72 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * time at which this batch is sent based on a monotonic clock (millisecond resolution)
+     *
+     * Generated from protobuf field <code>int64 timestamp_ms = 1;</code>
+     * @return int|string
+     */
+    public function getTimestampMs()
+    {
+        return $this->timestamp_ms;
+    }
+
+    /**
+     * time at which this batch is sent based on a monotonic clock (millisecond resolution)
+     *
+     * Generated from protobuf field <code>int64 timestamp_ms = 1;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTimestampMs($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->timestamp_ms = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_timestamp = 2;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getNormalizedTimestamp()
+    {
+        return $this->normalized_timestamp;
+    }
+
+    public function hasNormalizedTimestamp()
+    {
+        return isset($this->normalized_timestamp);
+    }
+
+    public function clearNormalizedTimestamp()
+    {
+        unset($this->normalized_timestamp);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_timestamp = 2;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setNormalizedTimestamp($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->normalized_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
      * To avoid repeating string values, we store them in a separate list and reference them by index
      * This is useful for storing participant identities, track names, etc.
      * There is also a predefined list of labels that can be used to reference common metrics.
-     * They have reserved indices from 0 to 512
+     * They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
+     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     * such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *
-     * Generated from protobuf field <code>repeated string str_data = 1;</code>
+     * Generated from protobuf field <code>repeated string str_data = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStrData()
@@ -69,9 +146,11 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
      * To avoid repeating string values, we store them in a separate list and reference them by index
      * This is useful for storing participant identities, track names, etc.
      * There is also a predefined list of labels that can be used to reference common metrics.
-     * They have reserved indices from 0 to 512
+     * They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
+     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     * such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *
-     * Generated from protobuf field <code>repeated string str_data = 1;</code>
+     * Generated from protobuf field <code>repeated string str_data = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -84,7 +163,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .livekit.TimeSeriesMetric time_series = 2;</code>
+     * Generated from protobuf field <code>repeated .livekit.TimeSeriesMetric time_series = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTimeSeries()
@@ -93,7 +172,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .livekit.TimeSeriesMetric time_series = 2;</code>
+     * Generated from protobuf field <code>repeated .livekit.TimeSeriesMetric time_series = 4;</code>
      * @param \Livekit\TimeSeriesMetric[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -106,7 +185,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .livekit.EventMetric events = 3;</code>
+     * Generated from protobuf field <code>repeated .livekit.EventMetric events = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEvents()
@@ -115,7 +194,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .livekit.EventMetric events = 3;</code>
+     * Generated from protobuf field <code>repeated .livekit.EventMetric events = 5;</code>
      * @param \Livekit\EventMetric[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

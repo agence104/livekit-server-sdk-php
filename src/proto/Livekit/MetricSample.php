@@ -14,11 +14,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricSample extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>int64 timestamp = 1;</code>
+     * time of metric based on a monotonic clock (in milliseconds)
+     *
+     * Generated from protobuf field <code>int64 timestamp_ms = 1;</code>
      */
-    protected $timestamp = 0;
+    protected $timestamp_ms = 0;
     /**
-     * Generated from protobuf field <code>float value = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_timestamp = 2;</code>
+     */
+    protected $normalized_timestamp = null;
+    /**
+     * Generated from protobuf field <code>float value = 3;</code>
      */
     protected $value = 0.0;
 
@@ -28,7 +34,9 @@ class MetricSample extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int|string $timestamp
+     *     @type int|string $timestamp_ms
+     *           time of metric based on a monotonic clock (in milliseconds)
+     *     @type \Google\Protobuf\Timestamp $normalized_timestamp
      *     @type float $value
      * }
      */
@@ -38,29 +46,65 @@ class MetricSample extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int64 timestamp = 1;</code>
+     * time of metric based on a monotonic clock (in milliseconds)
+     *
+     * Generated from protobuf field <code>int64 timestamp_ms = 1;</code>
      * @return int|string
      */
-    public function getTimestamp()
+    public function getTimestampMs()
     {
-        return $this->timestamp;
+        return $this->timestamp_ms;
     }
 
     /**
-     * Generated from protobuf field <code>int64 timestamp = 1;</code>
+     * time of metric based on a monotonic clock (in milliseconds)
+     *
+     * Generated from protobuf field <code>int64 timestamp_ms = 1;</code>
      * @param int|string $var
      * @return $this
      */
-    public function setTimestamp($var)
+    public function setTimestampMs($var)
     {
         GPBUtil::checkInt64($var);
-        $this->timestamp = $var;
+        $this->timestamp_ms = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>float value = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_timestamp = 2;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getNormalizedTimestamp()
+    {
+        return $this->normalized_timestamp;
+    }
+
+    public function hasNormalizedTimestamp()
+    {
+        return isset($this->normalized_timestamp);
+    }
+
+    public function clearNormalizedTimestamp()
+    {
+        unset($this->normalized_timestamp);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_timestamp = 2;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setNormalizedTimestamp($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->normalized_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>float value = 3;</code>
      * @return float
      */
     public function getValue()
@@ -69,7 +113,7 @@ class MetricSample extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>float value = 2;</code>
+     * Generated from protobuf field <code>float value = 3;</code>
      * @param float $var
      * @return $this
      */

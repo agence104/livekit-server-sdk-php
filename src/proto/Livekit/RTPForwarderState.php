@@ -37,6 +37,10 @@ class RTPForwarderState extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.RTPMungerState rtp_munger = 6;</code>
      */
     protected $rtp_munger = null;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.RTCPSenderReportState sender_report_state = 8;</code>
+     */
+    private $sender_report_state;
     protected $codec_munger;
 
     /**
@@ -52,6 +56,7 @@ class RTPForwarderState extends \Google\Protobuf\Internal\Message
      *     @type int|string $dummy_start_timestamp_offset
      *     @type \Livekit\RTPMungerState $rtp_munger
      *     @type \Livekit\VP8MungerState $vp8_munger
+     *     @type \Livekit\RTCPSenderReportState[]|\Google\Protobuf\Internal\RepeatedField $sender_report_state
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +229,28 @@ class RTPForwarderState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\VP8MungerState::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.RTCPSenderReportState sender_report_state = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSenderReportState()
+    {
+        return $this->sender_report_state;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.RTCPSenderReportState sender_report_state = 8;</code>
+     * @param \Livekit\RTCPSenderReportState[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSenderReportState($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\RTCPSenderReportState::class);
+        $this->sender_report_state = $arr;
 
         return $this;
     }

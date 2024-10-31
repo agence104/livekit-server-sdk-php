@@ -80,29 +80,6 @@ abstract class SIPAbstractClient
     /**
      * {@inheritdoc}
      */
-    public function CreateSIPTrunk(array $ctx, \Livekit\CreateSIPTrunkRequest $in): \Livekit\SIPTrunkInfo
-    {
-        $ctx = Context::withPackageName($ctx, 'livekit');
-        $ctx = Context::withServiceName($ctx, 'SIP');
-        $ctx = Context::withMethodName($ctx, 'CreateSIPTrunk');
-
-        $out = new \Livekit\SIPTrunkInfo();
-
-        $url = $this->addr;
-        if (empty($this->prefix)) {
-            $url = $url.'/livekit.SIP/CreateSIPTrunk';
-        } else {
-            $url = $url.'/'.$this->prefix.'/livekit.SIP/CreateSIPTrunk';
-        }
-
-        $this->doRequest($ctx, $url, $in, $out);
-
-        return $out;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function ListSIPTrunk(array $ctx, \Livekit\ListSIPTrunkRequest $in): \Livekit\ListSIPTrunkResponse
     {
         $ctx = Context::withPackageName($ctx, 'livekit');
@@ -162,6 +139,52 @@ abstract class SIPAbstractClient
             $url = $url.'/livekit.SIP/CreateSIPOutboundTrunk';
         } else {
             $url = $url.'/'.$this->prefix.'/livekit.SIP/CreateSIPOutboundTrunk';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function GetSIPInboundTrunk(array $ctx, \Livekit\GetSIPInboundTrunkRequest $in): \Livekit\GetSIPInboundTrunkResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'SIP');
+        $ctx = Context::withMethodName($ctx, 'GetSIPInboundTrunk');
+
+        $out = new \Livekit\GetSIPInboundTrunkResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.SIP/GetSIPInboundTrunk';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.SIP/GetSIPInboundTrunk';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function GetSIPOutboundTrunk(array $ctx, \Livekit\GetSIPOutboundTrunkRequest $in): \Livekit\GetSIPOutboundTrunkResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'SIP');
+        $ctx = Context::withMethodName($ctx, 'GetSIPOutboundTrunk');
+
+        $out = new \Livekit\GetSIPOutboundTrunkResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.SIP/GetSIPOutboundTrunk';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.SIP/GetSIPOutboundTrunk';
         }
 
         $this->doRequest($ctx, $url, $in, $out);
@@ -323,6 +346,29 @@ abstract class SIPAbstractClient
             $url = $url.'/livekit.SIP/CreateSIPParticipant';
         } else {
             $url = $url.'/'.$this->prefix.'/livekit.SIP/CreateSIPParticipant';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function TransferSIPParticipant(array $ctx, \Livekit\TransferSIPParticipantRequest $in): \Google\Protobuf\GPBEmpty
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'SIP');
+        $ctx = Context::withMethodName($ctx, 'TransferSIPParticipant');
+
+        $out = new \Google\Protobuf\GPBEmpty();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.SIP/TransferSIPParticipant';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.SIP/TransferSIPParticipant';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

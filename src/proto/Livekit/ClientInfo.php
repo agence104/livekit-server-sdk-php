@@ -57,6 +57,13 @@ class ClientInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string network = 10;</code>
      */
     protected $network = '';
+    /**
+     * comma separated list of additional LiveKit SDKs in use of this client, with versions
+     * e.g. "components-js:1.2.3,track-processors-js:1.2.3"
+     *
+     * Generated from protobuf field <code>string other_sdks = 11;</code>
+     */
+    protected $other_sdks = '';
 
     /**
      * Constructor.
@@ -75,6 +82,9 @@ class ClientInfo extends \Google\Protobuf\Internal\Message
      *     @type string $address
      *     @type string $network
      *           wifi, wired, cellular, vpn, empty if not known
+     *     @type string $other_sdks
+     *           comma separated list of additional LiveKit SDKs in use of this client, with versions
+     *           e.g. "components-js:1.2.3,track-processors-js:1.2.3"
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +312,34 @@ class ClientInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * comma separated list of additional LiveKit SDKs in use of this client, with versions
+     * e.g. "components-js:1.2.3,track-processors-js:1.2.3"
+     *
+     * Generated from protobuf field <code>string other_sdks = 11;</code>
+     * @return string
+     */
+    public function getOtherSdks()
+    {
+        return $this->other_sdks;
+    }
+
+    /**
+     * comma separated list of additional LiveKit SDKs in use of this client, with versions
+     * e.g. "components-js:1.2.3,track-processors-js:1.2.3"
+     *
+     * Generated from protobuf field <code>string other_sdks = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOtherSdks($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->other_sdks = $var;
 
         return $this;
     }

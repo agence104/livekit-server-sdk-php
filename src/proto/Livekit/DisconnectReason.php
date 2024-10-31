@@ -75,6 +75,18 @@ class DisconnectReason
      * Generated from protobuf enum <code>ROOM_CLOSED = 10;</code>
      */
     const ROOM_CLOSED = 10;
+    /**
+     * SIP callee did not respond in time
+     *
+     * Generated from protobuf enum <code>USER_UNAVAILABLE = 11;</code>
+     */
+    const USER_UNAVAILABLE = 11;
+    /**
+     * SIP callee rejected the call (busy)
+     *
+     * Generated from protobuf enum <code>USER_REJECTED = 12;</code>
+     */
+    const USER_REJECTED = 12;
 
     private static $valueToName = [
         self::UNKNOWN_REASON => 'UNKNOWN_REASON',
@@ -88,6 +100,8 @@ class DisconnectReason
         self::MIGRATION => 'MIGRATION',
         self::SIGNAL_CLOSE => 'SIGNAL_CLOSE',
         self::ROOM_CLOSED => 'ROOM_CLOSED',
+        self::USER_UNAVAILABLE => 'USER_UNAVAILABLE',
+        self::USER_REJECTED => 'USER_REJECTED',
     ];
 
     public static function name($value)

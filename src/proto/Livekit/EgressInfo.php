@@ -69,6 +69,16 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .livekit.ImagesInfo image_results = 20;</code>
      */
     private $image_results;
+    /**
+     * Generated from protobuf field <code>string manifest_location = 23;</code>
+     */
+    protected $manifest_location = '';
+    /**
+     * next ID: 24
+     *
+     * Generated from protobuf field <code>string manifest_presigned_url = 24;</code>
+     */
+    protected $manifest_presigned_url = '';
     protected $request;
     protected $result;
 
@@ -100,6 +110,9 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\FileInfo[]|\Google\Protobuf\Internal\RepeatedField $file_results
      *     @type \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $segment_results
      *     @type \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $image_results
+     *     @type string $manifest_location
+     *     @type string $manifest_presigned_url
+     *           next ID: 24
      * }
      */
     public function __construct($data = NULL) {
@@ -642,6 +655,54 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\ImagesInfo::class);
         $this->image_results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string manifest_location = 23;</code>
+     * @return string
+     */
+    public function getManifestLocation()
+    {
+        return $this->manifest_location;
+    }
+
+    /**
+     * Generated from protobuf field <code>string manifest_location = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setManifestLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->manifest_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * next ID: 24
+     *
+     * Generated from protobuf field <code>string manifest_presigned_url = 24;</code>
+     * @return string
+     */
+    public function getManifestPresignedUrl()
+    {
+        return $this->manifest_presigned_url;
+    }
+
+    /**
+     * next ID: 24
+     *
+     * Generated from protobuf field <code>string manifest_presigned_url = 24;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setManifestPresignedUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->manifest_presigned_url = $var;
 
         return $this;
     }

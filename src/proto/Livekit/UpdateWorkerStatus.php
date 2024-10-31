@@ -24,7 +24,7 @@ class UpdateWorkerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $load = 0.0;
     /**
-     * Generated from protobuf field <code>int32 job_count = 4;</code>
+     * Generated from protobuf field <code>uint32 job_count = 4;</code>
      */
     protected $job_count = 0;
 
@@ -104,7 +104,7 @@ class UpdateWorkerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 job_count = 4;</code>
+     * Generated from protobuf field <code>uint32 job_count = 4;</code>
      * @return int
      */
     public function getJobCount()
@@ -113,13 +113,13 @@ class UpdateWorkerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 job_count = 4;</code>
+     * Generated from protobuf field <code>uint32 job_count = 4;</code>
      * @param int $var
      * @return $this
      */
     public function setJobCount($var)
     {
-        GPBUtil::checkInt32($var);
+        GPBUtil::checkUint32($var);
         $this->job_count = $var;
 
         return $this;

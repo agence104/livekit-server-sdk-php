@@ -51,6 +51,9 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\Transcription $transcription
      *     @type \Livekit\MetricsBatch $metrics
      *     @type \Livekit\ChatMessage $chat_message
+     *     @type \Livekit\RpcRequest $rpc_request
+     *     @type \Livekit\RpcAck $rpc_ack
+     *     @type \Livekit\RpcResponse $rpc_response
      * }
      */
     public function __construct($data = NULL) {
@@ -299,6 +302,87 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\ChatMessage::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RpcRequest rpc_request = 10;</code>
+     * @return \Livekit\RpcRequest|null
+     */
+    public function getRpcRequest()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasRpcRequest()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RpcRequest rpc_request = 10;</code>
+     * @param \Livekit\RpcRequest $var
+     * @return $this
+     */
+    public function setRpcRequest($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RpcRequest::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RpcAck rpc_ack = 11;</code>
+     * @return \Livekit\RpcAck|null
+     */
+    public function getRpcAck()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasRpcAck()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RpcAck rpc_ack = 11;</code>
+     * @param \Livekit\RpcAck $var
+     * @return $this
+     */
+    public function setRpcAck($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RpcAck::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RpcResponse rpc_response = 12;</code>
+     * @return \Livekit\RpcResponse|null
+     */
+    public function getRpcResponse()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasRpcResponse()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.RpcResponse rpc_response = 12;</code>
+     * @param \Livekit\RpcResponse $var
+     * @return $this
+     */
+    public function setRpcResponse($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RpcResponse::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

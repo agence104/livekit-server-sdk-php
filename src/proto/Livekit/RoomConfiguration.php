@@ -32,7 +32,7 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
      */
     protected $departure_timeout = 0;
     /**
-     * limit number of participants that can be in a room
+     * limit number of participants that can be in a room, excluding Egress and Ingress participants
      *
      * Generated from protobuf field <code>uint32 max_participants = 4;</code>
      */
@@ -43,12 +43,6 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.RoomEgress egress = 5;</code>
      */
     protected $egress = null;
-    /**
-     * agent
-     *
-     * Generated from protobuf field <code>.livekit.RoomAgent agent = 6;</code>
-     */
-    protected $agent = null;
     /**
      * playout delay of subscriber
      *
@@ -66,6 +60,12 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool sync_streams = 9;</code>
      */
     protected $sync_streams = false;
+    /**
+     * Define agents that should be dispatched to this room
+     *
+     * Generated from protobuf field <code>repeated .livekit.RoomAgentDispatch agents = 10;</code>
+     */
+    private $agents;
 
     /**
      * Constructor.
@@ -80,17 +80,17 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
      *     @type int $departure_timeout
      *           number of seconds to keep the room open after everyone leaves
      *     @type int $max_participants
-     *           limit number of participants that can be in a room
+     *           limit number of participants that can be in a room, excluding Egress and Ingress participants
      *     @type \Livekit\RoomEgress $egress
      *           egress
-     *     @type \Livekit\RoomAgent $agent
-     *           agent
      *     @type int $min_playout_delay
      *           playout delay of subscriber
      *     @type int $max_playout_delay
      *     @type bool $sync_streams
      *           improves A/V sync when playout_delay set to a value larger than 200ms. It will disables transceiver re-use
      *           so not recommended for rooms with frequent subscription changes
+     *     @type \Livekit\RoomAgentDispatch[]|\Google\Protobuf\Internal\RepeatedField $agents
+     *           Define agents that should be dispatched to this room
      * }
      */
     public function __construct($data = NULL) {
@@ -177,7 +177,7 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit number of participants that can be in a room
+     * limit number of participants that can be in a room, excluding Egress and Ingress participants
      *
      * Generated from protobuf field <code>uint32 max_participants = 4;</code>
      * @return int
@@ -188,7 +188,7 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit number of participants that can be in a room
+     * limit number of participants that can be in a room, excluding Egress and Ingress participants
      *
      * Generated from protobuf field <code>uint32 max_participants = 4;</code>
      * @param int $var
@@ -234,42 +234,6 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\RoomEgress::class);
         $this->egress = $var;
-
-        return $this;
-    }
-
-    /**
-     * agent
-     *
-     * Generated from protobuf field <code>.livekit.RoomAgent agent = 6;</code>
-     * @return \Livekit\RoomAgent|null
-     */
-    public function getAgent()
-    {
-        return $this->agent;
-    }
-
-    public function hasAgent()
-    {
-        return isset($this->agent);
-    }
-
-    public function clearAgent()
-    {
-        unset($this->agent);
-    }
-
-    /**
-     * agent
-     *
-     * Generated from protobuf field <code>.livekit.RoomAgent agent = 6;</code>
-     * @param \Livekit\RoomAgent $var
-     * @return $this
-     */
-    public function setAgent($var)
-    {
-        GPBUtil::checkMessage($var, \Livekit\RoomAgent::class);
-        $this->agent = $var;
 
         return $this;
     }
@@ -346,6 +310,32 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->sync_streams = $var;
+
+        return $this;
+    }
+
+    /**
+     * Define agents that should be dispatched to this room
+     *
+     * Generated from protobuf field <code>repeated .livekit.RoomAgentDispatch agents = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAgents()
+    {
+        return $this->agents;
+    }
+
+    /**
+     * Define agents that should be dispatched to this room
+     *
+     * Generated from protobuf field <code>repeated .livekit.RoomAgentDispatch agents = 10;</code>
+     * @param \Livekit\RoomAgentDispatch[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAgents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\RoomAgentDispatch::class);
+        $this->agents = $arr;
 
         return $this;
     }

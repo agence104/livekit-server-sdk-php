@@ -21,29 +21,27 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
      */
     protected $label = 0;
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 participant_identity = 2;</code>
      */
     protected $participant_identity = 0;
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 track_sid = 3;</code>
      */
     protected $track_sid = 0;
     /**
-     * samples
-     *
-     * Generated from protobuf field <code>int64 start_timestamp = 4;</code>
-     */
-    protected $start_timestamp = 0;
-    /**
-     * Generated from protobuf field <code>int64 end_timestamp = 5;</code>
-     */
-    protected $end_timestamp = 0;
-    /**
-     * list of samples between start_timestamp and end_timestamp
-     *
-     * Generated from protobuf field <code>repeated .livekit.MetricSample samples = 6;</code>
+     * Generated from protobuf field <code>repeated .livekit.MetricSample samples = 4;</code>
      */
     private $samples;
+    /**
+     * index into 'str_data'
+     *
+     * Generated from protobuf field <code>uint32 rid = 5;</code>
+     */
+    protected $rid = 0;
 
     /**
      * Constructor.
@@ -55,12 +53,12 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
      *           Metric name e.g "speech_probablity". The string value is not directly stored in the message, but referenced by index
      *           in the `str_data` field of `MetricsBatch`
      *     @type int $participant_identity
+     *           index into `str_data`
      *     @type int $track_sid
-     *     @type int|string $start_timestamp
-     *           samples
-     *     @type int|string $end_timestamp
+     *           index into `str_data`
      *     @type \Livekit\MetricSample[]|\Google\Protobuf\Internal\RepeatedField $samples
-     *           list of samples between start_timestamp and end_timestamp
+     *     @type int $rid
+     *           index into 'str_data'
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +95,8 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 participant_identity = 2;</code>
      * @return int
      */
@@ -106,6 +106,8 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 participant_identity = 2;</code>
      * @param int $var
      * @return $this
@@ -119,6 +121,8 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 track_sid = 3;</code>
      * @return int
      */
@@ -128,6 +132,8 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 track_sid = 3;</code>
      * @param int $var
      * @return $this
@@ -141,57 +147,7 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * samples
-     *
-     * Generated from protobuf field <code>int64 start_timestamp = 4;</code>
-     * @return int|string
-     */
-    public function getStartTimestamp()
-    {
-        return $this->start_timestamp;
-    }
-
-    /**
-     * samples
-     *
-     * Generated from protobuf field <code>int64 start_timestamp = 4;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setStartTimestamp($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->start_timestamp = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 end_timestamp = 5;</code>
-     * @return int|string
-     */
-    public function getEndTimestamp()
-    {
-        return $this->end_timestamp;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 end_timestamp = 5;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setEndTimestamp($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->end_timestamp = $var;
-
-        return $this;
-    }
-
-    /**
-     * list of samples between start_timestamp and end_timestamp
-     *
-     * Generated from protobuf field <code>repeated .livekit.MetricSample samples = 6;</code>
+     * Generated from protobuf field <code>repeated .livekit.MetricSample samples = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSamples()
@@ -200,9 +156,7 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * list of samples between start_timestamp and end_timestamp
-     *
-     * Generated from protobuf field <code>repeated .livekit.MetricSample samples = 6;</code>
+     * Generated from protobuf field <code>repeated .livekit.MetricSample samples = 4;</code>
      * @param \Livekit\MetricSample[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -210,6 +164,32 @@ class TimeSeriesMetric extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\MetricSample::class);
         $this->samples = $arr;
+
+        return $this;
+    }
+
+    /**
+     * index into 'str_data'
+     *
+     * Generated from protobuf field <code>uint32 rid = 5;</code>
+     * @return int
+     */
+    public function getRid()
+    {
+        return $this->rid;
+    }
+
+    /**
+     * index into 'str_data'
+     *
+     * Generated from protobuf field <code>uint32 rid = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRid($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->rid = $var;
 
         return $this;
     }

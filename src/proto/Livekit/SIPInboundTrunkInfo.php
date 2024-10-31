@@ -61,6 +61,34 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string auth_password = 8;</code>
      */
     protected $auth_password = '';
+    /**
+     * Include these SIP X-* headers in 200 OK responses.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 9;</code>
+     */
+    private $headers;
+    /**
+     * Map SIP X-* headers from INVITE to SIP participant attributes.
+     *
+     * Generated from protobuf field <code>map<string, string> headers_to_attributes = 10;</code>
+     */
+    private $headers_to_attributes;
+    /**
+     * Max time for the caller to wait for track subscription.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
+     */
+    protected $ringing_timeout = null;
+    /**
+     * Max call duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_call_duration = 12;</code>
+     */
+    protected $max_call_duration = null;
+    /**
+     * Generated from protobuf field <code>bool krisp_enabled = 13;</code>
+     */
+    protected $krisp_enabled = false;
 
     /**
      * Constructor.
@@ -86,6 +114,15 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      *           Username and password used to authenticate inbound SIP invites.
      *           May be empty to have no authentication.
      *     @type string $auth_password
+     *     @type array|\Google\Protobuf\Internal\MapField $headers
+     *           Include these SIP X-* headers in 200 OK responses.
+     *     @type array|\Google\Protobuf\Internal\MapField $headers_to_attributes
+     *           Map SIP X-* headers from INVITE to SIP participant attributes.
+     *     @type \Google\Protobuf\Duration $ringing_timeout
+     *           Max time for the caller to wait for track subscription.
+     *     @type \Google\Protobuf\Duration $max_call_duration
+     *           Max call duration.
+     *     @type bool $krisp_enabled
      * }
      */
     public function __construct($data = NULL) {
@@ -297,6 +334,152 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->auth_password = $var;
+
+        return $this;
+    }
+
+    /**
+     * Include these SIP X-* headers in 200 OK responses.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 9;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Include these SIP X-* headers in 200 OK responses.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 9;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Map SIP X-* headers from INVITE to SIP participant attributes.
+     *
+     * Generated from protobuf field <code>map<string, string> headers_to_attributes = 10;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getHeadersToAttributes()
+    {
+        return $this->headers_to_attributes;
+    }
+
+    /**
+     * Map SIP X-* headers from INVITE to SIP participant attributes.
+     *
+     * Generated from protobuf field <code>map<string, string> headers_to_attributes = 10;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setHeadersToAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers_to_attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Max time for the caller to wait for track subscription.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getRingingTimeout()
+    {
+        return $this->ringing_timeout;
+    }
+
+    public function hasRingingTimeout()
+    {
+        return isset($this->ringing_timeout);
+    }
+
+    public function clearRingingTimeout()
+    {
+        unset($this->ringing_timeout);
+    }
+
+    /**
+     * Max time for the caller to wait for track subscription.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setRingingTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->ringing_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max call duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_call_duration = 12;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxCallDuration()
+    {
+        return $this->max_call_duration;
+    }
+
+    public function hasMaxCallDuration()
+    {
+        return isset($this->max_call_duration);
+    }
+
+    public function clearMaxCallDuration()
+    {
+        unset($this->max_call_duration);
+    }
+
+    /**
+     * Max call duration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_call_duration = 12;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxCallDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_call_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool krisp_enabled = 13;</code>
+     * @return bool
+     */
+    public function getKrispEnabled()
+    {
+        return $this->krisp_enabled;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool krisp_enabled = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setKrispEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->krisp_enabled = $var;
 
         return $this;
     }

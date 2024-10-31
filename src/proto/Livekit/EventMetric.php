@@ -18,27 +18,47 @@ class EventMetric extends \Google\Protobuf\Internal\Message
      */
     protected $label = 0;
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 participant_identity = 2;</code>
      */
     protected $participant_identity = 0;
     /**
-     * 0 =
+     * index into `str_data`
      *
      * Generated from protobuf field <code>uint32 track_sid = 3;</code>
      */
     protected $track_sid = 0;
     /**
-     * Generated from protobuf field <code>int64 start_timestamp = 4;</code>
+     * start time of event based on a monotonic clock (in milliseconds)
+     *
+     * Generated from protobuf field <code>int64 start_timestamp_ms = 4;</code>
      */
-    protected $start_timestamp = 0;
+    protected $start_timestamp_ms = 0;
     /**
-     * Generated from protobuf field <code>optional int64 end_timestamp = 5;</code>
+     * end time of event based on a monotonic clock (in milliseconds), if needed
+     *
+     * Generated from protobuf field <code>optional int64 end_timestamp_ms = 5;</code>
      */
-    protected $end_timestamp = null;
+    protected $end_timestamp_ms = null;
     /**
-     * Generated from protobuf field <code>string metadata = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_start_timestamp = 6;</code>
+     */
+    protected $normalized_start_timestamp = null;
+    /**
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp normalized_end_timestamp = 7;</code>
+     */
+    protected $normalized_end_timestamp = null;
+    /**
+     * Generated from protobuf field <code>string metadata = 8;</code>
      */
     protected $metadata = '';
+    /**
+     * index into 'str_data'
+     *
+     * Generated from protobuf field <code>uint32 rid = 9;</code>
+     */
+    protected $rid = 0;
 
     /**
      * Constructor.
@@ -48,11 +68,18 @@ class EventMetric extends \Google\Protobuf\Internal\Message
      *
      *     @type int $label
      *     @type int $participant_identity
+     *           index into `str_data`
      *     @type int $track_sid
-     *           0 =
-     *     @type int|string $start_timestamp
-     *     @type int|string $end_timestamp
+     *           index into `str_data`
+     *     @type int|string $start_timestamp_ms
+     *           start time of event based on a monotonic clock (in milliseconds)
+     *     @type int|string $end_timestamp_ms
+     *           end time of event based on a monotonic clock (in milliseconds), if needed
+     *     @type \Google\Protobuf\Timestamp $normalized_start_timestamp
+     *     @type \Google\Protobuf\Timestamp $normalized_end_timestamp
      *     @type string $metadata
+     *     @type int $rid
+     *           index into 'str_data'
      * }
      */
     public function __construct($data = NULL) {
@@ -83,6 +110,8 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 participant_identity = 2;</code>
      * @return int
      */
@@ -92,6 +121,8 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * index into `str_data`
+     *
      * Generated from protobuf field <code>uint32 participant_identity = 2;</code>
      * @param int $var
      * @return $this
@@ -105,7 +136,7 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 0 =
+     * index into `str_data`
      *
      * Generated from protobuf field <code>uint32 track_sid = 3;</code>
      * @return int
@@ -116,7 +147,7 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 0 =
+     * index into `str_data`
      *
      * Generated from protobuf field <code>uint32 track_sid = 3;</code>
      * @param int $var
@@ -131,61 +162,133 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int64 start_timestamp = 4;</code>
+     * start time of event based on a monotonic clock (in milliseconds)
+     *
+     * Generated from protobuf field <code>int64 start_timestamp_ms = 4;</code>
      * @return int|string
      */
-    public function getStartTimestamp()
+    public function getStartTimestampMs()
     {
-        return $this->start_timestamp;
+        return $this->start_timestamp_ms;
     }
 
     /**
-     * Generated from protobuf field <code>int64 start_timestamp = 4;</code>
+     * start time of event based on a monotonic clock (in milliseconds)
+     *
+     * Generated from protobuf field <code>int64 start_timestamp_ms = 4;</code>
      * @param int|string $var
      * @return $this
      */
-    public function setStartTimestamp($var)
+    public function setStartTimestampMs($var)
     {
         GPBUtil::checkInt64($var);
-        $this->start_timestamp = $var;
+        $this->start_timestamp_ms = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>optional int64 end_timestamp = 5;</code>
+     * end time of event based on a monotonic clock (in milliseconds), if needed
+     *
+     * Generated from protobuf field <code>optional int64 end_timestamp_ms = 5;</code>
      * @return int|string
      */
-    public function getEndTimestamp()
+    public function getEndTimestampMs()
     {
-        return isset($this->end_timestamp) ? $this->end_timestamp : 0;
+        return isset($this->end_timestamp_ms) ? $this->end_timestamp_ms : 0;
     }
 
-    public function hasEndTimestamp()
+    public function hasEndTimestampMs()
     {
-        return isset($this->end_timestamp);
+        return isset($this->end_timestamp_ms);
     }
 
-    public function clearEndTimestamp()
+    public function clearEndTimestampMs()
     {
-        unset($this->end_timestamp);
+        unset($this->end_timestamp_ms);
     }
 
     /**
-     * Generated from protobuf field <code>optional int64 end_timestamp = 5;</code>
+     * end time of event based on a monotonic clock (in milliseconds), if needed
+     *
+     * Generated from protobuf field <code>optional int64 end_timestamp_ms = 5;</code>
      * @param int|string $var
      * @return $this
      */
-    public function setEndTimestamp($var)
+    public function setEndTimestampMs($var)
     {
         GPBUtil::checkInt64($var);
-        $this->end_timestamp = $var;
+        $this->end_timestamp_ms = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>string metadata = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_start_timestamp = 6;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getNormalizedStartTimestamp()
+    {
+        return $this->normalized_start_timestamp;
+    }
+
+    public function hasNormalizedStartTimestamp()
+    {
+        return isset($this->normalized_start_timestamp);
+    }
+
+    public function clearNormalizedStartTimestamp()
+    {
+        unset($this->normalized_start_timestamp);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp normalized_start_timestamp = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setNormalizedStartTimestamp($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->normalized_start_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp normalized_end_timestamp = 7;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getNormalizedEndTimestamp()
+    {
+        return $this->normalized_end_timestamp;
+    }
+
+    public function hasNormalizedEndTimestamp()
+    {
+        return isset($this->normalized_end_timestamp);
+    }
+
+    public function clearNormalizedEndTimestamp()
+    {
+        unset($this->normalized_end_timestamp);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp normalized_end_timestamp = 7;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setNormalizedEndTimestamp($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->normalized_end_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string metadata = 8;</code>
      * @return string
      */
     public function getMetadata()
@@ -194,7 +297,7 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string metadata = 6;</code>
+     * Generated from protobuf field <code>string metadata = 8;</code>
      * @param string $var
      * @return $this
      */
@@ -202,6 +305,32 @@ class EventMetric extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * index into 'str_data'
+     *
+     * Generated from protobuf field <code>uint32 rid = 9;</code>
+     * @return int
+     */
+    public function getRid()
+    {
+        return $this->rid;
+    }
+
+    /**
+     * index into 'str_data'
+     *
+     * Generated from protobuf field <code>uint32 rid = 9;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRid($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->rid = $var;
 
         return $this;
     }
