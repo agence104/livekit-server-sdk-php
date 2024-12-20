@@ -244,7 +244,7 @@ class RoomServiceClient extends BaseServiceClient {
    * @return \Livekit\ParticipantInfo
    *   The ParticipantInfo object.
    */
-  public function updateParticipant(string $roomName, string $identity, ?string $metadata = null, ?ParticipantPermission $permission = null, ?array $attributes = null): ParticipantInfo {
+  public function updateParticipant(string $roomName, string $identity, ?string $metadata = NULL, ?ParticipantPermission $permission = NULL, ?array $attributes = NULL): ParticipantInfo {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomName($roomName);
     $videoGrant->setRoomAdmin();
