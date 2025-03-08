@@ -82,6 +82,12 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.IngressState state = 12;</code>
      */
     protected $state = null;
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 16;</code>
+     */
+    protected $enabled = null;
 
     /**
      * Constructor.
@@ -109,6 +115,8 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
      *     @type bool $reusable
      *     @type \Livekit\IngressState $state
      *           Description of error/stream non compliance and debug info for publisher otherwise (received bitrate, resolution, bandwidth)
+     *     @type bool $enabled
+     *           The default value is true and when set to false, the new connection attempts will be rejected
      * }
      */
     public function __construct($data = NULL) {
@@ -502,6 +510,42 @@ class IngressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\IngressState::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 16;</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 16;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
 
         return $this;
     }

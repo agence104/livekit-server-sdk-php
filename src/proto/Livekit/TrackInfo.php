@@ -104,6 +104,10 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .livekit.AudioTrackFeature audio_features = 19;</code>
      */
     private $audio_features;
+    /**
+     * Generated from protobuf field <code>.livekit.BackupCodecPolicy backup_codec_policy = 20;</code>
+     */
+    protected $backup_codec_policy = 0;
 
     /**
      * Constructor.
@@ -138,6 +142,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *     @type string $stream
      *     @type \Livekit\TimedVersion $version
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $audio_features
+     *     @type int $backup_codec_policy
      * }
      */
     public function __construct($data = NULL) {
@@ -599,6 +604,28 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Livekit\AudioTrackFeature::class);
         $this->audio_features = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.BackupCodecPolicy backup_codec_policy = 20;</code>
+     * @return int
+     */
+    public function getBackupCodecPolicy()
+    {
+        return $this->backup_codec_policy;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.BackupCodecPolicy backup_codec_policy = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBackupCodecPolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\BackupCodecPolicy::class);
+        $this->backup_codec_policy = $var;
 
         return $this;
     }

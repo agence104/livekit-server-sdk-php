@@ -31,6 +31,12 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool play_dialtone = 4;</code>
      */
     protected $play_dialtone = false;
+    /**
+     * Add the following headers to the REFER SIP request.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 5;</code>
+     */
+    private $headers;
 
     /**
      * Constructor.
@@ -43,6 +49,8 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      *     @type string $transfer_to
      *     @type bool $play_dialtone
      *           Optionally play dialtone to the SIP participant as an audible indicator of being transferred
+     *     @type array|\Google\Protobuf\Internal\MapField $headers
+     *           Add the following headers to the REFER SIP request.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,6 +146,32 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->play_dialtone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Add the following headers to the REFER SIP request.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Add the following headers to the REFER SIP request.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers = $arr;
 
         return $this;
     }

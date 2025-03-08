@@ -44,6 +44,14 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $to_uri = null;
     /**
+     * Generated from protobuf field <code>repeated .livekit.SIPFeature enabled_features = 14;</code>
+     */
+    private $enabled_features;
+    /**
+     * Generated from protobuf field <code>.livekit.SIPCallDirection call_direction = 15;</code>
+     */
+    protected $call_direction = 0;
+    /**
      * Generated from protobuf field <code>.livekit.SIPCallStatus call_status = 8;</code>
      */
     protected $call_status = 0;
@@ -82,6 +90,8 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      *     @type string $participant_identity
      *     @type \Livekit\SIPUri $from_uri
      *     @type \Livekit\SIPUri $to_uri
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
+     *     @type int $call_direction
      *     @type int $call_status
      *     @type int|string $created_at
      *     @type int|string $started_at
@@ -269,6 +279,50 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\SIPUri::class);
         $this->to_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SIPFeature enabled_features = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEnabledFeatures()
+    {
+        return $this->enabled_features;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.SIPFeature enabled_features = 14;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEnabledFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Livekit\SIPFeature::class);
+        $this->enabled_features = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPCallDirection call_direction = 15;</code>
+     * @return int
+     */
+    public function getCallDirection()
+    {
+        return $this->call_direction;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPCallDirection call_direction = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCallDirection($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SIPCallDirection::class);
+        $this->call_direction = $var;
 
         return $this;
     }

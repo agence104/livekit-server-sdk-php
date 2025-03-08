@@ -26,9 +26,9 @@ class SIPUri extends \Google\Protobuf\Internal\Message
      */
     protected $ip = '';
     /**
-     * Generated from protobuf field <code>string port = 4;</code>
+     * Generated from protobuf field <code>uint32 port = 4;</code>
      */
-    protected $port = '';
+    protected $port = 0;
     /**
      * Generated from protobuf field <code>.livekit.SIPTransport transport = 5;</code>
      */
@@ -43,7 +43,7 @@ class SIPUri extends \Google\Protobuf\Internal\Message
      *     @type string $user
      *     @type string $host
      *     @type string $ip
-     *     @type string $port
+     *     @type int $port
      *     @type int $transport
      * }
      */
@@ -119,8 +119,8 @@ class SIPUri extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string port = 4;</code>
-     * @return string
+     * Generated from protobuf field <code>uint32 port = 4;</code>
+     * @return int
      */
     public function getPort()
     {
@@ -128,13 +128,13 @@ class SIPUri extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string port = 4;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint32 port = 4;</code>
+     * @param int $var
      * @return $this
      */
     public function setPort($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint32($var);
         $this->port = $var;
 
         return $this;

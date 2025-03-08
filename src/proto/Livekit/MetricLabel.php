@@ -116,6 +116,24 @@ class MetricLabel
      */
     const CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_OTHER = 16;
     /**
+     * Publisher RTT (participant -> server)
+     *
+     * Generated from protobuf enum <code>PUBLISHER_RTT = 17;</code>
+     */
+    const PUBLISHER_RTT = 17;
+    /**
+     * RTT between publisher node and subscriber node (could involve intermedia node(s))
+     *
+     * Generated from protobuf enum <code>SERVER_MESH_RTT = 18;</code>
+     */
+    const SERVER_MESH_RTT = 18;
+    /**
+     * Subscribe RTT (server -> participant)
+     *
+     * Generated from protobuf enum <code>SUBSCRIBER_RTT = 19;</code>
+     */
+    const SUBSCRIBER_RTT = 19;
+    /**
      * Generated from protobuf enum <code>METRIC_LABEL_PREDEFINED_MAX_VALUE = 4096;</code>
      */
     const METRIC_LABEL_PREDEFINED_MAX_VALUE = 4096;
@@ -138,6 +156,9 @@ class MetricLabel
         self::CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_BANDWIDTH => 'CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_BANDWIDTH',
         self::CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_CPU => 'CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_CPU',
         self::CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_OTHER => 'CLIENT_VIDEO_PUBLISHER_QUALITY_LIMITATION_DURATION_OTHER',
+        self::PUBLISHER_RTT => 'PUBLISHER_RTT',
+        self::SERVER_MESH_RTT => 'SERVER_MESH_RTT',
+        self::SUBSCRIBER_RTT => 'SUBSCRIBER_RTT',
         self::METRIC_LABEL_PREDEFINED_MAX_VALUE => 'METRIC_LABEL_PREDEFINED_MAX_VALUE',
     ];
 

@@ -40,6 +40,12 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      */
     protected $joined_at = 0;
     /**
+     * timestamp when participant joined room, in milliseconds
+     *
+     * Generated from protobuf field <code>int64 joined_at_ms = 17;</code>
+     */
+    protected $joined_at_ms = 0;
+    /**
      * Generated from protobuf field <code>string name = 9;</code>
      */
     protected $name = '';
@@ -88,6 +94,8 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      *     @type string $metadata
      *     @type int|string $joined_at
      *           timestamp when participant joined room, in seconds
+     *     @type int|string $joined_at_ms
+     *           timestamp when participant joined room, in milliseconds
      *     @type string $name
      *     @type int $version
      *     @type \Livekit\ParticipantPermission $permission
@@ -237,6 +245,32 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->joined_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * timestamp when participant joined room, in milliseconds
+     *
+     * Generated from protobuf field <code>int64 joined_at_ms = 17;</code>
+     * @return int|string
+     */
+    public function getJoinedAtMs()
+    {
+        return $this->joined_at_ms;
+    }
+
+    /**
+     * timestamp when participant joined room, in milliseconds
+     *
+     * Generated from protobuf field <code>int64 joined_at_ms = 17;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setJoinedAtMs($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->joined_at_ms = $var;
 
         return $this;
     }

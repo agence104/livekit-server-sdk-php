@@ -57,6 +57,18 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> attributes = 7;</code>
      */
     private $attributes;
+    /**
+     * Cloud-only, config preset to use
+     *
+     * Generated from protobuf field <code>string room_preset = 8;</code>
+     */
+    protected $room_preset = '';
+    /**
+     * RoomConfiguration to use if the participant initiates the room
+     *
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9;</code>
+     */
+    protected $room_config = null;
 
     /**
      * Constructor.
@@ -81,6 +93,10 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           User-defined attributes for the Dispatch Rule.
      *           Participants created by this rule will inherit these attributes.
+     *     @type string $room_preset
+     *           Cloud-only, config preset to use
+     *     @type \Livekit\RoomConfiguration $room_config
+     *           RoomConfiguration to use if the participant initiates the room
      * }
      */
     public function __construct($data = NULL) {
@@ -280,6 +296,68 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Cloud-only, config preset to use
+     *
+     * Generated from protobuf field <code>string room_preset = 8;</code>
+     * @return string
+     */
+    public function getRoomPreset()
+    {
+        return $this->room_preset;
+    }
+
+    /**
+     * Cloud-only, config preset to use
+     *
+     * Generated from protobuf field <code>string room_preset = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRoomPreset($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->room_preset = $var;
+
+        return $this;
+    }
+
+    /**
+     * RoomConfiguration to use if the participant initiates the room
+     *
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9;</code>
+     * @return \Livekit\RoomConfiguration|null
+     */
+    public function getRoomConfig()
+    {
+        return $this->room_config;
+    }
+
+    public function hasRoomConfig()
+    {
+        return isset($this->room_config);
+    }
+
+    public function clearRoomConfig()
+    {
+        unset($this->room_config);
+    }
+
+    /**
+     * RoomConfiguration to use if the participant initiates the room
+     *
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9;</code>
+     * @param \Livekit\RoomConfiguration $var
+     * @return $this
+     */
+    public function setRoomConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RoomConfiguration::class);
+        $this->room_config = $var;
 
         return $this;
     }

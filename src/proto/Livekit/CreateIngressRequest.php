@@ -74,6 +74,12 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.IngressVideoOptions video = 7;</code>
      */
     protected $video = null;
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 12;</code>
+     */
+    protected $enabled = null;
 
     /**
      * Constructor.
@@ -100,6 +106,8 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
      *           Whether to transcode the ingested media. Only WHIP supports disabling transcoding currently. WHIP will default to transcoding disabled. Replaces `bypass_transcoding. 
      *     @type \Livekit\IngressAudioOptions $audio
      *     @type \Livekit\IngressVideoOptions $video
+     *     @type bool $enabled
+     *           The default value is true and when set to false, the new connection attempts will be rejected
      * }
      */
     public function __construct($data = NULL) {
@@ -411,6 +419,42 @@ class CreateIngressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\IngressVideoOptions::class);
         $this->video = $var;
+
+        return $this;
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 12;</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
+    }
+
+    /**
+     * The default value is true and when set to false, the new connection attempts will be rejected
+     *
+     * Generated from protobuf field <code>optional bool enabled = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
 
         return $this;
     }

@@ -67,6 +67,12 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional uint64 end_time = 10;</code>
      */
     protected $end_time = null;
+    /**
+     * added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
+     *
+     * Generated from protobuf field <code>bytes nonce = 11;</code>
+     */
+    protected $nonce = '';
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      *     @type int|string $start_time
      *           start and end time allow relating the message to specific media time
      *     @type int|string $end_time
+     *     @type string $nonce
+     *           added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
      * }
      */
     public function __construct($data = NULL) {
@@ -375,6 +383,32 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
+     *
+     * Generated from protobuf field <code>bytes nonce = 11;</code>
+     * @return string
+     */
+    public function getNonce()
+    {
+        return $this->nonce;
+    }
+
+    /**
+     * added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
+     *
+     * Generated from protobuf field <code>bytes nonce = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNonce($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->nonce = $var;
 
         return $this;
     }

@@ -42,6 +42,12 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string topic = 5;</code>
      */
     protected $topic = null;
+    /**
+     * added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
+     *
+     * Generated from protobuf field <code>bytes nonce = 7;</code>
+     */
+    protected $nonce = '';
 
     /**
      * Constructor.
@@ -57,6 +63,8 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_identities
      *           when set, only forward to these identities
      *     @type string $topic
+     *     @type string $nonce
+     *           added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
      * }
      */
     public function __construct($data = NULL) {
@@ -214,6 +222,32 @@ class SendDataRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->topic = $var;
+
+        return $this;
+    }
+
+    /**
+     * added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
+     *
+     * Generated from protobuf field <code>bytes nonce = 7;</code>
+     * @return string
+     */
+    public function getNonce()
+    {
+        return $this->nonce;
+    }
+
+    /**
+     * added by SDK to enable de-duping of messages, for INTERNAL USE ONLY
+     *
+     * Generated from protobuf field <code>bytes nonce = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNonce($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->nonce = $var;
 
         return $this;
     }

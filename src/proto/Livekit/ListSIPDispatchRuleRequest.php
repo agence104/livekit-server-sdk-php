@@ -9,10 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * ListSIPDispatchRuleRequest lists dispatch rules for given filters. If no filters are set, all rules are listed.
+ *
  * Generated from protobuf message <code>livekit.ListSIPDispatchRuleRequest</code>
  */
 class ListSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 3;</code>
+     */
+    protected $page = null;
+    /**
+     * Rule IDs to list. If this option is set, the response will contains rules in the same order.
+     * If any of the rules is missing, a nil item in that position will be sent in the response.
+     *
+     * Generated from protobuf field <code>repeated string dispatch_rule_ids = 1;</code>
+     */
+    private $dispatch_rule_ids;
+    /**
+     * Only list rules that contain one of the Trunk IDs, including wildcard rules.
+     *
+     * Generated from protobuf field <code>repeated string trunk_ids = 2;</code>
+     */
+    private $trunk_ids;
 
     /**
      * Constructor.
@@ -20,11 +39,103 @@ class ListSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Livekit\Pagination $page
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $dispatch_rule_ids
+     *           Rule IDs to list. If this option is set, the response will contains rules in the same order.
+     *           If any of the rules is missing, a nil item in that position will be sent in the response.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $trunk_ids
+     *           Only list rules that contain one of the Trunk IDs, including wildcard rules.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\LivekitSip::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 3;</code>
+     * @return \Livekit\Pagination|null
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    public function hasPage()
+    {
+        return isset($this->page);
+    }
+
+    public function clearPage()
+    {
+        unset($this->page);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 3;</code>
+     * @param \Livekit\Pagination $var
+     * @return $this
+     */
+    public function setPage($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\Pagination::class);
+        $this->page = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rule IDs to list. If this option is set, the response will contains rules in the same order.
+     * If any of the rules is missing, a nil item in that position will be sent in the response.
+     *
+     * Generated from protobuf field <code>repeated string dispatch_rule_ids = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDispatchRuleIds()
+    {
+        return $this->dispatch_rule_ids;
+    }
+
+    /**
+     * Rule IDs to list. If this option is set, the response will contains rules in the same order.
+     * If any of the rules is missing, a nil item in that position will be sent in the response.
+     *
+     * Generated from protobuf field <code>repeated string dispatch_rule_ids = 1;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDispatchRuleIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->dispatch_rule_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Only list rules that contain one of the Trunk IDs, including wildcard rules.
+     *
+     * Generated from protobuf field <code>repeated string trunk_ids = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTrunkIds()
+    {
+        return $this->trunk_ids;
+    }
+
+    /**
+     * Only list rules that contain one of the Trunk IDs, including wildcard rules.
+     *
+     * Generated from protobuf field <code>repeated string trunk_ids = 2;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTrunkIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->trunk_ids = $arr;
+
+        return $this;
     }
 
 }

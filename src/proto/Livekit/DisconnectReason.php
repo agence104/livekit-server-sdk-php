@@ -87,6 +87,12 @@ class DisconnectReason
      * Generated from protobuf enum <code>USER_REJECTED = 12;</code>
      */
     const USER_REJECTED = 12;
+    /**
+     * SIP protocol failure or unexpected response
+     *
+     * Generated from protobuf enum <code>SIP_TRUNK_FAILURE = 13;</code>
+     */
+    const SIP_TRUNK_FAILURE = 13;
 
     private static $valueToName = [
         self::UNKNOWN_REASON => 'UNKNOWN_REASON',
@@ -102,6 +108,7 @@ class DisconnectReason
         self::ROOM_CLOSED => 'ROOM_CLOSED',
         self::USER_UNAVAILABLE => 'USER_UNAVAILABLE',
         self::USER_REJECTED => 'USER_REJECTED',
+        self::SIP_TRUNK_FAILURE => 'SIP_TRUNK_FAILURE',
     ];
 
     public static function name($value)

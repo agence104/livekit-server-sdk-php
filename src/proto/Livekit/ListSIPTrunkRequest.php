@@ -13,6 +13,10 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class ListSIPTrunkRequest extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 1;</code>
+     */
+    protected $page = null;
 
     /**
      * Constructor.
@@ -20,11 +24,44 @@ class ListSIPTrunkRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Livekit\Pagination $page
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\LivekitSip::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 1;</code>
+     * @return \Livekit\Pagination|null
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    public function hasPage()
+    {
+        return isset($this->page);
+    }
+
+    public function clearPage()
+    {
+        unset($this->page);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 1;</code>
+     * @param \Livekit\Pagination $var
+     * @return $this
+     */
+    public function setPage($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\Pagination::class);
+        $this->page = $var;
+
+        return $this;
     }
 
 }

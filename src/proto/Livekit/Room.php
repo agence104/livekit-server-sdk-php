@@ -38,6 +38,10 @@ class Room extends \Google\Protobuf\Internal\Message
      */
     protected $creation_time = 0;
     /**
+     * Generated from protobuf field <code>int64 creation_time_ms = 15;</code>
+     */
+    protected $creation_time_ms = 0;
+    /**
      * Generated from protobuf field <code>string turn_password = 6;</code>
      */
     protected $turn_password = '';
@@ -78,6 +82,7 @@ class Room extends \Google\Protobuf\Internal\Message
      *     @type int $departure_timeout
      *     @type int $max_participants
      *     @type int|string $creation_time
+     *     @type int|string $creation_time_ms
      *     @type string $turn_password
      *     @type \Livekit\Codec[]|\Google\Protobuf\Internal\RepeatedField $enabled_codecs
      *     @type string $metadata
@@ -220,6 +225,28 @@ class Room extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->creation_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 creation_time_ms = 15;</code>
+     * @return int|string
+     */
+    public function getCreationTimeMs()
+    {
+        return $this->creation_time_ms;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 creation_time_ms = 15;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setCreationTimeMs($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->creation_time_ms = $var;
 
         return $this;
     }

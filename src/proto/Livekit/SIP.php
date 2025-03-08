@@ -14,7 +14,7 @@ namespace Livekit;
 interface SIP
 {
     /**
-     * rpc CreateSIPTrunk(CreateSIPTrunkRequest) returns (SIPTrunkInfo) { option deprecated = true; }; DELETED
+     *
      *
      * Generated from protobuf method <code>livekit.SIP/ListSIPTrunk</code>
      *

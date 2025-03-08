@@ -54,6 +54,9 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\RpcRequest $rpc_request
      *     @type \Livekit\RpcAck $rpc_ack
      *     @type \Livekit\RpcResponse $rpc_response
+     *     @type \Livekit\DataStream\Header $stream_header
+     *     @type \Livekit\DataStream\Chunk $stream_chunk
+     *     @type \Livekit\DataStream\Trailer $stream_trailer
      * }
      */
     public function __construct($data = NULL) {
@@ -383,6 +386,87 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\RpcResponse::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DataStream.Header stream_header = 13;</code>
+     * @return \Livekit\DataStream\Header|null
+     */
+    public function getStreamHeader()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasStreamHeader()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DataStream.Header stream_header = 13;</code>
+     * @param \Livekit\DataStream\Header $var
+     * @return $this
+     */
+    public function setStreamHeader($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\DataStream\Header::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DataStream.Chunk stream_chunk = 14;</code>
+     * @return \Livekit\DataStream\Chunk|null
+     */
+    public function getStreamChunk()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasStreamChunk()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DataStream.Chunk stream_chunk = 14;</code>
+     * @param \Livekit\DataStream\Chunk $var
+     * @return $this
+     */
+    public function setStreamChunk($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\DataStream\Chunk::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DataStream.Trailer stream_trailer = 15;</code>
+     * @return \Livekit\DataStream\Trailer|null
+     */
+    public function getStreamTrailer()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasStreamTrailer()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.DataStream.Trailer stream_trailer = 15;</code>
+     * @param \Livekit\DataStream\Trailer $var
+     * @return $this
+     */
+    public function setStreamTrailer($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\DataStream\Trailer::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }

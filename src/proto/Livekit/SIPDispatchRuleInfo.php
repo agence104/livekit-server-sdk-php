@@ -55,6 +55,28 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> attributes = 8;</code>
      */
     private $attributes;
+    /**
+     * Cloud-only, config preset to use
+     *
+     * Generated from protobuf field <code>string room_preset = 9;</code>
+     */
+    protected $room_preset = '';
+    /**
+     * RoomConfiguration to use if the participant initiates the room
+     *
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 10;</code>
+     */
+    protected $room_config = null;
+    /**
+     * Generated from protobuf field <code>bool krisp_enabled = 11;</code>
+     */
+    protected $krisp_enabled = false;
+    /**
+     * NEXT ID: 13
+     *
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 12;</code>
+     */
+    protected $media_encryption = 0;
 
     /**
      * Constructor.
@@ -76,6 +98,13 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           User-defined attributes for the Dispatch Rule.
      *           Participants created by this rule will inherit these attributes.
+     *     @type string $room_preset
+     *           Cloud-only, config preset to use
+     *     @type \Livekit\RoomConfiguration $room_config
+     *           RoomConfiguration to use if the participant initiates the room
+     *     @type bool $krisp_enabled
+     *     @type int $media_encryption
+     *           NEXT ID: 13
      * }
      */
     public function __construct($data = NULL) {
@@ -285,6 +314,116 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Cloud-only, config preset to use
+     *
+     * Generated from protobuf field <code>string room_preset = 9;</code>
+     * @return string
+     */
+    public function getRoomPreset()
+    {
+        return $this->room_preset;
+    }
+
+    /**
+     * Cloud-only, config preset to use
+     *
+     * Generated from protobuf field <code>string room_preset = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRoomPreset($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->room_preset = $var;
+
+        return $this;
+    }
+
+    /**
+     * RoomConfiguration to use if the participant initiates the room
+     *
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 10;</code>
+     * @return \Livekit\RoomConfiguration|null
+     */
+    public function getRoomConfig()
+    {
+        return $this->room_config;
+    }
+
+    public function hasRoomConfig()
+    {
+        return isset($this->room_config);
+    }
+
+    public function clearRoomConfig()
+    {
+        unset($this->room_config);
+    }
+
+    /**
+     * RoomConfiguration to use if the participant initiates the room
+     *
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 10;</code>
+     * @param \Livekit\RoomConfiguration $var
+     * @return $this
+     */
+    public function setRoomConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\RoomConfiguration::class);
+        $this->room_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool krisp_enabled = 11;</code>
+     * @return bool
+     */
+    public function getKrispEnabled()
+    {
+        return $this->krisp_enabled;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool krisp_enabled = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setKrispEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->krisp_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * NEXT ID: 13
+     *
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 12;</code>
+     * @return int
+     */
+    public function getMediaEncryption()
+    {
+        return $this->media_encryption;
+    }
+
+    /**
+     * NEXT ID: 13
+     *
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMediaEncryption($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SIPMediaEncryption::class);
+        $this->media_encryption = $var;
 
         return $this;
     }

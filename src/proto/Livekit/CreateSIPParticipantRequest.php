@@ -23,11 +23,21 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      */
     protected $sip_trunk_id = '';
     /**
+     * Generated from protobuf field <code>.livekit.SIPOutboundConfig trunk = 20;</code>
+     */
+    protected $trunk = null;
+    /**
      * What number should be dialed via SIP
      *
      * Generated from protobuf field <code>string sip_call_to = 2;</code>
      */
     protected $sip_call_to = '';
+    /**
+     * Optional SIP From number to use. If empty, trunk number is used.
+     *
+     * Generated from protobuf field <code>string sip_number = 15;</code>
+     */
+    protected $sip_number = '';
     /**
      * What LiveKit room should this participant be connected too
      *
@@ -84,6 +94,21 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      */
     protected $hide_phone_number = false;
     /**
+     * These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 16;</code>
+     */
+    private $headers;
+    /**
+     * Map SIP headers from 200 OK to sip.h.* participant attributes automatically.
+     * When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     * When mapping 200 OK headers to follow-up request headers with attributes_to_headers map,
+     * lowercase header names should be used, for example: sip.h.x-custom-header.
+     *
+     * Generated from protobuf field <code>.livekit.SIPHeaderOptions include_headers = 17;</code>
+     */
+    protected $include_headers = 0;
+    /**
      * Max time for the callee to answer the call.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
@@ -98,9 +123,19 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Enable voice isolation for the callee.
      *
-     * Generated from protobuf field <code>bool enable_krisp = 14;</code>
+     * Generated from protobuf field <code>bool krisp_enabled = 14;</code>
      */
-    protected $enable_krisp = false;
+    protected $krisp_enabled = false;
+    /**
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 18;</code>
+     */
+    protected $media_encryption = 0;
+    /**
+     * Wait for the answer for the call before returning.
+     *
+     * Generated from protobuf field <code>bool wait_until_answered = 19;</code>
+     */
+    protected $wait_until_answered = false;
 
     /**
      * Constructor.
@@ -110,8 +145,11 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $sip_trunk_id
      *           What SIP Trunk should be used to dial the user
+     *     @type \Livekit\SIPOutboundConfig $trunk
      *     @type string $sip_call_to
      *           What number should be dialed via SIP
+     *     @type string $sip_number
+     *           Optional SIP From number to use. If empty, trunk number is used.
      *     @type string $room_name
      *           What LiveKit room should this participant be connected too
      *     @type string $participant_identity
@@ -131,12 +169,22 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $hide_phone_number
      *           By default the From value (Phone number) is used for participant name/identity (if not set) and added to attributes.
      *           If true, a random value for identity will be used and numbers will be omitted from attributes.
+     *     @type array|\Google\Protobuf\Internal\MapField $headers
+     *           These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *     @type int $include_headers
+     *           Map SIP headers from 200 OK to sip.h.* participant attributes automatically.
+     *           When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     *           When mapping 200 OK headers to follow-up request headers with attributes_to_headers map,
+     *           lowercase header names should be used, for example: sip.h.x-custom-header.
      *     @type \Google\Protobuf\Duration $ringing_timeout
      *           Max time for the callee to answer the call.
      *     @type \Google\Protobuf\Duration $max_call_duration
      *           Max call duration.
-     *     @type bool $enable_krisp
+     *     @type bool $krisp_enabled
      *           Enable voice isolation for the callee.
+     *     @type int $media_encryption
+     *     @type bool $wait_until_answered
+     *           Wait for the answer for the call before returning.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +219,38 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.livekit.SIPOutboundConfig trunk = 20;</code>
+     * @return \Livekit\SIPOutboundConfig|null
+     */
+    public function getTrunk()
+    {
+        return $this->trunk;
+    }
+
+    public function hasTrunk()
+    {
+        return isset($this->trunk);
+    }
+
+    public function clearTrunk()
+    {
+        unset($this->trunk);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPOutboundConfig trunk = 20;</code>
+     * @param \Livekit\SIPOutboundConfig $var
+     * @return $this
+     */
+    public function setTrunk($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SIPOutboundConfig::class);
+        $this->trunk = $var;
+
+        return $this;
+    }
+
+    /**
      * What number should be dialed via SIP
      *
      * Generated from protobuf field <code>string sip_call_to = 2;</code>
@@ -192,6 +272,32 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->sip_call_to = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional SIP From number to use. If empty, trunk number is used.
+     *
+     * Generated from protobuf field <code>string sip_number = 15;</code>
+     * @return string
+     */
+    public function getSipNumber()
+    {
+        return $this->sip_number;
+    }
+
+    /**
+     * Optional SIP From number to use. If empty, trunk number is used.
+     *
+     * Generated from protobuf field <code>string sip_number = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSipNumber($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sip_number = $var;
 
         return $this;
     }
@@ -435,6 +541,64 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 16;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * These headers are sent as-is and may help identify this call as coming from LiveKit for the other SIP endpoint.
+     *
+     * Generated from protobuf field <code>map<string, string> headers = 16;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Map SIP headers from 200 OK to sip.h.* participant attributes automatically.
+     * When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     * When mapping 200 OK headers to follow-up request headers with attributes_to_headers map,
+     * lowercase header names should be used, for example: sip.h.x-custom-header.
+     *
+     * Generated from protobuf field <code>.livekit.SIPHeaderOptions include_headers = 17;</code>
+     * @return int
+     */
+    public function getIncludeHeaders()
+    {
+        return $this->include_headers;
+    }
+
+    /**
+     * Map SIP headers from 200 OK to sip.h.* participant attributes automatically.
+     * When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     * When mapping 200 OK headers to follow-up request headers with attributes_to_headers map,
+     * lowercase header names should be used, for example: sip.h.x-custom-header.
+     *
+     * Generated from protobuf field <code>.livekit.SIPHeaderOptions include_headers = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIncludeHeaders($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SIPHeaderOptions::class);
+        $this->include_headers = $var;
+
+        return $this;
+    }
+
+    /**
      * Max time for the callee to answer the call.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
@@ -509,25 +673,73 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Enable voice isolation for the callee.
      *
-     * Generated from protobuf field <code>bool enable_krisp = 14;</code>
+     * Generated from protobuf field <code>bool krisp_enabled = 14;</code>
      * @return bool
      */
-    public function getEnableKrisp()
+    public function getKrispEnabled()
     {
-        return $this->enable_krisp;
+        return $this->krisp_enabled;
     }
 
     /**
      * Enable voice isolation for the callee.
      *
-     * Generated from protobuf field <code>bool enable_krisp = 14;</code>
+     * Generated from protobuf field <code>bool krisp_enabled = 14;</code>
      * @param bool $var
      * @return $this
      */
-    public function setEnableKrisp($var)
+    public function setKrispEnabled($var)
     {
         GPBUtil::checkBool($var);
-        $this->enable_krisp = $var;
+        $this->krisp_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 18;</code>
+     * @return int
+     */
+    public function getMediaEncryption()
+    {
+        return $this->media_encryption;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 18;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMediaEncryption($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SIPMediaEncryption::class);
+        $this->media_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Wait for the answer for the call before returning.
+     *
+     * Generated from protobuf field <code>bool wait_until_answered = 19;</code>
+     * @return bool
+     */
+    public function getWaitUntilAnswered()
+    {
+        return $this->wait_until_answered;
+    }
+
+    /**
+     * Wait for the answer for the call before returning.
+     *
+     * Generated from protobuf field <code>bool wait_until_answered = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setWaitUntilAnswered($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->wait_until_answered = $var;
 
         return $this;
     }

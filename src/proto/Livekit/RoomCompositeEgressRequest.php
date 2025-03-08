@@ -34,6 +34,12 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $audio_only = false;
     /**
+     * only applies to audio_only egress (default DEFAULT_MIXING)
+     *
+     * Generated from protobuf field <code>.livekit.AudioMixing audio_mixing = 15;</code>
+     */
+    protected $audio_mixing = 0;
+    /**
      * (default false)
      *
      * Generated from protobuf field <code>bool video_only = 4;</code>
@@ -76,6 +82,8 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
      *           (optional)
      *     @type bool $audio_only
      *           (default false)
+     *     @type int $audio_mixing
+     *           only applies to audio_only egress (default DEFAULT_MIXING)
      *     @type bool $video_only
      *           (default false)
      *     @type string $custom_base_url
@@ -172,6 +180,32 @@ class RoomCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->audio_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * only applies to audio_only egress (default DEFAULT_MIXING)
+     *
+     * Generated from protobuf field <code>.livekit.AudioMixing audio_mixing = 15;</code>
+     * @return int
+     */
+    public function getAudioMixing()
+    {
+        return $this->audio_mixing;
+    }
+
+    /**
+     * only applies to audio_only egress (default DEFAULT_MIXING)
+     *
+     * Generated from protobuf field <code>.livekit.AudioMixing audio_mixing = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAudioMixing($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\AudioMixing::class);
+        $this->audio_mixing = $var;
 
         return $this;
     }

@@ -9,10 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * ListSIPOutboundTrunkRequest lists outbound trunks for given filters. If no filters are set, all trunks are listed.
+ *
  * Generated from protobuf message <code>livekit.ListSIPOutboundTrunkRequest</code>
  */
 class ListSIPOutboundTrunkRequest extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 3;</code>
+     */
+    protected $page = null;
+    /**
+     * Trunk IDs to list. If this option is set, the response will contains trunks in the same order.
+     * If any of the trunks is missing, a nil item in that position will be sent in the response.
+     *
+     * Generated from protobuf field <code>repeated string trunk_ids = 1;</code>
+     */
+    private $trunk_ids;
+    /**
+     * Only list trunks that contain one of the numbers, including wildcard trunks.
+     *
+     * Generated from protobuf field <code>repeated string numbers = 2;</code>
+     */
+    private $numbers;
 
     /**
      * Constructor.
@@ -20,11 +39,103 @@ class ListSIPOutboundTrunkRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Livekit\Pagination $page
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $trunk_ids
+     *           Trunk IDs to list. If this option is set, the response will contains trunks in the same order.
+     *           If any of the trunks is missing, a nil item in that position will be sent in the response.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $numbers
+     *           Only list trunks that contain one of the numbers, including wildcard trunks.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\LivekitSip::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 3;</code>
+     * @return \Livekit\Pagination|null
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    public function hasPage()
+    {
+        return isset($this->page);
+    }
+
+    public function clearPage()
+    {
+        unset($this->page);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.Pagination page = 3;</code>
+     * @param \Livekit\Pagination $var
+     * @return $this
+     */
+    public function setPage($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\Pagination::class);
+        $this->page = $var;
+
+        return $this;
+    }
+
+    /**
+     * Trunk IDs to list. If this option is set, the response will contains trunks in the same order.
+     * If any of the trunks is missing, a nil item in that position will be sent in the response.
+     *
+     * Generated from protobuf field <code>repeated string trunk_ids = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTrunkIds()
+    {
+        return $this->trunk_ids;
+    }
+
+    /**
+     * Trunk IDs to list. If this option is set, the response will contains trunks in the same order.
+     * If any of the trunks is missing, a nil item in that position will be sent in the response.
+     *
+     * Generated from protobuf field <code>repeated string trunk_ids = 1;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTrunkIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->trunk_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Only list trunks that contain one of the numbers, including wildcard trunks.
+     *
+     * Generated from protobuf field <code>repeated string numbers = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNumbers()
+    {
+        return $this->numbers;
+    }
+
+    /**
+     * Only list trunks that contain one of the numbers, including wildcard trunks.
+     *
+     * Generated from protobuf field <code>repeated string numbers = 2;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNumbers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->numbers = $arr;
+
+        return $this;
     }
 
 }

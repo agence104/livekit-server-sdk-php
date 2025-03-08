@@ -74,6 +74,22 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      */
     private $headers_to_attributes;
     /**
+     * Map LiveKit attributes to SIP X-* headers when sending BYE or REFER requests.
+     * Keys are the names of attributes and values are the names of X-* headers they will be mapped to.
+     *
+     * Generated from protobuf field <code>map<string, string> attributes_to_headers = 14;</code>
+     */
+    private $attributes_to_headers;
+    /**
+     * Map SIP headers from INVITE to sip.h.* participant attributes automatically.
+     * When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     * When mapping INVITE headers to response headers with attributes_to_headers map,
+     * lowercase header names should be used, for example: sip.h.x-custom-header.
+     *
+     * Generated from protobuf field <code>.livekit.SIPHeaderOptions include_headers = 15;</code>
+     */
+    protected $include_headers = 0;
+    /**
      * Max time for the caller to wait for track subscription.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
@@ -89,6 +105,10 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool krisp_enabled = 13;</code>
      */
     protected $krisp_enabled = false;
+    /**
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 16;</code>
+     */
+    protected $media_encryption = 0;
 
     /**
      * Constructor.
@@ -118,11 +138,20 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      *           Include these SIP X-* headers in 200 OK responses.
      *     @type array|\Google\Protobuf\Internal\MapField $headers_to_attributes
      *           Map SIP X-* headers from INVITE to SIP participant attributes.
+     *     @type array|\Google\Protobuf\Internal\MapField $attributes_to_headers
+     *           Map LiveKit attributes to SIP X-* headers when sending BYE or REFER requests.
+     *           Keys are the names of attributes and values are the names of X-* headers they will be mapped to.
+     *     @type int $include_headers
+     *           Map SIP headers from INVITE to sip.h.* participant attributes automatically.
+     *           When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     *           When mapping INVITE headers to response headers with attributes_to_headers map,
+     *           lowercase header names should be used, for example: sip.h.x-custom-header.
      *     @type \Google\Protobuf\Duration $ringing_timeout
      *           Max time for the caller to wait for track subscription.
      *     @type \Google\Protobuf\Duration $max_call_duration
      *           Max call duration.
      *     @type bool $krisp_enabled
+     *     @type int $media_encryption
      * }
      */
     public function __construct($data = NULL) {
@@ -391,6 +420,66 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Map LiveKit attributes to SIP X-* headers when sending BYE or REFER requests.
+     * Keys are the names of attributes and values are the names of X-* headers they will be mapped to.
+     *
+     * Generated from protobuf field <code>map<string, string> attributes_to_headers = 14;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAttributesToHeaders()
+    {
+        return $this->attributes_to_headers;
+    }
+
+    /**
+     * Map LiveKit attributes to SIP X-* headers when sending BYE or REFER requests.
+     * Keys are the names of attributes and values are the names of X-* headers they will be mapped to.
+     *
+     * Generated from protobuf field <code>map<string, string> attributes_to_headers = 14;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAttributesToHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->attributes_to_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Map SIP headers from INVITE to sip.h.* participant attributes automatically.
+     * When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     * When mapping INVITE headers to response headers with attributes_to_headers map,
+     * lowercase header names should be used, for example: sip.h.x-custom-header.
+     *
+     * Generated from protobuf field <code>.livekit.SIPHeaderOptions include_headers = 15;</code>
+     * @return int
+     */
+    public function getIncludeHeaders()
+    {
+        return $this->include_headers;
+    }
+
+    /**
+     * Map SIP headers from INVITE to sip.h.* participant attributes automatically.
+     * When the names of required headers is known, using headers_to_attributes is strongly recommended.
+     * When mapping INVITE headers to response headers with attributes_to_headers map,
+     * lowercase header names should be used, for example: sip.h.x-custom-header.
+     *
+     * Generated from protobuf field <code>.livekit.SIPHeaderOptions include_headers = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIncludeHeaders($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SIPHeaderOptions::class);
+        $this->include_headers = $var;
+
+        return $this;
+    }
+
+    /**
      * Max time for the caller to wait for track subscription.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 11;</code>
@@ -480,6 +569,28 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->krisp_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 16;</code>
+     * @return int
+     */
+    public function getMediaEncryption()
+    {
+        return $this->media_encryption;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 16;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMediaEncryption($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\SIPMediaEncryption::class);
+        $this->media_encryption = $var;
 
         return $this;
     }

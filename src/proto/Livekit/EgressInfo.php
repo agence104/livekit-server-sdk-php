@@ -26,6 +26,10 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $room_name = '';
     /**
+     * Generated from protobuf field <code>.livekit.EgressSourceType source_type = 26;</code>
+     */
+    protected $source_type = 0;
+    /**
      * Generated from protobuf field <code>.livekit.EgressStatus status = 3;</code>
      */
     protected $status = 0;
@@ -74,11 +78,11 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $manifest_location = '';
     /**
-     * next ID: 24
+     * next ID: 27
      *
-     * Generated from protobuf field <code>string manifest_presigned_url = 24;</code>
+     * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
      */
-    protected $manifest_presigned_url = '';
+    protected $backup_storage_used = false;
     protected $request;
     protected $result;
 
@@ -91,6 +95,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type string $egress_id
      *     @type string $room_id
      *     @type string $room_name
+     *     @type int $source_type
      *     @type int $status
      *     @type int|string $started_at
      *     @type int|string $ended_at
@@ -111,8 +116,8 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\SegmentsInfo[]|\Google\Protobuf\Internal\RepeatedField $segment_results
      *     @type \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $image_results
      *     @type string $manifest_location
-     *     @type string $manifest_presigned_url
-     *           next ID: 24
+     *     @type bool $backup_storage_used
+     *           next ID: 27
      * }
      */
     public function __construct($data = NULL) {
@@ -182,6 +187,28 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->room_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EgressSourceType source_type = 26;</code>
+     * @return int
+     */
+    public function getSourceType()
+    {
+        return $this->source_type;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EgressSourceType source_type = 26;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSourceType($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\EgressSourceType::class);
+        $this->source_type = $var;
 
         return $this;
     }
@@ -682,27 +709,27 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * next ID: 24
+     * next ID: 27
      *
-     * Generated from protobuf field <code>string manifest_presigned_url = 24;</code>
-     * @return string
+     * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
+     * @return bool
      */
-    public function getManifestPresignedUrl()
+    public function getBackupStorageUsed()
     {
-        return $this->manifest_presigned_url;
+        return $this->backup_storage_used;
     }
 
     /**
-     * next ID: 24
+     * next ID: 27
      *
-     * Generated from protobuf field <code>string manifest_presigned_url = 24;</code>
-     * @param string $var
+     * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
+     * @param bool $var
      * @return $this
      */
-    public function setManifestPresignedUrl($var)
+    public function setBackupStorageUsed($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->manifest_presigned_url = $var;
+        GPBUtil::checkBool($var);
+        $this->backup_storage_used = $var;
 
         return $this;
     }
