@@ -2,64 +2,81 @@
 
 namespace Agence104\LiveKit\Tests;
 
+use Agence104\LiveKit\IngressServiceClient;
 use Livekit\IngressInfo;
 use Livekit\IngressInput;
-use PHPUnit\Framework\TestCase;
 use Livekit\ListIngressResponse;
-use Agence104\LiveKit\IngressServiceClient;
+use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests the IngressServiceClient class.
+ */
 class IngressServiceClientTest extends TestCase {
 
   /**
    * The ingress service client instance.
    *
-   * @var IngressServiceClient
+   * @var \Agence104\LiveKit\IngressServiceClient
    */
   private $client;
 
   /**
-   * The room name of the main room with participants.
-   * This room is created prior to running the tests.
+   * Main room name with participants, created before test execution.
    *
    * @var string
    */
   private $mainRoom = 'testRoomParticipants';
 
+  /**
+   * Sets up the test environment.
+   */
   protected function setUp(): void {
     try {
       $this->client = new IngressServiceClient();
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->fail('Failed to set up IngressServiceClient: ' . $e->getMessage());
     }
   }
 
+  /**
+   * Tears down the test environment.
+   */
   public static function tearDownAfterClass(): void {
-    $host = getenv('LIVEKIT_URL') ?: "http://localhost:7880";
-    $apiKey = getenv('LIVEKIT_API_KEY');
-    $apiSecret = getenv('LIVEKIT_API_SECRET');
-
     try {
-      $client = new IngressServiceClient($host, $apiKey, $apiSecret);
+      $client = new IngressServiceClient();
       // Remove all ingress.
       $response = $client->listIngress();
-      foreach($response->getItems() as $ingress) {
+      foreach ($response->getItems() as $ingress) {
         $client->deleteIngress($ingress->getIngressId());
       }
     }
-    catch(\Exception $e) {}
+    catch (\Exception $e) {
+    }
     parent::tearDownAfterClass();
   }
 
+  /**
+   * Validates if an ingress exists.
+   *
+   * @param string $ingressId
+   *   The ingress ID.
+   *
+   * @return bool
+   *   TRUE if the ingress exists, FALSE otherwise.
+   */
   private function validateIngressExists($ingressId) {
     if (empty($ingressId)) {
       $this->fail('Test Ingress not found!');
-      return false;
+      return FALSE;
     }
 
-    return true;
+    return TRUE;
   }
 
+  /**
+   * Tests creating an ingress.
+   */
   public function testCreateIngress() {
     $name = 'testIngress';
     $participantIdentity = 'ingress-test-user';
@@ -83,6 +100,8 @@ class IngressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests updating an ingress.
+   *
    * @depends testCreateIngress
    */
   public function testUpdateIngress($ingressId) {
@@ -109,6 +128,8 @@ class IngressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests listing ingresses.
+   *
    * @depends testCreateIngress
    */
   public function testListIngress($ingressId) {
@@ -122,6 +143,8 @@ class IngressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests deleting an ingress.
+   *
    * @depends testCreateIngress
    */
   public function testDeleteIngress($ingressId) {
@@ -133,7 +156,7 @@ class IngressServiceClientTest extends TestCase {
       $response = $this->client->deleteIngress($ingressId);
       $this->assertInstanceOf(IngressInfo::class, $response);
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->fail('Error deleting Ingress: ' . $e->getMessage());
     }
   }

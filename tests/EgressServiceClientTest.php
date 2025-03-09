@@ -2,28 +2,30 @@
 
 namespace Agence104\LiveKit\Tests;
 
-use Livekit\TrackType;
+use Agence104\LiveKit\EgressServiceClient;
+use Agence104\LiveKit\RoomServiceClient;
 use Livekit\EgressInfo;
+use Livekit\ListEgressResponse;
+use Livekit\StreamInfo\Status;
 use Livekit\StreamOutput;
 use Livekit\StreamProtocol;
-use Livekit\StreamInfo\Status;
-use Livekit\ListEgressResponse;
+use Livekit\TrackType;
 use PHPUnit\Framework\TestCase;
-use Agence104\LiveKit\RoomServiceClient;
-use Agence104\LiveKit\EgressServiceClient;
 
+/**
+ * Tests the EgressServiceClient class.
+ */
 class EgressServiceClientTest extends TestCase {
 
   /**
    * The egress service client instance.
    *
-   * @var EgressServiceClient
+   * @var \Agence104\LiveKit\EgressServiceClient
    */
   private $client;
 
   /**
-   * The room name of the main room with participants.
-   * This room is created prior to running the tests.
+   * Main room name with participants, created before test execution.
    *
    * @var string
    */
@@ -43,6 +45,9 @@ class EgressServiceClientTest extends TestCase {
    */
   private $rtmpUrl2;
 
+  /**
+   * Sets up the test environment.
+   */
   protected function setUp(): void {
     $this->rtmpUrl = getenv('LIVEKIT_EGRESS_RTMP_URL')
       ?: "rtmp://youtube-url/stream";
@@ -52,30 +57,43 @@ class EgressServiceClientTest extends TestCase {
     try {
       $this->client = new EgressServiceClient();
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->fail('Failed to set up EgressServiceClient: ' . $e->getMessage());
     }
   }
 
+  /**
+   * Tears down the test environment.
+   */
   public static function tearDownAfterClass(): void {
     try {
       $client = new EgressServiceClient();
       // Stop all egress instances.
-      $response = $client->listEgress('','', TRUE);
-      foreach($response->getItems() as $egress) {
+      $response = $client->listEgress('', '', TRUE);
+      foreach ($response->getItems() as $egress) {
         try {
           $client->stopEgress($egress->getEgressId());
-        } catch (\Exception $e) {}
+        }
+        catch (\Exception $e) {
+        }
       }
     }
-    catch(\Exception $e) {}
+    catch (\Exception $e) {
+    }
+
     parent::tearDownAfterClass();
   }
 
+  /**
+   * Tests starting a room composite egress.
+   *
+   * @return string
+   *   The egress ID.
+   */
   public function testStartRoomCompositeEgress() {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl]
+      'urls' => [$this->rtmpUrl],
     ]);
 
     $response = $this->client->startRoomCompositeEgress(
@@ -96,6 +114,8 @@ class EgressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests updating the layout of a room composite egress.
+   *
    * @depends testStartRoomCompositeEgress
    */
   public function testUpdateLayoutEgress($egressId) {
@@ -111,6 +131,8 @@ class EgressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests updating the stream of a room composite egress.
+   *
    * @depends testStartRoomCompositeEgress
    */
   public function testUpdateStream($egressId) {
@@ -153,6 +175,8 @@ class EgressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests listing egress instances.
+   *
    * @depends testStartRoomCompositeEgress
    */
   public function testListEgress($egressId) {
@@ -178,6 +202,8 @@ class EgressServiceClientTest extends TestCase {
   }
 
   /**
+   * Tests stopping an egress instance.
+   *
    * @depends testStartRoomCompositeEgress
    */
   public function testStopEgress($egressId) {
@@ -185,7 +211,7 @@ class EgressServiceClientTest extends TestCase {
       $response = $this->client->stopEgress($egressId);
       $this->assertInstanceOf(EgressInfo::class, $response);
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->fail('Error deleting Ingress: ' . $e->getMessage());
     }
 
@@ -193,10 +219,13 @@ class EgressServiceClientTest extends TestCase {
     sleep(10);
   }
 
+  /**
+   * Tests starting a web egress.
+   */
   public function testStartWebEgress() {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl]
+      'urls' => [$this->rtmpUrl],
     ]);
 
     $response = $this->client->startWebEgress(
@@ -215,15 +244,18 @@ class EgressServiceClientTest extends TestCase {
     $this->client->stopEgress($egressId);
   }
 
+  /**
+   * Tests starting a track composite egress.
+   */
   public function testStartTrackCompositeEgress() {
     try {
       $roomClient = new RoomServiceClient();
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->fail('Failed to set up RoomServiceClient: ' . $e->getMessage());
     }
-    $videoTrackId = null;
-    $audioTrackId = null;
+    $videoTrackId = NULL;
+    $audioTrackId = NULL;
     $response = $roomClient->listParticipants($this->mainRoom);
     foreach ($response->getParticipants() as $p) {
       if ($p->getIsPublisher()) {
@@ -231,7 +263,7 @@ class EgressServiceClientTest extends TestCase {
           if (!$t->getMuted() && !$videoTrackId && $t->getType() === TrackType::VIDEO) {
             $videoTrackId = $t->getSid();
           }
-          else if (!$t->getMuted() && !$audioTrackId && $t->getType() === TrackType::AUDIO) {
+          elseif (!$t->getMuted() && !$audioTrackId && $t->getType() === TrackType::AUDIO) {
             $audioTrackId = $t->getSid();
           }
 
@@ -251,7 +283,7 @@ class EgressServiceClientTest extends TestCase {
 
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl]
+      'urls' => [$this->rtmpUrl],
     ]);
 
     $response = $this->client->startTrackCompositeEgress(
@@ -275,14 +307,17 @@ class EgressServiceClientTest extends TestCase {
     sleep(10);
   }
 
+  /**
+   * Tests starting a track egress.
+   */
   public function testStartTrackEgress() {
     try {
       $roomClient = new RoomServiceClient();
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->fail('Failed to set up RoomServiceClient: ' . $e->getMessage());
     }
-    $trackId = null;
+    $trackId = NULL;
     $response = $roomClient->listParticipants($this->mainRoom);
     foreach ($response->getParticipants() as $p) {
       if ($p->getIsPublisher()) {

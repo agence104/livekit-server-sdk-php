@@ -2,10 +2,11 @@
 
 namespace Agence104\LiveKit;
 
-use GPBMetadata\LivekitWebhook;
 use Livekit\WebhookEvent;
-use mysql_xdevapi\Exception;
 
+/**
+ * Defines the webhook receiver.
+ */
 class WebhookReceiver {
 
   /**
@@ -41,19 +42,21 @@ class WebhookReceiver {
    *
    * @param string $body
    *   The string of the posted body.
-   * @param string|NULL $authHeader
+   * @param string|null $authHeader
    *   The `Authorization` header of the request.
    * @param bool $skipAuth
    *   The flag which defines if we should skip auth validation.
    *   True to skip auth validation, false otherwise.
    * @param bool $ignoreUnknownFields
-   *   The flag which defines if unknown fields should be ignored when parsing the webhook data.
-   *   True to ignore unknown fields, false otherwise.
+   *   The flag which defines if unknown fields should be ignored when parsing
+   *   the webhook data. True to ignore unknown fields, false otherwise.
    *
    * @return \Livekit\WebhookEvent
+   *   The webhook event.
+   *
    * @throws \Exception
    */
-  function receive(string $body, string $authHeader = NULL, bool $skipAuth = FALSE, bool $ignoreUnknownFields = TRUE): WebhookEvent {
+  public function receive(string $body, string $authHeader = NULL, bool $skipAuth = FALSE, bool $ignoreUnknownFields = TRUE): WebhookEvent {
     // Verify token.
     if (!$skipAuth) {
       if (!$authHeader) {
