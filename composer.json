@@ -13,8 +13,8 @@
     "require": {
         "php": "^8.0",
         "firebase/php-jwt": "^6.8",
-        "twirp/twirp": "^0.9.1",
-        "google/protobuf": "^3.23",
+        "twirp/twirp": "^0.9.1|^0.13.0",
+        "google/protobuf": "^3.23|^4.30",
         "guzzlehttp/guzzle": "^6.3|^7.0",
         "guzzlehttp/psr7": "^1.6.1|^2.0"
     },
@@ -26,6 +26,11 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.4"
+        "phpunit/phpunit": "^12.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }
