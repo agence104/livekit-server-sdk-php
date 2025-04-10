@@ -301,22 +301,28 @@ class RoomServiceClient extends BaseServiceClient {
    *   The delivery reliability.
    * @param string[] $destinationSids
    *   Optional, when empty, message is sent to everyone.
+   * @param ?string $topic
+   *   Optional, topic is used to route the stream to the appropriate handler.
    *
    * @return \Livekit\SendDataResponse
    *   The SendDataResponse object.
    */
-  public function sendData(string $roomName, string $data, int $kind, array $destinationSids = []): SendDataResponse {
+  public function sendData(string $roomName, string $data, int $kind, array $destinationSids = [], ?string $topic = null): SendDataResponse {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomName($roomName);
     $videoGrant->setRoomAdmin();
-    return $this->rpc->SendData(
-      $this->authHeader($videoGrant),
-      new SendDataRequest([
+    $requestData = [
         'room' => $roomName,
         'data' => $data,
         'kind' => $kind,
         'destination_sids' => $destinationSids,
-      ])
+    ];
+    if (!empty($topic)) {
+        $requestData['topic'] = $topic;
+    }
+    return $this->rpc->SendData(
+      $this->authHeader($videoGrant),
+      new SendDataRequest($requestData)
     );
   }
 
