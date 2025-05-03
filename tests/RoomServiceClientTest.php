@@ -2,41 +2,38 @@
 
 namespace Agence104\LiveKit\Tests;
 
-use Livekit\Room;
-use Livekit\DataPacket\Kind;
-use Livekit\ParticipantInfo;
-use Livekit\SendDataResponse;
-use Livekit\DeleteRoomResponse;
-use PHPUnit\Framework\TestCase;
-use Livekit\MuteRoomTrackResponse;
-use Livekit\ParticipantPermission;
-use Livekit\ListParticipantsResponse;
-use Livekit\RemoveParticipantResponse;
 use Agence104\LiveKit\RoomCreateOptions;
 use Agence104\LiveKit\RoomServiceClient;
+use Exception;
+use Livekit\DataPacket\Kind;
+use Livekit\DeleteRoomResponse;
+use Livekit\ListParticipantsResponse;
+use Livekit\MuteRoomTrackResponse;
+use Livekit\ParticipantInfo;
+use Livekit\ParticipantPermission;
+use Livekit\RemoveParticipantResponse;
+use Livekit\Room;
+use Livekit\SendDataResponse;
 use Livekit\UpdateSubscriptionsResponse;
+use PHPUnit\Framework\TestCase;
 
 class RoomServiceClientTest extends TestCase {
   /**
    * The room service client instance.
-   *
-   * @var RoomServiceClient
    */
-  private $client;
+  private RoomServiceClient $client;
 
   /**
    * The room name of the main room with participants.
    * This room is created prior to running the tests.
-   *
-   * @var string
    */
-  private $mainRoom = 'testRoomParticipants';
+  private string $mainRoom = 'testRoomParticipants';
 
   protected function setUp(): void {
     try {
       $this->client = new RoomServiceClient();
     }
-    catch(\Exception $e) {
+    catch(Exception $e) {
       $this->fail('Failed to set up RoomServiceClient: ' . $e->getMessage());
     }
   }
@@ -46,37 +43,34 @@ class RoomServiceClientTest extends TestCase {
       $client = new RoomServiceClient();
 
       // Rooms CleanUp.
-      $roomName = 'testCreateRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testListRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testDeleteRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testMetadataRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testListPartRoom';
-      $client->deleteRoom($roomName);
+      $client->deleteRoom('testCreateRoom');
+      $client->deleteRoom('testListRoom');
+      $client->deleteRoom('testDeleteRoom');
+      $client->deleteRoom('testMetadataRoom');
+      $client->deleteRoom('testListPartRoom');
+    } catch(Exception $e) {
+      // Ignore errors during cleanup.
     }
-    catch(\Exception $e) {}
+
     parent::tearDownAfterClass();
   }
 
-  private function createRoom($roomName): Room {
-    $opts = (new RoomCreateOptions())
+  private function createRoom(string $roomName): Room {
+    $options = (new RoomCreateOptions())
       ->setName($roomName)
       ->setEmptyTimeout(10)
       ->setMaxParticipants(20);
-    return $this->client->createRoom($opts);
+    return $this->client->createRoom($options);
   }
 
-  public function testCreateRoom() {
+  public function testCreateRoom(): void {
     $roomName = 'testCreateRoom';
     $response = $this->createRoom($roomName);
 
     $this->assertEquals($roomName, $response->getName());
   }
 
-  public function testListRooms() {
+  public function testListRooms(): void {
     // Let's create another room.
     $roomName = 'testListRoom';
     $this->createRoom($roomName);
@@ -91,7 +85,7 @@ class RoomServiceClientTest extends TestCase {
     $this->assertEquals(1, $response->getRooms()->count());
   }
 
-  public function testDeleteRoom() {
+  public function testDeleteRoom(): void {
     $roomName = 'testDeleteRoom';
     $room = $this->createRoom($roomName);
     $this->assertEquals($roomName, $room->getName());
@@ -103,7 +97,7 @@ class RoomServiceClientTest extends TestCase {
     $this->assertEquals(0, $response->getRooms()->count());
   }
 
-  public function testUpdateRoomMetadata() {
+  public function testUpdateRoomMetadata(): void {
     $roomName = 'testMetadataRoom';
     $this->createRoom($roomName);
 
@@ -124,7 +118,7 @@ class RoomServiceClientTest extends TestCase {
     $this->client->deleteRoom($roomName);
   }
 
-  public function testListParticipants() {
+  public function testListParticipants(): void {
     $roomName = 'testListPartRoom';
     $this->createRoom($roomName);
 
@@ -139,7 +133,7 @@ class RoomServiceClientTest extends TestCase {
     $this->client->deleteRoom($roomName);
   }
 
-  public function testGetParticipant() {
+  public function testGetParticipant(): void {
     $response = $this->client->listParticipants($this->mainRoom);
     $participant = $response->getParticipants()[0];
     $identity = $participant->getIdentity();
@@ -149,7 +143,7 @@ class RoomServiceClientTest extends TestCase {
     $this->assertEquals($identity, $response->getIdentity());
   }
 
-  public function testRemoveParticipant() {
+  public function testRemoveParticipant(): void {
     $response = $this->client->listParticipants($this->mainRoom);
     $participant = $response->getParticipants()[1];
     $identity = $participant->getIdentity();
@@ -161,24 +155,24 @@ class RoomServiceClientTest extends TestCase {
     try {
       $this->client->getParticipant($this->mainRoom, $identity);
     }
-    catch(\Exception $e) {
+    catch(Exception $e) {
       $error = $e->getMessage();
     }
     $this->assertEquals("participant does not exist", $error);
   }
 
-  public function testMutePublishedTrack() {
+  public function testMutePublishedTrack(): void {
     $response = $this->client->listParticipants($this->mainRoom);
     $track = null;
     $identity = null;
 
-    foreach ($response->getParticipants() as $p) {
-      if ($p->getIsPublisher()) {
-        foreach ($p->getTracks() as $t) {
-          if (!$t->getMuted()) {
-            $participant = $p;
+    foreach ($response->getParticipants() as $participant) {
+      if ($participant->getIsPublisher()) {
+        foreach ($participant->getTracks() as $track) {
+          if (! $track->getMuted()) {
+            $participant = $participant;
             $identity = $participant->getIdentity();
-            $track = $p->getTracks()[0];
+            $track = $participant->getTracks()[0];
             break 2;
           }
         }
@@ -202,7 +196,7 @@ class RoomServiceClientTest extends TestCase {
     $this->assertFalse($response->getTrack()->getMuted());
   }
 
-  public function testUpdateParticipant() {
+  public function testUpdateParticipant(): void {
     $response = $this->client->listParticipants($this->mainRoom);
     $participant = $response->getParticipants()[2];
     $identity = $participant->getIdentity();
@@ -228,24 +222,24 @@ class RoomServiceClientTest extends TestCase {
     $this->assertTrue($perm->getCanUpdateMetadata());
   }
 
-  public function testUpdateSubscriptions() {
+  public function testUpdateSubscriptions(): void {
     $response = $this->client->listParticipants($this->mainRoom);
     $publisherTrack = null;
     $participant = null;
-    foreach ($response->getParticipants() as $p) {
-      if ($p->getIsPublisher() && !$publisherTrack) {
-        foreach ($p->getTracks() as $t) {
-          if (!$t->getMuted()) {
-            $participant = $p;
+    foreach ($response->getParticipants() as $participant) {
+      if ($participant->getIsPublisher() && !$publisherTrack) {
+        foreach ($participant->getTracks() as $track) {
+          if (!$track->getMuted()) {
+            $participant = $participant;
             $identity = $participant->getIdentity();
-            $publisherTrack = $p->getTracks()[0];
+            $publisherTrack = $participant->getTracks()[0];
             break;
           }
         }
         break;
       }
-      elseif (!$p->getIsPublisher() && !$participant) {
-        $participant = $p;
+      elseif (!$participant->getIsPublisher() && !$participant) {
+        $participant = $participant;
       }
 
       if ($publisherTrack && $participant) {
@@ -266,7 +260,7 @@ class RoomServiceClientTest extends TestCase {
     $this->assertInstanceOf(UpdateSubscriptionsResponse::class, $response);
   }
 
-  public function testSendData() {
+  public function testSendData(): void {
     $data = 'sampleData';
     $response = $this->client->sendData($this->mainRoom, $data, Kind::RELIABLE, []);
     $this->assertInstanceOf(SendDataResponse::class, $response);

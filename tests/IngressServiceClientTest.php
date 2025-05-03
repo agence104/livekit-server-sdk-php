@@ -2,34 +2,32 @@
 
 namespace Agence104\LiveKit\Tests;
 
+use Agence104\LiveKit\IngressServiceClient;
+use Exception;
 use Livekit\IngressInfo;
 use Livekit\IngressInput;
-use PHPUnit\Framework\TestCase;
 use Livekit\ListIngressResponse;
-use Agence104\LiveKit\IngressServiceClient;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\TestCase;
 
 class IngressServiceClientTest extends TestCase {
 
   /**
    * The ingress service client instance.
-   *
-   * @var IngressServiceClient
    */
-  private $client;
+  private IngressServiceClient $client;
 
   /**
    * The room name of the main room with participants.
    * This room is created prior to running the tests.
-   *
-   * @var string
    */
-  private $mainRoom = 'testRoomParticipants';
+  private string $mainRoom = 'testRoomParticipants';
 
   protected function setUp(): void {
     try {
       $this->client = new IngressServiceClient();
     }
-    catch(\Exception $e) {
+    catch(Exception $e) {
       $this->fail('Failed to set up IngressServiceClient: ' . $e->getMessage());
     }
   }
@@ -47,11 +45,11 @@ class IngressServiceClientTest extends TestCase {
         $client->deleteIngress($ingress->getIngressId());
       }
     }
-    catch(\Exception $e) {}
+    catch(Exception $e) {}
     parent::tearDownAfterClass();
   }
 
-  private function validateIngressExists($ingressId) {
+  private function validateIngressExists($ingressId): bool {
     if (empty($ingressId)) {
       $this->fail('Test Ingress not found!');
       return false;
@@ -60,7 +58,7 @@ class IngressServiceClientTest extends TestCase {
     return true;
   }
 
-  public function testCreateIngress() {
+  public function testCreateIngress(): string {
     $name = 'testIngress';
     $participantIdentity = 'ingress-test-user';
     $participantName = 'Ingress Test User';
@@ -82,10 +80,9 @@ class IngressServiceClientTest extends TestCase {
     return $response->getIngressId();
   }
 
-  /**
-   * @depends testCreateIngress
-   */
-  public function testUpdateIngress($ingressId) {
+
+  #[Depends('testCreateIngress')]
+  public function testUpdateIngress(string $ingressId): void {
     $name = 'testIngress-2';
     $participantIdentity = 'ingress-test-user-2';
     $participantName = 'Ingress Test User 2';
@@ -108,10 +105,8 @@ class IngressServiceClientTest extends TestCase {
     $this->assertEquals($this->mainRoom, $response->getRoomName());
   }
 
-  /**
-   * @depends testCreateIngress
-   */
-  public function testListIngress($ingressId) {
+  #[Depends('testCreateIngress')]
+  public function testListIngress(string $ingressId): void {
     $response = $this->client->listIngress();
     $this->assertInstanceOf(ListIngressResponse::class, $response);
     $this->assertEquals(1, $response->getItems()->count());
@@ -121,10 +116,8 @@ class IngressServiceClientTest extends TestCase {
     );
   }
 
-  /**
-   * @depends testCreateIngress
-   */
-  public function testDeleteIngress($ingressId) {
+  #[Depends('testCreateIngress')]
+  public function testDeleteIngress(string $ingressId): void {
     if (!$this->validateIngressExists($ingressId)) {
       return;
     }
@@ -133,7 +126,7 @@ class IngressServiceClientTest extends TestCase {
       $response = $this->client->deleteIngress($ingressId);
       $this->assertInstanceOf(IngressInfo::class, $response);
     }
-    catch(\Exception $e) {
+    catch(Exception $e) {
       $this->fail('Error deleting Ingress: ' . $e->getMessage());
     }
   }
