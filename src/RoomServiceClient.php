@@ -299,13 +299,13 @@ class RoomServiceClient extends BaseServiceClient {
    *   The payload to send.
    * @param int $kind
    *   The delivery reliability.
-   * @param string[] $destinationSids
+   * @param string[] $destinationIdentities
    *   Optional, when empty, message is sent to everyone.
    *
    * @return \Livekit\SendDataResponse
    *   The SendDataResponse object.
    */
-  public function sendData(string $roomName, string $data, int $kind, array $destinationSids = []): SendDataResponse {
+  public function sendData(string $roomName, string $data, int $kind, array $destinationIdentities = []): SendDataResponse {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomName($roomName);
     $videoGrant->setRoomAdmin();
@@ -315,7 +315,7 @@ class RoomServiceClient extends BaseServiceClient {
         'room' => $roomName,
         'data' => $data,
         'kind' => $kind,
-        'destination_sids' => $destinationSids,
+        'destination_identities' => $destinationIdentities,
       ])
     );
   }
