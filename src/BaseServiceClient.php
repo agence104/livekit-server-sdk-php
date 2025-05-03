@@ -11,24 +11,18 @@ abstract class BaseServiceClient {
 
   /**
    * The hostname including protocol, can be set in env var LIVEKIT_URL.
-   *
-   * @var string
    */
-  protected $host;
+  protected string $host;
 
   /**
    * The API Key, can be set in env var LIVEKIT_API_KEY.
-   *
-   * @var string
    */
-  protected $apiKey;
+  protected string $apiKey;
 
   /**
    * The API Secret, can be set in env var LIVEKIT_API_SECRET.
-   *
-   * @var string
    */
-  protected $apiSecret;
+  protected string $apiSecret;
 
   /**
    * BaseServiceClient Class Constructor.

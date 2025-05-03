@@ -19,31 +19,23 @@ class EgressServiceClientTest extends TestCase {
 
   /**
    * The egress service client instance.
-   *
-   * @var \Agence104\LiveKit\EgressServiceClient
    */
-  private $client;
+  private EgressServiceClient $client;
 
   /**
    * Main room name with participants, created before test execution.
-   *
-   * @var string
    */
-  private $mainRoom = 'testRoomParticipants';
+  private string $mainRoom = 'testRoomParticipants';
 
   /**
    * The RTMP url to use to test StreamOutput.
-   *
-   * @var string
    */
-  private $rtmpUrl;
+  private string $rtmpUrl;
 
   /**
    * The RTMP url2 to use to test StreamOutput.
-   *
-   * @var string
    */
-  private $rtmpUrl2;
+  private string $rtmpUrl2;
 
   /**
    * Sets up the test environment.
@@ -90,7 +82,7 @@ class EgressServiceClientTest extends TestCase {
    * @return string
    *   The egress ID.
    */
-  public function testStartRoomCompositeEgress() {
+  public function testStartRoomCompositeEgress(): string {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
       'urls' => [$this->rtmpUrl],
@@ -118,7 +110,7 @@ class EgressServiceClientTest extends TestCase {
    *
    * @depends testStartRoomCompositeEgress
    */
-  public function testUpdateLayoutEgress($egressId) {
+  public function testUpdateLayoutEgress(string $egressId): void {
     $response = $this->client->updateLayout($egressId, 'speaker');
     $this->assertInstanceOf(EgressInfo::class, $response);
 
@@ -135,7 +127,7 @@ class EgressServiceClientTest extends TestCase {
    *
    * @depends testStartRoomCompositeEgress
    */
-  public function testUpdateStream($egressId) {
+  public function testUpdateStream(string $egressId): void {
     // Let's add the second url.
     $response = $this->client->updateStream($egressId, [$this->rtmpUrl2]);
     $this->assertInstanceOf(EgressInfo::class, $response);
@@ -179,7 +171,7 @@ class EgressServiceClientTest extends TestCase {
    *
    * @depends testStartRoomCompositeEgress
    */
-  public function testListEgress($egressId) {
+  public function testListEgress(string $egressId): void {
     $response = $this->client->listEgress($this->mainRoom);
     $this->assertInstanceOf(ListEgressResponse::class, $response);
     $this->assertGreaterThanOrEqual(1, $response->getItems()->count());
@@ -206,7 +198,7 @@ class EgressServiceClientTest extends TestCase {
    *
    * @depends testStartRoomCompositeEgress
    */
-  public function testStopEgress($egressId) {
+  public function testStopEgress(string $egressId): void {
     try {
       $response = $this->client->stopEgress($egressId);
       $this->assertInstanceOf(EgressInfo::class, $response);
@@ -222,7 +214,7 @@ class EgressServiceClientTest extends TestCase {
   /**
    * Tests starting a web egress.
    */
-  public function testStartWebEgress() {
+  public function testStartWebEgress(): void {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
       'urls' => [$this->rtmpUrl],
@@ -247,7 +239,7 @@ class EgressServiceClientTest extends TestCase {
   /**
    * Tests starting a track composite egress.
    */
-  public function testStartTrackCompositeEgress() {
+  public function testStartTrackCompositeEgress(): void {
     try {
       $roomClient = new RoomServiceClient();
     }
@@ -310,7 +302,7 @@ class EgressServiceClientTest extends TestCase {
   /**
    * Tests starting a track egress.
    */
-  public function testStartTrackEgress() {
+  public function testStartTrackEgress(): string {
     try {
       $roomClient = new RoomServiceClient();
     }

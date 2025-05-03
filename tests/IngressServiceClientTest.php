@@ -15,17 +15,13 @@ class IngressServiceClientTest extends TestCase {
 
   /**
    * The ingress service client instance.
-   *
-   * @var \Agence104\LiveKit\IngressServiceClient
    */
-  private $client;
+  private IngressServiceClient $client;
 
   /**
    * Main room name with participants, created before test execution.
-   *
-   * @var string
    */
-  private $mainRoom = 'testRoomParticipants';
+  private string $mainRoom = 'testRoomParticipants';
 
   /**
    * Sets up the test environment.
@@ -65,7 +61,7 @@ class IngressServiceClientTest extends TestCase {
    * @return bool
    *   TRUE if the ingress exists, FALSE otherwise.
    */
-  private function validateIngressExists($ingressId) {
+  private function validateIngressExists(string $ingressId): bool {
     if (empty($ingressId)) {
       $this->fail('Test Ingress not found!');
       return FALSE;
@@ -77,7 +73,7 @@ class IngressServiceClientTest extends TestCase {
   /**
    * Tests creating an ingress.
    */
-  public function testCreateIngress() {
+  public function testCreateIngress(): string {
     $name = 'testIngress';
     $participantIdentity = 'ingress-test-user';
     $participantName = 'Ingress Test User';
@@ -104,7 +100,7 @@ class IngressServiceClientTest extends TestCase {
    *
    * @depends testCreateIngress
    */
-  public function testUpdateIngress($ingressId) {
+  public function testUpdateIngress(string $ingressId): void {
     $name = 'testIngress-2';
     $participantIdentity = 'ingress-test-user-2';
     $participantName = 'Ingress Test User 2';
@@ -132,7 +128,7 @@ class IngressServiceClientTest extends TestCase {
    *
    * @depends testCreateIngress
    */
-  public function testListIngress($ingressId) {
+  public function testListIngress(string $ingressId): void {
     $response = $this->client->listIngress();
     $this->assertInstanceOf(ListIngressResponse::class, $response);
     $this->assertEquals(1, $response->getItems()->count());
@@ -147,7 +143,7 @@ class IngressServiceClientTest extends TestCase {
    *
    * @depends testCreateIngress
    */
-  public function testDeleteIngress($ingressId) {
+  public function testDeleteIngress(string $ingressId): void {
     if (!$this->validateIngressExists($ingressId)) {
       return;
     }

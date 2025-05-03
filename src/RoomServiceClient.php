@@ -2,52 +2,55 @@
 
 namespace Agence104\LiveKit;
 
-use Twirp\Context;
-use Livekit\Room;
-use Livekit\SendDataRequest;
-use Livekit\ParticipantInfo;
-use Livekit\SendDataResponse;
-use Livekit\ListRoomsRequest;
 use Livekit\CreateRoomRequest;
 use Livekit\DeleteRoomRequest;
-use Livekit\ListRoomsResponse;
 use Livekit\DeleteRoomResponse;
-use Livekit\MuteRoomTrackRequest;
-use Livekit\ParticipantPermission;
-use Livekit\MuteRoomTrackResponse;
-use Livekit\RoomParticipantIdentity;
 use Livekit\ListParticipantsRequest;
-use Livekit\UpdateParticipantRequest;
 use Livekit\ListParticipantsResponse;
-use Livekit\UpdateRoomMetadataRequest;
+use Livekit\ListRoomsRequest;
+use Livekit\ListRoomsResponse;
+use Livekit\MuteRoomTrackRequest;
+use Livekit\MuteRoomTrackResponse;
+use Livekit\ParticipantInfo;
+use Livekit\ParticipantPermission;
 use Livekit\RemoveParticipantResponse;
+use Livekit\Room;
+use Livekit\RoomParticipantIdentity;
+use Livekit\RoomServiceClient as LKRoomServiceClient;
+use Livekit\SendDataRequest;
+use Livekit\SendDataResponse;
+use Livekit\UpdateParticipantRequest;
+use Livekit\UpdateRoomMetadataRequest;
 use Livekit\UpdateSubscriptionsRequest;
 use Livekit\UpdateSubscriptionsResponse;
 
+/**
+ * Defines the room service client.
+ */
 class RoomServiceClient extends BaseServiceClient {
 
   /**
    * The Twirp RPC adapter for client implementation.
-   *
-   * @var \Livekit\RoomServiceClient
    */
-  protected $rpc;
+  protected LKRoomServiceClient $rpc;
 
   /**
    * {@inheritdoc}
    */
   public function __construct(?string $host = NULL, ?string $apiKey = NULL, ?string $apiSecret = NULL) {
-    parent::__construct($host,$apiKey, $apiSecret);
-
-    $this->rpc = new \Livekit\RoomServiceClient($this->host);
+    parent::__construct($host, $apiKey, $apiSecret);
+    $this->rpc = new LKRoomServiceClient($this->host);
   }
 
   /**
-   * Creates a new room. Explicit room creation is not required, since rooms
-   * will be automatically created when the first participant joins. This method
-   * can be used to customize room settings.
+   * Creates a new room.
+   *
+   * Explicit room creation is not required, since rooms should be
+   * automatically created when the first participant joins. This
+   * method can be used to customize room settings.
    *
    * @param \Agence104\LiveKit\RoomCreateOptions $createOptions
+   *   The room create options.
    *
    * @return \Livekit\Room
    *   The Room object.
@@ -148,8 +151,7 @@ class RoomServiceClient extends BaseServiceClient {
   }
 
   /**
-   * Get information on a specific participant, including the tracks that the
-   * participant has published.
+   * Get participant info including their published tracks.
    *
    * @param string $roomName
    *   The name of the room.
@@ -173,9 +175,11 @@ class RoomServiceClient extends BaseServiceClient {
   }
 
   /**
-   * Removes a participant in the room. This will disconnect the participant
-   * and will emit a Disconnected event for that participant. Even after being
-   * removed, the participant can still re-join the room.
+   * Removes a participant in the room.
+   *
+   * This will disconnect the participant and will emit a Disconnected event
+   * for that participant. Even after being removed, the participant can
+   * still re-join the room.
    *
    * @param string $roomName
    *   The name of the room.
@@ -238,7 +242,7 @@ class RoomServiceClient extends BaseServiceClient {
    *   The identity of the participant.
    * @param string|null $metadata
    *   Optional, the metadata to update.
-   * @param ParticipantPermission|null $permission
+   * @param \Livekit\ParticipantPermission|null $permission
    *   Optional, the new permissions to assign to the participant.
    *
    * @return \Livekit\ParticipantInfo

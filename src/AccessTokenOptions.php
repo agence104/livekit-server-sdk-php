@@ -9,38 +9,28 @@ class AccessTokenOptions {
 
   /**
    * The amount of time before expiration expressed in seconds as numeric value.
-   *
-   * @var int
    */
-  protected $ttl;
+  protected ?int $ttl = NULL;
 
   /**
    * The display name for the participant, available as `Participant.name`.
-   *
-   * @var string|null
    */
-  protected $name;
+  protected ?string $name = NULL;
 
   /**
    * The Identity of the user, required for room join tokens.
-   *
-   * @var string
    */
-  protected $identity;
+  protected ?string $identity = NULL;
 
   /**
    * Custom metadata to be passed to participants.
-   *
-   * @var string|null
    */
-  protected $metadata;
+  protected ?string $metadata = NULL;
 
   /**
    * Custom attributes to be passed to participants.
-   *
-   * @var array<string, string>|null
    */
-  protected $attributes;
+  protected ?array $attributes = NULL;
 
   /**
    * AccessTokenOptions class constructor.

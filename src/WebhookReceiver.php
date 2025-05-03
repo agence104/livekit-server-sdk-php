@@ -11,10 +11,8 @@ class WebhookReceiver {
 
   /**
    * The AccessToken object.
-   *
-   * @var \Agence104\LiveKit\AccessToken
    */
-  protected $accessToken;
+  protected AccessToken $accessToken;
 
   /**
    * WebhookReceiver Constructor.

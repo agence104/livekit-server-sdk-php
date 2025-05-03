@@ -17,17 +17,13 @@ class AccessTokenTest extends TestCase {
 
   /**
    * The test API key.
-   *
-   * @var string
    */
-  protected $testApiKey = 'abcdefg';
+  protected string $testApiKey = 'abcdefg';
 
   /**
    * The test API secret.
-   *
-   * @var string
    */
-  protected $testSecret = 'abababa';
+  protected string $testSecret = 'abababa';
 
   /**
    * Test that encoded tokens are valid and can be decoded.

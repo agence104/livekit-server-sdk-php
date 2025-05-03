@@ -12,6 +12,7 @@ use Livekit\ParticipantInfo;
 use Livekit\ParticipantPermission;
 use Livekit\RemoveParticipantResponse;
 use Livekit\Room;
+use Livekit\RoomEgress;
 use Livekit\SendDataResponse;
 use Livekit\UpdateSubscriptionsResponse;
 use PHPUnit\Framework\TestCase;
@@ -22,17 +23,13 @@ use PHPUnit\Framework\TestCase;
 class RoomServiceClientTest extends TestCase {
   /**
    * The room service client instance.
-   *
-   * @var \Livekit\RoomServiceClient
    */
-  private $client;
+  private RoomServiceClient $client;
 
   /**
    * Main room name with participants, created before test execution.
-   *
-   * @var string
    */
-  private $mainRoom = 'testRoomParticipants';
+  private string $mainRoom = 'testRoomParticipants';
 
   /**
    * Sets up the test environment.
@@ -85,6 +82,71 @@ class RoomServiceClientTest extends TestCase {
       ->setEmptyTimeout(10)
       ->setMaxParticipants(20);
     return $this->client->createRoom($opts);
+  }
+
+  /**
+   * Tests Room Create Options.
+   */
+  public function testRoomCreateOptions() {
+
+    // Create a room with snake_case keys.
+    $opts = (new RoomCreateOptions([
+      'empty_timeout' => 10,
+      'max_participants' => 20,
+    ]));
+
+    $this->assertEquals([
+      'empty_timeout' => 10,
+      'max_participants' => 20,
+    ], $opts->getData());
+
+    // Create a room with camelCase keys.
+    $opts = (new RoomCreateOptions([
+      'emptyTimeout' => 10,
+      'maxParticipants' => 20,
+    ]));
+
+    $this->assertEquals([
+      'empty_timeout' => 10,
+      'max_participants' => 20,
+    ], $opts->getData());
+
+    // Create a room egress.
+    $egress = new RoomEgress();
+
+    // Test all methods.
+    $opts = (new RoomCreateOptions())
+      ->setName('my-room')
+      ->setEmptyTimeout(10)
+      ->setMaxParticipants(20)
+      ->setNodeId('my-node')
+      ->setMetadata('my-metadata')
+      ->setEgress($egress)
+      ->setMinPlayoutDelay(10)
+      ->setMaxPlayoutDelay(20)
+      ->setSyncStreams(TRUE);
+
+    $this->assertEquals('my-room', $opts->getName());
+    $this->assertEquals(10, $opts->getEmptyTimeout());
+    $this->assertEquals(20, $opts->getMaxParticipants());
+    $this->assertEquals('my-node', $opts->getNodeId());
+    $this->assertEquals('my-metadata', $opts->getMetadata());
+    $this->assertEquals($egress, $opts->getEgress());
+    $this->assertEquals(10, $opts->getMinPlayoutDelay());
+    $this->assertEquals(20, $opts->getMaxPlayoutDelay());
+    $this->assertTrue($opts->getSyncStreams());
+
+    $this->assertEquals([
+      'empty_timeout' => 10,
+      'max_participants' => 20,
+      'name' => 'my-room',
+      'node_id' => 'my-node',
+      'metadata' => 'my-metadata',
+      'egress' => $egress,
+      'min_playout_delay' => 10,
+      'max_playout_delay' => 20,
+      'sync_streams' => TRUE,
+    ], $opts->getData());
   }
 
   /**

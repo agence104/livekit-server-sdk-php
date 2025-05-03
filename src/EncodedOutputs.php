@@ -4,30 +4,33 @@ namespace Agence104\LiveKit;
 
 use Livekit\EncodedFileOutput;
 use Livekit\ImageOutput;
-use Livekit\StreamOutput;
 use Livekit\SegmentedFileOutput;
+use Livekit\StreamOutput;
 
+/**
+ * Defines the encoded outputs for the egress.
+ */
 class EncodedOutputs {
 
   /**
-   * @var \Livekit\EncodedFileOutput|null
+   * The encoded file output.
    */
-  protected $file = NULL;
+  protected ?EncodedFileOutput $file = NULL;
 
   /**
-   * @var \Livekit\StreamOutput|null
+   * The stream output.
    */
-  protected $stream = NULL;
+  protected ?StreamOutput $stream = NULL;
 
   /**
-   * @var \Livekit\SegmentedFileOutput|null
+   * The segmented file output.
    */
-  protected $segments = NULL;
+  protected ?SegmentedFileOutput $segments = NULL;
 
   /**
-   * @var \Livekit\ImageOutput|null
+   * The image output.
    */
-  protected $image = NULL;
+  protected ?ImageOutput $image = NULL;
 
   /**
    * EncodedOutputs class constructor.
@@ -44,7 +47,10 @@ class EncodedOutputs {
   }
 
   /**
+   * Set the encoded file output.
+   *
    * @param \Livekit\EncodedFileOutput $file
+   *   The encoded file output.
    *
    * @return $this
    */
@@ -54,14 +60,20 @@ class EncodedOutputs {
   }
 
   /**
-   * @return \Livekit\EncodedFileOutput | null
+   * Get the encoded file output.
+   *
+   * @return \Livekit\EncodedFileOutput|null
+   *   The encoded file output.
    */
   public function getFile(): ?EncodedFileOutput {
     return $this->file;
   }
 
   /**
+   * Set the stream output.
+   *
    * @param \Livekit\StreamOutput $stream
+   *   The stream output.
    *
    * @return $this
    */
@@ -71,14 +83,20 @@ class EncodedOutputs {
   }
 
   /**
-   * @return \Livekit\StreamOutput | null
+   * Get the stream output.
+   *
+   * @return \Livekit\StreamOutput|null
+   *   The stream output.
    */
   public function getStream(): ?StreamOutput {
     return $this->stream;
   }
 
   /**
-   * @param \Livekit\SegmentedFileOutput $file
+   * Set the segmented file output.
+   *
+   * @param \Livekit\SegmentedFileOutput $segments
+   *   The segmented file output.
    *
    * @return $this
    */
@@ -88,14 +106,20 @@ class EncodedOutputs {
   }
 
   /**
-   * @return \Livekit\SegmentedFileOutput | null
+   * Get the segmented file output.
+   *
+   * @return \Livekit\SegmentedFileOutput|null
+   *   The segmented file output.
    */
   public function getSegments(): ?SegmentedFileOutput {
     return $this->segments;
   }
 
   /**
-   * @param \Livekit\ImageOutput $file
+   * Set the image output.
+   *
+   * @param \Livekit\ImageOutput $image
+   *   The image output.
    *
    * @return $this
    */
@@ -105,9 +129,13 @@ class EncodedOutputs {
   }
 
   /**
-   * @return \Livekit\ImageOutput | null
+   * Get the image output.
+   *
+   * @return \Livekit\ImageOutput|null
+   *   The image output.
    */
   public function getImage(): ?ImageOutput {
     return $this->image;
   }
+
 }

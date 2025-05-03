@@ -9,106 +9,78 @@ class VideoGrant {
 
   /**
    * Permission to create a room.
-   *
-   * @var bool|null
    */
-  protected $roomCreate = NULL;
+  protected ?bool $roomCreate = NULL;
 
   /**
    * Permission to join a room as a participant, room must be set.
-   *
-   * @var bool|null
    */
-  protected $roomJoin = NULL;
+  protected ?bool $roomJoin = NULL;
 
   /**
    * Permission to list rooms.
-   *
-   * @var bool|null
    */
-  protected $roomList = NULL;
+  protected ?bool $roomList = NULL;
 
   /**
    * Permission to start a recording.
-   *
-   * @var bool|null
    */
-  protected $roomRecord = NULL;
+  protected ?bool $roomRecord = NULL;
 
   /**
    * Permission to control a specific room, room must be set.
-   *
-   * @var bool|null
    */
-  protected $roomAdmin = NULL;
+  protected ?bool $roomAdmin = NULL;
 
   /**
    * Name of the room, must be set for admin or join permissions.
-   *
-   * @var string
    */
-  protected $room;
+  protected ?string $room;
 
   /**
    * Permissions to control ingress, not specific to any room or ingress.
-   *
-   * @var bool|null
    */
-  protected $ingressAdmin = NULL;
+  protected ?bool $ingressAdmin = NULL;
 
   /**
    * Allow participant to publish.
    *
    * If neither canPublish or canSubscribe is set, both publish and
    * subscribe are enabled.
-   *
-   * @var bool|null
    */
-  protected $canPublish = NULL;
+  protected ?bool $canPublish = NULL;
 
   /**
    * Allow participant to subscribe to other tracks.
-   *
-   * @var bool|null
    */
-  protected $canSubscribe = NULL;
+  protected ?bool $canSubscribe = NULL;
 
   /**
    * Allow participants to publish data, defaults to true if not set.
-   *
-   * @var bool|null
    */
-  protected $canPublishData = NULL;
+  protected ?bool $canPublishData = NULL;
 
   /**
    * When set, only listed source can be published.
    *
    * (camera, microphone, screen_share, screen_share_audio)
-   *
-   * @var string[]|null
    */
-  protected $canPublishSources = NULL;
+  protected ?array $canPublishSources = NULL;
 
   /**
    * Allow participant to update its own metadata.
-   *
-   * @var bool|null
    */
-  protected $canUpdateOwnMetadata = NULL;
+  protected ?bool $canUpdateOwnMetadata = NULL;
 
   /**
    * Participant isn't visible to others.
-   *
-   * @var bool|null
    */
-  protected $hidden = NULL;
+  protected ?bool $hidden = NULL;
 
   /**
    * Participant is recording the room, allowing indication of recording status.
-   *
-   * @var bool|null
    */
-  protected $recorder = NULL;
+  protected ?bool $recorder = NULL;
 
   /**
    * VideoGrant class constructor.
@@ -130,7 +102,7 @@ class VideoGrant {
    * @return bool|null
    *   The room create permission value.
    */
-  public function isRoomCreate(): bool | null {
+  public function isRoomCreate(): ?bool {
     return $this->roomCreate;
   }
 
@@ -153,7 +125,7 @@ class VideoGrant {
    * @return bool|null
    *   The room join permission value.
    */
-  public function isRoomJoin(): bool | null {
+  public function isRoomJoin(): ?bool {
     return $this->roomJoin;
   }
 
@@ -176,7 +148,7 @@ class VideoGrant {
    * @return bool|null
    *   The room list permission value.
    */
-  public function isRoomList(): bool | null {
+  public function isRoomList(): ?bool {
     return $this->roomList;
   }
 
@@ -199,7 +171,7 @@ class VideoGrant {
    * @return bool|null
    *   The room record permission value.
    */
-  public function isRoomRecord(): bool | null {
+  public function isRoomRecord(): ?bool {
     return $this->roomRecord;
   }
 
@@ -222,7 +194,7 @@ class VideoGrant {
    * @return bool|null
    *   The room admin permission value.
    */
-  public function isRoomAdmin(): bool | null {
+  public function isRoomAdmin(): ?bool {
     return $this->roomAdmin;
   }
 
@@ -242,10 +214,10 @@ class VideoGrant {
   /**
    * Get the room name.
    *
-   * @return string
+   * @return string|null
    *   The room name.
    */
-  public function getRoom(): string {
+  public function getRoom(): ?string {
     return $this->room;
   }
 
@@ -268,7 +240,7 @@ class VideoGrant {
    * @return bool|null
    *   The ingress admin permission value.
    */
-  public function isIngressAdmin(): bool | null {
+  public function isIngressAdmin(): ?bool {
     return $this->ingressAdmin;
   }
 
@@ -291,7 +263,7 @@ class VideoGrant {
    * @return bool|null
    *   The can publish permission value.
    */
-  public function isCanPublish(): bool | null {
+  public function isCanPublish(): ?bool {
     return $this->canPublish;
   }
 
@@ -314,7 +286,7 @@ class VideoGrant {
    * @return bool|null
    *   The can subscribe permission value.
    */
-  public function isCanSubscribe(): bool | null {
+  public function isCanSubscribe(): ?bool {
     return $this->canSubscribe;
   }
 
@@ -337,7 +309,7 @@ class VideoGrant {
    * @return bool|null
    *   The can publish data permission value.
    */
-  public function isCanPublishData(): bool | null {
+  public function isCanPublishData(): ?bool {
     return $this->canPublishData;
   }
 
@@ -373,7 +345,7 @@ class VideoGrant {
    * @return string[]|null
    *   The can publish sources value.
    */
-  public function getCanPublishSources(): array | null {
+  public function getCanPublishSources(): ?array {
     return $this->canPublishSources;
   }
 
@@ -383,7 +355,7 @@ class VideoGrant {
    * @return bool|null
    *   The can update own metadata permission value.
    */
-  public function isCanUpdateOwnMetadata(): bool | null {
+  public function isCanUpdateOwnMetadata(): ?bool {
     return $this->canUpdateOwnMetadata;
   }
 
@@ -406,7 +378,7 @@ class VideoGrant {
    * @return bool|null
    *   The hidden permission value.
    */
-  public function isHidden(): bool | null {
+  public function isHidden(): ?bool {
     return $this->hidden;
   }
 
@@ -429,7 +401,7 @@ class VideoGrant {
    * @return bool|null
    *   The recorder permission value.
    */
-  public function isRecorder(): bool | null {
+  public function isRecorder(): ?bool {
     return $this->recorder;
   }
 

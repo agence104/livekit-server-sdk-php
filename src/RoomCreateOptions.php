@@ -2,74 +2,62 @@
 
 namespace Agence104\LiveKit;
 
-use \Livekit\RoomEgress;
+use Agence104\LiveKit\Traits\CaseConverter;
+use Livekit\RoomEgress;
 
+/**
+ * Defines the options for creating a room.
+ */
 class RoomCreateOptions {
+  use CaseConverter;
 
   /**
-   * The name of the room. required property
-   *
-   * @var string|null
+   * The name of the room. required property.
    */
-  protected $name;
+  protected ?string $name = NULL;
 
   /**
    * The number of seconds the room should cleanup after being empty.
-   *
-   * @var integer|null
    */
-  protected $empty_timeout;
+  protected ?int $emptyTimeout = NULL;
 
   /**
    * The limit to the number of participants in a room at a time.
-   *
-   * @var integer|null
    */
-  protected $max_participants;
+  protected ?int $maxParticipants = NULL;
 
   /**
    * The Node ID to override the node room is allocated to, for debugging.
-   *
-   * @var string|null
    */
-  protected $node_id;
+  protected ?string $nodeId = NULL;
 
   /**
    * The metadata of the room.
-   *
-   * @var string|null
    */
-  protected $metadata;
+  protected ?string $metadata = NULL;
 
   /**
    * The egress of the room.
-   *
-   * @var \Livekit\RoomEgress|null
    */
-  protected $egress;
+  protected ?RoomEgress $egress = NULL;
 
   /**
    * The minimum playout delay for subscribers.
-   *
-   * @var int|null
    */
-  protected $min_playout_delay;
+  protected ?int $minPlayoutDelay = NULL;
 
   /**
    * The maximum playout delay for subscribers.
-   *
-   * @var int|null
    */
-  protected $max_playout_delay;
+  protected ?int $maxPlayoutDelay = NULL;
 
   /**
-   * The flag enhances A/V synchronization when the `playout_delay` exceeds
-   * 200ms. However, it deactivates the re-utilization of the transceiver, hence
-   * it's not advisable for rooms that often modify subscriptions.
+   * The flag enhances A/V synchronization when the playout delay exceeds 200ms.
    *
-   * @var bool|null
+   * However, it deactivates the re-utilization of the transceiver, hence
+   * it's not advisable for rooms that often modify subscriptions.
    */
-  protected $sync_streams;
+  protected ?bool $syncStreams = NULL;
 
   /**
    * RoomCreateOptions class constructor.
@@ -78,6 +66,9 @@ class RoomCreateOptions {
    *   A list of properties with values to assign upon initializing the class.
    */
   public function __construct(array $properties = []) {
+    // Convert snake_case keys to camelCase for backward compatibility.
+    $properties = $this->convertArrayKeysToCamel($properties);
+
     foreach ($properties as $property => $value) {
       if (property_exists($this, $property)) {
         $this->{$property} = $value;
@@ -86,16 +77,23 @@ class RoomCreateOptions {
   }
 
   /**
+   * Get the room name.
+   *
    * @return string|null
+   *   The room name or null if not set.
    */
   public function getName(): ?string {
     return $this->name;
   }
 
   /**
+   * Set the room name.
+   *
    * @param string|null $name
+   *   The room name to set.
    *
    * @return $this
+   *   The current instance.
    */
   public function setName(?string $name): self {
     $this->name = $name;
@@ -103,67 +101,95 @@ class RoomCreateOptions {
   }
 
   /**
+   * Get the empty timeout value.
+   *
    * @return int|null
+   *   The number of seconds before an empty room is cleaned up.
    */
   public function getEmptyTimeout(): ?int {
-    return $this->empty_timeout;
+    return $this->emptyTimeout;
   }
 
   /**
+   * Set the empty timeout value.
+   *
    * @param int|null $emptyTimeout
+   *   The number of seconds before an empty room is cleaned up.
    *
    * @return $this
+   *   The current instance.
    */
   public function setEmptyTimeout(?int $emptyTimeout): self {
-    $this->empty_timeout = $emptyTimeout;
+    $this->emptyTimeout = $emptyTimeout;
     return $this;
   }
 
   /**
+   * Get the maximum number of participants allowed.
+   *
    * @return int|null
+   *   The maximum number of participants allowed in the room.
    */
   public function getMaxParticipants(): ?int {
-    return $this->max_participants;
+    return $this->maxParticipants;
   }
 
   /**
+   * Set the maximum number of participants allowed.
+   *
    * @param int|null $maxParticipants
+   *   The maximum number of participants allowed in the room.
    *
    * @return $this
+   *   The current instance.
    */
   public function setMaxParticipants(?int $maxParticipants): self {
-    $this->max_participants = $maxParticipants;
+    $this->maxParticipants = $maxParticipants;
     return $this;
   }
 
   /**
+   * Get the Node ID.
+   *
    * @return string|null
+   *   The Node ID or null if not set.
    */
   public function getNodeId(): ?string {
-    return $this->node_id;
+    return $this->nodeId;
   }
 
   /**
+   * Set the Node ID.
+   *
    * @param string|null $nodeId
+   *   The Node ID to set.
    *
    * @return $this
+   *   The current instance.
    */
   public function setNodeId(?string $nodeId): self {
-    $this->node_id = $nodeId;
+    $this->nodeId = $nodeId;
     return $this;
   }
 
   /**
+   * Get the metadata of the room.
+   *
    * @return string|null
+   *   The metadata of the room or null if not set.
    */
   public function getMetadata(): ?string {
     return $this->metadata;
   }
 
   /**
+   * Set the metadata of the room.
+   *
    * @param string|null $metadata
+   *   The metadata of the room to set.
    *
    * @return $this
+   *   The current instance.
    */
   public function setMetadata(?string $metadata): self {
     $this->metadata = $metadata;
@@ -171,16 +197,23 @@ class RoomCreateOptions {
   }
 
   /**
+   * Get the egress of the room.
+   *
    * @return \Livekit\RoomEgress|null
+   *   The egress of the room or null if not set.
    */
   public function getEgress(): ?RoomEgress {
     return $this->egress;
   }
 
   /**
+   * Set the egress of the room.
+   *
    * @param \Livekit\RoomEgress|null $egress
+   *   The egress of the room to set.
    *
    * @return $this
+   *   The current instance.
    */
   public function setEgress(?RoomEgress $egress): self {
     $this->egress = $egress;
@@ -188,53 +221,74 @@ class RoomCreateOptions {
   }
 
   /**
+   * Get the minimum playout delay.
+   *
    * @return int|null
+   *   The minimum playout delay or null if not set.
    */
   public function getMinPlayoutDelay(): ?int {
-    return $this->min_playout_delay;
+    return $this->minPlayoutDelay;
   }
 
   /**
+   * Set the minimum playout delay.
+   *
    * @param int|null $minPlayoutDelay
+   *   The minimum playout delay to set.
    *
    * @return $this
+   *   The current instance.
    */
   public function setMinPlayoutDelay(?int $minPlayoutDelay): self {
-    $this->min_playout_delay = $minPlayoutDelay;
+    $this->minPlayoutDelay = $minPlayoutDelay;
     return $this;
   }
 
   /**
+   * Get the maximum playout delay.
+   *
    * @return int|null
+   *   The maximum playout delay or null if not set.
    */
   public function getMaxPlayoutDelay(): ?int {
-    return $this->max_playout_delay;
+    return $this->maxPlayoutDelay;
   }
 
   /**
+   * Set the maximum playout delay.
+   *
    * @param int|null $maxPlayoutDelay
+   *   The maximum playout delay to set.
    *
    * @return $this
+   *   The current instance.
    */
   public function setMaxPlayoutDelay(?int $maxPlayoutDelay): self {
-    $this->max_playout_delay = $maxPlayoutDelay;
+    $this->maxPlayoutDelay = $maxPlayoutDelay;
     return $this;
   }
 
   /**
+   * Get the sync streams flag.
+   *
    * @return bool|null
+   *   The sync streams flag or null if not set.
    */
-  public function getSyncStream(): ?bool {
-    return $this->sync_streams;
+  public function getSyncStreams(): ?bool {
+    return $this->syncStreams;
   }
 
   /**
-   * @param bool|null $syncStream
+   * Set the sync streams flag.
+   *
+   * @param bool|null $syncStreams
+   *   The sync streams flag to set.
    *
    * @return $this
+   *   The current instance.
    */
-  public function setSyncStream(?bool $syncStream): self {
-    $this->sync_streams = $syncStream;
+  public function setSyncStreams(?bool $syncStreams): self {
+    $this->syncStreams = $syncStreams;
     return $this;
   }
 
@@ -242,9 +296,11 @@ class RoomCreateOptions {
    * Return the object properties which have been defined as an array.
    *
    * @return array
+   *   An array of defined properties in snake_case format.
    */
   public function getData(): array {
-    return array_filter(get_object_vars($this));
+    $data = array_filter(get_object_vars($this));
+    return $this->convertArrayKeysToSnake($data);
   }
 
 }

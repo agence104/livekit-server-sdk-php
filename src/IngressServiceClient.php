@@ -2,32 +2,31 @@
 
 namespace Agence104\LiveKit;
 
-use Livekit\IngressInfo;
-use Livekit\IngressInput;
-use Livekit\IngressClient;
-use Livekit\ListIngressRequest;
-use Livekit\IngressAudioOptions;
-use Livekit\IngressVideoOptions;
-use Livekit\ListIngressResponse;
-use Livekit\UpdateIngressRequest;
 use Livekit\CreateIngressRequest;
 use Livekit\DeleteIngressRequest;
+use Livekit\IngressAudioOptions;
+use Livekit\IngressClient;
+use Livekit\IngressInfo;
+use Livekit\IngressVideoOptions;
+use Livekit\ListIngressRequest;
+use Livekit\ListIngressResponse;
+use Livekit\UpdateIngressRequest;
 
+/**
+ * Define the Ingress service client.
+ */
 class IngressServiceClient extends BaseServiceClient {
 
   /**
    * The Twirp RPC adapter for client implementation.
-   *
-   * @var \Livekit\IngressClient
    */
-  protected $rpc;
+  protected IngressClient $rpc;
 
   /**
    * {@inheritdoc}
    */
   public function __construct(?string $host = NULL, ?string $apiKey = NULL, ?string $apiSecret = NULL) {
-    parent::__construct($host,$apiKey, $apiSecret);
-
+    parent::__construct($host, $apiKey, $apiSecret);
     $this->rpc = new IngressClient($this->host);
   }
 
@@ -55,6 +54,7 @@ class IngressServiceClient extends BaseServiceClient {
    *   Optional, the url to pull the media from, when using inputType URL_INPUT.
    *
    * @return \Livekit\IngressInfo
+   *   The created ingress instance.
    */
   public function createIngress(
     int $inputType,
@@ -106,6 +106,7 @@ class IngressServiceClient extends BaseServiceClient {
    *   Optional, whether to forward input media unprocessed, for WHIP only.
    *
    * @return \Livekit\IngressInfo
+   *   The updated ingress instance.
    */
   public function updateIngress(
     string $ingressId,
@@ -143,6 +144,7 @@ class IngressServiceClient extends BaseServiceClient {
    *   Optional, filter by an ingress ID.
    *
    * @return \Livekit\ListIngressResponse
+   *   The list of ingress instances.
    */
   public function listIngress(
     string $roomName = '',
@@ -166,6 +168,7 @@ class IngressServiceClient extends BaseServiceClient {
    *   The ingress id.
    *
    * @return \Livekit\IngressInfo
+   *   The deleted ingress instance.
    */
   public function deleteIngress(string $ingressId): IngressInfo {
     $videoGrant = new VideoGrant();

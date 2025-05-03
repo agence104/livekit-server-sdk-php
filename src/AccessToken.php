@@ -12,38 +12,28 @@ class AccessToken {
 
   /**
    * The API Key.
-   *
-   * @var string
    */
-  protected $apiKey;
+  protected string $apiKey;
 
   /**
    * The API Secret.
-   *
-   * @var string
    */
-  protected $apiSecret;
+  protected string $apiSecret;
 
   /**
    * The Access Token Grants.
-   *
-   * @var \Agence104\LiveKit\ClaimGrants
    */
-  protected $grants;
+  protected ClaimGrants $grants;
 
   /**
    * The Access Token Identity.
-   *
-   * @var string
    */
-  protected $identity;
+  protected ?string $identity = NULL;
 
   /**
    * The Time to live of the token. Defaults to 6 hours.
-   *
-   * @var numeric|string
    */
-  protected $ttl = 4 * 60 * 60;
+  protected int $ttl = 4 * 60 * 60;
 
   /**
    * AccessToken Constructor.
@@ -219,7 +209,7 @@ class AccessToken {
       ];
     }
     elseif ($this->grants->getVideoGrant()->isRoomJoin()) {
-      throw new \Exception('Identity is required to join but has not set.');
+      throw new \Exception('Identity is required to join but has not been set.');
     }
 
     $jwt_timestamp = time();
@@ -264,6 +254,10 @@ class AccessToken {
     if (isset($decoded_token->sip)) {
       $decoded_token->sipGrant = (array) $decoded_token->sip;
       unset($decoded_token->sip);
+    }
+
+    if (isset($decoded_token->attributes)) {
+      $decoded_token->attributes = (array) $decoded_token->attributes;
     }
 
     return new ClaimGrants((array) $decoded_token);

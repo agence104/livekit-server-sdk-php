@@ -9,45 +9,33 @@ class ClaimGrants {
 
   /**
    * The display name of the participant.
-   *
-   * @var string
    */
-  protected $name;
+  protected ?string $name = NULL;
 
   /**
    * The Access Token Grants.
-   *
-   * @var null|\Agence104\LiveKit\VideoGrant
    */
-  protected $videoGrant;
+  protected ?VideoGrant $videoGrant = NULL;
 
   /**
    * The SIP Access Token Grants.
-   *
-   * @var null|\Agence104\LiveKit\SIPGrant
    */
-  protected $sipGrant;
+  protected ?SIPGrant $sipGrant = NULL;
 
   /**
    * The Access Token Grants.
-   *
-   * @var null|string
    */
-  protected $metadata;
+  protected ?string $metadata = NULL;
 
   /**
    * The Access Token Grants.
-   *
-   * @var string
    */
-  protected $sha256;
+  protected ?string $sha256 = NULL;
 
   /**
    * Custom attributes to be passed to participants.
-   *
-   * @var array<string, string>|null
    */
-  protected $attributes;
+  protected ?array $attributes = NULL;
 
   /**
    * ClaimGrants class constructor.
