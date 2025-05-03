@@ -321,6 +321,16 @@ class RoomServiceClientTest extends TestCase {
     $data = 'sampleData';
     $response = $this->client->sendData($this->mainRoom, $data, Kind::RELIABLE, []);
     $this->assertInstanceOf(SendDataResponse::class, $response);
+
+    // Send data to a specific topic.
+    $response = $this->client->sendData($this->mainRoom, $data, Kind::RELIABLE, [], 'testTopic');
+    $this->assertInstanceOf(SendDataResponse::class, $response);
+
+    // Send data to a specific participant.
+    $response = $this->client->listParticipants($this->mainRoom);
+    $participant = $response->getParticipants()[0];
+    $response = $this->client->sendData($this->mainRoom, $data, Kind::RELIABLE, [$participant->getIdentity()]);
+    $this->assertInstanceOf(SendDataResponse::class, $response);
   }
 
 }
