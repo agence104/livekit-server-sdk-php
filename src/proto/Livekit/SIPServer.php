@@ -136,6 +136,10 @@ final class SIPServer implements RequestHandlerInterface
                 return $this->handleCreateSIPInboundTrunk($ctx, $req);
             case 'CreateSIPOutboundTrunk':
                 return $this->handleCreateSIPOutboundTrunk($ctx, $req);
+            case 'UpdateSIPInboundTrunk':
+                return $this->handleUpdateSIPInboundTrunk($ctx, $req);
+            case 'UpdateSIPOutboundTrunk':
+                return $this->handleUpdateSIPOutboundTrunk($ctx, $req);
             case 'GetSIPInboundTrunk':
                 return $this->handleGetSIPInboundTrunk($ctx, $req);
             case 'GetSIPOutboundTrunk':
@@ -148,6 +152,8 @@ final class SIPServer implements RequestHandlerInterface
                 return $this->handleDeleteSIPTrunk($ctx, $req);
             case 'CreateSIPDispatchRule':
                 return $this->handleCreateSIPDispatchRule($ctx, $req);
+            case 'UpdateSIPDispatchRule':
+                return $this->handleUpdateSIPDispatchRule($ctx, $req);
             case 'ListSIPDispatchRule':
                 return $this->handleListSIPDispatchRule($ctx, $req);
             case 'DeleteSIPDispatchRule':
@@ -461,6 +467,220 @@ final class SIPServer implements RequestHandlerInterface
 
             if ($out === null) {
                 return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling CreateSIPOutboundTrunk. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleUpdateSIPInboundTrunk(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleUpdateSIPInboundTrunkJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleUpdateSIPInboundTrunkProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleUpdateSIPInboundTrunkJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPInboundTrunk');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\UpdateSIPInboundTrunkRequest();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->UpdateSIPInboundTrunk($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateSIPInboundTrunk. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleUpdateSIPInboundTrunkProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPInboundTrunk');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\UpdateSIPInboundTrunkRequest();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->UpdateSIPInboundTrunk($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateSIPInboundTrunk. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleUpdateSIPOutboundTrunk(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleUpdateSIPOutboundTrunkJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleUpdateSIPOutboundTrunkProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleUpdateSIPOutboundTrunkJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPOutboundTrunk');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\UpdateSIPOutboundTrunkRequest();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->UpdateSIPOutboundTrunk($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateSIPOutboundTrunk. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleUpdateSIPOutboundTrunkProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPOutboundTrunk');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\UpdateSIPOutboundTrunkRequest();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->UpdateSIPOutboundTrunk($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateSIPOutboundTrunk. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);
@@ -1103,6 +1323,113 @@ final class SIPServer implements RequestHandlerInterface
 
             if ($out === null) {
                 return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling CreateSIPDispatchRule. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleUpdateSIPDispatchRule(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleUpdateSIPDispatchRuleJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleUpdateSIPDispatchRuleProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleUpdateSIPDispatchRuleJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPDispatchRule');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\UpdateSIPDispatchRuleRequest();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->UpdateSIPDispatchRule($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateSIPDispatchRule. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleUpdateSIPDispatchRuleProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPDispatchRule');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\UpdateSIPDispatchRuleRequest();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->UpdateSIPDispatchRule($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateSIPDispatchRule. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);

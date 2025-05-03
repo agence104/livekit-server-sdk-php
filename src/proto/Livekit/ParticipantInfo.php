@@ -80,6 +80,10 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.DisconnectReason disconnect_reason = 16;</code>
      */
     protected $disconnect_reason = 0;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ParticipantInfo.KindDetail kind_details = 18;</code>
+     */
+    private $kind_details;
 
     /**
      * Constructor.
@@ -106,6 +110,7 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
      *     @type int $kind
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *     @type int $disconnect_reason
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $kind_details
      * }
      */
     public function __construct($data = NULL) {
@@ -463,6 +468,28 @@ class ParticipantInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\DisconnectReason::class);
         $this->disconnect_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ParticipantInfo.KindDetail kind_details = 18;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getKindDetails()
+    {
+        return $this->kind_details;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.ParticipantInfo.KindDetail kind_details = 18;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setKindDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Livekit\ParticipantInfo\KindDetail::class);
+        $this->kind_details = $arr;
 
         return $this;
     }

@@ -37,6 +37,12 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> headers = 5;</code>
      */
     private $headers;
+    /**
+     * Max time for the transfer destination to answer the call.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 6;</code>
+     */
+    protected $ringing_timeout = null;
 
     /**
      * Constructor.
@@ -51,6 +57,8 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      *           Optionally play dialtone to the SIP participant as an audible indicator of being transferred
      *     @type array|\Google\Protobuf\Internal\MapField $headers
      *           Add the following headers to the REFER SIP request.
+     *     @type \Google\Protobuf\Duration $ringing_timeout
+     *           Max time for the transfer destination to answer the call.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,6 +180,42 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Max time for the transfer destination to answer the call.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 6;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getRingingTimeout()
+    {
+        return $this->ringing_timeout;
+    }
+
+    public function hasRingingTimeout()
+    {
+        return isset($this->ringing_timeout);
+    }
+
+    public function clearRingingTimeout()
+    {
+        unset($this->ringing_timeout);
+    }
+
+    /**
+     * Max time for the transfer destination to answer the call.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ringing_timeout = 6;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setRingingTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->ringing_timeout = $var;
 
         return $this;
     }

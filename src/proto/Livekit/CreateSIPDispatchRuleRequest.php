@@ -14,59 +14,74 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.livekit.SIPDispatchRule rule = 1;</code>
+     * Rule ID is ignored
+     *
+     * Generated from protobuf field <code>.livekit.SIPDispatchRuleInfo dispatch_rule = 10;</code>
+     */
+    protected $dispatch_rule = null;
+    /**
+     * Generated from protobuf field <code>.livekit.SIPDispatchRule rule = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $rule = null;
     /**
      * What trunks are accepted for this dispatch rule
      * If empty all trunks will match this dispatch rule
      *
-     * Generated from protobuf field <code>repeated string trunk_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string trunk_ids = 2 [deprecated = true];</code>
+     * @deprecated
      */
     private $trunk_ids;
     /**
      * By default the From value (Phone number) is used for participant name/identity and added to attributes.
      * If true, a random value for identity will be used and numbers will be omitted from attributes.
      *
-     * Generated from protobuf field <code>bool hide_phone_number = 3;</code>
+     * Generated from protobuf field <code>bool hide_phone_number = 3 [deprecated = true];</code>
+     * @deprecated
      */
     protected $hide_phone_number = false;
     /**
      * Dispatch Rule will only accept a call made to these numbers (if set).
      *
-     * Generated from protobuf field <code>repeated string inbound_numbers = 6;</code>
+     * Generated from protobuf field <code>repeated string inbound_numbers = 6 [deprecated = true];</code>
+     * @deprecated
      */
     private $inbound_numbers;
     /**
      * Optional human-readable name for the Dispatch Rule.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [deprecated = true];</code>
+     * @deprecated
      */
     protected $name = '';
     /**
      * User-defined metadata for the Dispatch Rule.
      * Participants created by this rule will inherit this metadata.
      *
-     * Generated from protobuf field <code>string metadata = 5;</code>
+     * Generated from protobuf field <code>string metadata = 5 [deprecated = true];</code>
+     * @deprecated
      */
     protected $metadata = '';
     /**
      * User-defined attributes for the Dispatch Rule.
      * Participants created by this rule will inherit these attributes.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 7;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true];</code>
+     * @deprecated
      */
     private $attributes;
     /**
      * Cloud-only, config preset to use
      *
-     * Generated from protobuf field <code>string room_preset = 8;</code>
+     * Generated from protobuf field <code>string room_preset = 8 [deprecated = true];</code>
+     * @deprecated
      */
     protected $room_preset = '';
     /**
      * RoomConfiguration to use if the participant initiates the room
      *
-     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9;</code>
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9 [deprecated = true];</code>
+     * @deprecated
      */
     protected $room_config = null;
 
@@ -76,6 +91,8 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Livekit\SIPDispatchRuleInfo $dispatch_rule
+     *           Rule ID is ignored
      *     @type \Livekit\SIPDispatchRule $rule
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $trunk_ids
      *           What trunks are accepted for this dispatch rule
@@ -105,31 +122,73 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SIPDispatchRule rule = 1;</code>
+     * Rule ID is ignored
+     *
+     * Generated from protobuf field <code>.livekit.SIPDispatchRuleInfo dispatch_rule = 10;</code>
+     * @return \Livekit\SIPDispatchRuleInfo|null
+     */
+    public function getDispatchRule()
+    {
+        return $this->dispatch_rule;
+    }
+
+    public function hasDispatchRule()
+    {
+        return isset($this->dispatch_rule);
+    }
+
+    public function clearDispatchRule()
+    {
+        unset($this->dispatch_rule);
+    }
+
+    /**
+     * Rule ID is ignored
+     *
+     * Generated from protobuf field <code>.livekit.SIPDispatchRuleInfo dispatch_rule = 10;</code>
+     * @param \Livekit\SIPDispatchRuleInfo $var
+     * @return $this
+     */
+    public function setDispatchRule($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SIPDispatchRuleInfo::class);
+        $this->dispatch_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPDispatchRule rule = 1 [deprecated = true];</code>
      * @return \Livekit\SIPDispatchRule|null
+     * @deprecated
      */
     public function getRule()
     {
+        @trigger_error('rule is deprecated.', E_USER_DEPRECATED);
         return $this->rule;
     }
 
     public function hasRule()
     {
+        @trigger_error('rule is deprecated.', E_USER_DEPRECATED);
         return isset($this->rule);
     }
 
     public function clearRule()
     {
+        @trigger_error('rule is deprecated.', E_USER_DEPRECATED);
         unset($this->rule);
     }
 
     /**
-     * Generated from protobuf field <code>.livekit.SIPDispatchRule rule = 1;</code>
+     * Generated from protobuf field <code>.livekit.SIPDispatchRule rule = 1 [deprecated = true];</code>
      * @param \Livekit\SIPDispatchRule $var
      * @return $this
+     * @deprecated
      */
     public function setRule($var)
     {
+        @trigger_error('rule is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\SIPDispatchRule::class);
         $this->rule = $var;
 
@@ -140,11 +199,13 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * What trunks are accepted for this dispatch rule
      * If empty all trunks will match this dispatch rule
      *
-     * Generated from protobuf field <code>repeated string trunk_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string trunk_ids = 2 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getTrunkIds()
     {
+        @trigger_error('trunk_ids is deprecated.', E_USER_DEPRECATED);
         return $this->trunk_ids;
     }
 
@@ -152,12 +213,14 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * What trunks are accepted for this dispatch rule
      * If empty all trunks will match this dispatch rule
      *
-     * Generated from protobuf field <code>repeated string trunk_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string trunk_ids = 2 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setTrunkIds($var)
     {
+        @trigger_error('trunk_ids is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->trunk_ids = $arr;
 
@@ -168,11 +231,13 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * By default the From value (Phone number) is used for participant name/identity and added to attributes.
      * If true, a random value for identity will be used and numbers will be omitted from attributes.
      *
-     * Generated from protobuf field <code>bool hide_phone_number = 3;</code>
+     * Generated from protobuf field <code>bool hide_phone_number = 3 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getHidePhoneNumber()
     {
+        @trigger_error('hide_phone_number is deprecated.', E_USER_DEPRECATED);
         return $this->hide_phone_number;
     }
 
@@ -180,12 +245,14 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * By default the From value (Phone number) is used for participant name/identity and added to attributes.
      * If true, a random value for identity will be used and numbers will be omitted from attributes.
      *
-     * Generated from protobuf field <code>bool hide_phone_number = 3;</code>
+     * Generated from protobuf field <code>bool hide_phone_number = 3 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setHidePhoneNumber($var)
     {
+        @trigger_error('hide_phone_number is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->hide_phone_number = $var;
 
@@ -195,23 +262,27 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Dispatch Rule will only accept a call made to these numbers (if set).
      *
-     * Generated from protobuf field <code>repeated string inbound_numbers = 6;</code>
+     * Generated from protobuf field <code>repeated string inbound_numbers = 6 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getInboundNumbers()
     {
+        @trigger_error('inbound_numbers is deprecated.', E_USER_DEPRECATED);
         return $this->inbound_numbers;
     }
 
     /**
      * Dispatch Rule will only accept a call made to these numbers (if set).
      *
-     * Generated from protobuf field <code>repeated string inbound_numbers = 6;</code>
+     * Generated from protobuf field <code>repeated string inbound_numbers = 6 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setInboundNumbers($var)
     {
+        @trigger_error('inbound_numbers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->inbound_numbers = $arr;
 
@@ -221,23 +292,27 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional human-readable name for the Dispatch Rule.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getName()
     {
+        @trigger_error('name is deprecated.', E_USER_DEPRECATED);
         return $this->name;
     }
 
     /**
      * Optional human-readable name for the Dispatch Rule.
      *
-     * Generated from protobuf field <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setName($var)
     {
+        @trigger_error('name is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->name = $var;
 
@@ -248,11 +323,13 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined metadata for the Dispatch Rule.
      * Participants created by this rule will inherit this metadata.
      *
-     * Generated from protobuf field <code>string metadata = 5;</code>
+     * Generated from protobuf field <code>string metadata = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getMetadata()
     {
+        @trigger_error('metadata is deprecated.', E_USER_DEPRECATED);
         return $this->metadata;
     }
 
@@ -260,12 +337,14 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined metadata for the Dispatch Rule.
      * Participants created by this rule will inherit this metadata.
      *
-     * Generated from protobuf field <code>string metadata = 5;</code>
+     * Generated from protobuf field <code>string metadata = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setMetadata($var)
     {
+        @trigger_error('metadata is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->metadata = $var;
 
@@ -276,11 +355,13 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined attributes for the Dispatch Rule.
      * Participants created by this rule will inherit these attributes.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 7;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\MapField
+     * @deprecated
      */
     public function getAttributes()
     {
+        @trigger_error('attributes is deprecated.', E_USER_DEPRECATED);
         return $this->attributes;
     }
 
@@ -288,12 +369,14 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined attributes for the Dispatch Rule.
      * Participants created by this rule will inherit these attributes.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 7;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
+     * @deprecated
      */
     public function setAttributes($var)
     {
+        @trigger_error('attributes is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->attributes = $arr;
 
@@ -303,23 +386,27 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Cloud-only, config preset to use
      *
-     * Generated from protobuf field <code>string room_preset = 8;</code>
+     * Generated from protobuf field <code>string room_preset = 8 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getRoomPreset()
     {
+        @trigger_error('room_preset is deprecated.', E_USER_DEPRECATED);
         return $this->room_preset;
     }
 
     /**
      * Cloud-only, config preset to use
      *
-     * Generated from protobuf field <code>string room_preset = 8;</code>
+     * Generated from protobuf field <code>string room_preset = 8 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setRoomPreset($var)
     {
+        @trigger_error('room_preset is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->room_preset = $var;
 
@@ -329,33 +416,39 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * RoomConfiguration to use if the participant initiates the room
      *
-     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9;</code>
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9 [deprecated = true];</code>
      * @return \Livekit\RoomConfiguration|null
+     * @deprecated
      */
     public function getRoomConfig()
     {
+        @trigger_error('room_config is deprecated.', E_USER_DEPRECATED);
         return $this->room_config;
     }
 
     public function hasRoomConfig()
     {
+        @trigger_error('room_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->room_config);
     }
 
     public function clearRoomConfig()
     {
+        @trigger_error('room_config is deprecated.', E_USER_DEPRECATED);
         unset($this->room_config);
     }
 
     /**
      * RoomConfiguration to use if the participant initiates the room
      *
-     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9;</code>
+     * Generated from protobuf field <code>.livekit.RoomConfiguration room_config = 9 [deprecated = true];</code>
      * @param \Livekit\RoomConfiguration $var
      * @return $this
+     * @deprecated
      */
     public function setRoomConfig($var)
     {
+        @trigger_error('room_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Livekit\RoomConfiguration::class);
         $this->room_config = $var;
 

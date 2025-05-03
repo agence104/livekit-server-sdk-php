@@ -63,6 +63,10 @@ class SDK
      * Generated from protobuf enum <code>NODE = 12;</code>
      */
     const NODE = 12;
+    /**
+     * Generated from protobuf enum <code>UNREAL = 13;</code>
+     */
+    const UNREAL = 13;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -78,6 +82,7 @@ class SDK
         self::CPP => 'CPP',
         self::UNITY_WEB => 'UNITY_WEB',
         self::NODE => 'NODE',
+        self::UNREAL => 'UNREAL',
     ];
 
     public static function name($value)

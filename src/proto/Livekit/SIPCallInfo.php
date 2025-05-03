@@ -22,6 +22,14 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $trunk_id = '';
     /**
+     * Generated from protobuf field <code>string dispatch_rule_id = 16;</code>
+     */
+    protected $dispatch_rule_id = '';
+    /**
+     * Generated from protobuf field <code>string region = 17;</code>
+     */
+    protected $region = '';
+    /**
      * Generated from protobuf field <code>string room_name = 3;</code>
      */
     protected $room_name = '';
@@ -36,6 +44,10 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $participant_identity = '';
     /**
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 18;</code>
+     */
+    private $participant_attributes;
+    /**
      * Generated from protobuf field <code>.livekit.SIPUri from_uri = 6;</code>
      */
     protected $from_uri = null;
@@ -43,6 +55,21 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.SIPUri to_uri = 7;</code>
      */
     protected $to_uri = null;
+    /**
+     * Generated from protobuf field <code>int64 created_at = 9 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $created_at = 0;
+    /**
+     * Generated from protobuf field <code>int64 started_at = 10 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $started_at = 0;
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 11 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $ended_at = 0;
     /**
      * Generated from protobuf field <code>repeated .livekit.SIPFeature enabled_features = 14;</code>
      */
@@ -56,17 +83,17 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $call_status = 0;
     /**
-     * Generated from protobuf field <code>int64 created_at = 9;</code>
+     * Generated from protobuf field <code>int64 created_at_ns = 22;</code>
      */
-    protected $created_at = 0;
+    protected $created_at_ns = 0;
     /**
-     * Generated from protobuf field <code>int64 started_at = 10;</code>
+     * Generated from protobuf field <code>int64 started_at_ns = 23;</code>
      */
-    protected $started_at = 0;
+    protected $started_at_ns = 0;
     /**
-     * Generated from protobuf field <code>int64 ended_at = 11;</code>
+     * Generated from protobuf field <code>int64 ended_at_ns = 24;</code>
      */
-    protected $ended_at = 0;
+    protected $ended_at_ns = 0;
     /**
      * Generated from protobuf field <code>.livekit.DisconnectReason disconnect_reason = 12;</code>
      */
@@ -75,6 +102,18 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string error = 13;</code>
      */
     protected $error = '';
+    /**
+     * Generated from protobuf field <code>.livekit.SIPStatus call_status_code = 19;</code>
+     */
+    protected $call_status_code = null;
+    /**
+     * Generated from protobuf field <code>string audio_codec = 20;</code>
+     */
+    protected $audio_codec = '';
+    /**
+     * Generated from protobuf field <code>string media_encryption = 21;</code>
+     */
+    protected $media_encryption = '';
 
     /**
      * Constructor.
@@ -84,20 +123,29 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type string $call_id
      *     @type string $trunk_id
+     *     @type string $dispatch_rule_id
+     *     @type string $region
      *     @type string $room_name
      *     @type string $room_id
      *           ID of the current/previous room published to
      *     @type string $participant_identity
+     *     @type array|\Google\Protobuf\Internal\MapField $participant_attributes
      *     @type \Livekit\SIPUri $from_uri
      *     @type \Livekit\SIPUri $to_uri
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
-     *     @type int $call_direction
-     *     @type int $call_status
      *     @type int|string $created_at
      *     @type int|string $started_at
      *     @type int|string $ended_at
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
+     *     @type int $call_direction
+     *     @type int $call_status
+     *     @type int|string $created_at_ns
+     *     @type int|string $started_at_ns
+     *     @type int|string $ended_at_ns
      *     @type int $disconnect_reason
      *     @type string $error
+     *     @type \Livekit\SIPStatus $call_status_code
+     *     @type string $audio_codec
+     *     @type string $media_encryption
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +193,50 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->trunk_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string dispatch_rule_id = 16;</code>
+     * @return string
+     */
+    public function getDispatchRuleId()
+    {
+        return $this->dispatch_rule_id;
+    }
+
+    /**
+     * Generated from protobuf field <code>string dispatch_rule_id = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDispatchRuleId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dispatch_rule_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string region = 17;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Generated from protobuf field <code>string region = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }
@@ -220,6 +312,28 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 18;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getParticipantAttributes()
+    {
+        return $this->participant_attributes;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 18;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setParticipantAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->participant_attributes = $arr;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>.livekit.SIPUri from_uri = 6;</code>
      * @return \Livekit\SIPUri|null
      */
@@ -279,6 +393,84 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\SIPUri::class);
         $this->to_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 created_at = 9 [deprecated = true];</code>
+     * @return int|string
+     * @deprecated
+     */
+    public function getCreatedAt()
+    {
+        @trigger_error('created_at is deprecated.', E_USER_DEPRECATED);
+        return $this->created_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 created_at = 9 [deprecated = true];</code>
+     * @param int|string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setCreatedAt($var)
+    {
+        @trigger_error('created_at is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkInt64($var);
+        $this->created_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 started_at = 10 [deprecated = true];</code>
+     * @return int|string
+     * @deprecated
+     */
+    public function getStartedAt()
+    {
+        @trigger_error('started_at is deprecated.', E_USER_DEPRECATED);
+        return $this->started_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 started_at = 10 [deprecated = true];</code>
+     * @param int|string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setStartedAt($var)
+    {
+        @trigger_error('started_at is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkInt64($var);
+        $this->started_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 11 [deprecated = true];</code>
+     * @return int|string
+     * @deprecated
+     */
+    public function getEndedAt()
+    {
+        @trigger_error('ended_at is deprecated.', E_USER_DEPRECATED);
+        return $this->ended_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 ended_at = 11 [deprecated = true];</code>
+     * @param int|string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setEndedAt($var)
+    {
+        @trigger_error('ended_at is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkInt64($var);
+        $this->ended_at = $var;
 
         return $this;
     }
@@ -350,67 +542,67 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int64 created_at = 9;</code>
+     * Generated from protobuf field <code>int64 created_at_ns = 22;</code>
      * @return int|string
      */
-    public function getCreatedAt()
+    public function getCreatedAtNs()
     {
-        return $this->created_at;
+        return $this->created_at_ns;
     }
 
     /**
-     * Generated from protobuf field <code>int64 created_at = 9;</code>
+     * Generated from protobuf field <code>int64 created_at_ns = 22;</code>
      * @param int|string $var
      * @return $this
      */
-    public function setCreatedAt($var)
+    public function setCreatedAtNs($var)
     {
         GPBUtil::checkInt64($var);
-        $this->created_at = $var;
+        $this->created_at_ns = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>int64 started_at = 10;</code>
+     * Generated from protobuf field <code>int64 started_at_ns = 23;</code>
      * @return int|string
      */
-    public function getStartedAt()
+    public function getStartedAtNs()
     {
-        return $this->started_at;
+        return $this->started_at_ns;
     }
 
     /**
-     * Generated from protobuf field <code>int64 started_at = 10;</code>
+     * Generated from protobuf field <code>int64 started_at_ns = 23;</code>
      * @param int|string $var
      * @return $this
      */
-    public function setStartedAt($var)
+    public function setStartedAtNs($var)
     {
         GPBUtil::checkInt64($var);
-        $this->started_at = $var;
+        $this->started_at_ns = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>int64 ended_at = 11;</code>
+     * Generated from protobuf field <code>int64 ended_at_ns = 24;</code>
      * @return int|string
      */
-    public function getEndedAt()
+    public function getEndedAtNs()
     {
-        return $this->ended_at;
+        return $this->ended_at_ns;
     }
 
     /**
-     * Generated from protobuf field <code>int64 ended_at = 11;</code>
+     * Generated from protobuf field <code>int64 ended_at_ns = 24;</code>
      * @param int|string $var
      * @return $this
      */
-    public function setEndedAt($var)
+    public function setEndedAtNs($var)
     {
         GPBUtil::checkInt64($var);
-        $this->ended_at = $var;
+        $this->ended_at_ns = $var;
 
         return $this;
     }
@@ -455,6 +647,82 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPStatus call_status_code = 19;</code>
+     * @return \Livekit\SIPStatus|null
+     */
+    public function getCallStatusCode()
+    {
+        return $this->call_status_code;
+    }
+
+    public function hasCallStatusCode()
+    {
+        return isset($this->call_status_code);
+    }
+
+    public function clearCallStatusCode()
+    {
+        unset($this->call_status_code);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.SIPStatus call_status_code = 19;</code>
+     * @param \Livekit\SIPStatus $var
+     * @return $this
+     */
+    public function setCallStatusCode($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\SIPStatus::class);
+        $this->call_status_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string audio_codec = 20;</code>
+     * @return string
+     */
+    public function getAudioCodec()
+    {
+        return $this->audio_codec;
+    }
+
+    /**
+     * Generated from protobuf field <code>string audio_codec = 20;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAudioCodec($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->audio_codec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string media_encryption = 21;</code>
+     * @return string
+     */
+    public function getMediaEncryption()
+    {
+        return $this->media_encryption;
+    }
+
+    /**
+     * Generated from protobuf field <code>string media_encryption = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMediaEncryption($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->media_encryption = $var;
 
         return $this;
     }

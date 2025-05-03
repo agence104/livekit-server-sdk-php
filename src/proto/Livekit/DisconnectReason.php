@@ -93,6 +93,12 @@ class DisconnectReason
      * Generated from protobuf enum <code>SIP_TRUNK_FAILURE = 13;</code>
      */
     const SIP_TRUNK_FAILURE = 13;
+    /**
+     * server timed out a participant session
+     *
+     * Generated from protobuf enum <code>CONNECTION_TIMEOUT = 14;</code>
+     */
+    const CONNECTION_TIMEOUT = 14;
 
     private static $valueToName = [
         self::UNKNOWN_REASON => 'UNKNOWN_REASON',
@@ -109,6 +115,7 @@ class DisconnectReason
         self::USER_UNAVAILABLE => 'USER_UNAVAILABLE',
         self::USER_REJECTED => 'USER_REJECTED',
         self::SIP_TRUNK_FAILURE => 'SIP_TRUNK_FAILURE',
+        self::CONNECTION_TIMEOUT => 'CONNECTION_TIMEOUT',
     ];
 
     public static function name($value)

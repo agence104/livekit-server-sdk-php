@@ -19,8 +19,8 @@ class LivekitWebhook
         \GPBMetadata\LivekitIngress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
-livekit_webhook.protolivekitlivekit_egress.protolivekit_ingress.proto"—
+»
+livekit_webhook.protolivekitlivekit_egress.protolivekit_ingress.proto"›
 WebhookEvent
 event (	
 room (2.livekit.Room-
@@ -32,8 +32,8 @@ class LivekitWebhook
 
 id (	
 
-created_at (
-num_dropped (BFZ#github.com/livekit/protocol/livekitªLiveKit.ProtoêLiveKit::Protobproto3'
+created_at (
+num_dropped (BBFZ#github.com/livekit/protocol/livekitªLiveKit.ProtoêLiveKit::Protobproto3'
         , true);
 
         static::$is_initialized = true;

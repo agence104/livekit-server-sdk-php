@@ -14,21 +14,29 @@ use UnexpectedValueException;
 class BackupCodecPolicy
 {
     /**
-     * default behavior, regress to backup codec and all subscribers will receive the backup codec
+     * default behavior, the track prefer to regress to backup codec and all subscribers will receive the backup codec,
+     * the sfu will try to regress codec if possible but not assured.
      *
-     * Generated from protobuf enum <code>REGRESSION = 0;</code>
+     * Generated from protobuf enum <code>PREFER_REGRESSION = 0;</code>
      */
-    const REGRESSION = 0;
+    const PREFER_REGRESSION = 0;
     /**
      * encoding/send the primary and backup codec simultaneously
      *
      * Generated from protobuf enum <code>SIMULCAST = 1;</code>
      */
     const SIMULCAST = 1;
+    /**
+     * force the track to regress to backup codec, this option can be used in video conference or the publisher has limited bandwidth/encoding power
+     *
+     * Generated from protobuf enum <code>REGRESSION = 2;</code>
+     */
+    const REGRESSION = 2;
 
     private static $valueToName = [
-        self::REGRESSION => 'REGRESSION',
+        self::PREFER_REGRESSION => 'PREFER_REGRESSION',
         self::SIMULCAST => 'SIMULCAST',
+        self::REGRESSION => 'REGRESSION',
     ];
 
     public static function name($value)

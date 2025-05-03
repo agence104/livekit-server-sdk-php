@@ -49,6 +49,12 @@ class ParticipantEgressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .livekit.ImageOutput image_outputs = 9;</code>
      */
     private $image_outputs;
+    /**
+     * extra webhooks to call for this request
+     *
+     * Generated from protobuf field <code>repeated .livekit.WebhookConfig webhooks = 10;</code>
+     */
+    private $webhooks;
     protected $options;
 
     /**
@@ -71,6 +77,8 @@ class ParticipantEgressRequest extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\StreamOutput[]|\Google\Protobuf\Internal\RepeatedField $stream_outputs
      *     @type \Livekit\SegmentedFileOutput[]|\Google\Protobuf\Internal\RepeatedField $segment_outputs
      *     @type \Livekit\ImageOutput[]|\Google\Protobuf\Internal\RepeatedField $image_outputs
+     *     @type \Livekit\WebhookConfig[]|\Google\Protobuf\Internal\RepeatedField $webhooks
+     *           extra webhooks to call for this request
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +310,32 @@ class ParticipantEgressRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\ImageOutput::class);
         $this->image_outputs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * extra webhooks to call for this request
+     *
+     * Generated from protobuf field <code>repeated .livekit.WebhookConfig webhooks = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWebhooks()
+    {
+        return $this->webhooks;
+    }
+
+    /**
+     * extra webhooks to call for this request
+     *
+     * Generated from protobuf field <code>repeated .livekit.WebhookConfig webhooks = 10;</code>
+     * @param \Livekit\WebhookConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWebhooks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\WebhookConfig::class);
+        $this->webhooks = $arr;
 
         return $this;
     }

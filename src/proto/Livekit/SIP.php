@@ -43,6 +43,24 @@ interface SIP
     /**
      *
      *
+     * Generated from protobuf method <code>livekit.SIP/UpdateSIPInboundTrunk</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function UpdateSIPInboundTrunk(array $ctx, \Livekit\UpdateSIPInboundTrunkRequest $req): \Livekit\SIPInboundTrunkInfo;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.SIP/UpdateSIPOutboundTrunk</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function UpdateSIPOutboundTrunk(array $ctx, \Livekit\UpdateSIPOutboundTrunkRequest $req): \Livekit\SIPOutboundTrunkInfo;
+
+    /**
+     *
+     *
      * Generated from protobuf method <code>livekit.SIP/GetSIPInboundTrunk</code>
      *
      * @throws \Twirp\Error
@@ -93,6 +111,15 @@ interface SIP
      * @throws \Twirp\Error
      */
     public function CreateSIPDispatchRule(array $ctx, \Livekit\CreateSIPDispatchRuleRequest $req): \Livekit\SIPDispatchRuleInfo;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.SIP/UpdateSIPDispatchRule</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function UpdateSIPDispatchRule(array $ctx, \Livekit\UpdateSIPDispatchRuleRequest $req): \Livekit\SIPDispatchRuleInfo;
 
     /**
      *

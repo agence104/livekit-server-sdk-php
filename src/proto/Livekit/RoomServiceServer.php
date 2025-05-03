@@ -152,6 +152,8 @@ final class RoomServiceServer implements RequestHandlerInterface
                 return $this->handleSendData($ctx, $req);
             case 'UpdateRoomMetadata':
                 return $this->handleUpdateRoomMetadata($ctx, $req);
+            case 'ForwardParticipant':
+                return $this->handleForwardParticipant($ctx, $req);
 
             default:
                 return $this->writeError($ctx, $this->noRouteError($req));
@@ -1313,6 +1315,113 @@ final class RoomServiceServer implements RequestHandlerInterface
 
             if ($out === null) {
                 return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling UpdateRoomMetadata. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleForwardParticipant(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleForwardParticipantJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleForwardParticipantProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleForwardParticipantJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'ForwardParticipant');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\ForwardParticipantRequest();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->ForwardParticipant($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling ForwardParticipant. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleForwardParticipantProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'ForwardParticipant');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Livekit\ForwardParticipantRequest();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->ForwardParticipant($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling ForwardParticipant. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);

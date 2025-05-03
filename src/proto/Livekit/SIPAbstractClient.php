@@ -149,6 +149,52 @@ abstract class SIPAbstractClient
     /**
      * {@inheritdoc}
      */
+    public function UpdateSIPInboundTrunk(array $ctx, \Livekit\UpdateSIPInboundTrunkRequest $in): \Livekit\SIPInboundTrunkInfo
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'SIP');
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPInboundTrunk');
+
+        $out = new \Livekit\SIPInboundTrunkInfo();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.SIP/UpdateSIPInboundTrunk';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.SIP/UpdateSIPInboundTrunk';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function UpdateSIPOutboundTrunk(array $ctx, \Livekit\UpdateSIPOutboundTrunkRequest $in): \Livekit\SIPOutboundTrunkInfo
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'SIP');
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPOutboundTrunk');
+
+        $out = new \Livekit\SIPOutboundTrunkInfo();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.SIP/UpdateSIPOutboundTrunk';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.SIP/UpdateSIPOutboundTrunk';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function GetSIPInboundTrunk(array $ctx, \Livekit\GetSIPInboundTrunkRequest $in): \Livekit\GetSIPInboundTrunkResponse
     {
         $ctx = Context::withPackageName($ctx, 'livekit');
@@ -277,6 +323,29 @@ abstract class SIPAbstractClient
             $url = $url.'/livekit.SIP/CreateSIPDispatchRule';
         } else {
             $url = $url.'/'.$this->prefix.'/livekit.SIP/CreateSIPDispatchRule';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function UpdateSIPDispatchRule(array $ctx, \Livekit\UpdateSIPDispatchRuleRequest $in): \Livekit\SIPDispatchRuleInfo
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'SIP');
+        $ctx = Context::withMethodName($ctx, 'UpdateSIPDispatchRule');
+
+        $out = new \Livekit\SIPDispatchRuleInfo();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.SIP/UpdateSIPDispatchRule';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.SIP/UpdateSIPDispatchRule';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

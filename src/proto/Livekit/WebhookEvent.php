@@ -62,7 +62,8 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      */
     protected $created_at = 0;
     /**
-     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * Generated from protobuf field <code>int32 num_dropped = 11 [deprecated = true];</code>
+     * @deprecated
      */
     protected $num_dropped = 0;
 
@@ -356,21 +357,25 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * Generated from protobuf field <code>int32 num_dropped = 11 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getNumDropped()
     {
+        @trigger_error('num_dropped is deprecated.', E_USER_DEPRECATED);
         return $this->num_dropped;
     }
 
     /**
-     * Generated from protobuf field <code>int32 num_dropped = 11;</code>
+     * Generated from protobuf field <code>int32 num_dropped = 11 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setNumDropped($var)
     {
+        @trigger_error('num_dropped is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->num_dropped = $var;
 

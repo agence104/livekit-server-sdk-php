@@ -27,6 +27,12 @@ class TrackEgressRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string track_id = 2;</code>
      */
     protected $track_id = '';
+    /**
+     * extra webhooks to call for this request
+     *
+     * Generated from protobuf field <code>repeated .livekit.WebhookConfig webhooks = 5;</code>
+     */
+    private $webhooks;
     protected $output;
 
     /**
@@ -41,6 +47,8 @@ class TrackEgressRequest extends \Google\Protobuf\Internal\Message
      *           required
      *     @type \Livekit\DirectFileOutput $file
      *     @type string $websocket_url
+     *     @type \Livekit\WebhookConfig[]|\Google\Protobuf\Internal\RepeatedField $webhooks
+     *           extra webhooks to call for this request
      * }
      */
     public function __construct($data = NULL) {
@@ -150,6 +158,32 @@ class TrackEgressRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * extra webhooks to call for this request
+     *
+     * Generated from protobuf field <code>repeated .livekit.WebhookConfig webhooks = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWebhooks()
+    {
+        return $this->webhooks;
+    }
+
+    /**
+     * extra webhooks to call for this request
+     *
+     * Generated from protobuf field <code>repeated .livekit.WebhookConfig webhooks = 5;</code>
+     * @param \Livekit\WebhookConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWebhooks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\WebhookConfig::class);
+        $this->webhooks = $arr;
 
         return $this;
     }
