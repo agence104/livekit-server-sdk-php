@@ -12,7 +12,7 @@ class RoomCreateOptions {
   use CaseConverter;
 
   /**
-   * The name of the room. required property.
+   * The name of the room.
    */
   protected ?string $name = NULL;
 
@@ -299,6 +299,10 @@ class RoomCreateOptions {
    *   An array of defined properties in snake_case format.
    */
   public function getData(): array {
+    if (!$this->name) {
+      throw new \Exception('The name of the room is required.');
+    }
+
     $data = array_filter(get_object_vars($this));
     return $this->convertArrayKeysToSnake($data);
   }

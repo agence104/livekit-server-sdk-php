@@ -89,8 +89,15 @@ class RoomServiceClientTest extends TestCase {
    */
   public function testRoomCreateOptions() {
 
+    // Empty name test.
+    $opts = (new RoomCreateOptions())->setEmptyTimeout(10);
+    $this->expectException(\Exception::class);
+    $this->expectExceptionMessage('The name of the room is required.');
+    $opts->getData();
+
     // Create a room with snake_case keys.
     $opts = (new RoomCreateOptions([
+      'name' => 'my-room',
       'empty_timeout' => 10,
       'max_participants' => 20,
     ]));
@@ -100,15 +107,25 @@ class RoomServiceClientTest extends TestCase {
       'max_participants' => 20,
     ], $opts->getData());
 
+    $opts->setName('my-room');
+
+    $this->assertEquals([
+      'name' => 'my-room',
+      'empty_timeout' => 10,
+      'max_participants' => 20,
+    ], $opts->getData());
+
     // Create a room with camelCase keys.
     $opts = (new RoomCreateOptions([
       'emptyTimeout' => 10,
       'maxParticipants' => 20,
+      'name' => 'my-room',
     ]));
 
     $this->assertEquals([
       'empty_timeout' => 10,
       'max_participants' => 20,
+      'name' => 'my-room',
     ], $opts->getData());
 
     // Create a room egress.
