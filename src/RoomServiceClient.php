@@ -234,7 +234,7 @@ class RoomServiceClient extends BaseServiceClient {
   }
 
   /**
-   * Updates a participant's metadata or permissions.
+   * Updates a participant's metadata, permissions, name or attributes.
    *
    * @param string $roomName
    *   The name of the room.
@@ -244,11 +244,23 @@ class RoomServiceClient extends BaseServiceClient {
    *   Optional, the metadata to update.
    * @param \Livekit\ParticipantPermission|null $permission
    *   Optional, the new permissions to assign to the participant.
+   * @param string|null $name
+   *   Optional, the display name to update.
+   * @param array|null $attributes
+   *   Optional, attributes to update.
+   *   To delete attributes, set their value to empty string.
    *
    * @return \Livekit\ParticipantInfo
    *   The ParticipantInfo object.
    */
-  public function updateParticipant(string $roomName, string $identity, string $metadata = NULL, ParticipantPermission $permission = NULL): ParticipantInfo {
+  public function updateParticipant(
+    string $roomName,
+    string $identity,
+    ?string $metadata = NULL,
+    ?ParticipantPermission $permission = NULL,
+    ?string $name = NULL,
+    ?array $attributes = NULL
+  ): ParticipantInfo {
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomName($roomName);
     $videoGrant->setRoomAdmin();
@@ -259,6 +271,8 @@ class RoomServiceClient extends BaseServiceClient {
         'identity' => $identity,
         'metadata' => $metadata ?? '',
         'permission' => $permission,
+        'name' => $name ?? '',
+        'attributes' => $attributes ?? [],
       ])
     );
   }

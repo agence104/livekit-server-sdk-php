@@ -342,7 +342,14 @@ class RoomServiceClientTest extends TestCase {
     $permission->setCanPublishData(FALSE);
     $permission->setCanSubscribe(FALSE);
     $permission->setCanUpdateMetadata(TRUE);
-    $participant = $this->client->updateParticipant($this->mainRoom, $identity, $metadata, $permission);
+
+    $name = 'new-name';
+    $attributes = [
+      'attribute1-key' => 'attribute1-value',
+      'attribute2-key' => 'attribute2-value',
+    ];
+
+    $participant = $this->client->updateParticipant($this->mainRoom, $identity, $metadata, $permission, $name, $attributes);
     $perm = $participant->getPermission();
 
     $this->assertInstanceOf(ParticipantInfo::class, $participant);
@@ -350,6 +357,12 @@ class RoomServiceClientTest extends TestCase {
     $this->assertFalse($perm->getCanPublishData());
     $this->assertFalse($perm->getCanSubscribe());
     $this->assertTrue($perm->getCanUpdateMetadata());
+    $this->assertEquals($name, $participant->getName());
+    $this->assertEquals($attributes, iterator_to_array($participant->getAttributes()));
+
+    $name = 'new-name-2';
+    $participant = $this->client->updateParticipant($this->mainRoom, $identity, NULL, NULL, $name);
+    $this->assertEquals($name, $participant->getName());
   }
 
   /**
