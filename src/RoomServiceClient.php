@@ -338,6 +338,7 @@ class RoomServiceClient extends BaseServiceClient {
         'kind' => $kind,
         'destination_identities' => $destinationIdentities,
         'topic' => $topic,
+        'nonce' => random_bytes(16),
       ])
     );
   }
