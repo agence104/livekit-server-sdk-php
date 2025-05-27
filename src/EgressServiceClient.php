@@ -52,7 +52,7 @@ class EgressServiceClient extends BaseServiceClient {
    */
   public function getOutputParams(
     EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
-    EncodingOptionsPreset|EncodingOptions $options = NULL
+    EncodingOptionsPreset|EncodingOptions|null $options = NULL
   ): array {
     $file = NULL;
     $fileOutputs = NULL;
@@ -135,7 +135,7 @@ class EgressServiceClient extends BaseServiceClient {
     string $roomName,
     string $layout,
     EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
-    EncodingOptionsPreset|EncodingOptions $options = NULL,
+    EncodingOptionsPreset|EncodingOptions|null $options = NULL,
     bool $audioOnly = FALSE,
     bool $videoOnly = FALSE,
     string $customBaseUrl = ''
@@ -215,7 +215,7 @@ class EgressServiceClient extends BaseServiceClient {
   public function startWebEgress(
     string $url,
     EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
-    EncodingOptionsPreset|EncodingOptions $options = NULL,
+    EncodingOptionsPreset|EncodingOptions|null $options = NULL,
     bool $audioOnly = FALSE,
     bool $videoOnly = FALSE,
     bool $awaitStartSignal = FALSE
@@ -296,7 +296,7 @@ class EgressServiceClient extends BaseServiceClient {
     EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
     string $audioTrackId = '',
     string $videoTrackId = '',
-    EncodingOptionsPreset|EncodingOptions $options = NULL,
+    EncodingOptionsPreset|EncodingOptions|null $options = NULL,
   ): EgressInfo {
     [
       $file,

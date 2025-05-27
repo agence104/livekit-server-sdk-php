@@ -62,9 +62,9 @@ final class SIPServer implements RequestHandlerInterface
 
     public function __construct(
         SIP $svc,
-        ServerHooks $hook = null,
-        ResponseFactoryInterface $responseFactory = null,
-        StreamFactoryInterface $streamFactory = null,
+        ?ServerHooks $hook = null,
+        ?ResponseFactoryInterface $responseFactory = null,
+        ?StreamFactoryInterface $streamFactory = null,
         string $prefix = '/twirp'
     ) {
         if ($hook === null) {
