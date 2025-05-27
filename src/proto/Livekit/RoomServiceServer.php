@@ -62,9 +62,9 @@ final class RoomServiceServer implements RequestHandlerInterface
 
     public function __construct(
         RoomService $svc,
-        ServerHooks $hook = null,
-        ResponseFactoryInterface $responseFactory = null,
-        StreamFactoryInterface $streamFactory = null,
+        ?ServerHooks $hook = null,
+        ?ResponseFactoryInterface $responseFactory = null,
+        ?StreamFactoryInterface $streamFactory = null,
         string $prefix = '/twirp'
     ) {
         if ($hook === null) {
