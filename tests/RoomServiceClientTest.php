@@ -6,7 +6,9 @@ use Agence104\LiveKit\RoomCreateOptions;
 use Agence104\LiveKit\RoomServiceClient;
 use Livekit\DataPacket\Kind;
 use Livekit\DeleteRoomResponse;
+use Livekit\ForwardParticipantResponse;
 use Livekit\ListParticipantsResponse;
+use Livekit\MoveParticipantResponse;
 use Livekit\MuteRoomTrackResponse;
 use Livekit\ParticipantInfo;
 use Livekit\ParticipantPermission;
@@ -283,6 +285,50 @@ class RoomServiceClientTest extends TestCase {
       $error = $e->getMessage();
     }
     $this->assertEquals("participant does not exist", $error);
+  }
+
+  /**
+   * Tests forwarding a participant.
+   */
+  public function testForwardParticipant() {
+    $roomName = 'testForwardRoom';
+    $this->createRoom($roomName);
+
+    $response = $this->client->listParticipants($this->mainRoom);
+    $participant = $response->getParticipants()[0];
+    $identity = $participant->getIdentity();
+
+    $response = $this->client->forwardParticipant($this->mainRoom, $identity, $roomName);
+    $this->assertInstanceOf(ForwardParticipantResponse::class, $response);
+
+    $response = $this->client->listParticipants($roomName);
+    $this->assertEquals(1, $response->getParticipants()->count());
+    $this->assertEquals($identity, $response->getParticipants()[0]->getIdentity());
+
+    // Clean up.
+    $this->client->deleteRoom($roomName);
+  }
+
+  /**
+   * Tests moving a participant.
+   */
+  public function testMoveParticipant() {
+    $roomName = 'testMoveRoom';
+    $this->createRoom($roomName);
+
+    $response = $this->client->listParticipants($this->mainRoom);
+    $participant = $response->getParticipants()[0];
+    $identity = $participant->getIdentity();
+
+    $response = $this->client->moveParticipant($this->mainRoom, $identity, $roomName);
+    $this->assertInstanceOf(MoveParticipantResponse::class, $response);
+
+    $response = $this->client->listParticipants($roomName);
+    $this->assertEquals(1, $response->getParticipants()->count());
+    $this->assertEquals($identity, $response->getParticipants()[0]->getIdentity());
+
+    // Clean up.
+    $this->client->deleteRoom($roomName);
   }
 
   /**

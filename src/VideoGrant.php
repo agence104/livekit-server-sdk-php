@@ -83,6 +83,16 @@ class VideoGrant {
   protected ?bool $recorder = NULL;
 
   /**
+   * If a participant can subscribe to metrics.
+   */
+  protected ?bool $canSubscribeMetrics = NULL;
+
+  /**
+   * Destination room which this participant can forward to.
+   */
+  protected ?string $destinationRoom = NULL;
+
+  /**
    * VideoGrant class constructor.
    *
    * @param array $properties
@@ -415,6 +425,52 @@ class VideoGrant {
    */
   public function setRecorder(bool $recorder = TRUE): self {
     $this->recorder = $recorder;
+    return $this;
+  }
+
+  /**
+   * Check if the participant can subscribe to metrics.
+   *
+   * @return bool|null
+   *   The canSubscribeMetrics permission value.
+   */
+  public function isCanSubscribeMetrics(): ?bool {
+    return $this->canSubscribeMetrics;
+  }
+
+  /**
+   * Set the canSubscribeMetrics permission.
+   *
+   * @param bool|null $canSubscribeMetrics
+   *   The can subscribe metrics permission value.
+   *
+   * @return $this
+   */
+  public function setCanSubscribeMetrics(?bool $canSubscribeMetrics = TRUE): self {
+    $this->canSubscribeMetrics = $canSubscribeMetrics;
+    return $this;
+  }
+
+  /**
+   * Get the destination room.
+   *
+   * @return string|null
+   *   The destination room name.
+   */
+  public function getDestinationRoom(): ?string {
+    return $this->destinationRoom;
+  }
+
+  /**
+   * Set the destination room.
+   *
+   * @param string|null $destinationRoom
+   *   The destination room name.
+   *
+   * @return $this
+   */
+  public function setDestinationRoom(?string $destinationRoom): self {
+    $this->destinationRoom = $destinationRoom;
     return $this;
   }
 

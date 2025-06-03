@@ -5,10 +5,14 @@ namespace Agence104\LiveKit;
 use Livekit\CreateRoomRequest;
 use Livekit\DeleteRoomRequest;
 use Livekit\DeleteRoomResponse;
+use Livekit\ForwardParticipantRequest;
+use Livekit\ForwardParticipantResponse;
 use Livekit\ListParticipantsRequest;
 use Livekit\ListParticipantsResponse;
 use Livekit\ListRoomsRequest;
 use Livekit\ListRoomsResponse;
+use Livekit\MoveParticipantRequest;
+use Livekit\MoveParticipantResponse;
 use Livekit\MuteRoomTrackRequest;
 use Livekit\MuteRoomTrackResponse;
 use Livekit\ParticipantInfo;
@@ -198,6 +202,71 @@ class RoomServiceClient extends BaseServiceClient {
       new RoomParticipantIdentity([
         'room' => $roomName,
         'identity' => $identity,
+      ])
+    );
+  }
+
+  /**
+   * Forward a participant's track(s) to another room.
+   *
+   * The forwarding will stop when the participant leaves the room or
+   * `RemoveParticipant` has been called in the destination room. A participant
+   * can be forwarded to multiple rooms. The destination room will be created if
+   * it does not exist.
+   *
+   * @param string $roomName
+   *   The name of the room.
+   * @param string $identity
+   *   The identity of the participant.
+   * @param string $destinationRoom
+   *   The name of the destination room.
+   *
+   * @return \Livekit\ForwardParticipantResponse
+   *   The ForwardParticipantResponse object.
+   */
+  public function forwardParticipant(string $roomName, string $identity, string $destinationRoom): ForwardParticipantResponse {
+    $videoGrant = new VideoGrant();
+    $videoGrant->setRoomName($roomName);
+    $videoGrant->setRoomAdmin();
+    $videoGrant->setDestinationRoom($destinationRoom);
+    return $this->rpc->ForwardParticipant(
+      $this->authHeader($videoGrant),
+      new ForwardParticipantRequest([
+        'room' => $roomName,
+        'identity' => $identity,
+        'destination_room' => $destinationRoom,
+      ])
+    );
+  }
+
+  /**
+   * Move a connected participant to a different room.
+   *
+   * The participant will be removed from the current room and added to the
+   * destination room. From other observers' perspective, the participant
+   * would've disconnected from the previous room and joined the new one.
+   *
+   * @param string $roomName
+   *   The name of the room.
+   * @param string $identity
+   *   The identity of the participant.
+   * @param string $destinationRoom
+   *   The name of the destination room.
+   *
+   * @return \Livekit\MoveParticipantResponse
+   *   The MoveParticipantResponse object.
+   */
+  public function moveParticipant(string $roomName, string $identity, string $destinationRoom): MoveParticipantResponse {
+    $videoGrant = new VideoGrant();
+    $videoGrant->setRoomName($roomName);
+    $videoGrant->setRoomAdmin();
+    $videoGrant->setDestinationRoom($destinationRoom);
+    return $this->rpc->MoveParticipant(
+      $this->authHeader($videoGrant),
+      new MoveParticipantRequest([
+        'room' => $roomName,
+        'identity' => $identity,
+        'destination_room' => $destinationRoom,
       ])
     );
   }
