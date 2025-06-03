@@ -62,9 +62,9 @@ final class AgentDispatchServiceServer implements RequestHandlerInterface
 
     public function __construct(
         AgentDispatchService $svc,
-        ServerHooks $hook = null,
-        ResponseFactoryInterface $responseFactory = null,
-        StreamFactoryInterface $streamFactory = null,
+        ?ServerHooks $hook = null,
+        ?ResponseFactoryInterface $responseFactory = null,
+        ?StreamFactoryInterface $streamFactory = null,
         string $prefix = '/twirp'
     ) {
         if ($hook === null) {

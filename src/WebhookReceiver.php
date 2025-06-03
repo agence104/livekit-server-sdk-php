@@ -54,7 +54,7 @@ class WebhookReceiver {
    *
    * @throws \Exception
    */
-  public function receive(string $body, string $authHeader = NULL, bool $skipAuth = FALSE, bool $ignoreUnknownFields = TRUE): WebhookEvent {
+  public function receive(string $body, ?string $authHeader = NULL, bool $skipAuth = FALSE, bool $ignoreUnknownFields = TRUE): WebhookEvent {
     // Verify token.
     if (!$skipAuth) {
       if (!$authHeader) {

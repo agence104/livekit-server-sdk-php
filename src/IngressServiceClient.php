@@ -62,10 +62,10 @@ class IngressServiceClient extends BaseServiceClient {
     string $roomName = '',
     string $participantIdentity = '',
     string $participantName = '',
-    IngressAudioOptions $audio = NULL,
-    IngressVideoOptions $video = NULL,
-    bool $bypassTranscoding = NULL,
-    string $url = NULL
+    ?IngressAudioOptions $audio = NULL,
+    ?IngressVideoOptions $video = NULL,
+    ?bool $bypassTranscoding = NULL,
+    ?string $url = NULL
   ): IngressInfo {
     $videoGrant = new VideoGrant();
     $videoGrant->setIngressAdmin();
@@ -114,9 +114,9 @@ class IngressServiceClient extends BaseServiceClient {
     string $roomName = '',
     string $participantIdentity = '',
     string $participantName = '',
-    IngressAudioOptions $audio = NULL,
-    IngressVideoOptions $video = NULL,
-    bool $bypassTranscoding = NULL,
+    ?IngressAudioOptions $audio = NULL,
+    ?IngressVideoOptions $video = NULL,
+    ?bool $bypassTranscoding = NULL,
   ): IngressInfo {
     $videoGrant = new VideoGrant();
     $videoGrant->setIngressAdmin();
