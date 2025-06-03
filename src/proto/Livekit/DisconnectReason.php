@@ -99,6 +99,12 @@ class DisconnectReason
      * Generated from protobuf enum <code>CONNECTION_TIMEOUT = 14;</code>
      */
     const CONNECTION_TIMEOUT = 14;
+    /**
+     * media stream failure or media timeout
+     *
+     * Generated from protobuf enum <code>MEDIA_FAILURE = 15;</code>
+     */
+    const MEDIA_FAILURE = 15;
 
     private static $valueToName = [
         self::UNKNOWN_REASON => 'UNKNOWN_REASON',
@@ -116,6 +122,7 @@ class DisconnectReason
         self::USER_REJECTED => 'USER_REJECTED',
         self::SIP_TRUNK_FAILURE => 'SIP_TRUNK_FAILURE',
         self::CONNECTION_TIMEOUT => 'CONNECTION_TIMEOUT',
+        self::MEDIA_FAILURE => 'MEDIA_FAILURE',
     ];
 
     public static function name($value)

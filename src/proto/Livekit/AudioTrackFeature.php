@@ -35,6 +35,12 @@ class AudioTrackFeature
      * Generated from protobuf enum <code>TF_ENHANCED_NOISE_CANCELLATION = 5;</code>
      */
     const TF_ENHANCED_NOISE_CANCELLATION = 5;
+    /**
+     * client will buffer audio once available and send it to the server via bytes stream once connected
+     *
+     * Generated from protobuf enum <code>TF_PRECONNECT_BUFFER = 6;</code>
+     */
+    const TF_PRECONNECT_BUFFER = 6;
 
     private static $valueToName = [
         self::TF_STEREO => 'TF_STEREO',
@@ -43,6 +49,7 @@ class AudioTrackFeature
         self::TF_ECHO_CANCELLATION => 'TF_ECHO_CANCELLATION',
         self::TF_NOISE_SUPPRESSION => 'TF_NOISE_SUPPRESSION',
         self::TF_ENHANCED_NOISE_CANCELLATION => 'TF_ENHANCED_NOISE_CANCELLATION',
+        self::TF_PRECONNECT_BUFFER => 'TF_PRECONNECT_BUFFER',
     ];
 
     public static function name($value)

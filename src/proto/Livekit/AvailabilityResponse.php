@@ -26,6 +26,10 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
      */
     protected $supports_resume = false;
     /**
+     * Generated from protobuf field <code>bool terminate = 8;</code>
+     */
+    protected $terminate = false;
+    /**
      * Generated from protobuf field <code>string participant_name = 4;</code>
      */
     protected $participant_name = '';
@@ -38,6 +42,8 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
      */
     protected $participant_metadata = '';
     /**
+     * NEXT_ID: 9
+     *
      * Generated from protobuf field <code>map<string, string> participant_attributes = 7;</code>
      */
     private $participant_attributes;
@@ -51,10 +57,12 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
      *     @type string $job_id
      *     @type bool $available
      *     @type bool $supports_resume
+     *     @type bool $terminate
      *     @type string $participant_name
      *     @type string $participant_identity
      *     @type string $participant_metadata
      *     @type array|\Google\Protobuf\Internal\MapField $participant_attributes
+     *           NEXT_ID: 9
      * }
      */
     public function __construct($data = NULL) {
@@ -129,6 +137,28 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>bool terminate = 8;</code>
+     * @return bool
+     */
+    public function getTerminate()
+    {
+        return $this->terminate;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool terminate = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTerminate($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->terminate = $var;
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>string participant_name = 4;</code>
      * @return string
      */
@@ -195,6 +225,8 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * NEXT_ID: 9
+     *
      * Generated from protobuf field <code>map<string, string> participant_attributes = 7;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
@@ -204,6 +236,8 @@ class AvailabilityResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * NEXT_ID: 9
+     *
      * Generated from protobuf field <code>map<string, string> participant_attributes = 7;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this

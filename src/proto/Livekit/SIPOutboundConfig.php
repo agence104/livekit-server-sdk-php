@@ -20,6 +20,12 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      */
     protected $hostname = '';
     /**
+     * country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
+     *
+     * Generated from protobuf field <code>string destination_country = 7;</code>
+     */
+    protected $destination_country = '';
+    /**
      * SIP Transport used for outbound call.
      *
      * Generated from protobuf field <code>.livekit.SIPTransport transport = 2;</code>
@@ -59,6 +65,8 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $hostname
      *           SIP server address
+     *     @type string $destination_country
+     *           country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
      *     @type int $transport
      *           SIP Transport used for outbound call.
      *     @type string $auth_username
@@ -100,6 +108,32 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->hostname = $var;
+
+        return $this;
+    }
+
+    /**
+     * country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
+     *
+     * Generated from protobuf field <code>string destination_country = 7;</code>
+     * @return string
+     */
+    public function getDestinationCountry()
+    {
+        return $this->destination_country;
+    }
+
+    /**
+     * country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
+     *
+     * Generated from protobuf field <code>string destination_country = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationCountry($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_country = $var;
 
         return $this;
     }

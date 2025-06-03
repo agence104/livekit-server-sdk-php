@@ -53,9 +53,9 @@ abstract class RoomServiceAbstractClient
 
     public function __construct(
         $addr,
-        ?ClientInterface $httpClient = null,
-        ?RequestFactoryInterface $requestFactory = null,
-        ?StreamFactoryInterface $streamFactory = null,
+        ClientInterface $httpClient = null,
+        RequestFactoryInterface $requestFactory = null,
+        StreamFactoryInterface $streamFactory = null,
         string $prefix = '/twirp'
     ) {
         if ($httpClient === null) {
@@ -346,6 +346,29 @@ abstract class RoomServiceAbstractClient
             $url = $url.'/livekit.RoomService/ForwardParticipant';
         } else {
             $url = $url.'/'.$this->prefix.'/livekit.RoomService/ForwardParticipant';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function MoveParticipant(array $ctx, \Livekit\MoveParticipantRequest $in): \Livekit\MoveParticipantResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'RoomService');
+        $ctx = Context::withMethodName($ctx, 'MoveParticipant');
+
+        $out = new \Livekit\MoveParticipantResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.RoomService/MoveParticipant';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.RoomService/MoveParticipant';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

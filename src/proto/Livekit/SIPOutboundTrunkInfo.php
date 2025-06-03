@@ -37,6 +37,12 @@ class SIPOutboundTrunkInfo extends \Google\Protobuf\Internal\Message
      */
     protected $address = '';
     /**
+     * country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
+     *
+     * Generated from protobuf field <code>string destination_country = 14;</code>
+     */
+    protected $destination_country = '';
+    /**
      * SIP Transport used for outbound call.
      *
      * Generated from protobuf field <code>.livekit.SIPTransport transport = 5;</code>
@@ -108,6 +114,8 @@ class SIPOutboundTrunkInfo extends \Google\Protobuf\Internal\Message
      *     @type string $address
      *           Hostname or IP that SIP INVITE is sent too.
      *           Note that this is not a SIP URI and should not contain the 'sip:' protocol prefix.
+     *     @type string $destination_country
+     *           country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
      *     @type int $transport
      *           SIP Transport used for outbound call.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $numbers
@@ -236,6 +244,32 @@ class SIPOutboundTrunkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->address = $var;
+
+        return $this;
+    }
+
+    /**
+     * country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
+     *
+     * Generated from protobuf field <code>string destination_country = 14;</code>
+     * @return string
+     */
+    public function getDestinationCountry()
+    {
+        return $this->destination_country;
+    }
+
+    /**
+     * country where the call terminates as ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). This will be used by the livekit infrastructure to route calls.
+     *
+     * Generated from protobuf field <code>string destination_country = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationCountry($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_country = $var;
 
         return $this;
     }

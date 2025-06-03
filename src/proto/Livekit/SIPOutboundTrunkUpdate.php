@@ -22,6 +22,10 @@ class SIPOutboundTrunkUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $transport = null;
     /**
+     * Generated from protobuf field <code>optional string destination_country = 9;</code>
+     */
+    protected $destination_country = null;
+    /**
      * Generated from protobuf field <code>.livekit.ListUpdate numbers = 3;</code>
      */
     protected $numbers = null;
@@ -54,6 +58,7 @@ class SIPOutboundTrunkUpdate extends \Google\Protobuf\Internal\Message
      *
      *     @type string $address
      *     @type int $transport
+     *     @type string $destination_country
      *     @type \Livekit\ListUpdate $numbers
      *     @type string $auth_username
      *     @type string $auth_password
@@ -127,6 +132,38 @@ class SIPOutboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\SIPTransport::class);
         $this->transport = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional string destination_country = 9;</code>
+     * @return string
+     */
+    public function getDestinationCountry()
+    {
+        return isset($this->destination_country) ? $this->destination_country : '';
+    }
+
+    public function hasDestinationCountry()
+    {
+        return isset($this->destination_country);
+    }
+
+    public function clearDestinationCountry()
+    {
+        unset($this->destination_country);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional string destination_country = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationCountry($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_country = $var;
 
         return $this;
     }
