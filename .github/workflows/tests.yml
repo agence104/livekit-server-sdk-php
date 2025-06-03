@@ -1,0 +1,31 @@
+name: "tests"
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  tests:
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ['8.0', '8.4']
+        stability: [prefer-lowest, prefer-stable]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2, parallel-lint
+          coverage: none
+
+      - name: Lint PHP files
+        run: parallel-lint --show-deprecated src/ tests/
