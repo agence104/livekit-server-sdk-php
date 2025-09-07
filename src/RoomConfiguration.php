@@ -44,6 +44,13 @@ class RoomConfiguration {
   protected ?bool $syncStreams = NULL;
 
   /**
+   * Define agents that should be dispatched to this room.
+   *
+   * @var \Agence104\LiveKit\RoomAgentDispatch[]|null
+   */
+  protected ?array $agents = NULL;
+
+  /**
    * RoomConfiguration class constructor.
    *
    * @param array $properties
@@ -219,18 +226,52 @@ class RoomConfiguration {
   }
 
   /**
+   * Get the agents that should be dispatched to this room.
+   *
+   * @return \Agence104\LiveKit\RoomAgentDispatch[]|null
+   *   The agents array.
+   */
+  public function getAgents(): ?array {
+    return $this->agents;
+  }
+
+  /**
+   * Set the agents that should be dispatched to this room.
+   *
+   * @param \Agence104\LiveKit\RoomAgentDispatch[]|null $agents
+   *   The agents array.
+   *
+   * @return $this
+   */
+  public function setAgents(?array $agents): self {
+    $this->agents = $agents;
+    return $this;
+  }
+
+  /**
    * Return the object properties which have been defined as an array.
    *
    * @return array
    *   The object properties.
    */
   public function getData(): array {
-    return array_filter(
-      get_object_vars($this),
-      function ($v) {
-        return !is_null($v);
+    $data = [];
+    $vars = get_object_vars($this);
+
+    foreach ($vars as $key => $value) {
+      if ($value !== null) {
+        if ($key === 'agents' && is_array($value)) {
+          $data[$key] = [];
+          foreach ($value as $agent) {
+            $data[$key][] = $agent->getData();
+          }
+        } else {
+          $data[$key] = $value;
+        }
       }
-    );
+    }
+
+    return $data;
   }
 
 }
