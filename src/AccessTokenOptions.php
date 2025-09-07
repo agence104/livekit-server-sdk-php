@@ -33,6 +33,11 @@ class AccessTokenOptions {
   protected ?array $attributes = NULL;
 
   /**
+   * Room configuration settings.
+   */
+  protected ?RoomConfiguration $roomConfig = NULL;
+
+  /**
    * AccessTokenOptions class constructor.
    *
    * @param array $properties
@@ -158,6 +163,29 @@ class AccessTokenOptions {
    */
   public function setAttributes(?array $attributes): self {
     $this->attributes = $attributes;
+    return $this;
+  }
+
+  /**
+   * Get the room configuration.
+   *
+   * @return \Agence104\LiveKit\RoomConfiguration|null
+   *   The room configuration.
+   */
+  public function getRoomConfig(): ?RoomConfiguration {
+    return $this->roomConfig;
+  }
+
+  /**
+   * Set the room configuration.
+   *
+   * @param \Agence104\LiveKit\RoomConfiguration|null $roomConfig
+   *   The room configuration.
+   *
+   * @return $this
+   */
+  public function setRoomConfig(?RoomConfiguration $roomConfig): self {
+    $this->roomConfig = $roomConfig;
     return $this;
   }
 

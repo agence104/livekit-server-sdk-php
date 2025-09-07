@@ -93,6 +93,10 @@ class AccessToken {
       $this->grants->setName($name);
     }
 
+    if ($roomConfig = $options->getRoomConfig()) {
+      $this->grants->setRoomConfig($roomConfig);
+    }
+
     return $this;
   }
 

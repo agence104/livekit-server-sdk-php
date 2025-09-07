@@ -38,6 +38,11 @@ class ClaimGrants {
   protected ?array $attributes = NULL;
 
   /**
+   * Room configuration to use if this participant initiates the room.
+   */
+  protected ?RoomConfiguration $roomConfig = NULL;
+
+  /**
    * ClaimGrants class constructor.
    *
    * @param array $properties
@@ -51,6 +56,9 @@ class ClaimGrants {
         }
         elseif ($property == 'sipGrant') {
           $this->{$property} = new SIPGrant($value);
+        }
+        elseif ($property == 'roomConfig') {
+          $this->{$property} = new RoomConfiguration($value);
         }
         else {
           $this->{$property} = $value;
@@ -198,6 +206,29 @@ class ClaimGrants {
   }
 
   /**
+   * Get the room configuration.
+   *
+   * @return \Agence104\LiveKit\RoomConfiguration|null
+   *   The room configuration.
+   */
+  public function getRoomConfig(): ?RoomConfiguration {
+    return $this->roomConfig;
+  }
+
+  /**
+   * Set the room configuration.
+   *
+   * @param \Agence104\LiveKit\RoomConfiguration|null $roomConfig
+   *   The room configuration.
+   *
+   * @return $this
+   */
+  public function setRoomConfig(?RoomConfiguration $roomConfig): self {
+    $this->roomConfig = $roomConfig;
+    return $this;
+  }
+
+  /**
    * Return the object properties which have been defined as an array.
    *
    * @return array
@@ -211,6 +242,7 @@ class ClaimGrants {
       'video' => $this->videoGrant ? $this->videoGrant->getData() : NULL,
       'sip' => $this->sipGrant ? $this->sipGrant->getData() : NULL,
       'attributes' => $this->attributes,
+      'roomConfig' => $this->roomConfig ? $this->roomConfig->getData() : NULL,
     ];
 
     return array_filter($data);
