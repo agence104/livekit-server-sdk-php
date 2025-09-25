@@ -46,7 +46,7 @@ $tokenOptions = (new AccessTokenOptions())
 
 // Define the video grants.
 $videoGrant = (new VideoGrant())
-  ->setRoomJoin();
+  ->setRoomJoin()
   ->setRoomName($roomName);
 
 // Initialize and fetch the JWT Token.
