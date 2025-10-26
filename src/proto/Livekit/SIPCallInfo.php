@@ -114,6 +114,18 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string media_encryption = 21;</code>
      */
     protected $media_encryption = '';
+    /**
+     * Generated from protobuf field <code>string pcap_file_link = 25;</code>
+     */
+    protected $pcap_file_link = '';
+    /**
+     * Generated from protobuf field <code>repeated .google.protobuf.Any call_context = 26;</code>
+     */
+    private $call_context;
+    /**
+     * Generated from protobuf field <code>.livekit.ProviderInfo provider_info = 27;</code>
+     */
+    protected $provider_info = null;
 
     /**
      * Constructor.
@@ -146,6 +158,9 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\SIPStatus $call_status_code
      *     @type string $audio_codec
      *     @type string $media_encryption
+     *     @type string $pcap_file_link
+     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $call_context
+     *     @type \Livekit\ProviderInfo $provider_info
      * }
      */
     public function __construct($data = NULL) {
@@ -723,6 +738,82 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->media_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string pcap_file_link = 25;</code>
+     * @return string
+     */
+    public function getPcapFileLink()
+    {
+        return $this->pcap_file_link;
+    }
+
+    /**
+     * Generated from protobuf field <code>string pcap_file_link = 25;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPcapFileLink($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pcap_file_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .google.protobuf.Any call_context = 26;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCallContext()
+    {
+        return $this->call_context;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .google.protobuf.Any call_context = 26;</code>
+     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCallContext($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Any::class);
+        $this->call_context = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ProviderInfo provider_info = 27;</code>
+     * @return \Livekit\ProviderInfo|null
+     */
+    public function getProviderInfo()
+    {
+        return $this->provider_info;
+    }
+
+    public function hasProviderInfo()
+    {
+        return isset($this->provider_info);
+    }
+
+    public function clearProviderInfo()
+    {
+        unset($this->provider_info);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.ProviderInfo provider_info = 27;</code>
+     * @param \Livekit\ProviderInfo $var
+     * @return $this
+     */
+    public function setProviderInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\ProviderInfo::class);
+        $this->provider_info = $var;
 
         return $this;
     }

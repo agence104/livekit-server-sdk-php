@@ -41,6 +41,12 @@ class Kind
      * Generated from protobuf enum <code>AGENT = 4;</code>
      */
     const AGENT = 4;
+    /**
+     * Connectors participants
+     *
+     * Generated from protobuf enum <code>CONNECTOR = 7;</code>
+     */
+    const CONNECTOR = 7;
 
     private static $valueToName = [
         self::STANDARD => 'STANDARD',
@@ -48,6 +54,7 @@ class Kind
         self::EGRESS => 'EGRESS',
         self::SIP => 'SIP',
         self::AGENT => 'AGENT',
+        self::CONNECTOR => 'CONNECTOR',
     ];
 
     public static function name($value)

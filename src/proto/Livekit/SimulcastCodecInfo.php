@@ -29,6 +29,19 @@ class SimulcastCodecInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 4;</code>
      */
     private $layers;
+    /**
+     * Generated from protobuf field <code>.livekit.VideoLayer.Mode video_layer_mode = 5;</code>
+     */
+    protected $video_layer_mode = 0;
+    /**
+     * cid (client side id for track) could be different between
+     * signalling (AddTrackRequest) and SDP offer. This field
+     * will be populated only if it is different to avoid
+     * duplication and keep the representation concise.
+     *
+     * Generated from protobuf field <code>string sdp_cid = 6;</code>
+     */
+    protected $sdp_cid = '';
 
     /**
      * Constructor.
@@ -40,6 +53,12 @@ class SimulcastCodecInfo extends \Google\Protobuf\Internal\Message
      *     @type string $mid
      *     @type string $cid
      *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
+     *     @type int $video_layer_mode
+     *     @type string $sdp_cid
+     *           cid (client side id for track) could be different between
+     *           signalling (AddTrackRequest) and SDP offer. This field
+     *           will be populated only if it is different to avoid
+     *           duplication and keep the representation concise.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +150,60 @@ class SimulcastCodecInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\VideoLayer::class);
         $this->layers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.VideoLayer.Mode video_layer_mode = 5;</code>
+     * @return int
+     */
+    public function getVideoLayerMode()
+    {
+        return $this->video_layer_mode;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.VideoLayer.Mode video_layer_mode = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVideoLayerMode($var)
+    {
+        GPBUtil::checkEnum($var, \Livekit\VideoLayer\Mode::class);
+        $this->video_layer_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * cid (client side id for track) could be different between
+     * signalling (AddTrackRequest) and SDP offer. This field
+     * will be populated only if it is different to avoid
+     * duplication and keep the representation concise.
+     *
+     * Generated from protobuf field <code>string sdp_cid = 6;</code>
+     * @return string
+     */
+    public function getSdpCid()
+    {
+        return $this->sdp_cid;
+    }
+
+    /**
+     * cid (client side id for track) could be different between
+     * signalling (AddTrackRequest) and SDP offer. This field
+     * will be populated only if it is different to avoid
+     * duplication and keep the representation concise.
+     *
+     * Generated from protobuf field <code>string sdp_cid = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSdpCid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sdp_cid = $var;
 
         return $this;
     }

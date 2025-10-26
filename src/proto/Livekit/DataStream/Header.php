@@ -42,9 +42,10 @@ class Header extends \Google\Protobuf\Internal\Message
      */
     protected $total_length = null;
     /**
-     * defaults to NONE
+     *  this is set on the DataPacket
      *
-     * Generated from protobuf field <code>.livekit.Encryption.Type encryption_type = 7;</code>
+     * Generated from protobuf field <code>.livekit.Encryption.Type encryption_type = 7 [deprecated = true];</code>
+     * @deprecated
      */
     protected $encryption_type = 0;
     /**
@@ -70,7 +71,7 @@ class Header extends \Google\Protobuf\Internal\Message
      *     @type int|string $total_length
      *           only populated for finite streams, if it's a stream of unknown size this stays empty
      *     @type int $encryption_type
-     *           defaults to NONE
+     *            this is set on the DataPacket
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           user defined attributes map that can carry additional info
      *     @type \Livekit\DataStream\TextHeader $text_header
@@ -215,25 +216,29 @@ class Header extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * defaults to NONE
+     *  this is set on the DataPacket
      *
-     * Generated from protobuf field <code>.livekit.Encryption.Type encryption_type = 7;</code>
+     * Generated from protobuf field <code>.livekit.Encryption.Type encryption_type = 7 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getEncryptionType()
     {
+        @trigger_error('encryption_type is deprecated.', E_USER_DEPRECATED);
         return $this->encryption_type;
     }
 
     /**
-     * defaults to NONE
+     *  this is set on the DataPacket
      *
-     * Generated from protobuf field <code>.livekit.Encryption.Type encryption_type = 7;</code>
+     * Generated from protobuf field <code>.livekit.Encryption.Type encryption_type = 7 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setEncryptionType($var)
     {
+        @trigger_error('encryption_type is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Livekit\Encryption\Type::class);
         $this->encryption_type = $var;
 

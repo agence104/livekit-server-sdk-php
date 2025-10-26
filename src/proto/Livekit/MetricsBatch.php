@@ -28,7 +28,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
      * This is useful for storing participant identities, track names, etc.
      * There is also a predefined list of labels that can be used to reference common metrics.
      * They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
-     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE,
      * such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *
      * Generated from protobuf field <code>repeated string str_data = 3;</code>
@@ -57,7 +57,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
      *           This is useful for storing participant identities, track names, etc.
      *           There is also a predefined list of labels that can be used to reference common metrics.
      *           They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
-     *           Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     *           Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE,
      *           such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *     @type \Livekit\TimeSeriesMetric[]|\Google\Protobuf\Internal\RepeatedField $time_series
      *     @type \Livekit\EventMetric[]|\Google\Protobuf\Internal\RepeatedField $events
@@ -131,7 +131,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
      * This is useful for storing participant identities, track names, etc.
      * There is also a predefined list of labels that can be used to reference common metrics.
      * They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
-     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE,
      * such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *
      * Generated from protobuf field <code>repeated string str_data = 3;</code>
@@ -147,7 +147,7 @@ class MetricsBatch extends \Google\Protobuf\Internal\Message
      * This is useful for storing participant identities, track names, etc.
      * There is also a predefined list of labels that can be used to reference common metrics.
      * They have reserved indices from 0 to (METRIC_LABEL_PREDEFINED_MAX_VALUE - 1).
-     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE, 
+     * Indexes pointing at str_data should start from METRIC_LABEL_PREDEFINED_MAX_VALUE,
      * such that str_data[0] == index of METRIC_LABEL_PREDEFINED_MAX_VALUE.
      *
      * Generated from protobuf field <code>repeated string str_data = 3;</code>

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class WebhookEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * one of room_started, room_finished, participant_joined, participant_left,
+     * one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      * ingress_started, ingress_ended
      *
@@ -74,7 +74,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $event
-     *           one of room_started, room_finished, participant_joined, participant_left,
+     *           one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      *           track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      *           ingress_started, ingress_ended
      *     @type \Livekit\Room $room
@@ -99,7 +99,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * one of room_started, room_finished, participant_joined, participant_left,
+     * one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      * ingress_started, ingress_ended
      *
@@ -112,7 +112,7 @@ class WebhookEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * one of room_started, room_finished, participant_joined, participant_left,
+     * one of room_started, room_finished, participant_joined, participant_left, participant_connection_aborted,
      * track_published, track_unpublished, egress_started, egress_updated, egress_ended,
      * ingress_started, ingress_ended
      *

@@ -36,9 +36,10 @@ class Chunk extends \Google\Protobuf\Internal\Message
      */
     protected $version = 0;
     /**
-     * optional, initialization vector for AES-GCM encryption
+     * this is set on the DataPacket
      *
-     * Generated from protobuf field <code>optional bytes iv = 5;</code>
+     * Generated from protobuf field <code>optional bytes iv = 5 [deprecated = true];</code>
+     * @deprecated
      */
     protected $iv = null;
 
@@ -56,7 +57,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *     @type int $version
      *           a version indicating that this chunk_index has been retroactively modified and the original one needs to be replaced
      *     @type string $iv
-     *           optional, initialization vector for AES-GCM encryption
+     *           this is set on the DataPacket
      * }
      */
     public function __construct($data = NULL) {
@@ -165,35 +166,41 @@ class Chunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * optional, initialization vector for AES-GCM encryption
+     * this is set on the DataPacket
      *
-     * Generated from protobuf field <code>optional bytes iv = 5;</code>
+     * Generated from protobuf field <code>optional bytes iv = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getIv()
     {
+        @trigger_error('iv is deprecated.', E_USER_DEPRECATED);
         return isset($this->iv) ? $this->iv : '';
     }
 
     public function hasIv()
     {
+        @trigger_error('iv is deprecated.', E_USER_DEPRECATED);
         return isset($this->iv);
     }
 
     public function clearIv()
     {
+        @trigger_error('iv is deprecated.', E_USER_DEPRECATED);
         unset($this->iv);
     }
 
     /**
-     * optional, initialization vector for AES-GCM encryption
+     * this is set on the DataPacket
      *
-     * Generated from protobuf field <code>optional bytes iv = 5;</code>
+     * Generated from protobuf field <code>optional bytes iv = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setIv($var)
     {
+        @trigger_error('iv is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, False);
         $this->iv = $var;
 

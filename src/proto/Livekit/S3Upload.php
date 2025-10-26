@@ -26,6 +26,18 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      */
     protected $session_token = '';
     /**
+     * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *
+     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     */
+    protected $assume_role_arn = '';
+    /**
+     * ExternalID to use when assuming role for upload
+     *
+     * Generated from protobuf field <code>string assume_role_external_id = 13;</code>
+     */
+    protected $assume_role_external_id = '';
+    /**
      * Generated from protobuf field <code>string region = 3;</code>
      */
     protected $region = '';
@@ -69,6 +81,10 @@ class S3Upload extends \Google\Protobuf\Internal\Message
      *     @type string $access_key
      *     @type string $secret
      *     @type string $session_token
+     *     @type string $assume_role_arn
+     *           ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *     @type string $assume_role_external_id
+     *           ExternalID to use when assuming role for upload
      *     @type string $region
      *     @type string $endpoint
      *     @type string $bucket
@@ -147,6 +163,58 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->session_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *
+     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * @return string
+     */
+    public function getAssumeRoleArn()
+    {
+        return $this->assume_role_arn;
+    }
+
+    /**
+     * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
+     *
+     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssumeRoleArn($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->assume_role_arn = $var;
+
+        return $this;
+    }
+
+    /**
+     * ExternalID to use when assuming role for upload
+     *
+     * Generated from protobuf field <code>string assume_role_external_id = 13;</code>
+     * @return string
+     */
+    public function getAssumeRoleExternalId()
+    {
+        return $this->assume_role_external_id;
+    }
+
+    /**
+     * ExternalID to use when assuming role for upload
+     *
+     * Generated from protobuf field <code>string assume_role_external_id = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssumeRoleExternalId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->assume_role_external_id = $var;
 
         return $this;
     }

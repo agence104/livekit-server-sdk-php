@@ -32,6 +32,18 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string destination_identities = 5;</code>
      */
     private $destination_identities;
+    /**
+     * sequence number of reliable packet
+     *
+     * Generated from protobuf field <code>uint32 sequence = 16;</code>
+     */
+    protected $sequence = 0;
+    /**
+     * sid of the user that sent the message
+     *
+     * Generated from protobuf field <code>string participant_sid = 17;</code>
+     */
+    protected $participant_sid = '';
     protected $value;
 
     /**
@@ -57,6 +69,11 @@ class DataPacket extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\DataStream\Header $stream_header
      *     @type \Livekit\DataStream\Chunk $stream_chunk
      *     @type \Livekit\DataStream\Trailer $stream_trailer
+     *     @type \Livekit\EncryptedPacket $encrypted_packet
+     *     @type int $sequence
+     *           sequence number of reliable packet
+     *     @type string $participant_sid
+     *           sid of the user that sent the message
      * }
      */
     public function __construct($data = NULL) {
@@ -467,6 +484,85 @@ class DataPacket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\DataStream\Trailer::class);
         $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EncryptedPacket encrypted_packet = 18;</code>
+     * @return \Livekit\EncryptedPacket|null
+     */
+    public function getEncryptedPacket()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasEncryptedPacket()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.EncryptedPacket encrypted_packet = 18;</code>
+     * @param \Livekit\EncryptedPacket $var
+     * @return $this
+     */
+    public function setEncryptedPacket($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\EncryptedPacket::class);
+        $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * sequence number of reliable packet
+     *
+     * Generated from protobuf field <code>uint32 sequence = 16;</code>
+     * @return int
+     */
+    public function getSequence()
+    {
+        return $this->sequence;
+    }
+
+    /**
+     * sequence number of reliable packet
+     *
+     * Generated from protobuf field <code>uint32 sequence = 16;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSequence($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->sequence = $var;
+
+        return $this;
+    }
+
+    /**
+     * sid of the user that sent the message
+     *
+     * Generated from protobuf field <code>string participant_sid = 17;</code>
+     * @return string
+     */
+    public function getParticipantSid()
+    {
+        return $this->participant_sid;
+    }
+
+    /**
+     * sid of the user that sent the message
+     *
+     * Generated from protobuf field <code>string participant_sid = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParticipantSid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->participant_sid = $var;
 
         return $this;
     }

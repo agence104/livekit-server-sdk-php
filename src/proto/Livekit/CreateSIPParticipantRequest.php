@@ -136,6 +136,16 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool wait_until_answered = 19;</code>
      */
     protected $wait_until_answered = false;
+    /**
+     * Optional display name for the 'From' SIP header.
+     * Cases:
+     * 1) Unspecified: Use legacy behavior - display name will be set to be the caller's number.
+     * 2) Empty string: Do not send a display name, which will result in a CNAM lookup downstream.
+     * 3) Non-empty: Use the specified value as the display name.
+     *
+     * Generated from protobuf field <code>optional string display_name = 21;</code>
+     */
+    protected $display_name = null;
 
     /**
      * Constructor.
@@ -185,6 +195,12 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
      *     @type int $media_encryption
      *     @type bool $wait_until_answered
      *           Wait for the answer for the call before returning.
+     *     @type string $display_name
+     *           Optional display name for the 'From' SIP header.
+     *           Cases:
+     *           1) Unspecified: Use legacy behavior - display name will be set to be the caller's number.
+     *           2) Empty string: Do not send a display name, which will result in a CNAM lookup downstream.
+     *           3) Non-empty: Use the specified value as the display name.
      * }
      */
     public function __construct($data = NULL) {
@@ -740,6 +756,50 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->wait_until_answered = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional display name for the 'From' SIP header.
+     * Cases:
+     * 1) Unspecified: Use legacy behavior - display name will be set to be the caller's number.
+     * 2) Empty string: Do not send a display name, which will result in a CNAM lookup downstream.
+     * 3) Non-empty: Use the specified value as the display name.
+     *
+     * Generated from protobuf field <code>optional string display_name = 21;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
+    }
+
+    /**
+     * Optional display name for the 'From' SIP header.
+     * Cases:
+     * 1) Unspecified: Use legacy behavior - display name will be set to be the caller's number.
+     * 2) Empty string: Do not send a display name, which will result in a CNAM lookup downstream.
+     * 3) Non-empty: Use the specified value as the display name.
+     *
+     * Generated from protobuf field <code>optional string display_name = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }

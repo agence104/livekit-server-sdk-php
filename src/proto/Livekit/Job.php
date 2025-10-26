@@ -50,6 +50,10 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.JobState state = 8;</code>
      */
     protected $state = null;
+    /**
+     * Generated from protobuf field <code>bool enable_recording = 10;</code>
+     */
+    protected $enable_recording = false;
 
     /**
      * Constructor.
@@ -66,6 +70,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type string $metadata
      *     @type string $agent_name
      *     @type \Livekit\JobState $state
+     *     @type bool $enable_recording
      * }
      */
     public function __construct($data = NULL) {
@@ -301,6 +306,28 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\JobState::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool enable_recording = 10;</code>
+     * @return bool
+     */
+    public function getEnableRecording()
+    {
+        return $this->enable_recording;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool enable_recording = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableRecording($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_recording = $var;
 
         return $this;
     }

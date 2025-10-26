@@ -37,6 +37,14 @@ class JobState extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string participant_identity = 6;</code>
      */
     protected $participant_identity = '';
+    /**
+     * Generated from protobuf field <code>string worker_id = 7;</code>
+     */
+    protected $worker_id = '';
+    /**
+     * Generated from protobuf field <code>string agent_id = 8;</code>
+     */
+    protected $agent_id = '';
 
     /**
      * Constructor.
@@ -50,6 +58,8 @@ class JobState extends \Google\Protobuf\Internal\Message
      *     @type int|string $ended_at
      *     @type int|string $updated_at
      *     @type string $participant_identity
+     *     @type string $worker_id
+     *     @type string $agent_id
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +195,50 @@ class JobState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->participant_identity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string worker_id = 7;</code>
+     * @return string
+     */
+    public function getWorkerId()
+    {
+        return $this->worker_id;
+    }
+
+    /**
+     * Generated from protobuf field <code>string worker_id = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWorkerId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->worker_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string agent_id = 8;</code>
+     * @return string
+     */
+    public function getAgentId()
+    {
+        return $this->agent_id;
+    }
+
+    /**
+     * Generated from protobuf field <code>string agent_id = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAgentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->agent_id = $var;
 
         return $this;
     }

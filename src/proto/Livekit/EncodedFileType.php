@@ -25,11 +25,16 @@ class EncodedFileType
      * Generated from protobuf enum <code>OGG = 2;</code>
      */
     const OGG = 2;
+    /**
+     * Generated from protobuf enum <code>MP3 = 3;</code>
+     */
+    const MP3 = 3;
 
     private static $valueToName = [
         self::DEFAULT_FILETYPE => 'DEFAULT_FILETYPE',
         self::MP4 => 'MP4',
         self::OGG => 'OGG',
+        self::MP3 => 'MP3',
     ];
 
     public static function name($value)

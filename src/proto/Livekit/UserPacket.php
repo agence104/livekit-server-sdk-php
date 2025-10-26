@@ -52,7 +52,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      */
     protected $topic = null;
     /**
-     * Unique ID to indentify the message
+     * Unique ID to identify the message
      *
      * Generated from protobuf field <code>optional string id = 8;</code>
      */
@@ -92,7 +92,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
      *     @type string $topic
      *           topic under which the message was published
      *     @type string $id
-     *           Unique ID to indentify the message
+     *           Unique ID to identify the message
      *     @type int|string $start_time
      *           start and end time allow relating the message to specific media time
      *     @type int|string $end_time
@@ -284,7 +284,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique ID to indentify the message
+     * Unique ID to identify the message
      *
      * Generated from protobuf field <code>optional string id = 8;</code>
      * @return string
@@ -305,7 +305,7 @@ class UserPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique ID to indentify the message
+     * Unique ID to identify the message
      *
      * Generated from protobuf field <code>optional string id = 8;</code>
      * @param string $var

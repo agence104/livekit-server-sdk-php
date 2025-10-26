@@ -21,6 +21,10 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string signing_key = 2;</code>
      */
     protected $signing_key = '';
+    /**
+     * Generated from protobuf field <code>.livekit.FilterParams filter_params = 3;</code>
+     */
+    protected $filter_params = null;
 
     /**
      * Constructor.
@@ -30,6 +34,7 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $url
      *     @type string $signing_key
+     *     @type \Livekit\FilterParams $filter_params
      * }
      */
     public function __construct($data = NULL) {
@@ -77,6 +82,38 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->signing_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.FilterParams filter_params = 3;</code>
+     * @return \Livekit\FilterParams|null
+     */
+    public function getFilterParams()
+    {
+        return $this->filter_params;
+    }
+
+    public function hasFilterParams()
+    {
+        return isset($this->filter_params);
+    }
+
+    public function clearFilterParams()
+    {
+        unset($this->filter_params);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.FilterParams filter_params = 3;</code>
+     * @param \Livekit\FilterParams $var
+     * @return $this
+     */
+    public function setFilterParams($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\FilterParams::class);
+        $this->filter_params = $var;
 
         return $this;
     }

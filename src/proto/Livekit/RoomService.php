@@ -138,4 +138,13 @@ interface RoomService
      * @throws \Twirp\Error
      */
     public function MoveParticipant(array $ctx, \Livekit\MoveParticipantRequest $req): \Livekit\MoveParticipantResponse;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>livekit.RoomService/PerformRpc</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function PerformRpc(array $ctx, \Livekit\PerformRpcRequest $req): \Livekit\PerformRpcResponse;
 }

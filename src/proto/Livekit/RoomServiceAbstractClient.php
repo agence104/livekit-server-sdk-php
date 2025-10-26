@@ -377,6 +377,29 @@ abstract class RoomServiceAbstractClient
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function PerformRpc(array $ctx, \Livekit\PerformRpcRequest $in): \Livekit\PerformRpcResponse
+    {
+        $ctx = Context::withPackageName($ctx, 'livekit');
+        $ctx = Context::withServiceName($ctx, 'RoomService');
+        $ctx = Context::withMethodName($ctx, 'PerformRpc');
+
+        $out = new \Livekit\PerformRpcResponse();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/livekit.RoomService/PerformRpc';
+        } else {
+            $url = $url.'/'.$this->prefix.'/livekit.RoomService/PerformRpc';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
      * Common code to make a request to the remote twirp service.
      */
     abstract protected function doRequest(array $ctx, string $url, Message $in, Message $out): void;

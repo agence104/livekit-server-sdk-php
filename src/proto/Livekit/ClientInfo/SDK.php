@@ -67,6 +67,10 @@ class SDK
      * Generated from protobuf enum <code>UNREAL = 13;</code>
      */
     const UNREAL = 13;
+    /**
+     * Generated from protobuf enum <code>ESP32 = 14;</code>
+     */
+    const ESP32 = 14;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -83,6 +87,7 @@ class SDK
         self::UNITY_WEB => 'UNITY_WEB',
         self::NODE => 'NODE',
         self::UNREAL => 'UNREAL',
+        self::ESP32 => 'ESP32',
     ];
 
     public static function name($value)

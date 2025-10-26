@@ -45,13 +45,15 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     /**
      * true if track is simulcasted
      *
-     * Generated from protobuf field <code>bool simulcast = 7;</code>
+     * Generated from protobuf field <code>bool simulcast = 7 [deprecated = true];</code>
+     * @deprecated
      */
     protected $simulcast = false;
     /**
      * true if DTX (Discontinuous Transmission) is disabled for audio
      *
-     * Generated from protobuf field <code>bool disable_dtx = 8;</code>
+     * Generated from protobuf field <code>bool disable_dtx = 8 [deprecated = true];</code>
+     * @deprecated
      */
     protected $disable_dtx = false;
     /**
@@ -61,7 +63,10 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      */
     protected $source = 0;
     /**
-     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10;</code>
+     * see `codecs` for layers of individual codec
+     *
+     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10 [deprecated = true];</code>
+     * @deprecated
      */
     private $layers;
     /**
@@ -79,7 +84,10 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      */
     private $codecs;
     /**
-     * Generated from protobuf field <code>bool stereo = 14;</code>
+     * deprecated in favor of `audio_features`
+     *
+     * Generated from protobuf field <code>bool stereo = 14 [deprecated = true];</code>
+     * @deprecated
      */
     protected $stereo = false;
     /**
@@ -131,11 +139,13 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *     @type int $source
      *           source of media
      *     @type \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $layers
+     *           see `codecs` for layers of individual codec
      *     @type string $mime_type
      *           mime type of codec
      *     @type string $mid
      *     @type \Livekit\SimulcastCodecInfo[]|\Google\Protobuf\Internal\RepeatedField $codecs
      *     @type bool $stereo
+     *           deprecated in favor of `audio_features`
      *     @type bool $disable_red
      *           true if RED (Redundant Encoding) is disabled for audio
      *     @type int $encryption
@@ -295,23 +305,27 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     /**
      * true if track is simulcasted
      *
-     * Generated from protobuf field <code>bool simulcast = 7;</code>
+     * Generated from protobuf field <code>bool simulcast = 7 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getSimulcast()
     {
+        @trigger_error('simulcast is deprecated.', E_USER_DEPRECATED);
         return $this->simulcast;
     }
 
     /**
      * true if track is simulcasted
      *
-     * Generated from protobuf field <code>bool simulcast = 7;</code>
+     * Generated from protobuf field <code>bool simulcast = 7 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setSimulcast($var)
     {
+        @trigger_error('simulcast is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->simulcast = $var;
 
@@ -321,23 +335,27 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     /**
      * true if DTX (Discontinuous Transmission) is disabled for audio
      *
-     * Generated from protobuf field <code>bool disable_dtx = 8;</code>
+     * Generated from protobuf field <code>bool disable_dtx = 8 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getDisableDtx()
     {
+        @trigger_error('disable_dtx is deprecated.', E_USER_DEPRECATED);
         return $this->disable_dtx;
     }
 
     /**
      * true if DTX (Discontinuous Transmission) is disabled for audio
      *
-     * Generated from protobuf field <code>bool disable_dtx = 8;</code>
+     * Generated from protobuf field <code>bool disable_dtx = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDisableDtx($var)
     {
+        @trigger_error('disable_dtx is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->disable_dtx = $var;
 
@@ -371,21 +389,29 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10;</code>
+     * see `codecs` for layers of individual codec
+     *
+     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getLayers()
     {
+        @trigger_error('layers is deprecated.', E_USER_DEPRECATED);
         return $this->layers;
     }
 
     /**
-     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10;</code>
+     * see `codecs` for layers of individual codec
+     *
+     * Generated from protobuf field <code>repeated .livekit.VideoLayer layers = 10 [deprecated = true];</code>
      * @param \Livekit\VideoLayer[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setLayers($var)
     {
+        @trigger_error('layers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Livekit\VideoLayer::class);
         $this->layers = $arr;
 
@@ -463,21 +489,29 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bool stereo = 14;</code>
+     * deprecated in favor of `audio_features`
+     *
+     * Generated from protobuf field <code>bool stereo = 14 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getStereo()
     {
+        @trigger_error('stereo is deprecated.', E_USER_DEPRECATED);
         return $this->stereo;
     }
 
     /**
-     * Generated from protobuf field <code>bool stereo = 14;</code>
+     * deprecated in favor of `audio_features`
+     *
+     * Generated from protobuf field <code>bool stereo = 14 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setStereo($var)
     {
+        @trigger_error('stereo is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->stereo = $var;
 

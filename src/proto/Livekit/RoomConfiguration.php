@@ -38,6 +38,12 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
      */
     protected $max_participants = 0;
     /**
+     * metadata of room
+     *
+     * Generated from protobuf field <code>string metadata = 11;</code>
+     */
+    protected $metadata = '';
+    /**
      * egress
      *
      * Generated from protobuf field <code>.livekit.RoomEgress egress = 5;</code>
@@ -81,6 +87,8 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
      *           number of seconds to keep the room open after everyone leaves
      *     @type int $max_participants
      *           limit number of participants that can be in a room, excluding Egress and Ingress participants
+     *     @type string $metadata
+     *           metadata of room
      *     @type \Livekit\RoomEgress $egress
      *           egress
      *     @type int $min_playout_delay
@@ -198,6 +206,32 @@ class RoomConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->max_participants = $var;
+
+        return $this;
+    }
+
+    /**
+     * metadata of room
+     *
+     * Generated from protobuf field <code>string metadata = 11;</code>
+     * @return string
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * metadata of room
+     *
+     * Generated from protobuf field <code>string metadata = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata = $var;
 
         return $this;
     }

@@ -21,6 +21,24 @@ class ListUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string set = 1;</code>
      */
     private $set;
+    /**
+     * append items to a list, avoiding duplicates
+     *
+     * Generated from protobuf field <code>repeated string add = 2;</code>
+     */
+    private $add;
+    /**
+     * delete items from a list
+     *
+     * Generated from protobuf field <code>repeated string remove = 3;</code>
+     */
+    private $remove;
+    /**
+     * sets the list to an empty list
+     *
+     * Generated from protobuf field <code>bool clear = 4;</code>
+     */
+    protected $clear = false;
 
     /**
      * Constructor.
@@ -30,6 +48,12 @@ class ListUpdate extends \Google\Protobuf\Internal\Message
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $set
      *           set the field to a new list
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $add
+     *           append items to a list, avoiding duplicates
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $remove
+     *           delete items from a list
+     *     @type bool $clear
+     *           sets the list to an empty list
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +83,84 @@ class ListUpdate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->set = $arr;
+
+        return $this;
+    }
+
+    /**
+     * append items to a list, avoiding duplicates
+     *
+     * Generated from protobuf field <code>repeated string add = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdd()
+    {
+        return $this->add;
+    }
+
+    /**
+     * append items to a list, avoiding duplicates
+     *
+     * Generated from protobuf field <code>repeated string add = 2;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdd($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->add = $arr;
+
+        return $this;
+    }
+
+    /**
+     * delete items from a list
+     *
+     * Generated from protobuf field <code>repeated string remove = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRemove()
+    {
+        return $this->remove;
+    }
+
+    /**
+     * delete items from a list
+     *
+     * Generated from protobuf field <code>repeated string remove = 3;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRemove($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->remove = $arr;
+
+        return $this;
+    }
+
+    /**
+     * sets the list to an empty list
+     *
+     * Generated from protobuf field <code>bool clear = 4;</code>
+     * @return bool
+     */
+    public function getClear()
+    {
+        return $this->clear;
+    }
+
+    /**
+     * sets the list to an empty list
+     *
+     * Generated from protobuf field <code>bool clear = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setClear($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->clear = $var;
 
         return $this;
     }

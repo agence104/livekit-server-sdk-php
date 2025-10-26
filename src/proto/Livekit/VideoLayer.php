@@ -39,6 +39,14 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>uint32 ssrc = 5;</code>
      */
     protected $ssrc = 0;
+    /**
+     * Generated from protobuf field <code>int32 spatial_layer = 6;</code>
+     */
+    protected $spatial_layer = 0;
+    /**
+     * Generated from protobuf field <code>string rid = 7;</code>
+     */
+    protected $rid = '';
 
     /**
      * Constructor.
@@ -53,6 +61,8 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
      *     @type int $bitrate
      *           target bitrate in bit per second (bps), server will measure actual
      *     @type int $ssrc
+     *     @type int $spatial_layer
+     *     @type string $rid
      * }
      */
     public function __construct($data = NULL) {
@@ -174,6 +184,50 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->ssrc = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 spatial_layer = 6;</code>
+     * @return int
+     */
+    public function getSpatialLayer()
+    {
+        return $this->spatial_layer;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 spatial_layer = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpatialLayer($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->spatial_layer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string rid = 7;</code>
+     * @return string
+     */
+    public function getRid()
+    {
+        return $this->rid;
+    }
+
+    /**
+     * Generated from protobuf field <code>string rid = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rid = $var;
 
         return $this;
     }
