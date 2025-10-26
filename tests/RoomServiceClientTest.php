@@ -2,6 +2,8 @@
 
 namespace Agence104\LiveKit\Tests;
 
+use Agence104\LiveKit\RoomAgentDispatch;
+use Agence104\LiveKit\RoomConfiguration;
 use Agence104\LiveKit\RoomCreateOptions;
 use Agence104\LiveKit\RoomServiceClient;
 use Livekit\DataPacket\Kind;
@@ -166,6 +168,30 @@ class RoomServiceClientTest extends TestCase {
       'max_playout_delay' => 20,
       'sync_streams' => TRUE,
     ], $opts->getData());
+
+    // Test with agent dispatch configuration
+    $agent1 = (new RoomAgentDispatch())
+      ->setAgentName('transcription-agent')
+      ->setMetadata('transcription metadata');
+    
+    $agent2 = (new RoomAgentDispatch())
+      ->setAgentName('moderation-agent');
+
+    $roomConfig = (new RoomConfiguration())
+      ->setName('agent-room')
+      ->setEmptyTimeout(300)
+      ->setMaxParticipants(20)
+      ->setAgents([$agent1, $agent2]);
+
+    $this->assertEquals('agent-room', $roomConfig->getName());
+    $this->assertCount(2, $roomConfig->getAgents());
+    
+    $configData = $roomConfig->getData();
+    $this->assertArrayHasKey('agents', $configData);
+    $this->assertCount(2, $configData['agents']);
+    $this->assertEquals('transcription-agent', $configData['agents'][0]['agentName']);
+    $this->assertEquals('transcription metadata', $configData['agents'][0]['metadata']);
+    $this->assertEquals('moderation-agent', $configData['agents'][1]['agentName']);
   }
 
   /**
