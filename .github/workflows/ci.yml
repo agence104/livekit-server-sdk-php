@@ -85,20 +85,17 @@ jobs:
           echo "Bore PID: $BORE_PID"
           cat /tmp/bore.log
 
-      - name: Check for required secrets
-        run: |
-          if [ -z "${{ secrets.LIVEKIT_URL }}" ] || [ -z "${{ secrets.LIVEKIT_API_KEY }}" ] || [ -z "${{ secrets.LIVEKIT_API_SECRET }}" ]; then
-            echo "::warning::LiveKit secrets not configured. Tests will be skipped."
-            echo "Please set LIVEKIT_URL, LIVEKIT_API_KEY, and LIVEKIT_API_SECRET in repository secrets."
-            exit 0
-          fi
-
       - name: Run tests
-        if: ${{ secrets.LIVEKIT_URL != '' && secrets.LIVEKIT_API_KEY != '' && secrets.LIVEKIT_API_SECRET != '' }}
         env:
           LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
           LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
           LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
           LIVEKIT_EGRESS_RTMP_URL: ${{ env.RTMP_URL || secrets.LIVEKIT_EGRESS_RTMP_URL }}
           LIVEKIT_EGRESS_RTMP_URL2: ${{ env.RTMP_URL2 || secrets.LIVEKIT_EGRESS_RTMP_URL2 }}
-        run: vendor/bin/phpunit --configuration phpunit.xml
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            echo "::warning::LiveKit secrets not configured. Tests will be skipped."
+            echo "Please set LIVEKIT_URL, LIVEKIT_API_KEY, and LIVEKIT_API_SECRET in repository secrets."
+            exit 0
+          fi
+          vendor/bin/phpunit --configuration phpunit.xml
