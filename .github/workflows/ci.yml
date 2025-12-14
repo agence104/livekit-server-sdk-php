@@ -7,7 +7,7 @@ on:
     branches: [ master, main ]
 
 jobs:
-  tests:
+  lint:
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
     runs-on: ubuntu-latest
     strategy:
@@ -27,5 +27,154 @@ jobs:
           tools: composer:v2, parallel-lint
           coverage: none
 
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-suggest
+
       - name: Lint PHP files
         run: parallel-lint --show-deprecated --exclude src/proto src/ tests/
+
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-suggest
+
+      - name: Install jq and livekit-cli
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          curl -sSL https://get.livekit.io/cli | bash
+          echo "$HOME/.livekit/bin" >> $GITHUB_PATH
+
+      - name: Generate random room name
+        run: |
+          ROOM_NAME="testRoom-$(openssl rand -hex 8)"
+          echo "LIVEKIT_TEST_ROOM=$ROOM_NAME" >> $GITHUB_ENV
+          echo "Generated test room name: $ROOM_NAME"
+
+      - name: Create test room
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            echo "::warning::LiveKit secrets not configured. Tests will be skipped."
+            exit 0
+          fi
+          lk room create ${{ env.LIVEKIT_TEST_ROOM }} || true
+
+      - name: Start load test
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            exit 0
+          fi
+          lk load-test --room ${{ env.LIVEKIT_TEST_ROOM }} --video-publishers 3 --audio-publishers 5 > /tmp/loadtest.log 2>&1 &
+          echo $! > /tmp/loadtest.pid
+          sleep 5
+          echo "Load test started with PID $(cat /tmp/loadtest.pid)"
+
+      - name: Start RTMP test server
+        run: |
+          docker run -d --name rtmp-server -p 1935:1935 tiangolo/nginx-rtmp
+          sleep 5
+          # Verify RTMP server is running
+          docker ps | grep rtmp-server || (echo "RTMP server failed to start" && exit 1)
+
+      - name: Install bore (TCP tunnel)
+        run: |
+          curl -L https://github.com/ekzhang/bore/releases/download/v0.5.0/bore-v0.5.0-x86_64-unknown-linux-musl.tar.gz -o bore.tar.gz
+          tar -xzf bore.tar.gz
+          chmod +x bore
+          sudo mv bore /usr/local/bin/
+
+      - name: Start TCP tunnel for RTMP
+        run: |
+          bore local 1935 --to bore.pub > /tmp/bore.log 2>&1 &
+          BORE_PID=$!
+          sleep 5
+          # Extract public URL from bore output (format: Listening on bore.pub:port)
+          BORE_PORT=$(grep -oE 'bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+          if [ -z "$BORE_PORT" ]; then
+            # Try alternative format: "Listening on bore.pub:12345"
+            BORE_PORT=$(grep -oE 'Listening on bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+          fi
+          if [ -z "$BORE_PORT" ]; then
+            echo "Failed to extract bore tunnel port. Log:"
+            cat /tmp/bore.log
+            exit 1
+          fi
+          # Verify tunnel is working by checking if process is still running
+          if ! ps -p $BORE_PID > /dev/null 2>&1; then
+            echo "Bore tunnel process died. Log:"
+            cat /tmp/bore.log
+            exit 1
+          fi
+          # Generate short unique ID for RTMP stream keys (4 hex chars = 65536 combinations)
+          RTMP_ID=$(openssl rand -hex 2)
+          BORE_RTMP="rtmp://bore.pub:$BORE_PORT"
+          echo "RTMP_URL=$BORE_RTMP/live/test$RTMP_ID" >> $GITHUB_ENV
+          echo "RTMP_URL2=$BORE_RTMP/live/test2$RTMP_ID" >> $GITHUB_ENV
+          echo "Public RTMP URL: $BORE_RTMP"
+          echo "RTMP stream paths: /live/test$RTMP_ID and /live/test2$RTMP_ID"
+          echo "Bore PID: $BORE_PID"
+          echo "Waiting additional 5 seconds for tunnel to stabilize..."
+          sleep 5
+          cat /tmp/bore.log
+
+      - name: Run tests
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+          LIVEKIT_EGRESS_RTMP_URL: ${{ env.RTMP_URL || secrets.LIVEKIT_EGRESS_RTMP_URL }}
+          LIVEKIT_EGRESS_RTMP_URL2: ${{ env.RTMP_URL2 || secrets.LIVEKIT_EGRESS_RTMP_URL2 }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            echo "::warning::LiveKit secrets not configured. Tests will be skipped."
+            echo "Please set LIVEKIT_URL, LIVEKIT_API_KEY, and LIVEKIT_API_SECRET in repository secrets."
+            exit 0
+          fi
+          vendor/bin/phpunit --testdox --configuration phpunit.xml
+
+      - name: Stop load test and cleanup
+        if: always()
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+          LIVEKIT_TEST_ROOM: ${{ env.LIVEKIT_TEST_ROOM }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            exit 0
+          fi
+          # Stop load test if it's still running
+          if [ -f /tmp/loadtest.pid ]; then
+            LOADTEST_PID=$(cat /tmp/loadtest.pid)
+            if ps -p $LOADTEST_PID > /dev/null 2>&1; then
+              echo "Stopping load test (PID: $LOADTEST_PID)"
+              kill $LOADTEST_PID || true
+              sleep 2
+              # Force kill if still running
+              kill -9 $LOADTEST_PID 2>/dev/null || true
+            fi
+          fi
+          # Delete test room
+          if [ -n "$LIVEKIT_TEST_ROOM" ]; then
+            echo "Deleting test room $LIVEKIT_TEST_ROOM"
+            lk room delete "$LIVEKIT_TEST_ROOM" || true
+          fi

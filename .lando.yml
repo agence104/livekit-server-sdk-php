@@ -9,18 +9,119 @@ services:
       image: php:8.1-apache
       command: docker-php-entrypoint apache2-foreground
     build_as_root:
-      - apt-get update && apt-get install -y jq
+      - apt-get update && apt-get install -y jq curl socat
       - curl -sSL https://get.livekit.io/cli | bash
+      - curl -L https://github.com/ekzhang/bore/releases/download/v0.5.0/bore-v0.5.0-x86_64-unknown-linux-musl.tar.gz -o /tmp/bore.tar.gz
+      - tar -xzf /tmp/bore.tar.gz -C /usr/local/bin/ && chmod +x /usr/local/bin/bore && rm /tmp/bore.tar.gz
     overrides:
       environment:
         # Support debugging CLI with Xdebug.
         PHP_IDE_CONFIG: "serverName=appserver"
         XDEBUG_SESSION_START: lando
+        XDEBUG_CONFIG: "client_host=host.docker.internal"
+  rtmp:
+    type: compose
+    services:
+      image: tiangolo/nginx-rtmp
+      ports:
+        - "1935:1935"
 tooling:
   test:
     service: appserver
+    description: Run tests with RTMP tunnel setup
     cmd:
-      - vendor/bin/phpunit --testdox
+      - |
+        # Generate random room name if not set
+        if [ -z "$LIVEKIT_TEST_ROOM" ]; then
+          export LIVEKIT_TEST_ROOM="testRoom-$(openssl rand -hex 8)"
+          echo "Generated test room name: $LIVEKIT_TEST_ROOM"
+        fi
+        
+        # Forward local port to RTMP service container
+        echo "Setting up port forwarding to RTMP service..."
+        socat TCP-LISTEN:1935,fork,reuseaddr TCP:rtmp:1935 > /tmp/socat.log 2>&1 &
+        SOCAT_PID=$!
+        sleep 2
+        
+        # Start bore tunnel for RTMP
+        echo "Starting RTMP tunnel..."
+        bore local 1935 --to bore.pub > /tmp/bore.log 2>&1 &
+        BORE_PID=$!
+        sleep 10
+        
+        # Extract public RTMP URL
+        BORE_PORT=$(grep -oE 'bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+        if [ -z "$BORE_PORT" ]; then
+          BORE_PORT=$(grep -oE 'Listening on bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+        fi
+        
+        if [ -n "$BORE_PORT" ]; then
+          # Verify tunnel is working
+          if ! ps -p $BORE_PID > /dev/null 2>&1; then
+            echo "Warning: Bore tunnel process died. Log:"
+            cat /tmp/bore.log
+          else
+            # Generate short unique ID for RTMP stream keys (4 hex chars = 65536 combinations)
+            RTMP_ID=$(openssl rand -hex 2)
+            export LIVEKIT_EGRESS_RTMP_URL="rtmp://bore.pub:$BORE_PORT/live/test$RTMP_ID"
+            export LIVEKIT_EGRESS_RTMP_URL2="rtmp://bore.pub:$BORE_PORT/live/test2$RTMP_ID"
+            echo "Public RTMP URLs:"
+            echo "  $LIVEKIT_EGRESS_RTMP_URL"
+            echo "  $LIVEKIT_EGRESS_RTMP_URL2"
+            echo "Bore PID: $BORE_PID"
+            echo "Waiting additional 5 seconds for tunnel to stabilize..."
+            sleep 5
+          fi
+        else
+          echo "Warning: Failed to extract bore tunnel URL. Using defaults."
+          cat /tmp/bore.log
+        fi
+        
+        # Create test room if LiveKit credentials are available
+        if [ -n "$LIVEKIT_URL" ] && [ -n "$LIVEKIT_API_KEY" ] && [ -n "$LIVEKIT_API_SECRET" ]; then
+          echo "Creating test room: $LIVEKIT_TEST_ROOM"
+          lk room create "$LIVEKIT_TEST_ROOM" || true
+          
+          # Start load test in background
+          echo "Starting load test..."
+          lk load-test --room "$LIVEKIT_TEST_ROOM" --video-publishers 3 --audio-publishers 5 > /tmp/loadtest.log 2>&1 &
+          LOADTEST_PID=$!
+          echo $LOADTEST_PID > /tmp/loadtest.pid
+          echo "Load test started with PID: $LOADTEST_PID"
+          sleep 5
+        fi
+        
+        # Run tests
+        vendor/bin/phpunit --testdox --configuration phpunit.xml
+        TEST_EXIT_CODE=$?
+        
+        # Cleanup
+        if [ -f /tmp/loadtest.pid ]; then
+          LOADTEST_PID=$(cat /tmp/loadtest.pid)
+          if ps -p $LOADTEST_PID > /dev/null 2>&1; then
+            echo "Stopping load test..."
+            kill $LOADTEST_PID 2>/dev/null || true
+            sleep 2
+            kill -9 $LOADTEST_PID 2>/dev/null || true
+          fi
+        fi
+        
+        if [ -n "$LIVEKIT_TEST_ROOM" ] && [ -n "$LIVEKIT_URL" ]; then
+          echo "Deleting test room: $LIVEKIT_TEST_ROOM"
+          lk room delete "$LIVEKIT_TEST_ROOM" || true
+        fi
+        
+        # Cleanup bore tunnel and socat forward
+        if [ -n "$BORE_PID" ]; then
+          echo "Stopping bore tunnel (PID: $BORE_PID)"
+          kill $BORE_PID 2>/dev/null || true
+        fi
+        if [ -n "$SOCAT_PID" ]; then
+          echo "Stopping socat forward (PID: $SOCAT_PID)"
+          kill $SOCAT_PID 2>/dev/null || true
+        fi
+        
+        exit $TEST_EXIT_CODE
   xdebug-on:
     service: appserver
     description: Enable Xdebug.
@@ -51,3 +152,17 @@ tooling:
     service: appserver
     cmd:
       - lk load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5
+  rtmp-tunnel:
+    service: appserver
+    description: Start RTMP tunnel with bore
+    cmd:
+      - |
+        bore local 1935 --to bore.pub
+  rtmp-tunnel-bg:
+    service: appserver
+    description: Start RTMP tunnel in background
+    cmd:
+      - |
+        bore local 1935 --to bore.pub > /tmp/bore.log 2>&1 &
+        echo "Bore tunnel started. PID: $!"
+        echo "Check /tmp/bore.log for the public URL"

@@ -21,12 +21,13 @@ class IngressServiceClientTest extends TestCase {
   /**
    * Main room name with participants, created before test execution.
    */
-  private string $mainRoom = 'testRoomParticipants';
+  private string $mainRoom;
 
   /**
    * Sets up the test environment.
    */
   protected function setUp(): void {
+    $this->mainRoom = getenv('LIVEKIT_TEST_ROOM') ?: 'testRoomParticipants';
     try {
       $this->client = new IngressServiceClient();
     }
@@ -74,7 +75,7 @@ class IngressServiceClientTest extends TestCase {
    * Tests creating an ingress.
    */
   public function testCreateIngress(): string {
-    $name = 'testIngress';
+    $name = 'testIngress-' . uniqid();
     $participantIdentity = 'ingress-test-user';
     $participantName = 'Ingress Test User';
     $response = $this->client->createIngress(
@@ -101,7 +102,7 @@ class IngressServiceClientTest extends TestCase {
    * @depends testCreateIngress
    */
   public function testUpdateIngress(string $ingressId): void {
-    $name = 'testIngress-2';
+    $name = 'testIngress-' . uniqid();
     $participantIdentity = 'ingress-test-user-2';
     $participantName = 'Ingress Test User 2';
 
