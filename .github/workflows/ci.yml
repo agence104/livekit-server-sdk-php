@@ -7,7 +7,7 @@ on:
     branches: [ master, main ]
 
 jobs:
-  tests:
+  lint:
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
     runs-on: ubuntu-latest
     strategy:
@@ -32,6 +32,23 @@ jobs:
 
       - name: Lint PHP files
         run: parallel-lint --show-deprecated --exclude src/proto src/ tests/
+
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-suggest
 
       - name: Start RTMP test server
         run: |
