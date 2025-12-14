@@ -2,6 +2,7 @@
 
 namespace Agence104\LiveKit;
 
+use Livekit\AudioMixing;
 use Livekit\DirectFileOutput;
 use Livekit\EgressClient;
 use Livekit\EgressInfo;
@@ -11,6 +12,7 @@ use Livekit\EncodingOptionsPreset;
 use Livekit\ImageOutput;
 use Livekit\ListEgressRequest;
 use Livekit\ListEgressResponse;
+use Livekit\ParticipantEgressRequest;
 use Livekit\RoomCompositeEgressRequest;
 use Livekit\SegmentedFileOutput;
 use Livekit\StopEgressRequest;
@@ -20,6 +22,7 @@ use Livekit\TrackEgressRequest;
 use Livekit\UpdateLayoutRequest;
 use Livekit\UpdateStreamRequest;
 use Livekit\WebEgressRequest;
+use Livekit\WebhookConfig;
 
 /**
  * Define the Egress service client.
@@ -127,6 +130,10 @@ class EgressServiceClient extends BaseServiceClient {
    *   The flag which defines if we record only the video or not.
    * @param string $customBaseUrl
    *   The custom template url. (default https://recorder.livekit.io)
+   * @param int $audioMixing
+   *   The audio mixing mode. Only applies to audio_only egress. Use AudioMixing constants.
+   * @param \Livekit\WebhookConfig[]|null $webhooks
+   *   Extra webhooks to call for this request.
    *
    * @return \Livekit\EgressInfo
    *   The egress info.
@@ -138,7 +145,9 @@ class EgressServiceClient extends BaseServiceClient {
     EncodingOptionsPreset|EncodingOptions|null $options = NULL,
     bool $audioOnly = FALSE,
     bool $videoOnly = FALSE,
-    string $customBaseUrl = ''
+    string $customBaseUrl = '',
+    int $audioMixing = AudioMixing::DEFAULT_MIXING,
+    ?array $webhooks = NULL
   ): EgressInfo {
     [
       $file,
@@ -161,11 +170,16 @@ class EgressServiceClient extends BaseServiceClient {
       'custom_base_url' => $customBaseUrl,
     ];
 
+    if ($audioOnly && $audioMixing !== AudioMixing::DEFAULT_MIXING) {
+      $data['audio_mixing'] = $audioMixing;
+    }
+
     $data += array_filter([
       'file_outputs' => $fileOutputs,
       'stream_outputs' => $streamOutputs,
       'segment_outputs' => $segmentOutputs,
       'image_outputs' => $imageOutputs,
+      'webhooks' => $webhooks,
     ]);
 
     if ($file) {
@@ -208,6 +222,8 @@ class EgressServiceClient extends BaseServiceClient {
    *   The flag which defines if we record only the video or not.
    * @param bool $awaitStartSignal
    *   The flag which defines if we wait for the start signal or not.
+   * @param \Livekit\WebhookConfig[]|null $webhooks
+   *   Extra webhooks to call for this request.
    *
    * @return \Livekit\EgressInfo
    *   The egress info.
@@ -218,7 +234,8 @@ class EgressServiceClient extends BaseServiceClient {
     EncodingOptionsPreset|EncodingOptions|null $options = NULL,
     bool $audioOnly = FALSE,
     bool $videoOnly = FALSE,
-    bool $awaitStartSignal = FALSE
+    bool $awaitStartSignal = FALSE,
+    ?array $webhooks = NULL
   ): EgressInfo {
     [
       $file,
@@ -245,6 +262,7 @@ class EgressServiceClient extends BaseServiceClient {
       'stream_outputs' => $streamOutputs,
       'segment_outputs' => $segmentOutputs,
       'image_outputs' => $imageOutputs,
+      'webhooks' => $webhooks,
     ]);
 
     if ($file) {
@@ -273,6 +291,85 @@ class EgressServiceClient extends BaseServiceClient {
   }
 
   /**
+   * Starts a participant egress to record audio and video from a single participant.
+   *
+   * @param string $roomName
+   *   The name of the room.
+   * @param string $identity
+   *   The identity of the participant.
+   * @param \Agence104\LiveKit\EncodedOutputs|\Livekit\EncodedFileOutput|\Livekit\StreamOutput|\Livekit\SegmentedFileOutput|\Livekit\ImageOutput $output
+   *   The egress output.
+   * @param \Livekit\EncodingOptionsPreset|\Livekit\EncodingOptions|null $options
+   *   The encoding options or preset.
+   * @param bool $screenShare
+   *   Whether to record screen share only (default false).
+   * @param \Livekit\WebhookConfig[]|null $webhooks
+   *   Extra webhooks to call for this request.
+   *
+   * @return \Livekit\EgressInfo
+   *   The egress info.
+   */
+  public function startParticipantEgress(
+    string $roomName,
+    string $identity,
+    EncodedOutputs|EncodedFileOutput|StreamOutput|SegmentedFileOutput|ImageOutput $output,
+    EncodingOptionsPreset|EncodingOptions|null $options = NULL,
+    bool $screenShare = FALSE,
+    ?array $webhooks = NULL
+  ): EgressInfo {
+    [
+      $file,
+      $stream,
+      $segments,
+      $preset,
+      $advanced,
+      $fileOutputs,
+      $streamOutputs,
+      $segmentOutputs,
+      $imageOutputs,
+    ] = $this->getOutputParams($output, $options);
+
+    // Set the request data.
+    $data = [
+      'room_name' => $roomName,
+      'identity' => $identity,
+      'screen_share' => $screenShare,
+    ];
+
+    $data += array_filter([
+      'file_outputs' => $fileOutputs,
+      'stream_outputs' => $streamOutputs,
+      'segment_outputs' => $segmentOutputs,
+      'image_outputs' => $imageOutputs,
+      'webhooks' => $webhooks,
+    ]);
+
+    if ($file) {
+      $data['file'] = $file;
+    }
+    elseif ($segments) {
+      $data['segments'] = $segments;
+    }
+    elseif ($stream) {
+      $data['stream'] = $stream;
+    }
+
+    if ($preset) {
+      $data['preset'] = $preset;
+    }
+    else {
+      $data['advanced'] = $advanced;
+    }
+
+    $videoGrant = new VideoGrant();
+    $videoGrant->setRoomRecord();
+    return $this->rpc->StartParticipantEgress(
+      $this->authHeader($videoGrant),
+      new ParticipantEgressRequest($data)
+    );
+  }
+
+  /**
    * Starts a track composite egress with up to one audio and one video track.
    *
    * Track IDs can be found using webhooks or one of the server SDKs.
@@ -287,6 +384,8 @@ class EgressServiceClient extends BaseServiceClient {
    *   The video track id.
    * @param \Livekit\EncodingOptionsPreset|\Livekit\EncodingOptions|null $options
    *   The encoding options or preset.
+   * @param \Livekit\WebhookConfig[]|null $webhooks
+   *   Extra webhooks to call for this request.
    *
    * @return \Livekit\EgressInfo
    *   The egress info.
@@ -297,6 +396,7 @@ class EgressServiceClient extends BaseServiceClient {
     string $audioTrackId = '',
     string $videoTrackId = '',
     EncodingOptionsPreset|EncodingOptions|null $options = NULL,
+    ?array $webhooks = NULL
   ): EgressInfo {
     [
       $file,
@@ -322,6 +422,7 @@ class EgressServiceClient extends BaseServiceClient {
       'stream_outputs' => $streamOutputs,
       'segment_outputs' => $segmentOutputs,
       'image_outputs' => $imageOutputs,
+      'webhooks' => $webhooks,
     ]);
 
     if ($file) {
@@ -360,6 +461,8 @@ class EgressServiceClient extends BaseServiceClient {
    *   The file or websocket output.
    * @param string $trackId
    *   The track id.
+   * @param \Livekit\WebhookConfig[]|null $webhooks
+   *   Extra webhooks to call for this request.
    *
    * @return \Livekit\EgressInfo
    *   The egress info.
@@ -367,7 +470,8 @@ class EgressServiceClient extends BaseServiceClient {
   public function startTrackEgress(
     string $roomName,
     DirectFileOutput|string $output,
-    string $trackId
+    string $trackId,
+    ?array $webhooks = NULL
   ): EgressInfo {
     // Set the request data.
     $data = [
@@ -377,6 +481,10 @@ class EgressServiceClient extends BaseServiceClient {
     ($output instanceof DirectFileOutput && !empty($output->getFilepath()))
       ? $data['file'] = $output
       : $data['websocket_url'] = $output;
+
+    if ($webhooks) {
+      $data['webhooks'] = $webhooks;
+    }
 
     $videoGrant = new VideoGrant();
     $videoGrant->setRoomRecord();
