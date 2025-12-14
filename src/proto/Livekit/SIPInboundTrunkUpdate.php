@@ -26,11 +26,11 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $allowed_numbers = null;
     /**
-     * Generated from protobuf field <code>optional string auth_username = 4;</code>
+     * Generated from protobuf field <code>optional string auth_username = 4 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $auth_username = null;
     /**
-     * Generated from protobuf field <code>optional string auth_password = 5;</code>
+     * Generated from protobuf field <code>optional string auth_password = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $auth_password = null;
     /**
@@ -38,7 +38,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * Generated from protobuf field <code>optional string metadata = 7;</code>
+     * Generated from protobuf field <code>optional string metadata = 7 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $metadata = null;
     /**
@@ -164,7 +164,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional string auth_username = 4;</code>
+     * Generated from protobuf field <code>optional string auth_username = 4 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getAuthUsername()
@@ -183,7 +183,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional string auth_username = 4;</code>
+     * Generated from protobuf field <code>optional string auth_username = 4 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */
@@ -196,7 +196,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional string auth_password = 5;</code>
+     * Generated from protobuf field <code>optional string auth_password = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getAuthPassword()
@@ -215,7 +215,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional string auth_password = 5;</code>
+     * Generated from protobuf field <code>optional string auth_password = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */
@@ -260,7 +260,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional string metadata = 7;</code>
+     * Generated from protobuf field <code>optional string metadata = 7 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getMetadata()
@@ -279,7 +279,7 @@ class SIPInboundTrunkUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional string metadata = 7;</code>
+     * Generated from protobuf field <code>optional string metadata = 7 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */

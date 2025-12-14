@@ -44,7 +44,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $participant_identity = '';
     /**
-     * Generated from protobuf field <code>map<string, string> participant_attributes = 18;</code>
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 18 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     private $participant_attributes;
     /**
@@ -327,7 +327,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>map<string, string> participant_attributes = 18;</code>
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 18 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getParticipantAttributes()
@@ -336,7 +336,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>map<string, string> participant_attributes = 18;</code>
+     * Generated from protobuf field <code>map<string, string> participant_attributes = 18 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

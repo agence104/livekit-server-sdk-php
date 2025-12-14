@@ -14,11 +14,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class AzureBlobUpload extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string account_name = 1;</code>
+     * Generated from protobuf field <code>string account_name = 1 [(.logger.redact) = true];</code>
      */
     protected $account_name = '';
     /**
-     * Generated from protobuf field <code>string account_key = 2;</code>
+     * Generated from protobuf field <code>string account_key = 2 [(.logger.redact) = true];</code>
      */
     protected $account_key = '';
     /**
@@ -43,7 +43,7 @@ class AzureBlobUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string account_name = 1;</code>
+     * Generated from protobuf field <code>string account_name = 1 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAccountName()
@@ -52,7 +52,7 @@ class AzureBlobUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string account_name = 1;</code>
+     * Generated from protobuf field <code>string account_name = 1 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -65,7 +65,7 @@ class AzureBlobUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string account_key = 2;</code>
+     * Generated from protobuf field <code>string account_key = 2 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAccountKey()
@@ -74,7 +74,7 @@ class AzureBlobUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string account_key = 2;</code>
+     * Generated from protobuf field <code>string account_key = 2 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */

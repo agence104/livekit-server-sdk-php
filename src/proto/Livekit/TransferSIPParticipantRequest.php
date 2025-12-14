@@ -34,7 +34,7 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Add the following headers to the REFER SIP request.
      *
-     * Generated from protobuf field <code>map<string, string> headers = 5;</code>
+     * Generated from protobuf field <code>map<string, string> headers = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     private $headers;
     /**
@@ -161,7 +161,7 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Add the following headers to the REFER SIP request.
      *
-     * Generated from protobuf field <code>map<string, string> headers = 5;</code>
+     * Generated from protobuf field <code>map<string, string> headers = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getHeaders()
@@ -172,7 +172,7 @@ class TransferSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Add the following headers to the REFER SIP request.
      *
-     * Generated from protobuf field <code>map<string, string> headers = 5;</code>
+     * Generated from protobuf field <code>map<string, string> headers = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

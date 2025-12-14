@@ -58,7 +58,7 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined metadata for the Dispatch Rule.
      * Participants created by this rule will inherit this metadata.
      *
-     * Generated from protobuf field <code>string metadata = 5 [deprecated = true];</code>
+     * Generated from protobuf field <code>string metadata = 5 [deprecated = true, (.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @deprecated
      */
     protected $metadata = '';
@@ -66,7 +66,7 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined attributes for the Dispatch Rule.
      * Participants created by this rule will inherit these attributes.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true];</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true, (.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @deprecated
      */
     private $attributes;
@@ -323,7 +323,7 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined metadata for the Dispatch Rule.
      * Participants created by this rule will inherit this metadata.
      *
-     * Generated from protobuf field <code>string metadata = 5 [deprecated = true];</code>
+     * Generated from protobuf field <code>string metadata = 5 [deprecated = true, (.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      * @deprecated
      */
@@ -337,7 +337,7 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined metadata for the Dispatch Rule.
      * Participants created by this rule will inherit this metadata.
      *
-     * Generated from protobuf field <code>string metadata = 5 [deprecated = true];</code>
+     * Generated from protobuf field <code>string metadata = 5 [deprecated = true, (.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      * @deprecated
@@ -355,7 +355,7 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined attributes for the Dispatch Rule.
      * Participants created by this rule will inherit these attributes.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true];</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true, (.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return \Google\Protobuf\Internal\MapField
      * @deprecated
      */
@@ -369,7 +369,7 @@ class CreateSIPDispatchRuleRequest extends \Google\Protobuf\Internal\Message
      * User-defined attributes for the Dispatch Rule.
      * Participants created by this rule will inherit these attributes.
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true];</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 7 [deprecated = true, (.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      * @deprecated

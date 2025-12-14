@@ -16,7 +16,7 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     /**
      * service account credentials serialized in JSON "credentials.json"
      *
-     * Generated from protobuf field <code>string credentials = 1;</code>
+     * Generated from protobuf field <code>string credentials = 1 [(.logger.redact) = true];</code>
      */
     protected $credentials = '';
     /**
@@ -48,7 +48,7 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     /**
      * service account credentials serialized in JSON "credentials.json"
      *
-     * Generated from protobuf field <code>string credentials = 1;</code>
+     * Generated from protobuf field <code>string credentials = 1 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getCredentials()
@@ -59,7 +59,7 @@ class GCPUpload extends \Google\Protobuf\Internal\Message
     /**
      * service account credentials serialized in JSON "credentials.json"
      *
-     * Generated from protobuf field <code>string credentials = 1;</code>
+     * Generated from protobuf field <code>string credentials = 1 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */

@@ -25,6 +25,10 @@ class ProviderInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.ProviderType type = 3;</code>
      */
     protected $type = 0;
+    /**
+     * Generated from protobuf field <code>bool prevent_transfer = 4;</code>
+     */
+    protected $prevent_transfer = false;
 
     /**
      * Constructor.
@@ -35,6 +39,7 @@ class ProviderInfo extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *     @type string $name
      *     @type int $type
+     *     @type bool $prevent_transfer
      * }
      */
     public function __construct($data = NULL) {
@@ -104,6 +109,28 @@ class ProviderInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\ProviderType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool prevent_transfer = 4;</code>
+     * @return bool
+     */
+    public function getPreventTransfer()
+    {
+        return $this->prevent_transfer;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool prevent_transfer = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPreventTransfer($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->prevent_transfer = $var;
 
         return $this;
     }

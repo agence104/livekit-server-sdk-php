@@ -36,6 +36,10 @@ class SIPStatusCode
      */
     const SIP_STATUS_SESSION_PROGRESS = 183;
     /**
+     * Generated from protobuf enum <code>SIP_STATUS_EARLY_DIALOG_TERMINATED = 199;</code>
+     */
+    const SIP_STATUS_EARLY_DIALOG_TERMINATED = 199;
+    /**
      * Generated from protobuf enum <code>SIP_STATUS_OK = 200;</code>
      */
     const SIP_STATUS_OK = 200;
@@ -43,6 +47,14 @@ class SIPStatusCode
      * Generated from protobuf enum <code>SIP_STATUS_ACCEPTED = 202;</code>
      */
     const SIP_STATUS_ACCEPTED = 202;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_NO_NOTIFICATION = 204;</code>
+     */
+    const SIP_STATUS_NO_NOTIFICATION = 204;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_MULTIPLE_CHOICES = 300;</code>
+     */
+    const SIP_STATUS_MULTIPLE_CHOICES = 300;
     /**
      * Generated from protobuf enum <code>SIP_STATUS_MOVED_PERMANENTLY = 301;</code>
      */
@@ -55,6 +67,10 @@ class SIPStatusCode
      * Generated from protobuf enum <code>SIP_STATUS_USE_PROXY = 305;</code>
      */
     const SIP_STATUS_USE_PROXY = 305;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_ALTERNATIVE_SERVICE = 380;</code>
+     */
+    const SIP_STATUS_ALTERNATIVE_SERVICE = 380;
     /**
      * Generated from protobuf enum <code>SIP_STATUS_BAD_REQUEST = 400;</code>
      */
@@ -100,6 +116,14 @@ class SIPStatusCode
      */
     const SIP_STATUS_GONE = 410;
     /**
+     * Generated from protobuf enum <code>SIP_STATUS_LENGTH_REQUIRED = 411;</code>
+     */
+    const SIP_STATUS_LENGTH_REQUIRED = 411;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_CONDITIONAL_REQUEST_FAILED = 412;</code>
+     */
+    const SIP_STATUS_CONDITIONAL_REQUEST_FAILED = 412;
+    /**
      * Generated from protobuf enum <code>SIP_STATUS_REQUEST_ENTITY_TOO_LARGE = 413;</code>
      */
     const SIP_STATUS_REQUEST_ENTITY_TOO_LARGE = 413;
@@ -116,6 +140,10 @@ class SIPStatusCode
      */
     const SIP_STATUS_REQUESTED_RANGE_NOT_SATISFIABLE = 416;
     /**
+     * Generated from protobuf enum <code>SIP_STATUS_UNKNOWN_RESOURCE_PRIORITY = 417;</code>
+     */
+    const SIP_STATUS_UNKNOWN_RESOURCE_PRIORITY = 417;
+    /**
      * Generated from protobuf enum <code>SIP_STATUS_BAD_EXTENSION = 420;</code>
      */
     const SIP_STATUS_BAD_EXTENSION = 420;
@@ -124,9 +152,65 @@ class SIPStatusCode
      */
     const SIP_STATUS_EXTENSION_REQUIRED = 421;
     /**
+     * Generated from protobuf enum <code>SIP_STATUS_SESSION_INTERVAL_TOO_SMALL = 422;</code>
+     */
+    const SIP_STATUS_SESSION_INTERVAL_TOO_SMALL = 422;
+    /**
      * Generated from protobuf enum <code>SIP_STATUS_INTERVAL_TOO_BRIEF = 423;</code>
      */
     const SIP_STATUS_INTERVAL_TOO_BRIEF = 423;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_BAD_LOCATION_INFORMATION = 424;</code>
+     */
+    const SIP_STATUS_BAD_LOCATION_INFORMATION = 424;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_BAD_ALERT_MESSAGE = 425;</code>
+     */
+    const SIP_STATUS_BAD_ALERT_MESSAGE = 425;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_USE_IDENTITY_HEADER = 428;</code>
+     */
+    const SIP_STATUS_USE_IDENTITY_HEADER = 428;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_PROVIDE_REFERRER_IDENTITY = 429;</code>
+     */
+    const SIP_STATUS_PROVIDE_REFERRER_IDENTITY = 429;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_FLOW_FAILED = 430;</code>
+     */
+    const SIP_STATUS_FLOW_FAILED = 430;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_ANONYMITY_DISALLOWED = 433;</code>
+     */
+    const SIP_STATUS_ANONYMITY_DISALLOWED = 433;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_BAD_IDENTITY_INFO = 436;</code>
+     */
+    const SIP_STATUS_BAD_IDENTITY_INFO = 436;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_UNSUPPORTED_CERTIFICATE = 437;</code>
+     */
+    const SIP_STATUS_UNSUPPORTED_CERTIFICATE = 437;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_INVALID_IDENTITY_HEADER = 438;</code>
+     */
+    const SIP_STATUS_INVALID_IDENTITY_HEADER = 438;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_FIRST_HOP_LACKS_OUTBOUND_SUPPORT = 439;</code>
+     */
+    const SIP_STATUS_FIRST_HOP_LACKS_OUTBOUND_SUPPORT = 439;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_MAX_BREADTH_EXCEEDED = 440;</code>
+     */
+    const SIP_STATUS_MAX_BREADTH_EXCEEDED = 440;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_BAD_INFO_PACKAGE = 469;</code>
+     */
+    const SIP_STATUS_BAD_INFO_PACKAGE = 469;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_CONSENT_NEEDED = 470;</code>
+     */
+    const SIP_STATUS_CONSENT_NEEDED = 470;
     /**
      * Generated from protobuf enum <code>SIP_STATUS_TEMPORARILY_UNAVAILABLE = 480;</code>
      */
@@ -163,6 +247,22 @@ class SIPStatusCode
      * Generated from protobuf enum <code>SIP_STATUS_NOT_ACCEPTABLE_HERE = 488;</code>
      */
     const SIP_STATUS_NOT_ACCEPTABLE_HERE = 488;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_BAD_EVENT = 489;</code>
+     */
+    const SIP_STATUS_BAD_EVENT = 489;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_REQUEST_PENDING = 491;</code>
+     */
+    const SIP_STATUS_REQUEST_PENDING = 491;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_UNDECIPHERABLE = 493;</code>
+     */
+    const SIP_STATUS_UNDECIPHERABLE = 493;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_SECURITY_AGREEMENT_REQUIRED = 494;</code>
+     */
+    const SIP_STATUS_SECURITY_AGREEMENT_REQUIRED = 494;
     /**
      * Generated from protobuf enum <code>SIP_STATUS_INTERNAL_SERVER_ERROR = 500;</code>
      */
@@ -207,6 +307,14 @@ class SIPStatusCode
      * Generated from protobuf enum <code>SIP_STATUS_GLOBAL_NOT_ACCEPTABLE = 606;</code>
      */
     const SIP_STATUS_GLOBAL_NOT_ACCEPTABLE = 606;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_GLOBAL_UNWANTED = 607;</code>
+     */
+    const SIP_STATUS_GLOBAL_UNWANTED = 607;
+    /**
+     * Generated from protobuf enum <code>SIP_STATUS_GLOBAL_REJECTED = 608;</code>
+     */
+    const SIP_STATUS_GLOBAL_REJECTED = 608;
 
     private static $valueToName = [
         self::SIP_STATUS_UNKNOWN => 'SIP_STATUS_UNKNOWN',
@@ -215,11 +323,15 @@ class SIPStatusCode
         self::SIP_STATUS_CALL_IS_FORWARDED => 'SIP_STATUS_CALL_IS_FORWARDED',
         self::SIP_STATUS_QUEUED => 'SIP_STATUS_QUEUED',
         self::SIP_STATUS_SESSION_PROGRESS => 'SIP_STATUS_SESSION_PROGRESS',
+        self::SIP_STATUS_EARLY_DIALOG_TERMINATED => 'SIP_STATUS_EARLY_DIALOG_TERMINATED',
         self::SIP_STATUS_OK => 'SIP_STATUS_OK',
         self::SIP_STATUS_ACCEPTED => 'SIP_STATUS_ACCEPTED',
+        self::SIP_STATUS_NO_NOTIFICATION => 'SIP_STATUS_NO_NOTIFICATION',
+        self::SIP_STATUS_MULTIPLE_CHOICES => 'SIP_STATUS_MULTIPLE_CHOICES',
         self::SIP_STATUS_MOVED_PERMANENTLY => 'SIP_STATUS_MOVED_PERMANENTLY',
         self::SIP_STATUS_MOVED_TEMPORARILY => 'SIP_STATUS_MOVED_TEMPORARILY',
         self::SIP_STATUS_USE_PROXY => 'SIP_STATUS_USE_PROXY',
+        self::SIP_STATUS_ALTERNATIVE_SERVICE => 'SIP_STATUS_ALTERNATIVE_SERVICE',
         self::SIP_STATUS_BAD_REQUEST => 'SIP_STATUS_BAD_REQUEST',
         self::SIP_STATUS_UNAUTHORIZED => 'SIP_STATUS_UNAUTHORIZED',
         self::SIP_STATUS_PAYMENT_REQUIRED => 'SIP_STATUS_PAYMENT_REQUIRED',
@@ -231,13 +343,30 @@ class SIPStatusCode
         self::SIP_STATUS_REQUEST_TIMEOUT => 'SIP_STATUS_REQUEST_TIMEOUT',
         self::SIP_STATUS_CONFLICT => 'SIP_STATUS_CONFLICT',
         self::SIP_STATUS_GONE => 'SIP_STATUS_GONE',
+        self::SIP_STATUS_LENGTH_REQUIRED => 'SIP_STATUS_LENGTH_REQUIRED',
+        self::SIP_STATUS_CONDITIONAL_REQUEST_FAILED => 'SIP_STATUS_CONDITIONAL_REQUEST_FAILED',
         self::SIP_STATUS_REQUEST_ENTITY_TOO_LARGE => 'SIP_STATUS_REQUEST_ENTITY_TOO_LARGE',
         self::SIP_STATUS_REQUEST_URI_TOO_LONG => 'SIP_STATUS_REQUEST_URI_TOO_LONG',
         self::SIP_STATUS_UNSUPPORTED_MEDIA_TYPE => 'SIP_STATUS_UNSUPPORTED_MEDIA_TYPE',
         self::SIP_STATUS_REQUESTED_RANGE_NOT_SATISFIABLE => 'SIP_STATUS_REQUESTED_RANGE_NOT_SATISFIABLE',
+        self::SIP_STATUS_UNKNOWN_RESOURCE_PRIORITY => 'SIP_STATUS_UNKNOWN_RESOURCE_PRIORITY',
         self::SIP_STATUS_BAD_EXTENSION => 'SIP_STATUS_BAD_EXTENSION',
         self::SIP_STATUS_EXTENSION_REQUIRED => 'SIP_STATUS_EXTENSION_REQUIRED',
+        self::SIP_STATUS_SESSION_INTERVAL_TOO_SMALL => 'SIP_STATUS_SESSION_INTERVAL_TOO_SMALL',
         self::SIP_STATUS_INTERVAL_TOO_BRIEF => 'SIP_STATUS_INTERVAL_TOO_BRIEF',
+        self::SIP_STATUS_BAD_LOCATION_INFORMATION => 'SIP_STATUS_BAD_LOCATION_INFORMATION',
+        self::SIP_STATUS_BAD_ALERT_MESSAGE => 'SIP_STATUS_BAD_ALERT_MESSAGE',
+        self::SIP_STATUS_USE_IDENTITY_HEADER => 'SIP_STATUS_USE_IDENTITY_HEADER',
+        self::SIP_STATUS_PROVIDE_REFERRER_IDENTITY => 'SIP_STATUS_PROVIDE_REFERRER_IDENTITY',
+        self::SIP_STATUS_FLOW_FAILED => 'SIP_STATUS_FLOW_FAILED',
+        self::SIP_STATUS_ANONYMITY_DISALLOWED => 'SIP_STATUS_ANONYMITY_DISALLOWED',
+        self::SIP_STATUS_BAD_IDENTITY_INFO => 'SIP_STATUS_BAD_IDENTITY_INFO',
+        self::SIP_STATUS_UNSUPPORTED_CERTIFICATE => 'SIP_STATUS_UNSUPPORTED_CERTIFICATE',
+        self::SIP_STATUS_INVALID_IDENTITY_HEADER => 'SIP_STATUS_INVALID_IDENTITY_HEADER',
+        self::SIP_STATUS_FIRST_HOP_LACKS_OUTBOUND_SUPPORT => 'SIP_STATUS_FIRST_HOP_LACKS_OUTBOUND_SUPPORT',
+        self::SIP_STATUS_MAX_BREADTH_EXCEEDED => 'SIP_STATUS_MAX_BREADTH_EXCEEDED',
+        self::SIP_STATUS_BAD_INFO_PACKAGE => 'SIP_STATUS_BAD_INFO_PACKAGE',
+        self::SIP_STATUS_CONSENT_NEEDED => 'SIP_STATUS_CONSENT_NEEDED',
         self::SIP_STATUS_TEMPORARILY_UNAVAILABLE => 'SIP_STATUS_TEMPORARILY_UNAVAILABLE',
         self::SIP_STATUS_CALL_TRANSACTION_DOES_NOT_EXISTS => 'SIP_STATUS_CALL_TRANSACTION_DOES_NOT_EXISTS',
         self::SIP_STATUS_LOOP_DETECTED => 'SIP_STATUS_LOOP_DETECTED',
@@ -247,6 +376,10 @@ class SIPStatusCode
         self::SIP_STATUS_BUSY_HERE => 'SIP_STATUS_BUSY_HERE',
         self::SIP_STATUS_REQUEST_TERMINATED => 'SIP_STATUS_REQUEST_TERMINATED',
         self::SIP_STATUS_NOT_ACCEPTABLE_HERE => 'SIP_STATUS_NOT_ACCEPTABLE_HERE',
+        self::SIP_STATUS_BAD_EVENT => 'SIP_STATUS_BAD_EVENT',
+        self::SIP_STATUS_REQUEST_PENDING => 'SIP_STATUS_REQUEST_PENDING',
+        self::SIP_STATUS_UNDECIPHERABLE => 'SIP_STATUS_UNDECIPHERABLE',
+        self::SIP_STATUS_SECURITY_AGREEMENT_REQUIRED => 'SIP_STATUS_SECURITY_AGREEMENT_REQUIRED',
         self::SIP_STATUS_INTERNAL_SERVER_ERROR => 'SIP_STATUS_INTERNAL_SERVER_ERROR',
         self::SIP_STATUS_NOT_IMPLEMENTED => 'SIP_STATUS_NOT_IMPLEMENTED',
         self::SIP_STATUS_BAD_GATEWAY => 'SIP_STATUS_BAD_GATEWAY',
@@ -258,6 +391,8 @@ class SIPStatusCode
         self::SIP_STATUS_GLOBAL_DECLINE => 'SIP_STATUS_GLOBAL_DECLINE',
         self::SIP_STATUS_GLOBAL_DOES_NOT_EXIST_ANYWHERE => 'SIP_STATUS_GLOBAL_DOES_NOT_EXIST_ANYWHERE',
         self::SIP_STATUS_GLOBAL_NOT_ACCEPTABLE => 'SIP_STATUS_GLOBAL_NOT_ACCEPTABLE',
+        self::SIP_STATUS_GLOBAL_UNWANTED => 'SIP_STATUS_GLOBAL_UNWANTED',
+        self::SIP_STATUS_GLOBAL_REJECTED => 'SIP_STATUS_GLOBAL_REJECTED',
     ];
 
     public static function name($value)

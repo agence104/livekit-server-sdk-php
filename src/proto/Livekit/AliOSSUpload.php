@@ -14,11 +14,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class AliOSSUpload extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string access_key = 1;</code>
+     * Generated from protobuf field <code>string access_key = 1 [(.logger.redact) = true];</code>
      */
     protected $access_key = '';
     /**
-     * Generated from protobuf field <code>string secret = 2;</code>
+     * Generated from protobuf field <code>string secret = 2 [(.logger.redact) = true];</code>
      */
     protected $secret = '';
     /**
@@ -53,7 +53,7 @@ class AliOSSUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string access_key = 1;</code>
+     * Generated from protobuf field <code>string access_key = 1 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAccessKey()
@@ -62,7 +62,7 @@ class AliOSSUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string access_key = 1;</code>
+     * Generated from protobuf field <code>string access_key = 1 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -75,7 +75,7 @@ class AliOSSUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string secret = 2;</code>
+     * Generated from protobuf field <code>string secret = 2 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getSecret()
@@ -84,7 +84,7 @@ class AliOSSUpload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string secret = 2;</code>
+     * Generated from protobuf field <code>string secret = 2 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */

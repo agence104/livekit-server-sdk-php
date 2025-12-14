@@ -50,7 +50,7 @@ class Room extends \Google\Protobuf\Internal\Message
      */
     private $enabled_codecs;
     /**
-     * Generated from protobuf field <code>string metadata = 8;</code>
+     * Generated from protobuf field <code>string metadata = 8 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $metadata = '';
     /**
@@ -296,7 +296,7 @@ class Room extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string metadata = 8;</code>
+     * Generated from protobuf field <code>string metadata = 8 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getMetadata()
@@ -305,7 +305,7 @@ class Room extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string metadata = 8;</code>
+     * Generated from protobuf field <code>string metadata = 8 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */

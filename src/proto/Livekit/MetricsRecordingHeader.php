@@ -18,9 +18,19 @@ class MetricsRecordingHeader extends \Google\Protobuf\Internal\Message
      */
     protected $room_id = '';
     /**
-     * Generated from protobuf field <code>optional bool enable_user_data_training = 2;</code>
+     * milliseconds
+     *
+     * Generated from protobuf field <code>uint64 duration = 3;</code>
      */
-    protected $enable_user_data_training = null;
+    protected $duration = 0;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
+     */
+    protected $start_time = null;
+    /**
+     * Generated from protobuf field <code>map<string, string> room_tags = 5;</code>
+     */
+    private $room_tags;
 
     /**
      * Constructor.
@@ -29,7 +39,10 @@ class MetricsRecordingHeader extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $room_id
-     *     @type bool $enable_user_data_training
+     *     @type int|string $duration
+     *           milliseconds
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *     @type array|\Google\Protobuf\Internal\MapField $room_tags
      * }
      */
     public function __construct($data = NULL) {
@@ -60,33 +73,81 @@ class MetricsRecordingHeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional bool enable_user_data_training = 2;</code>
-     * @return bool
+     * milliseconds
+     *
+     * Generated from protobuf field <code>uint64 duration = 3;</code>
+     * @return int|string
      */
-    public function getEnableUserDataTraining()
+    public function getDuration()
     {
-        return isset($this->enable_user_data_training) ? $this->enable_user_data_training : false;
-    }
-
-    public function hasEnableUserDataTraining()
-    {
-        return isset($this->enable_user_data_training);
-    }
-
-    public function clearEnableUserDataTraining()
-    {
-        unset($this->enable_user_data_training);
+        return $this->duration;
     }
 
     /**
-     * Generated from protobuf field <code>optional bool enable_user_data_training = 2;</code>
-     * @param bool $var
+     * milliseconds
+     *
+     * Generated from protobuf field <code>uint64 duration = 3;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setEnableUserDataTraining($var)
+    public function setDuration($var)
     {
-        GPBUtil::checkBool($var);
-        $this->enable_user_data_training = $var;
+        GPBUtil::checkUint64($var);
+        $this->duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getStartTime()
+    {
+        return $this->start_time;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->start_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> room_tags = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getRoomTags()
+    {
+        return $this->room_tags;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> room_tags = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setRoomTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->room_tags = $arr;
 
         return $this;
     }

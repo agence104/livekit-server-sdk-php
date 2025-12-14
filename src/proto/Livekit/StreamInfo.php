@@ -37,6 +37,14 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string error = 6;</code>
      */
     protected $error = '';
+    /**
+     * Generated from protobuf field <code>int64 last_retry_at = 7;</code>
+     */
+    protected $last_retry_at = 0;
+    /**
+     * Generated from protobuf field <code>uint32 retries = 8;</code>
+     */
+    protected $retries = 0;
 
     /**
      * Constructor.
@@ -50,6 +58,8 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
      *     @type int|string $duration
      *     @type int $status
      *     @type string $error
+     *     @type int|string $last_retry_at
+     *     @type int $retries
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +195,50 @@ class StreamInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 last_retry_at = 7;</code>
+     * @return int|string
+     */
+    public function getLastRetryAt()
+    {
+        return $this->last_retry_at;
+    }
+
+    /**
+     * Generated from protobuf field <code>int64 last_retry_at = 7;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setLastRetryAt($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->last_retry_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 retries = 8;</code>
+     * @return int
+     */
+    public function getRetries()
+    {
+        return $this->retries;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 retries = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRetries($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->retries = $var;
 
         return $this;
     }

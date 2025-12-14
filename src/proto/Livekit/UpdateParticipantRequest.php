@@ -24,7 +24,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * metadata to update. skipping updates if left empty
      *
-     * Generated from protobuf field <code>string metadata = 3;</code>
+     * Generated from protobuf field <code>string metadata = 3 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $metadata = '';
     /**
@@ -36,14 +36,14 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * display name to update
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $name = '';
     /**
      * attributes to update. it only updates attributes that have been set
      * to delete attributes, set the value to an empty string
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 6;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 6 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     private $attributes;
 
@@ -118,7 +118,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * metadata to update. skipping updates if left empty
      *
-     * Generated from protobuf field <code>string metadata = 3;</code>
+     * Generated from protobuf field <code>string metadata = 3 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getMetadata()
@@ -129,7 +129,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * metadata to update. skipping updates if left empty
      *
-     * Generated from protobuf field <code>string metadata = 3;</code>
+     * Generated from protobuf field <code>string metadata = 3 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */
@@ -180,7 +180,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * display name to update
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getName()
@@ -191,7 +191,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * display name to update
      *
-     * Generated from protobuf field <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */
@@ -207,7 +207,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      * attributes to update. it only updates attributes that have been set
      * to delete attributes, set the value to an empty string
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 6;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 6 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAttributes()
@@ -219,7 +219,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      * attributes to update. it only updates attributes that have been set
      * to delete attributes, set the value to an empty string
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 6;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 6 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

@@ -19,10 +19,20 @@ class KindDetail
      * Generated from protobuf enum <code>FORWARDED = 1;</code>
      */
     const FORWARDED = 1;
+    /**
+     * Generated from protobuf enum <code>CONNECTOR_WHATSAPP = 2;</code>
+     */
+    const CONNECTOR_WHATSAPP = 2;
+    /**
+     * Generated from protobuf enum <code>CONNECTOR_TWILIO = 3;</code>
+     */
+    const CONNECTOR_TWILIO = 3;
 
     private static $valueToName = [
         self::CLOUD_AGENT => 'CLOUD_AGENT',
         self::FORWARDED => 'FORWARDED',
+        self::CONNECTOR_WHATSAPP => 'CONNECTOR_WHATSAPP',
+        self::CONNECTOR_TWILIO => 'CONNECTOR_TWILIO',
     ];
 
     public static function name($value)

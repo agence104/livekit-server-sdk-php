@@ -14,21 +14,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class S3Upload extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string access_key = 1;</code>
+     * Generated from protobuf field <code>string access_key = 1 [(.logger.redact) = true];</code>
      */
     protected $access_key = '';
     /**
-     * Generated from protobuf field <code>string secret = 2;</code>
+     * Generated from protobuf field <code>string secret = 2 [(.logger.redact) = true];</code>
      */
     protected $secret = '';
     /**
-     * Generated from protobuf field <code>string session_token = 11;</code>
+     * Generated from protobuf field <code>string session_token = 11 [(.logger.redact) = true];</code>
      */
     protected $session_token = '';
     /**
      * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
      *
-     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * Generated from protobuf field <code>string assume_role_arn = 12 [(.logger.redact) = true];</code>
      */
     protected $assume_role_arn = '';
     /**
@@ -102,7 +102,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string access_key = 1;</code>
+     * Generated from protobuf field <code>string access_key = 1 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAccessKey()
@@ -111,7 +111,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string access_key = 1;</code>
+     * Generated from protobuf field <code>string access_key = 1 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string secret = 2;</code>
+     * Generated from protobuf field <code>string secret = 2 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getSecret()
@@ -133,7 +133,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string secret = 2;</code>
+     * Generated from protobuf field <code>string secret = 2 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -146,7 +146,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string session_token = 11;</code>
+     * Generated from protobuf field <code>string session_token = 11 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getSessionToken()
@@ -155,7 +155,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string session_token = 11;</code>
+     * Generated from protobuf field <code>string session_token = 11 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -170,7 +170,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     /**
      * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
      *
-     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * Generated from protobuf field <code>string assume_role_arn = 12 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAssumeRoleArn()
@@ -181,7 +181,7 @@ class S3Upload extends \Google\Protobuf\Internal\Message
     /**
      * ARN of the role to assume for file upload. Egress will make an AssumeRole API call using the provided access_key and secret to assume that role. On LiveKit cloud, this is only available on accounts that have the feature enabled
      *
-     * Generated from protobuf field <code>string assume_role_arn = 12;</code>
+     * Generated from protobuf field <code>string assume_role_arn = 12 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
