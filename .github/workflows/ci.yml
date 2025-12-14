@@ -55,32 +55,35 @@ jobs:
           docker run -d --name rtmp-server -p 1935:1935 tiangolo/nginx-rtmp
           sleep 3
 
-      - name: Install cloudflared
+      - name: Install bore (TCP tunnel)
         run: |
-          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
-          chmod +x cloudflared
-          sudo mv cloudflared /usr/local/bin/
+          curl -L https://github.com/ekzhang/bore/releases/download/v0.5.0/bore-v0.5.0-x86_64-unknown-linux-musl.tar.gz -o bore.tar.gz
+          tar -xzf bore.tar.gz
+          chmod +x bore
+          sudo mv bore /usr/local/bin/
 
-      - name: Start Cloudflare Tunnel for RTMP
+      - name: Start TCP tunnel for RTMP
         run: |
-          cloudflared tunnel --url tcp://localhost:1935 > /tmp/cloudflared.log 2>&1 &
-          CLOUDFLARE_PID=$!
-          sleep 10
-          # Extract public URL from cloudflared output
-          # Cloudflared outputs: +--------------------------------------------------------------------------------------------+
-          #                    |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
-          #                    |  tcp://xxxxx.trycloudflare.com:port                                                          |
-          CLOUDFLARE_TCP=$(grep -oE 'tcp://[a-zA-Z0-9.-]+\.trycloudflare\.com:[0-9]+' /tmp/cloudflared.log | head -1)
-          if [ -z "$CLOUDFLARE_TCP" ]; then
-            echo "Failed to extract Cloudflare tunnel URL. Log:"
-            cat /tmp/cloudflared.log
+          bore local 1935 --to bore.pub > /tmp/bore.log 2>&1 &
+          BORE_PID=$!
+          sleep 5
+          # Extract public URL from bore output (format: Listening on bore.pub:port)
+          BORE_PORT=$(grep -oE 'bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+          if [ -z "$BORE_PORT" ]; then
+            # Try alternative format: "Listening on bore.pub:12345"
+            BORE_PORT=$(grep -oE 'Listening on bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+          fi
+          if [ -z "$BORE_PORT" ]; then
+            echo "Failed to extract bore tunnel port. Log:"
+            cat /tmp/bore.log
             exit 1
           fi
-          CLOUDFLARE_RTMP=$(echo $CLOUDFLARE_TCP | sed 's|tcp://|rtmp://|')
-          echo "RTMP_URL=$CLOUDFLARE_RTMP/live/test" >> $GITHUB_ENV
-          echo "RTMP_URL2=$CLOUDFLARE_RTMP/live/test2" >> $GITHUB_ENV
-          echo "Public RTMP URL: $CLOUDFLARE_RTMP"
-          echo "Cloudflared PID: $CLOUDFLARE_PID"
+          BORE_RTMP="rtmp://bore.pub:$BORE_PORT"
+          echo "RTMP_URL=$BORE_RTMP/live/test" >> $GITHUB_ENV
+          echo "RTMP_URL2=$BORE_RTMP/live/test2" >> $GITHUB_ENV
+          echo "Public RTMP URL: $BORE_RTMP"
+          echo "Bore PID: $BORE_PID"
+          cat /tmp/bore.log
 
       - name: Run tests
         env:
