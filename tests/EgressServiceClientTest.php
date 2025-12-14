@@ -27,7 +27,7 @@ class EgressServiceClientTest extends TestCase {
   /**
    * Main room name with participants, created before test execution.
    */
-  private string $mainRoom = 'testRoomParticipants';
+  private string $mainRoom;
 
   /**
    * The RTMP url to use to test StreamOutput.
@@ -43,6 +43,7 @@ class EgressServiceClientTest extends TestCase {
    * Sets up the test environment.
    */
   protected function setUp(): void {
+    $this->mainRoom = getenv('LIVEKIT_TEST_ROOM') ?: 'testRoomParticipants';
     $this->rtmpUrl = getenv('LIVEKIT_EGRESS_RTMP_URL')
       ?: "rtmp://youtube-url/stream";
     $this->rtmpUrl2 = getenv('LIVEKIT_EGRESS_RTMP_URL2')

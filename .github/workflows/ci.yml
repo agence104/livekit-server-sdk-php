@@ -50,6 +50,51 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress --no-suggest
 
+      - name: Install jq and livekit-cli
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          curl -sSL https://get.livekit.io/cli | bash
+          echo "$HOME/.livekit/bin" >> $GITHUB_PATH
+
+      - name: Configure livekit-cli
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            echo "::warning::LiveKit secrets not configured. Tests will be skipped."
+            exit 0
+          fi
+          lk config set-url $LIVEKIT_URL
+          lk config set-api-key $LIVEKIT_API_KEY
+          lk config set-api-secret $LIVEKIT_API_SECRET
+
+      - name: Create test room
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            exit 0
+          fi
+          lk room create testRoomParticipants || true
+
+      - name: Start load test
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            exit 0
+          fi
+          lk load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5 > /tmp/loadtest.log 2>&1 &
+          echo $! > /tmp/loadtest.pid
+          sleep 5
+          echo "Load test started with PID $(cat /tmp/loadtest.pid)"
+
       - name: Start RTMP test server
         run: |
           docker run -d --name rtmp-server -p 1935:1935 tiangolo/nginx-rtmp
@@ -99,3 +144,28 @@ jobs:
             exit 0
           fi
           vendor/bin/phpunit --configuration phpunit.xml
+
+      - name: Stop load test and cleanup
+        if: always()
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+        run: |
+          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
+            exit 0
+          fi
+          # Stop load test if it's still running
+          if [ -f /tmp/loadtest.pid ]; then
+            LOADTEST_PID=$(cat /tmp/loadtest.pid)
+            if ps -p $LOADTEST_PID > /dev/null 2>&1; then
+              echo "Stopping load test (PID: $LOADTEST_PID)"
+              kill $LOADTEST_PID || true
+              sleep 2
+              # Force kill if still running
+              kill -9 $LOADTEST_PID 2>/dev/null || true
+            fi
+          fi
+          # Delete test room
+          echo "Deleting test room testRoomParticipants"
+          lk room delete testRoomParticipants || true
