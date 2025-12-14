@@ -133,7 +133,7 @@ class EgressServiceClientTest extends TestCase {
     $this->assertNotEmpty($egressId);
 
     // Let's sleep for 5 seconds to allow the RTMP connection.
-    sleep(5);
+    sleep(20);
 
     // Clean up
     $this->client->stopEgress($egressId);
@@ -171,7 +171,7 @@ class EgressServiceClientTest extends TestCase {
     $this->assertNotEmpty($egressId);
 
     // Let's sleep for 5 seconds to allow the RTMP connection.
-    sleep(5);
+    sleep(20);
 
     // Clean up
     $this->client->stopEgress($egressId);
