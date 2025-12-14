@@ -27,5 +27,49 @@ jobs:
           tools: composer:v2, parallel-lint
           coverage: none
 
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-suggest
+
       - name: Lint PHP files
         run: parallel-lint --show-deprecated --exclude src/proto src/ tests/
+
+      - name: Start RTMP test server
+        run: |
+          docker run -d --name rtmp-server -p 1935:1935 tiangolo/nginx-rtmp
+          sleep 3
+
+      - name: Install cloudflared
+        run: |
+          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/
+
+      - name: Start Cloudflare Tunnel for RTMP
+        run: |
+          cloudflared tunnel --url tcp://localhost:1935 > /tmp/cloudflared.log 2>&1 &
+          CLOUDFLARE_PID=$!
+          sleep 10
+          # Extract public URL from cloudflared output
+          # Cloudflared outputs: +--------------------------------------------------------------------------------------------+
+          #                    |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+          #                    |  tcp://xxxxx.trycloudflare.com:port                                                          |
+          CLOUDFLARE_TCP=$(grep -oE 'tcp://[a-zA-Z0-9.-]+\.trycloudflare\.com:[0-9]+' /tmp/cloudflared.log | head -1)
+          if [ -z "$CLOUDFLARE_TCP" ]; then
+            echo "Failed to extract Cloudflare tunnel URL. Log:"
+            cat /tmp/cloudflared.log
+            exit 1
+          fi
+          CLOUDFLARE_RTMP=$(echo $CLOUDFLARE_TCP | sed 's|tcp://|rtmp://|')
+          echo "RTMP_URL=$CLOUDFLARE_RTMP/live/test" >> $GITHUB_ENV
+          echo "RTMP_URL2=$CLOUDFLARE_RTMP/live/test2" >> $GITHUB_ENV
+          echo "Public RTMP URL: $CLOUDFLARE_RTMP"
+          echo "Cloudflared PID: $CLOUDFLARE_PID"
+
+      - name: Run tests
+        env:
+          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
+          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
+          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+          LIVEKIT_EGRESS_RTMP_URL: ${{ env.RTMP_URL || secrets.LIVEKIT_EGRESS_RTMP_URL }}
+          LIVEKIT_EGRESS_RTMP_URL2: ${{ env.RTMP_URL2 || secrets.LIVEKIT_EGRESS_RTMP_URL2 }}
+        run: vendor/bin/phpunit --configuration phpunit.xml
