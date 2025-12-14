@@ -60,6 +60,29 @@ class RoomCreateOptions {
   protected ?bool $syncStreams = NULL;
 
   /**
+   * The configuration preset to use for this room.
+   * Setting parameters below override the config defaults.
+   */
+  protected ?string $roomPreset = NULL;
+
+  /**
+   * The number of seconds to keep the room open after everyone leaves.
+   */
+  protected ?int $departureTimeout = NULL;
+
+  /**
+   * Whether replay is enabled for this room.
+   */
+  protected ?bool $replayEnabled = NULL;
+
+  /**
+   * Define agents that should be dispatched to this room.
+   *
+   * @var \Agence104\LiveKit\RoomAgentDispatch[]|null
+   */
+  protected ?array $agents = NULL;
+
+  /**
    * RoomCreateOptions class constructor.
    *
    * @param array $properties
@@ -293,6 +316,102 @@ class RoomCreateOptions {
   }
 
   /**
+   * Get the room preset.
+   *
+   * @return string|null
+   *   The room preset or null if not set.
+   */
+  public function getRoomPreset(): ?string {
+    return $this->roomPreset;
+  }
+
+  /**
+   * Set the room preset.
+   *
+   * @param string|null $roomPreset
+   *   The room preset to set.
+   *
+   * @return $this
+   *   The current instance.
+   */
+  public function setRoomPreset(?string $roomPreset): self {
+    $this->roomPreset = $roomPreset;
+    return $this;
+  }
+
+  /**
+   * Get the departure timeout value.
+   *
+   * @return int|null
+   *   The number of seconds to keep the room open after everyone leaves.
+   */
+  public function getDepartureTimeout(): ?int {
+    return $this->departureTimeout;
+  }
+
+  /**
+   * Set the departure timeout value.
+   *
+   * @param int|null $departureTimeout
+   *   The number of seconds to keep the room open after everyone leaves.
+   *
+   * @return $this
+   *   The current instance.
+   */
+  public function setDepartureTimeout(?int $departureTimeout): self {
+    $this->departureTimeout = $departureTimeout;
+    return $this;
+  }
+
+  /**
+   * Get the replay enabled flag.
+   *
+   * @return bool|null
+   *   The replay enabled flag or null if not set.
+   */
+  public function getReplayEnabled(): ?bool {
+    return $this->replayEnabled;
+  }
+
+  /**
+   * Set the replay enabled flag.
+   *
+   * @param bool|null $replayEnabled
+   *   The replay enabled flag to set.
+   *
+   * @return $this
+   *   The current instance.
+   */
+  public function setReplayEnabled(?bool $replayEnabled): self {
+    $this->replayEnabled = $replayEnabled;
+    return $this;
+  }
+
+  /**
+   * Get the agents array.
+   *
+   * @return \Agence104\LiveKit\RoomAgentDispatch[]|null
+   *   The agents array or null if not set.
+   */
+  public function getAgents(): ?array {
+    return $this->agents;
+  }
+
+  /**
+   * Set the agents array.
+   *
+   * @param \Agence104\LiveKit\RoomAgentDispatch[]|null $agents
+   *   The agents array to set.
+   *
+   * @return $this
+   *   The current instance.
+   */
+  public function setAgents(?array $agents): self {
+    $this->agents = $agents;
+    return $this;
+  }
+
+  /**
    * Return the object properties which have been defined as an array.
    *
    * @return array
@@ -303,7 +422,19 @@ class RoomCreateOptions {
       throw new \Exception('The name of the room is required.');
     }
 
-    $data = array_filter(get_object_vars($this));
+    $data = get_object_vars($this);
+    
+    // Convert agents array objects to their data arrays
+    if (isset($data['agents']) && is_array($data['agents'])) {
+      $data['agents'] = array_map(function ($agent) {
+        if (is_object($agent) && method_exists($agent, 'getData')) {
+          return $agent->getData();
+        }
+        return $agent;
+      }, $data['agents']);
+    }
+    
+    $data = array_filter($data);
     return $this->convertArrayKeysToSnake($data);
   }
 
