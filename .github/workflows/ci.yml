@@ -116,10 +116,13 @@ jobs:
             cat /tmp/bore.log
             exit 1
           fi
+          # Extract unique ID from room name (e.g., "testRoom-abc123" -> "abc123")
+          ROOM_ID=$(echo "${{ env.LIVEKIT_TEST_ROOM }}" | sed 's/.*-//')
           BORE_RTMP="rtmp://bore.pub:$BORE_PORT"
-          echo "RTMP_URL=$BORE_RTMP/live/test" >> $GITHUB_ENV
-          echo "RTMP_URL2=$BORE_RTMP/live/test2" >> $GITHUB_ENV
+          echo "RTMP_URL=$BORE_RTMP/live/test-$ROOM_ID" >> $GITHUB_ENV
+          echo "RTMP_URL2=$BORE_RTMP/live/test2-$ROOM_ID" >> $GITHUB_ENV
           echo "Public RTMP URL: $BORE_RTMP"
+          echo "RTMP stream paths: /live/test-$ROOM_ID and /live/test2-$ROOM_ID"
           echo "Bore PID: $BORE_PID"
           cat /tmp/bore.log
 
