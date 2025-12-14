@@ -114,7 +114,7 @@ class EgressServiceClientTest extends TestCase {
   public function testStartRoomCompositeEgressWithAudioMixing(): void {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $response = $this->client->startRoomCompositeEgress(
@@ -131,6 +131,8 @@ class EgressServiceClientTest extends TestCase {
     $this->assertInstanceOf(EgressInfo::class, $response);
     $egressId = $response->getEgressId();
     $this->assertNotEmpty($egressId);
+    print "Egress ID: $egressId\n";
+    $this->assertEmpty($response->getError());
 
     // Let's sleep for 5 seconds to allow the RTMP connection.
     sleep(20);
@@ -146,7 +148,7 @@ class EgressServiceClientTest extends TestCase {
   public function testStartRoomCompositeEgressWithWebhooks(): void {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $webhook = new WebhookConfig([
@@ -169,6 +171,7 @@ class EgressServiceClientTest extends TestCase {
     $this->assertInstanceOf(EgressInfo::class, $response);
     $egressId = $response->getEgressId();
     $this->assertNotEmpty($egressId);
+    $this->assertEmpty($response->getError());
 
     // Let's sleep for 5 seconds to allow the RTMP connection.
     sleep(20);
@@ -290,7 +293,7 @@ class EgressServiceClientTest extends TestCase {
   public function testStartWebEgress(): void {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $response = $this->client->startWebEgress(
@@ -315,7 +318,7 @@ class EgressServiceClientTest extends TestCase {
   public function testStartWebEgressWithWebhooks(): void {
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $webhook = new WebhookConfig([
@@ -383,7 +386,7 @@ class EgressServiceClientTest extends TestCase {
 
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $response = $this->client->startTrackCompositeEgress(
@@ -444,7 +447,7 @@ class EgressServiceClientTest extends TestCase {
 
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $webhook = new WebhookConfig([
@@ -605,7 +608,7 @@ class EgressServiceClientTest extends TestCase {
 
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $response = $this->client->startParticipantEgress(
@@ -655,7 +658,7 @@ class EgressServiceClientTest extends TestCase {
 
     $output = new StreamOutput([
       'protocol' => StreamProtocol::RTMP,
-      'urls' => [$this->rtmpUrl],
+      'urls' => [$this->rtmpUrl2],
     ]);
 
     $webhook = new WebhookConfig([

@@ -91,7 +91,9 @@ jobs:
       - name: Start RTMP test server
         run: |
           docker run -d --name rtmp-server -p 1935:1935 tiangolo/nginx-rtmp
-          sleep 3
+          sleep 5
+          # Verify RTMP server is running
+          docker ps | grep rtmp-server || (echo "RTMP server failed to start" && exit 1)
 
       - name: Install bore (TCP tunnel)
         run: |
@@ -116,14 +118,22 @@ jobs:
             cat /tmp/bore.log
             exit 1
           fi
-          # Extract unique ID from room name (e.g., "testRoom-abc123" -> "abc123")
-          ROOM_ID=$(echo "${{ env.LIVEKIT_TEST_ROOM }}" | sed 's/.*-//')
+          # Verify tunnel is working by checking if process is still running
+          if ! ps -p $BORE_PID > /dev/null 2>&1; then
+            echo "Bore tunnel process died. Log:"
+            cat /tmp/bore.log
+            exit 1
+          fi
+          # Generate short unique ID for RTMP stream keys (4 hex chars = 65536 combinations)
+          RTMP_ID=$(openssl rand -hex 2)
           BORE_RTMP="rtmp://bore.pub:$BORE_PORT"
-          echo "RTMP_URL=$BORE_RTMP/live/test-$ROOM_ID" >> $GITHUB_ENV
-          echo "RTMP_URL2=$BORE_RTMP/live/test2-$ROOM_ID" >> $GITHUB_ENV
+          echo "RTMP_URL=$BORE_RTMP/live/test$RTMP_ID" >> $GITHUB_ENV
+          echo "RTMP_URL2=$BORE_RTMP/live/test2$RTMP_ID" >> $GITHUB_ENV
           echo "Public RTMP URL: $BORE_RTMP"
-          echo "RTMP stream paths: /live/test-$ROOM_ID and /live/test2-$ROOM_ID"
+          echo "RTMP stream paths: /live/test$RTMP_ID and /live/test2$RTMP_ID"
           echo "Bore PID: $BORE_PID"
+          echo "Waiting additional 5 seconds for tunnel to stabilize..."
+          sleep 5
           cat /tmp/bore.log
 
       - name: Run tests
