@@ -56,7 +56,13 @@ jobs:
           curl -sSL https://get.livekit.io/cli | bash
           echo "$HOME/.livekit/bin" >> $GITHUB_PATH
 
-      - name: Configure livekit-cli
+      - name: Generate random room name
+        run: |
+          ROOM_NAME="testRoom-$(openssl rand -hex 8)"
+          echo "LIVEKIT_TEST_ROOM=$ROOM_NAME" >> $GITHUB_ENV
+          echo "Generated test room name: $ROOM_NAME"
+
+      - name: Create test room
         env:
           LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
           LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
@@ -66,20 +72,7 @@ jobs:
             echo "::warning::LiveKit secrets not configured. Tests will be skipped."
             exit 0
           fi
-          lk config set-url $LIVEKIT_URL
-          lk config set-api-key $LIVEKIT_API_KEY
-          lk config set-api-secret $LIVEKIT_API_SECRET
-
-      - name: Create test room
-        env:
-          LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
-          LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
-          LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
-        run: |
-          if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
-            exit 0
-          fi
-          lk room create testRoomParticipants || true
+          lk room create ${{ env.LIVEKIT_TEST_ROOM }} || true
 
       - name: Start load test
         env:
@@ -90,7 +83,7 @@ jobs:
           if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
             exit 0
           fi
-          lk load-test --room testRoomParticipants --video-publishers 3 --audio-publishers 5 > /tmp/loadtest.log 2>&1 &
+          lk load-test --room ${{ env.LIVEKIT_TEST_ROOM }} --video-publishers 3 --audio-publishers 5 > /tmp/loadtest.log 2>&1 &
           echo $! > /tmp/loadtest.pid
           sleep 5
           echo "Load test started with PID $(cat /tmp/loadtest.pid)"
@@ -151,6 +144,7 @@ jobs:
           LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
           LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
           LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
+          LIVEKIT_TEST_ROOM: ${{ env.LIVEKIT_TEST_ROOM }}
         run: |
           if [ -z "$LIVEKIT_URL" ] || [ -z "$LIVEKIT_API_KEY" ] || [ -z "$LIVEKIT_API_SECRET" ]; then
             exit 0
@@ -167,5 +161,7 @@ jobs:
             fi
           fi
           # Delete test room
-          echo "Deleting test room testRoomParticipants"
-          lk room delete testRoomParticipants || true
+          if [ -n "$LIVEKIT_TEST_ROOM" ]; then
+            echo "Deleting test room $LIVEKIT_TEST_ROOM"
+            lk room delete "$LIVEKIT_TEST_ROOM" || true
+          fi
