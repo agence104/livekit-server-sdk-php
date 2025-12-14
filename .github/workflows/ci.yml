@@ -136,7 +136,7 @@ jobs:
             echo "Please set LIVEKIT_URL, LIVEKIT_API_KEY, and LIVEKIT_API_SECRET in repository secrets."
             exit 0
           fi
-          vendor/bin/phpunit --configuration phpunit.xml
+          vendor/bin/phpunit --testdox --configuration phpunit.xml
 
       - name: Stop load test and cleanup
         if: always()
