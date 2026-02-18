@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "firebase/php-jwt": "^6.8",
+        "firebase/php-jwt": "^7.0.0",
         "twirp/twirp": "^0.9.1|^0.14.0",
         "google/protobuf": "^3.23|^4.0",
         "guzzlehttp/guzzle": "^6.3|^7.0",
