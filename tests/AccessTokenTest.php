@@ -20,12 +20,21 @@ class AccessTokenTest extends TestCase {
   /**
    * The test API key.
    */
-  protected string $testApiKey = 'abcdefg';
+  protected string $testApiKey;
 
   /**
    * The test API secret.
    */
-  protected string $testSecret = 'abababa';
+  protected string $testSecret;
+
+  /**
+   * {@inheritDoc}
+   */
+  public function setUp(): void {
+    parent::setUp();
+    $this->testApiKey = base64_encode(random_bytes(64));
+    $this->testSecret = base64_encode(random_bytes(64));
+  }
 
   /**
    * Test that encoded tokens are valid and can be decoded.

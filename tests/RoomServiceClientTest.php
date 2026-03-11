@@ -33,12 +33,37 @@ class RoomServiceClientTest extends TestCase {
   /**
    * Main room name with participants, created before test execution.
    */
-  private string $mainRoom = 'testRoomParticipants';
+  private string $mainRoom;
+
+  /**
+   * Unique room names for test isolation.
+   */
+  private static string $testCreateRoom;
+  private static string $testListRoom;
+  private static string $testDeleteRoom;
+  private static string $testMetadataRoom;
+  private static string $testListPartRoom;
+  private static string $testForwardRoom;
+  private static string $testMoveRoom;
 
   /**
    * Sets up the test environment.
    */
   protected function setUp(): void {
+    $this->mainRoom = getenv('LIVEKIT_TEST_ROOM') ?: 'testRoomParticipants';
+    
+    // Generate unique room names if not already set.
+    if (empty(self::$testCreateRoom)) {
+      $uniqueId = uniqid();
+      self::$testCreateRoom = 'testCreateRoom-' . $uniqueId;
+      self::$testListRoom = 'testListRoom-' . $uniqueId;
+      self::$testDeleteRoom = 'testDeleteRoom-' . $uniqueId;
+      self::$testMetadataRoom = 'testMetadataRoom-' . $uniqueId;
+      self::$testListPartRoom = 'testListPartRoom-' . $uniqueId;
+      self::$testForwardRoom = 'testForwardRoom-' . $uniqueId;
+      self::$testMoveRoom = 'testMoveRoom-' . $uniqueId;
+    }
+    
     try {
       $this->client = new RoomServiceClient();
     }
@@ -55,16 +80,27 @@ class RoomServiceClientTest extends TestCase {
       $client = new RoomServiceClient();
 
       // Rooms CleanUp.
-      $roomName = 'testCreateRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testListRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testDeleteRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testMetadataRoom';
-      $client->deleteRoom($roomName);
-      $roomName = 'testListPartRoom';
-      $client->deleteRoom($roomName);
+      if (!empty(self::$testCreateRoom)) {
+        $client->deleteRoom(self::$testCreateRoom);
+      }
+      if (!empty(self::$testListRoom)) {
+        $client->deleteRoom(self::$testListRoom);
+      }
+      if (!empty(self::$testDeleteRoom)) {
+        $client->deleteRoom(self::$testDeleteRoom);
+      }
+      if (!empty(self::$testMetadataRoom)) {
+        $client->deleteRoom(self::$testMetadataRoom);
+      }
+      if (!empty(self::$testListPartRoom)) {
+        $client->deleteRoom(self::$testListPartRoom);
+      }
+      if (!empty(self::$testForwardRoom)) {
+        $client->deleteRoom(self::$testForwardRoom);
+      }
+      if (!empty(self::$testMoveRoom)) {
+        $client->deleteRoom(self::$testMoveRoom);
+      }
     }
     catch (\Exception $e) {
     }
@@ -285,7 +321,7 @@ class RoomServiceClientTest extends TestCase {
    * Tests creating a room.
    */
   public function testCreateRoom() {
-    $roomName = 'testCreateRoom';
+    $roomName = self::$testCreateRoom;
     $response = $this->createRoom($roomName);
 
     $this->assertEquals($roomName, $response->getName());
@@ -296,7 +332,7 @@ class RoomServiceClientTest extends TestCase {
    */
   public function testListRooms() {
     // Let's create another room.
-    $roomName = 'testListRoom';
+    $roomName = self::$testListRoom;
     $this->createRoom($roomName);
 
     // Let's wait for 5 seconds here.
@@ -313,7 +349,7 @@ class RoomServiceClientTest extends TestCase {
    * Tests deleting a room.
    */
   public function testDeleteRoom() {
-    $roomName = 'testDeleteRoom';
+    $roomName = self::$testDeleteRoom;
     $room = $this->createRoom($roomName);
     $this->assertEquals($roomName, $room->getName());
 
@@ -328,7 +364,7 @@ class RoomServiceClientTest extends TestCase {
    * Tests updating a room's metadata.
    */
   public function testUpdateRoomMetadata() {
-    $roomName = 'testMetadataRoom';
+    $roomName = self::$testMetadataRoom;
     $this->createRoom($roomName);
 
     $metadata = '{"testKey": "testValue"}';
@@ -352,7 +388,7 @@ class RoomServiceClientTest extends TestCase {
    * Tests listing participants.
    */
   public function testListParticipants() {
-    $roomName = 'testListPartRoom';
+    $roomName = self::$testListPartRoom;
     $this->createRoom($roomName);
 
     $response = $this->client->listParticipants($roomName);
@@ -404,7 +440,7 @@ class RoomServiceClientTest extends TestCase {
    * Tests forwarding a participant.
    */
   public function testForwardParticipant() {
-    $roomName = 'testForwardRoom';
+    $roomName = self::$testForwardRoom;
     $this->createRoom($roomName);
 
     $response = $this->client->listParticipants($this->mainRoom);
@@ -426,7 +462,7 @@ class RoomServiceClientTest extends TestCase {
    * Tests moving a participant.
    */
   public function testMoveParticipant() {
-    $roomName = 'testMoveRoom';
+    $roomName = self::$testMoveRoom;
     $this->createRoom($roomName);
 
     $response = $this->client->listParticipants($this->mainRoom);
