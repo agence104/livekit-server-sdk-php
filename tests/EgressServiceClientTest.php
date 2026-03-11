@@ -131,7 +131,6 @@ class EgressServiceClientTest extends TestCase {
     $this->assertInstanceOf(EgressInfo::class, $response);
     $egressId = $response->getEgressId();
     $this->assertNotEmpty($egressId);
-    print "Egress ID: $egressId\n";
     $this->assertEmpty($response->getError());
 
     // Let's sleep for 5 seconds to allow the RTMP connection.

@@ -23,6 +23,7 @@ services:
     type: compose
     services:
       image: tiangolo/nginx-rtmp
+      command: nginx -g "daemon off;"
       ports:
         - "1935:1935"
 tooling:
@@ -37,44 +38,33 @@ tooling:
           echo "Generated test room name: $LIVEKIT_TEST_ROOM"
         fi
         
-        # Forward local port to RTMP service container
-        echo "Setting up port forwarding to RTMP service..."
-        socat TCP-LISTEN:1935,fork,reuseaddr TCP:rtmp:1935 > /tmp/socat.log 2>&1 &
-        SOCAT_PID=$!
-        sleep 2
-        
-        # Start bore tunnel for RTMP
-        echo "Starting RTMP tunnel..."
-        bore local 1935 --to bore.pub > /tmp/bore.log 2>&1 &
-        BORE_PID=$!
-        sleep 10
-        
-        # Extract public RTMP URL
-        BORE_PORT=$(grep -oE 'bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
-        if [ -z "$BORE_PORT" ]; then
-          BORE_PORT=$(grep -oE 'Listening on bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
-        fi
-        
-        if [ -n "$BORE_PORT" ]; then
-          # Verify tunnel is working
-          if ! ps -p $BORE_PID > /dev/null 2>&1; then
-            echo "Warning: Bore tunnel process died. Log:"
-            cat /tmp/bore.log
-          else
-            # Generate short unique ID for RTMP stream keys (4 hex chars = 65536 combinations)
+        # Set up RTMP URLs: use env vars if set, otherwise fall back to bore tunnel
+        if [ -n "$LIVEKIT_EGRESS_RTMP_URL" ]; then
+          echo "Using RTMP URLs from environment:"
+          echo "  $LIVEKIT_EGRESS_RTMP_URL"
+          echo "  $LIVEKIT_EGRESS_RTMP_URL2"
+        else
+          echo "Starting RTMP tunnel via bore..."
+          bore local 1935 --local-host rtmp --to bore.pub > /tmp/bore.log 2>&1 &
+          BORE_PID=$!
+          sleep 10
+
+          BORE_PORT=$(grep -oE 'bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+          if [ -z "$BORE_PORT" ]; then
+            BORE_PORT=$(grep -oE 'Listening on bore\.pub:[0-9]+' /tmp/bore.log | head -1 | cut -d: -f2)
+          fi
+
+          if [ -n "$BORE_PORT" ] && ps -p $BORE_PID > /dev/null 2>&1; then
             RTMP_ID=$(openssl rand -hex 2)
             export LIVEKIT_EGRESS_RTMP_URL="rtmp://bore.pub:$BORE_PORT/live/test$RTMP_ID"
             export LIVEKIT_EGRESS_RTMP_URL2="rtmp://bore.pub:$BORE_PORT/live/test2$RTMP_ID"
             echo "Public RTMP URLs:"
             echo "  $LIVEKIT_EGRESS_RTMP_URL"
             echo "  $LIVEKIT_EGRESS_RTMP_URL2"
-            echo "Bore PID: $BORE_PID"
-            echo "Waiting additional 5 seconds for tunnel to stabilize..."
-            sleep 5
+          else
+            echo "Warning: Bore tunnel failed. Check /tmp/bore.log"
+            cat /tmp/bore.log
           fi
-        else
-          echo "Warning: Failed to extract bore tunnel URL. Using defaults."
-          cat /tmp/bore.log
         fi
         
         # Create test room if LiveKit credentials are available
@@ -111,14 +101,10 @@ tooling:
           lk room delete "$LIVEKIT_TEST_ROOM" || true
         fi
         
-        # Cleanup bore tunnel and socat forward
+        # Cleanup bore tunnel
         if [ -n "$BORE_PID" ]; then
           echo "Stopping bore tunnel (PID: $BORE_PID)"
           kill $BORE_PID 2>/dev/null || true
-        fi
-        if [ -n "$SOCAT_PID" ]; then
-          echo "Stopping socat forward (PID: $SOCAT_PID)"
-          kill $SOCAT_PID 2>/dev/null || true
         fi
         
         exit $TEST_EXIT_CODE
