@@ -16,7 +16,7 @@ class Trailer extends \Google\Protobuf\Internal\Message
     /**
      * unique identifier for this data stream
      *
-     * Generated from protobuf field <code>string stream_id = 1;</code>
+     * Generated from protobuf field <code>string stream_id = 1 [(.logger.name) = "streamID"];</code>
      */
     protected $stream_id = '';
     /**
@@ -54,7 +54,7 @@ class Trailer extends \Google\Protobuf\Internal\Message
     /**
      * unique identifier for this data stream
      *
-     * Generated from protobuf field <code>string stream_id = 1;</code>
+     * Generated from protobuf field <code>string stream_id = 1 [(.logger.name) = "streamID"];</code>
      * @return string
      */
     public function getStreamId()
@@ -65,7 +65,7 @@ class Trailer extends \Google\Protobuf\Internal\Message
     /**
      * unique identifier for this data stream
      *
-     * Generated from protobuf field <code>string stream_id = 1;</code>
+     * Generated from protobuf field <code>string stream_id = 1 [(.logger.name) = "streamID"];</code>
      * @param string $var
      * @return $this
      */

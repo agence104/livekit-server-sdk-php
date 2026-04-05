@@ -27,12 +27,19 @@ class KindDetail
      * Generated from protobuf enum <code>CONNECTOR_TWILIO = 3;</code>
      */
     const CONNECTOR_TWILIO = 3;
+    /**
+     * NEXT_ID: 5
+     *
+     * Generated from protobuf enum <code>BRIDGE_RTSP = 4;</code>
+     */
+    const BRIDGE_RTSP = 4;
 
     private static $valueToName = [
         self::CLOUD_AGENT => 'CLOUD_AGENT',
         self::FORWARDED => 'FORWARDED',
         self::CONNECTOR_WHATSAPP => 'CONNECTOR_WHATSAPP',
         self::CONNECTOR_TWILIO => 'CONNECTOR_TWILIO',
+        self::BRIDGE_RTSP => 'BRIDGE_RTSP',
     ];
 
     public static function name($value)

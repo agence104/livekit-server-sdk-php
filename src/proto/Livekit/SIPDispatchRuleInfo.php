@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string sip_dispatch_rule_id = 1;</code>
+     * Generated from protobuf field <code>string sip_dispatch_rule_id = 1 [(.logger.name) = "sipDispatchRuleID"];</code>
      */
     protected $sip_dispatch_rule_id = '';
     /**
@@ -30,11 +30,17 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
      */
     protected $hide_phone_number = false;
     /**
-     * Dispatch Rule will only accept a call made to these numbers (if set).
+     * Dispatch Rule will only accept a call made from these numbers (if set).
      *
      * Generated from protobuf field <code>repeated string inbound_numbers = 7;</code>
      */
     private $inbound_numbers;
+    /**
+     * Dispatch Rule will only accept a call made to these numbers (if set).
+     *
+     * Generated from protobuf field <code>repeated string numbers = 13;</code>
+     */
+    private $numbers;
     /**
      * Human-readable name for the Dispatch Rule.
      *
@@ -72,11 +78,17 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
      */
     protected $krisp_enabled = false;
     /**
-     * NEXT ID: 13
-     *
      * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 12;</code>
      */
     protected $media_encryption = 0;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 14;</code>
+     */
+    protected $created_at = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 15;</code>
+     */
+    protected $updated_at = null;
 
     /**
      * Constructor.
@@ -89,6 +101,8 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $trunk_ids
      *     @type bool $hide_phone_number
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $inbound_numbers
+     *           Dispatch Rule will only accept a call made from these numbers (if set).
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $numbers
      *           Dispatch Rule will only accept a call made to these numbers (if set).
      *     @type string $name
      *           Human-readable name for the Dispatch Rule.
@@ -104,7 +118,8 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
      *           RoomConfiguration to use if the participant initiates the room
      *     @type bool $krisp_enabled
      *     @type int $media_encryption
-     *           NEXT ID: 13
+     *     @type \Google\Protobuf\Timestamp $created_at
+     *     @type \Google\Protobuf\Timestamp $updated_at
      * }
      */
     public function __construct($data = NULL) {
@@ -113,7 +128,7 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sip_dispatch_rule_id = 1;</code>
+     * Generated from protobuf field <code>string sip_dispatch_rule_id = 1 [(.logger.name) = "sipDispatchRuleID"];</code>
      * @return string
      */
     public function getSipDispatchRuleId()
@@ -122,7 +137,7 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sip_dispatch_rule_id = 1;</code>
+     * Generated from protobuf field <code>string sip_dispatch_rule_id = 1 [(.logger.name) = "sipDispatchRuleID"];</code>
      * @param string $var
      * @return $this
      */
@@ -211,7 +226,7 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Dispatch Rule will only accept a call made to these numbers (if set).
+     * Dispatch Rule will only accept a call made from these numbers (if set).
      *
      * Generated from protobuf field <code>repeated string inbound_numbers = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -222,7 +237,7 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Dispatch Rule will only accept a call made to these numbers (if set).
+     * Dispatch Rule will only accept a call made from these numbers (if set).
      *
      * Generated from protobuf field <code>repeated string inbound_numbers = 7;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -232,6 +247,32 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->inbound_numbers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Dispatch Rule will only accept a call made to these numbers (if set).
+     *
+     * Generated from protobuf field <code>repeated string numbers = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNumbers()
+    {
+        return $this->numbers;
+    }
+
+    /**
+     * Dispatch Rule will only accept a call made to these numbers (if set).
+     *
+     * Generated from protobuf field <code>repeated string numbers = 13;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNumbers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->numbers = $arr;
 
         return $this;
     }
@@ -403,8 +444,6 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * NEXT ID: 13
-     *
      * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 12;</code>
      * @return int
      */
@@ -414,8 +453,6 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * NEXT ID: 13
-     *
      * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 12;</code>
      * @param int $var
      * @return $this
@@ -424,6 +461,70 @@ class SIPDispatchRuleInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\SIPMediaEncryption::class);
         $this->media_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 14;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function hasCreatedAt()
+    {
+        return isset($this->created_at);
+    }
+
+    public function clearCreatedAt()
+    {
+        unset($this->created_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 14;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->created_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 15;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    public function hasUpdatedAt()
+    {
+        return isset($this->updated_at);
+    }
+
+    public function clearUpdatedAt()
+    {
+        unset($this->updated_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 15;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->updated_at = $var;
 
         return $this;
     }

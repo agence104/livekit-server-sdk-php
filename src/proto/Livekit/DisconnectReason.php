@@ -105,6 +105,12 @@ class DisconnectReason
      * Generated from protobuf enum <code>MEDIA_FAILURE = 15;</code>
      */
     const MEDIA_FAILURE = 15;
+    /**
+     * agent encountered an error
+     *
+     * Generated from protobuf enum <code>AGENT_ERROR = 16;</code>
+     */
+    const AGENT_ERROR = 16;
 
     private static $valueToName = [
         self::UNKNOWN_REASON => 'UNKNOWN_REASON',
@@ -123,6 +129,7 @@ class DisconnectReason
         self::SIP_TRUNK_FAILURE => 'SIP_TRUNK_FAILURE',
         self::CONNECTION_TIMEOUT => 'CONNECTION_TIMEOUT',
         self::MEDIA_FAILURE => 'MEDIA_FAILURE',
+        self::AGENT_ERROR => 'AGENT_ERROR',
     ];
 
     public static function name($value)

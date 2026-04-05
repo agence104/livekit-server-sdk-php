@@ -14,6 +14,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListIngressResponse extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Generated from protobuf field <code>.livekit.TokenPagination next_page_token = 2;</code>
+     */
+    protected $next_page_token = null;
+    /**
+     * next field id: 3
+     *
      * Generated from protobuf field <code>repeated .livekit.IngressInfo items = 1;</code>
      */
     private $items;
@@ -24,7 +30,9 @@ class ListIngressResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Livekit\TokenPagination $next_page_token
      *     @type \Livekit\IngressInfo[]|\Google\Protobuf\Internal\RepeatedField $items
+     *           next field id: 3
      * }
      */
     public function __construct($data = NULL) {
@@ -33,6 +41,40 @@ class ListIngressResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.livekit.TokenPagination next_page_token = 2;</code>
+     * @return \Livekit\TokenPagination|null
+     */
+    public function getNextPageToken()
+    {
+        return $this->next_page_token;
+    }
+
+    public function hasNextPageToken()
+    {
+        return isset($this->next_page_token);
+    }
+
+    public function clearNextPageToken()
+    {
+        unset($this->next_page_token);
+    }
+
+    /**
+     * Generated from protobuf field <code>.livekit.TokenPagination next_page_token = 2;</code>
+     * @param \Livekit\TokenPagination $var
+     * @return $this
+     */
+    public function setNextPageToken($var)
+    {
+        GPBUtil::checkMessage($var, \Livekit\TokenPagination::class);
+        $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * next field id: 3
+     *
      * Generated from protobuf field <code>repeated .livekit.IngressInfo items = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -42,6 +84,8 @@ class ListIngressResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * next field id: 3
+     *
      * Generated from protobuf field <code>repeated .livekit.IngressInfo items = 1;</code>
      * @param \Livekit\IngressInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this

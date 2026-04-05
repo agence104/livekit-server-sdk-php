@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string dispatch_id = 1;</code>
+     * Generated from protobuf field <code>string dispatch_id = 1 [(.logger.name) = "dispatchID"];</code>
      */
     protected $dispatch_id = '';
     /**
@@ -38,7 +38,7 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string dispatch_id = 1;</code>
+     * Generated from protobuf field <code>string dispatch_id = 1 [(.logger.name) = "dispatchID"];</code>
      * @return string
      */
     public function getDispatchId()
@@ -47,7 +47,7 @@ class DeleteAgentDispatchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string dispatch_id = 1;</code>
+     * Generated from protobuf field <code>string dispatch_id = 1 [(.logger.name) = "dispatchID"];</code>
      * @param string $var
      * @return $this
      */

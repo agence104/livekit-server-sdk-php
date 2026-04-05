@@ -19,7 +19,7 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * What SIP Trunk should be used to dial the user
      *
-     * Generated from protobuf field <code>string sip_trunk_id = 1;</code>
+     * Generated from protobuf field <code>string sip_trunk_id = 1 [(.logger.name) = "sipTrunkID"];</code>
      */
     protected $sip_trunk_id = '';
     /**
@@ -219,7 +219,7 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * What SIP Trunk should be used to dial the user
      *
-     * Generated from protobuf field <code>string sip_trunk_id = 1;</code>
+     * Generated from protobuf field <code>string sip_trunk_id = 1 [(.logger.name) = "sipTrunkID"];</code>
      * @return string
      */
     public function getSipTrunkId()
@@ -230,7 +230,7 @@ class CreateSIPParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * What SIP Trunk should be used to dial the user
      *
-     * Generated from protobuf field <code>string sip_trunk_id = 1;</code>
+     * Generated from protobuf field <code>string sip_trunk_id = 1 [(.logger.name) = "sipTrunkID"];</code>
      * @param string $var
      * @return $this
      */

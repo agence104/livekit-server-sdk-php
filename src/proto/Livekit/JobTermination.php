@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobTermination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string job_id = 1;</code>
+     * Generated from protobuf field <code>string job_id = 1 [(.logger.name) = "jobID"];</code>
      */
     protected $job_id = '';
 
@@ -33,7 +33,7 @@ class JobTermination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string job_id = 1;</code>
+     * Generated from protobuf field <code>string job_id = 1 [(.logger.name) = "jobID"];</code>
      * @return string
      */
     public function getJobId()
@@ -42,7 +42,7 @@ class JobTermination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string job_id = 1;</code>
+     * Generated from protobuf field <code>string job_id = 1 [(.logger.name) = "jobID"];</code>
      * @param string $var
      * @return $this
      */

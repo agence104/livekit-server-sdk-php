@@ -32,7 +32,7 @@ class ServerInfo extends \Google\Protobuf\Internal\Message
      */
     protected $region = '';
     /**
-     * Generated from protobuf field <code>string node_id = 5;</code>
+     * Generated from protobuf field <code>string node_id = 5 [(.logger.name) = "nodeID"];</code>
      */
     protected $node_id = '';
     /**
@@ -156,7 +156,7 @@ class ServerInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string node_id = 5;</code>
+     * Generated from protobuf field <code>string node_id = 5 [(.logger.name) = "nodeID"];</code>
      * @return string
      */
     public function getNodeId()
@@ -165,7 +165,7 @@ class ServerInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string node_id = 5;</code>
+     * Generated from protobuf field <code>string node_id = 5 [(.logger.name) = "nodeID"];</code>
      * @param string $var
      * @return $this
      */

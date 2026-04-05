@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string ingress_id = 1;</code>
+     * Generated from protobuf field <code>string ingress_id = 1 [(.logger.name) = "ingressID"];</code>
      */
     protected $ingress_id = '';
     /**
@@ -30,11 +30,11 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
      */
     protected $participant_identity = '';
     /**
-     * Generated from protobuf field <code>string participant_name = 5;</code>
+     * Generated from protobuf field <code>string participant_name = 5 [(.logger.redact) = true];</code>
      */
     protected $participant_name = '';
     /**
-     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * Generated from protobuf field <code>string participant_metadata = 9 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      */
     protected $participant_metadata = '';
     /**
@@ -87,7 +87,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string ingress_id = 1;</code>
+     * Generated from protobuf field <code>string ingress_id = 1 [(.logger.name) = "ingressID"];</code>
      * @return string
      */
     public function getIngressId()
@@ -96,7 +96,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string ingress_id = 1;</code>
+     * Generated from protobuf field <code>string ingress_id = 1 [(.logger.name) = "ingressID"];</code>
      * @param string $var
      * @return $this
      */
@@ -175,7 +175,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_name = 5;</code>
+     * Generated from protobuf field <code>string participant_name = 5 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getParticipantName()
@@ -184,7 +184,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_name = 5;</code>
+     * Generated from protobuf field <code>string participant_name = 5 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -197,7 +197,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * Generated from protobuf field <code>string participant_metadata = 9 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @return string
      */
     public function getParticipantMetadata()
@@ -206,7 +206,7 @@ class UpdateIngressRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_metadata = 9;</code>
+     * Generated from protobuf field <code>string participant_metadata = 9 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
      * @param string $var
      * @return $this
      */

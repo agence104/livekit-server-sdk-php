@@ -24,13 +24,13 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional)
      *
-     * Generated from protobuf field <code>string audio_track_id = 2;</code>
+     * Generated from protobuf field <code>string audio_track_id = 2 [(.logger.name) = "audioTrackID"];</code>
      */
     protected $audio_track_id = '';
     /**
      * (optional)
      *
-     * Generated from protobuf field <code>string video_track_id = 3;</code>
+     * Generated from protobuf field <code>string video_track_id = 3 [(.logger.name) = "videoTrackID"];</code>
      */
     protected $video_track_id = '';
     /**
@@ -119,7 +119,7 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional)
      *
-     * Generated from protobuf field <code>string audio_track_id = 2;</code>
+     * Generated from protobuf field <code>string audio_track_id = 2 [(.logger.name) = "audioTrackID"];</code>
      * @return string
      */
     public function getAudioTrackId()
@@ -130,7 +130,7 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional)
      *
-     * Generated from protobuf field <code>string audio_track_id = 2;</code>
+     * Generated from protobuf field <code>string audio_track_id = 2 [(.logger.name) = "audioTrackID"];</code>
      * @param string $var
      * @return $this
      */
@@ -145,7 +145,7 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional)
      *
-     * Generated from protobuf field <code>string video_track_id = 3;</code>
+     * Generated from protobuf field <code>string video_track_id = 3 [(.logger.name) = "videoTrackID"];</code>
      * @return string
      */
     public function getVideoTrackId()
@@ -156,7 +156,7 @@ class TrackCompositeEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional)
      *
-     * Generated from protobuf field <code>string video_track_id = 3;</code>
+     * Generated from protobuf field <code>string video_track_id = 3 [(.logger.name) = "videoTrackID"];</code>
      * @param string $var
      * @return $this
      */

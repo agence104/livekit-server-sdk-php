@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AgentDispatchState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * For dispatches of tyoe JT_ROOM, there will be at most 1 job. 
+     * For dispatches of tyoe JT_ROOM, there will be at most 1 job.
      * For dispatches of type JT_PUBLISHER, there will be 1 per publisher.
      *
      * Generated from protobuf field <code>repeated .livekit.Job jobs = 1;</code>
@@ -36,7 +36,7 @@ class AgentDispatchState extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Livekit\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           For dispatches of tyoe JT_ROOM, there will be at most 1 job. 
+     *           For dispatches of tyoe JT_ROOM, there will be at most 1 job.
      *           For dispatches of type JT_PUBLISHER, there will be 1 per publisher.
      *     @type int|string $created_at
      *     @type int|string $deleted_at
@@ -48,7 +48,7 @@ class AgentDispatchState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For dispatches of tyoe JT_ROOM, there will be at most 1 job. 
+     * For dispatches of tyoe JT_ROOM, there will be at most 1 job.
      * For dispatches of type JT_PUBLISHER, there will be 1 per publisher.
      *
      * Generated from protobuf field <code>repeated .livekit.Job jobs = 1;</code>
@@ -60,7 +60,7 @@ class AgentDispatchState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For dispatches of tyoe JT_ROOM, there will be at most 1 job. 
+     * For dispatches of tyoe JT_ROOM, there will be at most 1 job.
      * For dispatches of type JT_PUBLISHER, there will be 1 per publisher.
      *
      * Generated from protobuf field <code>repeated .livekit.Job jobs = 1;</code>

@@ -38,11 +38,11 @@ class JobState extends \Google\Protobuf\Internal\Message
      */
     protected $participant_identity = '';
     /**
-     * Generated from protobuf field <code>string worker_id = 7;</code>
+     * Generated from protobuf field <code>string worker_id = 7 [(.logger.name) = "workerID"];</code>
      */
     protected $worker_id = '';
     /**
-     * Generated from protobuf field <code>string agent_id = 8;</code>
+     * Generated from protobuf field <code>string agent_id = 8 [(.logger.name) = "agentID"];</code>
      */
     protected $agent_id = '';
 
@@ -200,7 +200,7 @@ class JobState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string worker_id = 7;</code>
+     * Generated from protobuf field <code>string worker_id = 7 [(.logger.name) = "workerID"];</code>
      * @return string
      */
     public function getWorkerId()
@@ -209,7 +209,7 @@ class JobState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string worker_id = 7;</code>
+     * Generated from protobuf field <code>string worker_id = 7 [(.logger.name) = "workerID"];</code>
      * @param string $var
      * @return $this
      */
@@ -222,7 +222,7 @@ class JobState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string agent_id = 8;</code>
+     * Generated from protobuf field <code>string agent_id = 8 [(.logger.name) = "agentID"];</code>
      * @return string
      */
     public function getAgentId()
@@ -231,7 +231,7 @@ class JobState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string agent_id = 8;</code>
+     * Generated from protobuf field <code>string agent_id = 8 [(.logger.name) = "agentID"];</code>
      * @param string $var
      * @return $this
      */

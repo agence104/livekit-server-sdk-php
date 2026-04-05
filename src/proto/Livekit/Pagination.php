@@ -16,7 +16,7 @@ class Pagination extends \Google\Protobuf\Internal\Message
     /**
      * list entities which IDs are greater
      *
-     * Generated from protobuf field <code>string after_id = 1;</code>
+     * Generated from protobuf field <code>string after_id = 1 [(.logger.name) = "afterID"];</code>
      */
     protected $after_id = '';
     /**
@@ -43,7 +43,7 @@ class Pagination extends \Google\Protobuf\Internal\Message
     /**
      * list entities which IDs are greater
      *
-     * Generated from protobuf field <code>string after_id = 1;</code>
+     * Generated from protobuf field <code>string after_id = 1 [(.logger.name) = "afterID"];</code>
      * @return string
      */
     public function getAfterId()
@@ -54,7 +54,7 @@ class Pagination extends \Google\Protobuf\Internal\Message
     /**
      * list entities which IDs are greater
      *
-     * Generated from protobuf field <code>string after_id = 1;</code>
+     * Generated from protobuf field <code>string after_id = 1 [(.logger.name) = "afterID"];</code>
      * @param string $var
      * @return $this
      */

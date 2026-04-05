@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VP8MungerState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>int32 ext_last_picture_id = 1;</code>
+     * Generated from protobuf field <code>int32 ext_last_picture_id = 1 [(.logger.name) = "extLastPictureID"];</code>
      */
     protected $ext_last_picture_id = 0;
     /**
@@ -63,7 +63,7 @@ class VP8MungerState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 ext_last_picture_id = 1;</code>
+     * Generated from protobuf field <code>int32 ext_last_picture_id = 1 [(.logger.name) = "extLastPictureID"];</code>
      * @return int
      */
     public function getExtLastPictureId()
@@ -72,7 +72,7 @@ class VP8MungerState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 ext_last_picture_id = 1;</code>
+     * Generated from protobuf field <code>int32 ext_last_picture_id = 1 [(.logger.name) = "extLastPictureID"];</code>
      * @param int $var
      * @return $this
      */

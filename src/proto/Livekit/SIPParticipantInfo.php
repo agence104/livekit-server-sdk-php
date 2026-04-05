@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SIPParticipantInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string participant_id = 1;</code>
+     * Generated from protobuf field <code>string participant_id = 1 [(.logger.name) = "participantID"];</code>
      */
     protected $participant_id = '';
     /**
@@ -26,7 +26,7 @@ class SIPParticipantInfo extends \Google\Protobuf\Internal\Message
      */
     protected $room_name = '';
     /**
-     * Generated from protobuf field <code>string sip_call_id = 4;</code>
+     * Generated from protobuf field <code>string sip_call_id = 4 [(.logger.name) = "sipCallID"];</code>
      */
     protected $sip_call_id = '';
 
@@ -48,7 +48,7 @@ class SIPParticipantInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_id = 1;</code>
+     * Generated from protobuf field <code>string participant_id = 1 [(.logger.name) = "participantID"];</code>
      * @return string
      */
     public function getParticipantId()
@@ -57,7 +57,7 @@ class SIPParticipantInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string participant_id = 1;</code>
+     * Generated from protobuf field <code>string participant_id = 1 [(.logger.name) = "participantID"];</code>
      * @param string $var
      * @return $this
      */
@@ -114,7 +114,7 @@ class SIPParticipantInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sip_call_id = 4;</code>
+     * Generated from protobuf field <code>string sip_call_id = 4 [(.logger.name) = "sipCallID"];</code>
      * @return string
      */
     public function getSipCallId()
@@ -123,7 +123,7 @@ class SIPParticipantInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sip_call_id = 4;</code>
+     * Generated from protobuf field <code>string sip_call_id = 4 [(.logger.name) = "sipCallID"];</code>
      * @param string $var
      * @return $this
      */

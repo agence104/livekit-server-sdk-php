@@ -20,7 +20,7 @@ class Transcription extends \Google\Protobuf\Internal\Message
      */
     protected $transcribed_participant_identity = '';
     /**
-     * Generated from protobuf field <code>string track_id = 3;</code>
+     * Generated from protobuf field <code>string track_id = 3 [(.logger.name) = "trackID"];</code>
      */
     protected $track_id = '';
     /**
@@ -72,7 +72,7 @@ class Transcription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string track_id = 3;</code>
+     * Generated from protobuf field <code>string track_id = 3 [(.logger.name) = "trackID"];</code>
      * @return string
      */
     public function getTrackId()
@@ -81,7 +81,7 @@ class Transcription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string track_id = 3;</code>
+     * Generated from protobuf field <code>string track_id = 3 [(.logger.name) = "trackID"];</code>
      * @param string $var
      * @return $this
      */

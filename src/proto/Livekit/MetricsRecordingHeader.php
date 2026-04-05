@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricsRecordingHeader extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string room_id = 1;</code>
+     * Generated from protobuf field <code>string room_id = 1 [(.logger.name) = "roomID"];</code>
      */
     protected $room_id = '';
     /**
@@ -51,7 +51,7 @@ class MetricsRecordingHeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string room_id = 1;</code>
+     * Generated from protobuf field <code>string room_id = 1 [(.logger.name) = "roomID"];</code>
      * @return string
      */
     public function getRoomId()
@@ -60,7 +60,7 @@ class MetricsRecordingHeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string room_id = 1;</code>
+     * Generated from protobuf field <code>string room_id = 1 [(.logger.name) = "roomID"];</code>
      * @param string $var
      * @return $this
      */

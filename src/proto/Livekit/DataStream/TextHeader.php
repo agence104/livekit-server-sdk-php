@@ -28,7 +28,7 @@ class TextHeader extends \Google\Protobuf\Internal\Message
     /**
      * Optional: Reply to specific message
      *
-     * Generated from protobuf field <code>string reply_to_stream_id = 3;</code>
+     * Generated from protobuf field <code>string reply_to_stream_id = 3 [(.logger.name) = "replyToStreamID"];</code>
      */
     protected $reply_to_stream_id = '';
     /**
@@ -117,7 +117,7 @@ class TextHeader extends \Google\Protobuf\Internal\Message
     /**
      * Optional: Reply to specific message
      *
-     * Generated from protobuf field <code>string reply_to_stream_id = 3;</code>
+     * Generated from protobuf field <code>string reply_to_stream_id = 3 [(.logger.name) = "replyToStreamID"];</code>
      * @return string
      */
     public function getReplyToStreamId()
@@ -128,7 +128,7 @@ class TextHeader extends \Google\Protobuf\Internal\Message
     /**
      * Optional: Reply to specific message
      *
-     * Generated from protobuf field <code>string reply_to_stream_id = 3;</code>
+     * Generated from protobuf field <code>string reply_to_stream_id = 3 [(.logger.name) = "replyToStreamID"];</code>
      * @param string $var
      * @return $this
      */

@@ -14,11 +14,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class EgressInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string egress_id = 1;</code>
+     * Generated from protobuf field <code>string egress_id = 1 [(.logger.name) = "egressID"];</code>
      */
     protected $egress_id = '';
     /**
-     * Generated from protobuf field <code>string room_id = 2;</code>
+     * Generated from protobuf field <code>string room_id = 2 [(.logger.name) = "roomID"];</code>
      */
     protected $room_id = '';
     /**
@@ -78,11 +78,15 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      */
     protected $manifest_location = '';
     /**
-     * next ID: 27
-     *
      * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
      */
     protected $backup_storage_used = false;
+    /**
+     * next ID: 28
+     *
+     * Generated from protobuf field <code>int32 retry_count = 27;</code>
+     */
+    protected $retry_count = 0;
     protected $request;
     protected $result;
 
@@ -117,7 +121,8 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\ImagesInfo[]|\Google\Protobuf\Internal\RepeatedField $image_results
      *     @type string $manifest_location
      *     @type bool $backup_storage_used
-     *           next ID: 27
+     *     @type int $retry_count
+     *           next ID: 28
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +131,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string egress_id = 1;</code>
+     * Generated from protobuf field <code>string egress_id = 1 [(.logger.name) = "egressID"];</code>
      * @return string
      */
     public function getEgressId()
@@ -135,7 +140,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string egress_id = 1;</code>
+     * Generated from protobuf field <code>string egress_id = 1 [(.logger.name) = "egressID"];</code>
      * @param string $var
      * @return $this
      */
@@ -148,7 +153,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string room_id = 2;</code>
+     * Generated from protobuf field <code>string room_id = 2 [(.logger.name) = "roomID"];</code>
      * @return string
      */
     public function getRoomId()
@@ -157,7 +162,7 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string room_id = 2;</code>
+     * Generated from protobuf field <code>string room_id = 2 [(.logger.name) = "roomID"];</code>
      * @param string $var
      * @return $this
      */
@@ -709,8 +714,6 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * next ID: 27
-     *
      * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
      * @return bool
      */
@@ -720,8 +723,6 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * next ID: 27
-     *
      * Generated from protobuf field <code>bool backup_storage_used = 25;</code>
      * @param bool $var
      * @return $this
@@ -730,6 +731,32 @@ class EgressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->backup_storage_used = $var;
+
+        return $this;
+    }
+
+    /**
+     * next ID: 28
+     *
+     * Generated from protobuf field <code>int32 retry_count = 27;</code>
+     * @return int
+     */
+    public function getRetryCount()
+    {
+        return $this->retry_count;
+    }
+
+    /**
+     * next ID: 28
+     *
+     * Generated from protobuf field <code>int32 retry_count = 27;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRetryCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->retry_count = $var;
 
         return $this;
     }

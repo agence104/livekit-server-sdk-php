@@ -116,6 +116,10 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.BackupCodecPolicy backup_codec_policy = 20;</code>
      */
     protected $backup_codec_policy = 0;
+    /**
+     * Generated from protobuf field <code>repeated .livekit.PacketTrailerFeature packet_trailer_features = 21;</code>
+     */
+    private $packet_trailer_features;
 
     /**
      * Constructor.
@@ -153,6 +157,7 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
      *     @type \Livekit\TimedVersion $version
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $audio_features
      *     @type int $backup_codec_policy
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $packet_trailer_features
      * }
      */
     public function __construct($data = NULL) {
@@ -660,6 +665,28 @@ class TrackInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\BackupCodecPolicy::class);
         $this->backup_codec_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.PacketTrailerFeature packet_trailer_features = 21;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPacketTrailerFeatures()
+    {
+        return $this->packet_trailer_features;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .livekit.PacketTrailerFeature packet_trailer_features = 21;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPacketTrailerFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Livekit\PacketTrailerFeature::class);
+        $this->packet_trailer_features = $arr;
 
         return $this;
     }

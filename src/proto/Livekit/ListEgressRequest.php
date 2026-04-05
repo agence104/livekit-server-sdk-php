@@ -22,7 +22,7 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional, filter by egress ID)
      *
-     * Generated from protobuf field <code>string egress_id = 2;</code>
+     * Generated from protobuf field <code>string egress_id = 2 [(.logger.name) = "egressID"];</code>
      */
     protected $egress_id = '';
     /**
@@ -80,7 +80,7 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional, filter by egress ID)
      *
-     * Generated from protobuf field <code>string egress_id = 2;</code>
+     * Generated from protobuf field <code>string egress_id = 2 [(.logger.name) = "egressID"];</code>
      * @return string
      */
     public function getEgressId()
@@ -91,7 +91,7 @@ class ListEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * (optional, filter by egress ID)
      *
-     * Generated from protobuf field <code>string egress_id = 2;</code>
+     * Generated from protobuf field <code>string egress_id = 2 [(.logger.name) = "egressID"];</code>
      * @param string $var
      * @return $this
      */

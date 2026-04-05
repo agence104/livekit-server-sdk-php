@@ -71,6 +71,12 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool can_subscribe_metrics = 12;</code>
      */
     protected $can_subscribe_metrics = false;
+    /**
+     * if a participant can manage an agent session via RemoteSession (control and access state)
+     *
+     * Generated from protobuf field <code>bool can_manage_agent_session = 13;</code>
+     */
+    protected $can_manage_agent_session = false;
 
     /**
      * Constructor.
@@ -98,6 +104,8 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
      *           deprecated: use ParticipantInfo.kind instead
      *     @type bool $can_subscribe_metrics
      *           if a participant can subscribe to metrics
+     *     @type bool $can_manage_agent_session
+     *           if a participant can manage an agent session via RemoteSession (control and access state)
      * }
      */
     public function __construct($data = NULL) {
@@ -347,6 +355,32 @@ class ParticipantPermission extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->can_subscribe_metrics = $var;
+
+        return $this;
+    }
+
+    /**
+     * if a participant can manage an agent session via RemoteSession (control and access state)
+     *
+     * Generated from protobuf field <code>bool can_manage_agent_session = 13;</code>
+     * @return bool
+     */
+    public function getCanManageAgentSession()
+    {
+        return $this->can_manage_agent_session;
+    }
+
+    /**
+     * if a participant can manage an agent session via RemoteSession (control and access state)
+     *
+     * Generated from protobuf field <code>bool can_manage_agent_session = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCanManageAgentSession($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->can_manage_agent_session = $var;
 
         return $this;
     }

@@ -33,6 +33,12 @@ class RpcRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>uint32 version = 5;</code>
      */
     protected $version = 0;
+    /**
+     * Compressed payload data. When set, this field is used instead of `payload`.
+     *
+     * Generated from protobuf field <code>bytes compressed_payload = 6;</code>
+     */
+    protected $compressed_payload = '';
 
     /**
      * Constructor.
@@ -45,6 +51,8 @@ class RpcRequest extends \Google\Protobuf\Internal\Message
      *     @type string $payload
      *     @type int $response_timeout_ms
      *     @type int $version
+     *     @type string $compressed_payload
+     *           Compressed payload data. When set, this field is used instead of `payload`.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +166,32 @@ class RpcRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Compressed payload data. When set, this field is used instead of `payload`.
+     *
+     * Generated from protobuf field <code>bytes compressed_payload = 6;</code>
+     * @return string
+     */
+    public function getCompressedPayload()
+    {
+        return $this->compressed_payload;
+    }
+
+    /**
+     * Compressed payload data. When set, this field is used instead of `payload`.
+     *
+     * Generated from protobuf field <code>bytes compressed_payload = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCompressedPayload($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->compressed_payload = $var;
 
         return $this;
     }

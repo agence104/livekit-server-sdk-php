@@ -24,7 +24,7 @@ class TrackEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * required
      *
-     * Generated from protobuf field <code>string track_id = 2;</code>
+     * Generated from protobuf field <code>string track_id = 2 [(.logger.name) = "trackID"];</code>
      */
     protected $track_id = '';
     /**
@@ -85,7 +85,7 @@ class TrackEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * required
      *
-     * Generated from protobuf field <code>string track_id = 2;</code>
+     * Generated from protobuf field <code>string track_id = 2 [(.logger.name) = "trackID"];</code>
      * @return string
      */
     public function getTrackId()
@@ -96,7 +96,7 @@ class TrackEgressRequest extends \Google\Protobuf\Internal\Message
     /**
      * required
      *
-     * Generated from protobuf field <code>string track_id = 2;</code>
+     * Generated from protobuf field <code>string track_id = 2 [(.logger.name) = "trackID"];</code>
      * @param string $var
      * @return $this
      */

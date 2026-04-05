@@ -14,15 +14,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SIPCallInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string call_id = 1;</code>
+     * Generated from protobuf field <code>string call_id = 1 [(.logger.name) = "callID"];</code>
      */
     protected $call_id = '';
     /**
-     * Generated from protobuf field <code>string trunk_id = 2;</code>
+     * Generated from protobuf field <code>string trunk_id = 2 [(.logger.name) = "trunkID"];</code>
      */
     protected $trunk_id = '';
     /**
-     * Generated from protobuf field <code>string dispatch_rule_id = 16;</code>
+     * Generated from protobuf field <code>string dispatch_rule_id = 16 [(.logger.name) = "dispatchRuleID"];</code>
      */
     protected $dispatch_rule_id = '';
     /**
@@ -36,7 +36,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     /**
      * ID of the current/previous room published to
      *
-     * Generated from protobuf field <code>string room_id = 4;</code>
+     * Generated from protobuf field <code>string room_id = 4 [(.logger.name) = "roomID"];</code>
      */
     protected $room_id = '';
     /**
@@ -126,6 +126,10 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.ProviderInfo provider_info = 27;</code>
      */
     protected $provider_info = null;
+    /**
+     * Generated from protobuf field <code>string sip_call_id = 28 [(.logger.name) = "sipCallID"];</code>
+     */
+    protected $sip_call_id = '';
 
     /**
      * Constructor.
@@ -161,6 +165,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
      *     @type string $pcap_file_link
      *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $call_context
      *     @type \Livekit\ProviderInfo $provider_info
+     *     @type string $sip_call_id
      * }
      */
     public function __construct($data = NULL) {
@@ -169,7 +174,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string call_id = 1;</code>
+     * Generated from protobuf field <code>string call_id = 1 [(.logger.name) = "callID"];</code>
      * @return string
      */
     public function getCallId()
@@ -178,7 +183,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string call_id = 1;</code>
+     * Generated from protobuf field <code>string call_id = 1 [(.logger.name) = "callID"];</code>
      * @param string $var
      * @return $this
      */
@@ -191,7 +196,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string trunk_id = 2;</code>
+     * Generated from protobuf field <code>string trunk_id = 2 [(.logger.name) = "trunkID"];</code>
      * @return string
      */
     public function getTrunkId()
@@ -200,7 +205,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string trunk_id = 2;</code>
+     * Generated from protobuf field <code>string trunk_id = 2 [(.logger.name) = "trunkID"];</code>
      * @param string $var
      * @return $this
      */
@@ -213,7 +218,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string dispatch_rule_id = 16;</code>
+     * Generated from protobuf field <code>string dispatch_rule_id = 16 [(.logger.name) = "dispatchRuleID"];</code>
      * @return string
      */
     public function getDispatchRuleId()
@@ -222,7 +227,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string dispatch_rule_id = 16;</code>
+     * Generated from protobuf field <code>string dispatch_rule_id = 16 [(.logger.name) = "dispatchRuleID"];</code>
      * @param string $var
      * @return $this
      */
@@ -281,7 +286,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     /**
      * ID of the current/previous room published to
      *
-     * Generated from protobuf field <code>string room_id = 4;</code>
+     * Generated from protobuf field <code>string room_id = 4 [(.logger.name) = "roomID"];</code>
      * @return string
      */
     public function getRoomId()
@@ -292,7 +297,7 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     /**
      * ID of the current/previous room published to
      *
-     * Generated from protobuf field <code>string room_id = 4;</code>
+     * Generated from protobuf field <code>string room_id = 4 [(.logger.name) = "roomID"];</code>
      * @param string $var
      * @return $this
      */
@@ -814,6 +819,28 @@ class SIPCallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Livekit\ProviderInfo::class);
         $this->provider_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string sip_call_id = 28 [(.logger.name) = "sipCallID"];</code>
+     * @return string
+     */
+    public function getSipCallId()
+    {
+        return $this->sip_call_id;
+    }
+
+    /**
+     * Generated from protobuf field <code>string sip_call_id = 28 [(.logger.name) = "sipCallID"];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSipCallId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sip_call_id = $var;
 
         return $this;
     }

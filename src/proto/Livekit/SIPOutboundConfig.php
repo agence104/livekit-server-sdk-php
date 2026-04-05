@@ -35,11 +35,11 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      * Username and password used to authenticate with SIP server.
      * May be empty to have no authentication.
      *
-     * Generated from protobuf field <code>string auth_username = 3 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_username = 3 [(.logger.redact) = true];</code>
      */
     protected $auth_username = '';
     /**
-     * Generated from protobuf field <code>string auth_password = 4 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_password = 4 [(.logger.redact) = true];</code>
      */
     protected $auth_password = '';
     /**
@@ -56,6 +56,12 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> attributes_to_headers = 6;</code>
      */
     private $attributes_to_headers;
+    /**
+     * Optional custom hostname for the 'From' SIP header. When set, outbound calls use this host instead of the default project SIP domain.
+     *
+     * Generated from protobuf field <code>string from_host = 8;</code>
+     */
+    protected $from_host = '';
 
     /**
      * Constructor.
@@ -79,6 +85,8 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $attributes_to_headers
      *           Map LiveKit attributes to SIP X-* headers when sending BYE or REFER requests.
      *           Keys are the names of attributes and values are the names of X-* headers they will be mapped to.
+     *     @type string $from_host
+     *           Optional custom hostname for the 'From' SIP header. When set, outbound calls use this host instead of the default project SIP domain.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,7 +176,7 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      * Username and password used to authenticate with SIP server.
      * May be empty to have no authentication.
      *
-     * Generated from protobuf field <code>string auth_username = 3 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_username = 3 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAuthUsername()
@@ -180,7 +188,7 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
      * Username and password used to authenticate with SIP server.
      * May be empty to have no authentication.
      *
-     * Generated from protobuf field <code>string auth_username = 3 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_username = 3 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -193,7 +201,7 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string auth_password = 4 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_password = 4 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAuthPassword()
@@ -202,7 +210,7 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string auth_password = 4 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_password = 4 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -266,6 +274,32 @@ class SIPOutboundConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->attributes_to_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional custom hostname for the 'From' SIP header. When set, outbound calls use this host instead of the default project SIP domain.
+     *
+     * Generated from protobuf field <code>string from_host = 8;</code>
+     * @return string
+     */
+    public function getFromHost()
+    {
+        return $this->from_host;
+    }
+
+    /**
+     * Optional custom hostname for the 'From' SIP header. When set, outbound calls use this host instead of the default project SIP domain.
+     *
+     * Generated from protobuf field <code>string from_host = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFromHost($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->from_host = $var;
 
         return $this;
     }

@@ -47,6 +47,10 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string rid = 7;</code>
      */
     protected $rid = '';
+    /**
+     * Generated from protobuf field <code>uint32 repair_ssrc = 8;</code>
+     */
+    protected $repair_ssrc = 0;
 
     /**
      * Constructor.
@@ -63,6 +67,7 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
      *     @type int $ssrc
      *     @type int $spatial_layer
      *     @type string $rid
+     *     @type int $repair_ssrc
      * }
      */
     public function __construct($data = NULL) {
@@ -228,6 +233,28 @@ class VideoLayer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->rid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 repair_ssrc = 8;</code>
+     * @return int
+     */
+    public function getRepairSsrc()
+    {
+        return $this->repair_ssrc;
+    }
+
+    /**
+     * Generated from protobuf field <code>uint32 repair_ssrc = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRepairSsrc($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->repair_ssrc = $var;
 
         return $this;
     }

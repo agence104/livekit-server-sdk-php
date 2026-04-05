@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string sip_trunk_id = 1;</code>
+     * Generated from protobuf field <code>string sip_trunk_id = 1 [(.logger.name) = "sipTrunkID"];</code>
      */
     protected $sip_trunk_id = '';
     /**
@@ -54,11 +54,11 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Username and password used to authenticate inbound SIP invites.
      * May be empty to have no authentication.
      *
-     * Generated from protobuf field <code>string auth_username = 7 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_username = 7 [(.logger.redact) = true];</code>
      */
     protected $auth_username = '';
     /**
-     * Generated from protobuf field <code>string auth_password = 8 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_password = 8 [(.logger.redact) = true];</code>
      */
     protected $auth_password = '';
     /**
@@ -109,6 +109,14 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.livekit.SIPMediaEncryption media_encryption = 16;</code>
      */
     protected $media_encryption = 0;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 17;</code>
+     */
+    protected $created_at = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 18;</code>
+     */
+    protected $updated_at = null;
 
     /**
      * Constructor.
@@ -152,6 +160,8 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      *           Max call duration.
      *     @type bool $krisp_enabled
      *     @type int $media_encryption
+     *     @type \Google\Protobuf\Timestamp $created_at
+     *     @type \Google\Protobuf\Timestamp $updated_at
      * }
      */
     public function __construct($data = NULL) {
@@ -160,7 +170,7 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sip_trunk_id = 1;</code>
+     * Generated from protobuf field <code>string sip_trunk_id = 1 [(.logger.name) = "sipTrunkID"];</code>
      * @return string
      */
     public function getSipTrunkId()
@@ -169,7 +179,7 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string sip_trunk_id = 1;</code>
+     * Generated from protobuf field <code>string sip_trunk_id = 1 [(.logger.name) = "sipTrunkID"];</code>
      * @param string $var
      * @return $this
      */
@@ -321,7 +331,7 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Username and password used to authenticate inbound SIP invites.
      * May be empty to have no authentication.
      *
-     * Generated from protobuf field <code>string auth_username = 7 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_username = 7 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAuthUsername()
@@ -333,7 +343,7 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
      * Username and password used to authenticate inbound SIP invites.
      * May be empty to have no authentication.
      *
-     * Generated from protobuf field <code>string auth_username = 7 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_username = 7 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -346,7 +356,7 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string auth_password = 8 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_password = 8 [(.logger.redact) = true];</code>
      * @return string
      */
     public function getAuthPassword()
@@ -355,7 +365,7 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string auth_password = 8 [(.logger.redact) = true, (.logger.redact_format) = "<redacted ({{ .Size }} bytes)>"];</code>
+     * Generated from protobuf field <code>string auth_password = 8 [(.logger.redact) = true];</code>
      * @param string $var
      * @return $this
      */
@@ -591,6 +601,70 @@ class SIPInboundTrunkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Livekit\SIPMediaEncryption::class);
         $this->media_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 17;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function hasCreatedAt()
+    {
+        return isset($this->created_at);
+    }
+
+    public function clearCreatedAt()
+    {
+        unset($this->created_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 17;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->created_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 18;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    public function hasUpdatedAt()
+    {
+        return isset($this->updated_at);
+    }
+
+    public function clearUpdatedAt()
+    {
+        unset($this->updated_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 18;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->updated_at = $var;
 
         return $this;
     }
